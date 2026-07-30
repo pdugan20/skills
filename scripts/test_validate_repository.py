@@ -15,6 +15,19 @@ class ValidateRepositoryTests(unittest.TestCase):
     def test_repository_is_valid(self) -> None:
         self.assertEqual(validate_repository.validate(), [])
 
+    def test_package_and_plugin_identity_is_explicit(self) -> None:
+        package = validate_repository.load_json(validate_repository.ROOT / "package.json")
+        claude = validate_repository.load_json(
+            validate_repository.ROOT / ".claude-plugin" / "plugin.json"
+        )
+        codex = validate_repository.load_json(
+            validate_repository.ROOT / ".codex-plugin" / "plugin.json"
+        )
+
+        self.assertEqual(package["name"], validate_repository.PLUGIN_NAME)
+        self.assertEqual(claude["name"], validate_repository.PLUGIN_NAME)
+        self.assertEqual(codex["name"], validate_repository.PLUGIN_NAME)
+
     def test_release_tag_matches_version(self) -> None:
         package = validate_repository.load_json(validate_repository.ROOT / "package.json")
         self.assertIsInstance(package, dict)

@@ -1,8 +1,8 @@
 {
-  "name": "patrick-workflows",
-  "version": "1.1.0",
+  "name": "patrick-skills",
+  "version": "2.0.0",
   "private": true,
-  "description": "Portable design and development workflows for Agent Skills clients.",
+  "description": "Portable design and development skills for Agent Skills clients.",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"**/*.{json,yaml,yml}\"",

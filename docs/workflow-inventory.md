@@ -1,6 +1,6 @@
 # Workflow Inventory
 
-This file is the canonical inventory of Patrick's recurring design and development workflows that may deserve reusable agent support. It records decisions and evidence; [GitHub issue #2](https://github.com/pdugan20/patrick-workflows/issues/2) records changing execution status.
+This file is the canonical inventory of Patrick's recurring design and development workflows that may deserve reusable agent support. It records decisions and evidence; [GitHub issue #2](https://github.com/pdugan20/skills/issues/2) records changing execution status.
 
 Use the [skill authoring standard](skill-authoring.md) to classify candidates. Create a brief from the [workflow template](workflows/_template.md) only after a flow has enough real evidence to evaluate.
 
@@ -39,7 +39,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | `WF-002` | Substantial production feature delivery | The released `feature-delivery` workflow plus the production mode and proportional-testing corrections in the shared working agreement | **Skill (composite workflow):** retain the existing bounded skill; ordinary small changes stay under agent defaults and repository instructions | `released` | Medium | Existing skill |
 | `WF-003` | Explicit production hardening | The released `production-hardening` workflow plus repeated separation of exploration, implementation, and release-readiness work in the shared working agreement | **Skill (discipline workflow):** retain it as explicit-only because automatic hardening would make lightweight work unnecessarily heavy | `released` | Medium | Existing skill |
 | `WF-004` | Agent environment bootstrap and plugin reconciliation | `agent-tooling` setup, refresh, catalog, lockfile, drift, and machine-check scripts with documented source-of-truth boundaries | **Scripts + human documentation:** the operations are deterministic and stateful; a skill would be a less reliable wrapper around the existing tested commands | `classified` | Medium | No skill brief |
-| `WF-005` | Skill and plugin versioning, marketplace sync, and release | Release workflows and version-sync, packaging, installation, and marketplace-bump scripts across `patrick-workflows` and `mintlify-docs` | **Scripts + CI + human documentation:** transactional release steps need reproducible checks and explicit external-write approval, not agent judgment | `classified` | Medium | No skill brief |
+| `WF-005` | Skill and plugin versioning, marketplace sync, and release | Release workflows and version-sync, packaging, installation, and marketplace-bump scripts across `skills` and `mintlify-docs` | **Scripts + CI + human documentation:** transactional release steps need reproducible checks and explicit external-write approval, not agent judgment | `classified` | Medium | No skill brief |
 | `WF-006` | Scaffold a Mintlify documentation site | The released `scaffold-mintlify-site` skill, templates, generators, mirror sync, and drift CI in `mintlify-docs` | **Skill + scripts + assets:** information architecture requires judgment while tree generation and drift checks are deterministic; keep it in the focused docs plugin | `released` | Medium | Existing external collection |
 | `WF-007` | Generate drift-checked CLI, MCP, and API reference docs | The released `document-reference` skill and source-backed generators in `mintlify-docs` | **Skill + scripts:** the skill selects and explains the reference shape while generators enforce source fidelity; keep it in the focused docs plugin | `released` | Medium | Existing external collection |
 | `WF-008` | Review documentation content and information architecture | The released `review-docs` skill and shared editorial playbook in `mintlify-docs` | **Skill (discipline workflow) + reference:** page-order review and editorial judgment benefit from a bounded method; Mintlify mechanics remain in the official plugin | `released` | Medium | Existing external collection |
@@ -47,7 +47,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 
 ## Existing collection
 
-These released Patrick Workflows skills are also represented in the audit above so the inventory covers the complete recurring process instead of only net-new ideas:
+These released Patrick-owned skills are also represented in the audit above so the inventory covers the complete recurring process instead of only net-new ideas:
 
 | Skill | Classification | Primary boundary |
 | --- | --- | --- |

@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url";
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sourceSkillsRoot = join(repositoryRoot, "skills");
 const installationRoot = mkdtempSync(
-  join(tmpdir(), "patrick-workflows-install-")
+  join(tmpdir(), "patrick-skills-install-")
 );
 const npxCommand = process.platform === "win32" ? "npx.cmd" : "npx";
 

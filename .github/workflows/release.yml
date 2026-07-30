@@ -56,7 +56,7 @@ jobs:
       - name: Package plugin
         run: |
           mkdir -p dist
-          git archive --format=zip --output="dist/patrick-workflows-$GITHUB_REF_NAME.zip" HEAD
+          git archive --format=zip --output="dist/patrick-skills-$GITHUB_REF_NAME.zip" HEAD
 
       - name: Extract curated release notes
         run: |
@@ -68,7 +68,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" \
-            "dist/patrick-workflows-$GITHUB_REF_NAME.zip" \
+            "dist/patrick-skills-$GITHUB_REF_NAME.zip" \
             --notes-file "$RUNNER_TEMP/release-notes.md" \
             --title "$GITHUB_REF_NAME" \
             --verify-tag

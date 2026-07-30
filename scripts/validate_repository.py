@@ -14,6 +14,7 @@ EXPECTED_SKILLS = {
     "feature-delivery": True,
     "production-hardening": False,
 }
+PLUGIN_NAME = "patrick-skills"
 VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
 MIN_EXECUTION_EVALS = 3
 MIN_ROUTING_EVALS_PER_CLASS = 4
@@ -172,18 +173,27 @@ def validate_skill(skill_name: str, implicit: bool) -> list[str]:
 def validate(release_tag: str | None = None) -> list[str]:
     errors: list[str] = []
     package = load_json(ROOT / "package.json")
+    package_lock = load_json(ROOT / "package-lock.json")
     claude = load_json(ROOT / ".claude-plugin" / "plugin.json")
     codex = load_json(ROOT / ".codex-plugin" / "plugin.json")
     assert isinstance(package, dict)
+    assert isinstance(package_lock, dict)
     assert isinstance(claude, dict)
     assert isinstance(codex, dict)
     version = package.get("version")
 
+    if package.get("name") != PLUGIN_NAME:
+        errors.append(f"package.json: name must be {PLUGIN_NAME}")
     if not isinstance(version, str) or not VERSION_RE.fullmatch(version):
         errors.append("package.json: version must be semantic x.y.z")
+    lock_package = package_lock.get("packages", {}).get("", {})
+    if package_lock.get("name") != PLUGIN_NAME or lock_package.get("name") != PLUGIN_NAME:
+        errors.append(f"package-lock.json: names must be {PLUGIN_NAME}")
+    if package_lock.get("version") != version or lock_package.get("version") != version:
+        errors.append("package-lock.json: versions must match package.json")
     for path, manifest in ((".claude-plugin/plugin.json", claude), (".codex-plugin/plugin.json", codex)):
-        if manifest.get("name") != "patrick-workflows":
-            errors.append(f"{path}: name must be patrick-workflows")
+        if manifest.get("name") != PLUGIN_NAME:
+            errors.append(f"{path}: name must be {PLUGIN_NAME}")
         if manifest.get("version") != version:
             errors.append(f"{path}: version must match package.json")
 
