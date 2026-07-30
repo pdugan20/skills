@@ -49,11 +49,21 @@ jobs:
         with:
           python-version-file: .python-version
 
+      - name: Set up Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: "1.25.5"
+          cache: false
+
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          go install github.com/agent-ecosystem/skill-validator/cmd/skill-validator@v1.5.6
 
       - name: Verify repository
-        run: npm run verify
+        run: |
+          npm run verify
+          npm run validate:external
 
   workflow-security:
     name: Audit workflow security

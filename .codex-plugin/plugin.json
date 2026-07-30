@@ -1,6 +1,6 @@
 {
   "name": "patrick-workflows",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Portable workflows for code-native design exploration, substantial feature delivery, and production hardening.",
   "author": {
     "name": "Pat Dugan",
@@ -27,7 +27,7 @@
     "capabilities": ["Write"],
     "websiteURL": "https://github.com/pdugan20/patrick-workflows",
     "defaultPrompt": [
-      "Use $code-native-ui-ideation to explore these UI directions as runnable code.",
+      "Use $code-native-ui-ideation to brainstorm and compare these UI directions in the running project.",
       "Use $feature-delivery to implement this substantial feature for production.",
       "Use $production-hardening to prepare this selected implementation for production."
     ]

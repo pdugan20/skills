@@ -1,0 +1,74 @@
+{
+  "skill_name": "code-native-ui-ideation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "The settings page in this existing React app feels visually flat. Build three distinct layout and hierarchy directions in the project so I can compare them in the browser. Keep the experiments reversible.",
+      "expected_output": "Runnable in-project variants that expose meaningful layout and hierarchy tradeoffs and can be compared in the browser.",
+      "files": ["evals/fixtures/web/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The work is implemented as runnable code in the existing project.",
+        "The variants differ in meaningful design decisions rather than superficial labels.",
+        "The comparison path is reversible and does not require production hardening."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Explore two motion treatments for expanding cards in the current SwiftUI app. Exercise both in the target simulator and explain which interaction qualities each direction emphasizes.",
+      "expected_output": "Two working motion treatments in the SwiftUI project, verified in the target simulator with a concise comparison.",
+      "files": ["evals/fixtures/swiftui/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The motion directions are implemented in SwiftUI rather than represented as static mockups.",
+        "The important interaction is exercised in the target simulator.",
+        "The comparison connects implementation differences to interaction qualities."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to compare a compact and an editorial navigation treatment across mobile and desktop in our existing web app. Make both directions easy to toggle and use the app's real content and tokens.",
+      "expected_output": "Two project-native responsive navigation variants using real content and design tokens with a practical comparison mechanism.",
+      "files": ["evals/fixtures/web/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "Both directions run inside the existing web application.",
+        "The variants use real content and existing design tokens where practical.",
+        "Mobile and desktop behavior are rendered or exercised before reporting the result."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I'm redesigning the episode-status control in our SwiftUI app. I have a compact pill and a progress-ring idea, but I want your ideas too. Let's decide which directions are worth seeing before you build them with realistic watched, unwatched, and airing states.",
+      "expected_output": "A concise set of materially distinct directions followed, after selection, by a fixture-backed comparison in the repository's existing SwiftUI preview or native development surface.",
+      "files": ["evals/fixtures/swiftui/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The agent contributes distinct directions and waits for selection because the prompt explicitly asks to decide before building.",
+        "The selected variants use the same representative watched, unwatched, and airing fixtures so their design decisions are comparable.",
+        "The implementation reuses an existing SwiftUI preview, preview catalog, or native development surface rather than creating a detached web mockup.",
+        "The result identifies which experimental controls or variants would be removed when a direction is graduated."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "The reaction affordance in our React Native messenger still feels unresolved. Build the strongest three treatments so I can switch among them on-device with the same conversations and choose one. This repo already has Storybook and fixture providers.",
+      "expected_output": "Three meaningful reaction treatments in the existing on-device Storybook, driven by resettable shared conversation fixtures and exercised in the native simulator or development client.",
+      "files": ["evals/fixtures/react-native/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The comparison reuses the repository's existing React Native Storybook and fixture providers.",
+        "The same conversation content and relevant interaction state are used across treatments.",
+        "The variants are exercised on the native platform rather than evaluated only as source code or static images.",
+        "Story and comparison-only code remain outside the production application boundary."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Try a few treatments for the related-project cards in my Next.js portfolio and put them somewhere I can toggle while viewing the real page. There is no Storybook, and I need to compare the hover behavior plus compact and wide layouts before picking one.",
+      "expected_output": "Several meaningful card treatments behind a lightweight in-app development comparison control, using stable page content and verified across pointer and responsive states.",
+      "files": ["evals/fixtures/web/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The agent uses a reversible project-local lab, development control, route, or variant picker because Storybook is absent.",
+        "The comparison holds page content and state constant while varying named design decisions.",
+        "Hover behavior and both compact and wide layouts are exercised in the browser.",
+        "The result explains how the temporary comparison surface will be removed or retained after selection."
+      ]
+    }
+  ]
+}

@@ -15,9 +15,11 @@ EXPECTED_SKILLS = {
     "production-hardening": False,
 }
 VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
+MIN_EXECUTION_EVALS = 3
+MIN_ROUTING_EVALS_PER_CLASS = 4
 
 
-def load_json(path: Path) -> dict:
+def load_json(path: Path) -> object:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -28,6 +30,110 @@ def frontmatter(text: str) -> str:
         return text.split("---\n", 2)[1]
     except IndexError as error:
         raise ValueError("missing closing YAML frontmatter delimiter") from error
+
+
+def is_nonempty_string(value: object) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
+def validate_evals(skill_name: str, skill_dir: Path) -> list[str]:
+    """Validate Agent Skills behavioral and routing evals."""
+    errors: list[str] = []
+    evals_path = skill_dir / "evals" / "evals.json"
+    routing_path = skill_dir / "evals" / "routing.json"
+
+    if not evals_path.is_file():
+        errors.append(f"{evals_path.relative_to(ROOT)}: missing execution evals")
+    else:
+        try:
+            manifest = load_json(evals_path)
+        except (json.JSONDecodeError, OSError) as error:
+            errors.append(f"{evals_path.relative_to(ROOT)}: invalid JSON ({error})")
+        else:
+            if not isinstance(manifest, dict):
+                errors.append(f"{evals_path.relative_to(ROOT)}: root must be an object")
+                manifest = {}
+            if manifest.get("skill_name") != skill_name:
+                errors.append(f"{evals_path.relative_to(ROOT)}: skill_name must match its directory")
+            cases = manifest.get("evals")
+            if not isinstance(cases, list):
+                errors.append(f"{evals_path.relative_to(ROOT)}: evals must be an array")
+            else:
+                if len(cases) < MIN_EXECUTION_EVALS:
+                    errors.append(
+                        f"{evals_path.relative_to(ROOT)}: requires at least "
+                        f"{MIN_EXECUTION_EVALS} execution evals"
+                    )
+                seen_ids: set[int] = set()
+                for index, case in enumerate(cases):
+                    label = f"{evals_path.relative_to(ROOT)}: evals[{index}]"
+                    if not isinstance(case, dict):
+                        errors.append(f"{label} must be an object")
+                        continue
+                    case_id = case.get("id")
+                    if not isinstance(case_id, int) or isinstance(case_id, bool):
+                        errors.append(f"{label}.id must be an integer")
+                    elif case_id in seen_ids:
+                        errors.append(f"{label}.id must be unique")
+                    else:
+                        seen_ids.add(case_id)
+                    for field in ("prompt", "expected_output"):
+                        if not is_nonempty_string(case.get(field)):
+                            errors.append(f"{label}.{field} must be a non-empty string")
+                    assertions = case.get("assertions")
+                    if not isinstance(assertions, list) or not assertions:
+                        errors.append(f"{label}.assertions must be a non-empty array")
+                    elif any(not is_nonempty_string(item) for item in assertions):
+                        errors.append(f"{label}.assertions must contain only non-empty strings")
+                    files = case.get("files", [])
+                    if not isinstance(files, list) or any(not is_nonempty_string(item) for item in files):
+                        errors.append(f"{label}.files must contain only non-empty strings")
+                    elif isinstance(files, list):
+                        for item in files:
+                            file_path = Path(item)
+                            if file_path.is_absolute() or ".." in file_path.parts:
+                                errors.append(f"{label}.files contains an unsafe path: {item}")
+                            elif not (skill_dir / file_path).is_file():
+                                errors.append(f"{label}.files references a missing file: {item}")
+
+    if not routing_path.is_file():
+        errors.append(f"{routing_path.relative_to(ROOT)}: missing routing evals")
+    else:
+        try:
+            routing = load_json(routing_path)
+        except (json.JSONDecodeError, OSError) as error:
+            errors.append(f"{routing_path.relative_to(ROOT)}: invalid JSON ({error})")
+        else:
+            if not isinstance(routing, list):
+                errors.append(f"{routing_path.relative_to(ROOT)}: root must be an array")
+            else:
+                counts = {True: 0, False: 0}
+                seen_queries: set[str] = set()
+                for index, case in enumerate(routing):
+                    label = f"{routing_path.relative_to(ROOT)}: [{index}]"
+                    if not isinstance(case, dict):
+                        errors.append(f"{label} must be an object")
+                        continue
+                    query = case.get("query")
+                    should_trigger = case.get("should_trigger")
+                    if not is_nonempty_string(query):
+                        errors.append(f"{label}.query must be a non-empty string")
+                    elif query in seen_queries:
+                        errors.append(f"{label}.query must be unique")
+                    else:
+                        seen_queries.add(query)
+                    if not isinstance(should_trigger, bool):
+                        errors.append(f"{label}.should_trigger must be a boolean")
+                    else:
+                        counts[should_trigger] += 1
+                for should_trigger, name in ((True, "positive"), (False, "negative")):
+                    if counts[should_trigger] < MIN_ROUTING_EVALS_PER_CLASS:
+                        errors.append(
+                            f"{routing_path.relative_to(ROOT)}: requires at least "
+                            f"{MIN_ROUTING_EVALS_PER_CLASS} {name} routing evals"
+                        )
+
+    return errors
 
 
 def validate_skill(skill_name: str, implicit: bool) -> list[str]:
@@ -52,6 +158,8 @@ def validate_skill(skill_name: str, implicit: bool) -> list[str]:
     if len(text.splitlines()) > 500:
         errors.append(f"{skill_file.relative_to(ROOT)}: exceeds 500 lines")
 
+    errors.extend(validate_evals(skill_name, skill_dir))
+
     openai = openai_file.read_text(encoding="utf-8")
     expected_policy = f"allow_implicit_invocation: {str(implicit).lower()}"
     if expected_policy not in openai:
@@ -66,6 +174,9 @@ def validate(release_tag: str | None = None) -> list[str]:
     package = load_json(ROOT / "package.json")
     claude = load_json(ROOT / ".claude-plugin" / "plugin.json")
     codex = load_json(ROOT / ".codex-plugin" / "plugin.json")
+    assert isinstance(package, dict)
+    assert isinstance(claude, dict)
+    assert isinstance(codex, dict)
     version = package.get("version")
 
     if not isinstance(version, str) or not VERSION_RE.fullmatch(version):
@@ -82,7 +193,9 @@ def validate(release_tag: str | None = None) -> list[str]:
     for skill_name, implicit in EXPECTED_SKILLS.items():
         errors.extend(validate_skill(skill_name, implicit))
 
-    groups = load_json(ROOT / "skills.sh.json").get("groups", [])
+    skills_config = load_json(ROOT / "skills.sh.json")
+    assert isinstance(skills_config, dict)
+    groups = skills_config.get("groups", [])
     grouped = [skill for group in groups for skill in group.get("skills", [])]
     if sorted(grouped) != sorted(EXPECTED_SKILLS):
         errors.append("skills.sh.json: groupings must include every skill exactly once")

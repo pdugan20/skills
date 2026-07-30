@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Brainstorm three substantially different dashboard layouts and build the variants directly in our existing Next.js route so I can click through them.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can you tune and compare two spring animations for this SwiftUI sheet in the simulator? I want to feel the difference before choosing one.",
+    "should_trigger": true
+  },
+  {
+    "query": "Give me a few visual revisions for the onboarding screen, but make them real runnable variants using our current components and copy.",
+    "should_trigger": true
+  },
+  {
+    "query": "The current mobile navigation is not working for me. Explore a few code-native interaction directions without turning this into a production project yet.",
+    "should_trigger": true
+  },
+  {
+    "query": "I have two ideas for a SwiftUI episode card and want you to add a few of your own before we choose which versions to build in previews.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build three treatments for message reactions in our existing React Native Storybook so I can compare them on-device with the same fixture conversation.",
+    "should_trigger": true
+  },
+  {
+    "query": "Try several hover and layout treatments for this portfolio module behind a development toggle on the real page.",
+    "should_trigger": true
+  },
+  {
+    "query": "Show compact, editorial, and image-led versions of this component using the app's actual data, then help me choose one.",
+    "should_trigger": true
+  },
+  {
+    "query": "We are still figuring out the filter interaction. Make a few working directions in the current app that I can switch between before committing.",
+    "should_trigger": true
+  },
+  {
+    "query": "Explore a few visual and motion directions for this native control and let me compare them in the simulator.",
+    "should_trigger": true
+  },
+  {
+    "query": "We picked the second onboarding direction. Implement the complete production flow now, including persistence, analytics, accessibility, and tests.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate three polished image mockups of a futuristic settings screen. I only need static concepts, not code or a running prototype.",
+    "should_trigger": false
+  },
+  {
+    "query": "Use production-hardening on the selected checkout implementation and audit its failures, security boundaries, observability, and release checks.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix the misspelled label in the account menu and run the smallest relevant check. There is no need to explore alternatives.",
+    "should_trigger": false
+  },
+  {
+    "query": "Implement this approved Figma card exactly as specified and do not introduce alternatives.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit the existing component library for accessibility and consistency problems, but do not change any code.",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up Storybook in this React Native repository and migrate our existing stories without redesigning any components.",
+    "should_trigger": false
+  },
+  {
+    "query": "Replace the placeholder fixture records with sanitized development data; the UI design is already settled.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review the selected navigation implementation for release readiness and produce a hardening checklist.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain the tradeoffs between native and web design systems in general. I am not working on an interface right now.",
+    "should_trigger": false
+  }
+]

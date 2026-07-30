@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Build the production account deletion feature across settings, the API, our identity provider, database cleanup, audit logging, and regression tests.",
+    "should_trigger": true
+  },
+  {
+    "query": "Implement workspace roles and invitations end to end. This crosses the database, authorization middleware, email delivery, admin UI, and release checks.",
+    "should_trigger": true
+  },
+  {
+    "query": "Ship offline note editing in the mobile app with persistence, conflict resolution, cancellation, synchronization status, and concurrency tests.",
+    "should_trigger": true
+  },
+  {
+    "query": "We need a production billing-plan migration flow touching Stripe, entitlements, the customer portal, webhooks, observability, and rollback behavior.",
+    "should_trigger": true
+  },
+  {
+    "query": "Try three different spacing and typography directions for the profile screen in runnable code so I can choose one before implementation.",
+    "should_trigger": false
+  },
+  {
+    "query": "Change the button label from Save to Update and run the focused component test. This is an isolated copy correction.",
+    "should_trigger": false
+  },
+  {
+    "query": "Use production-hardening to audit the already implemented invitation flow for release readiness without adding a new feature scope.",
+    "should_trigger": false
+  },
+  {
+    "query": "Prototype a throwaway chart interaction with fake data so the team can decide whether the idea is worth pursuing.",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "skill_name": "feature-delivery",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Implement production account deletion across the web UI, API, authentication provider, and stored user data. Include confirmation, partial-failure handling, authorization, auditability, and tests.",
+      "expected_output": "A coordinated production implementation with safe data handling, user-visible states, risk-based tests, and verification evidence.",
+      "files": [],
+      "assertions": [
+        "The implementation establishes behavior and safety boundaries before mutating important data.",
+        "Authorization, partial failures, and user-visible states receive explicit treatment.",
+        "Verification is proportional to the cross-system and data-deletion risk."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Build offline editing and background synchronization for notes in the existing mobile app. It needs conflict handling, cancellation, persistence, accessible status, and coverage for concurrency failures.",
+      "expected_output": "An end-to-end mobile feature that handles persistence and concurrency deliberately and is exercised in the relevant simulator.",
+      "files": [],
+      "assertions": [
+        "The implementation coordinates storage, synchronization, UI state, and conflict behavior coherently.",
+        "Tests target persistence and concurrency regressions rather than following a mandatory test-first ceremony.",
+        "The user-visible interaction is exercised on the relevant platform."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Ship role-based workspace invitations across our database, API, email flow, and admin interface. Preserve existing behavior, handle expired invitations, and report anything that still needs deployment approval.",
+      "expected_output": "A production-ready invitation flow with coherent permissions, lifecycle states, tests, and a clear handoff for external release actions.",
+      "files": [],
+      "assertions": [
+        "Permission and invitation lifecycle boundaries are implemented across each affected subsystem.",
+        "Expired, invalid, loading, and failure states are covered where relevant.",
+        "Deployment or other external mutations remain clearly separated from the completed implementation."
+      ]
+    }
+  ]
+}

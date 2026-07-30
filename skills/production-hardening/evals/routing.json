@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Use the production-hardening skill on the checkout implementation we selected and get it ready for a release review.",
+    "should_trigger": true
+  },
+  {
+    "query": "Please invoke production-hardening for the finished upload flow, including cleanup, accessibility, failure handling, security, observability, and verification.",
+    "should_trigger": true
+  },
+  {
+    "query": "Run production-hardening on the chosen SwiftUI navigation direction now that the visual exploration is complete.",
+    "should_trigger": true
+  },
+  {
+    "query": "I am explicitly asking for a production-hardening pass on this completed permissions feature before we consider releasing it.",
+    "should_trigger": true
+  },
+  {
+    "query": "Explore three coded visual directions for the checkout summary and let me compare them before we pick one.",
+    "should_trigger": false
+  },
+  {
+    "query": "Build the new account recovery feature across the API, email provider, authentication state, UI, tests, and operational monitoring.",
+    "should_trigger": false
+  },
+  {
+    "query": "Give the current pull request a normal code review and report defects, but do not modify it or perform a dedicated release-readiness audit.",
+    "should_trigger": false
+  },
+  {
+    "query": "Tweak the easing curve on this prototype animation while I compare motion directions; we are still in lightweight exploration.",
+    "should_trigger": false
+  }
+]

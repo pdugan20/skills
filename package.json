@@ -1,21 +1,23 @@
 {
   "name": "patrick-workflows",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Portable design and development workflows for Agent Skills clients.",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"**/*.{json,yaml,yml}\"",
     "format:check": "prettier --check \"**/*.{json,yaml,yml}\"",
-    "lint:claude": "claudelint check-all --strict --no-cache --format compact && claudelint validate-skills --path skills --preset strict --warnings-as-errors",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
     "skills:list": "DISABLE_TELEMETRY=1 npx --yes skills@1.5.21 add . --list",
     "test": "python3 -m unittest discover -s scripts -p 'test_*.py' -v",
+    "test:installation": "node scripts/test_installation.mjs",
     "validate": "python3 scripts/validate_repository.py",
-    "verify": "npm run test && npm run validate && npm run lint:claude && npm run lint:markdown && npm run format:check && npm run skills:list"
+    "validate:claude-plugin": "claude plugin validate . --strict",
+    "validate:external": "skill-validator check --strict --allow-dirs=agents,evals skills/",
+    "verify": "npm run test && npm run test:installation && npm run validate && npm run validate:claude-plugin && npm run lint:markdown && npm run format:check && npm run skills:list"
   },
   "devDependencies": {
-    "claude-code-lint": "0.7.0",
+    "@anthropic-ai/claude-code": "2.1.220",
     "markdownlint-cli2": "0.23.2",
     "prettier": "3.9.6"
   },
