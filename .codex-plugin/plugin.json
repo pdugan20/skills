@@ -1,0 +1,35 @@
+{
+  "name": "patrick-workflows",
+  "version": "1.0.0",
+  "description": "Portable workflows for code-native design exploration, substantial feature delivery, and production hardening.",
+  "author": {
+    "name": "Pat Dugan",
+    "url": "https://github.com/pdugan20"
+  },
+  "homepage": "https://github.com/pdugan20/patrick-workflows",
+  "repository": "https://github.com/pdugan20/patrick-workflows",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "codex",
+    "claude-code",
+    "cursor",
+    "design",
+    "development"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Patrick Workflows",
+    "shortDescription": "Design, delivery, and hardening workflows.",
+    "longDescription": "Explore interfaces in runnable code, deliver substantial features with proportional rigor, and harden selected implementations for release.",
+    "developerName": "Pat Dugan",
+    "category": "Developer Tools",
+    "capabilities": ["Write"],
+    "websiteURL": "https://github.com/pdugan20/patrick-workflows",
+    "defaultPrompt": [
+      "Use $code-native-ui-ideation to explore these UI directions as runnable code.",
+      "Use $feature-delivery to implement this substantial feature for production.",
+      "Use $production-hardening to prepare this selected implementation for production."
+    ]
+  }
+}

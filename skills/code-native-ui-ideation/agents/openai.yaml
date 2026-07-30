@@ -1,0 +1,6 @@
+interface:
+  display_name: "Code-Native UI Ideation"
+  short_description: "Explore UI directions in runnable code"
+  default_prompt: "Use $code-native-ui-ideation to explore these UI directions as runnable code."
+policy:
+  allow_implicit_invocation: true

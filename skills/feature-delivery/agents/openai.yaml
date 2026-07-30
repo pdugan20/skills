@@ -1,0 +1,6 @@
+interface:
+  display_name: "Feature Delivery"
+  short_description: "Deliver substantial production-ready features"
+  default_prompt: "Use $feature-delivery to implement this substantial feature for production."
+policy:
+  allow_implicit_invocation: true

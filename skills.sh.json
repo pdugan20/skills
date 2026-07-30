@@ -1,0 +1,12 @@
+{
+  "groups": [
+    {
+      "name": "Design exploration",
+      "skills": ["code-native-ui-ideation"]
+    },
+    {
+      "name": "Production delivery",
+      "skills": ["feature-delivery", "production-hardening"]
+    }
+  ]
+}

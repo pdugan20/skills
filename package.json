@@ -1,0 +1,26 @@
+{
+  "name": "patrick-workflows",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portable design and development workflows for Agent Skills clients.",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write \"**/*.{json,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{json,yaml,yml}\"",
+    "lint:claude": "claudelint check-all --strict --no-cache --format compact && claudelint validate-skills --path skills --preset strict --warnings-as-errors",
+    "lint:markdown": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
+    "skills:list": "DISABLE_TELEMETRY=1 npx --yes skills@1.5.21 add . --list",
+    "test": "python3 -m unittest discover -s scripts -p 'test_*.py' -v",
+    "validate": "python3 scripts/validate_repository.py",
+    "verify": "npm run test && npm run validate && npm run lint:claude && npm run lint:markdown && npm run format:check && npm run skills:list"
+  },
+  "devDependencies": {
+    "claude-code-lint": "0.7.0",
+    "markdownlint-cli2": "0.23.2",
+    "prettier": "3.9.6"
+  },
+  "engines": {
+    "node": ">=22.22.2"
+  },
+  "packageManager": "npm@11.5.2"
+}

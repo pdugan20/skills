@@ -1,0 +1,4 @@
+{
+  "extends": "claudelint:recommended",
+  "reportUnusedDisableDirectives": true
+}
