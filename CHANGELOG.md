@@ -8,4 +8,4 @@ All notable changes to this project are documented in this file. The project fol
 
 - The `code-native-ui-ideation`, `feature-delivery`, and `production-hardening` skills.
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
-- Skills CLI metadata, repository validation, and automated release checks.
+- Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
