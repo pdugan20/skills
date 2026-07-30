@@ -1,7 +1,7 @@
 # Workflow Candidate: Cross-Platform Component Variant Exploration
 
 - **Inventory ID:** `WF-001`
-- **Status:** `validated`
+- **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-30
 
@@ -90,7 +90,7 @@ Subjective design quality requires Patrick's review. Deterministic assertions sh
 
 Compare against the last released version of `code-native-ui-ideation`. The enhancement is worth retaining if it more reliably distinguishes ideation from immediate implementation, selects the repository's existing comparison surface, keeps content and state comparable across variants, and carries the selected direction through an explicit cleanup handoff without making small explorations heavier.
 
-The released skill already requires runnable in-project variants and platform-appropriate rendering. Static inspection identifies four claims that it does not yet encode: an ideate-versus-build branch, a shared content and state comparison contract, project-native workbench selection, and an explicit graduation cleanup inventory. The pilot evals target those gaps. Provider-backed baseline and with-skill runs remain a separate review gate because they are credentialed, billable, and nondeterministic.
+At the start of the pilot, the released skill already required runnable in-project variants and platform-appropriate rendering. Static inspection identified four claims that it did not yet encode: an ideate-versus-build branch, a shared content and state comparison contract, project-native workbench selection, and an explicit graduation cleanup inventory. The pilot evals targeted those gaps, and the trace-backed behavioral review below completed the provider-backed comparison gate.
 
 ### Pilot implementation
 
@@ -98,8 +98,8 @@ The released skill already requires runnable in-project variants and platform-ap
 - Three directly linked references adapt the method for SwiftUI, React Native, and web repositories without duplicating the core workflow.
 - Six execution cases cover general exploration plus the three platform adapters.
 - Twenty routing cases are balanced between realistic triggers and adjacent near misses.
-- Repository verification, Skills CLI discovery, `agent-ecosystem/skill-validator` v1.5.6, and the official Claude plugin validator pass. The tooling audit is complete: the temporary `claude-code-lint` gate was replaced with the exactly pinned official Claude Code CLI. Behavioral baseline comparison remains outstanding.
-- An isolated Skills CLI `1.5.21` installation test now copies all three skills and their supporting resources to the project locations used by Claude Code, Codex, and Cursor during every `npm run verify`. Live Claude and Codex invocation evidence is recorded below; Cursor remains the final live-client check.
+- Repository verification, Skills CLI discovery, `agent-ecosystem/skill-validator` v1.5.6, and the official Claude plugin validator pass. The tooling audit is complete: the temporary `claude-code-lint` gate was replaced with the exactly pinned official Claude Code CLI.
+- An isolated Skills CLI `1.5.21` installation test copies all three skills and their supporting resources to the project locations used by Claude Code, Codex, and Cursor during every `npm run verify`. Live Claude and Codex invocation evidence is recorded below; Cursor packaging is verified without making a live-model claim.
 
 ### Behavioral evidence
 
@@ -116,6 +116,14 @@ Cursor Agent `2026.07.23-e383d2b` is installed from Cursor's official installer 
 
 All three repository skill pages return successfully from `skills.sh`, and the README now exposes the official install-count badge and catalog link. Discovery is driven by anonymous Skills CLI install telemetry rather than a separate submission workflow; release tags remain the reproducible installation mechanism.
 
+### Release and distribution evidence
+
+- The completed collection is published as [`pdugan20/skills` v2.0.0](https://github.com/pdugan20/skills/releases/tag/v2.0.0), with the skill implementation introduced in v1.1.0 and the canonical repository and package names established in v2.0.0.
+- A clean installation from the published v2.0.0 tag succeeded for Claude Code, Codex, and Cursor targets, with every installed skill file matching the tagged source byte-for-byte.
+- [`patrick-skills@patrick-plugins`](https://github.com/pdugan20/plugins/releases/tag/v2.0.0) pins the collection's v2.0.0 release, and the public marketplace passed isolated Claude Code and Codex installation smoke tests after release.
+- [`agent-tooling` v0.5.0](https://github.com/pdugan20/agent-tooling/releases/tag/v0.5.0) consumes the canonical skill release and marketplace names, preserves Skills CLI provenance in its lockfile, and passed its full release verification.
+- Collection-level semantic versions and the central changelog remain authoritative. Individual skills do not carry separate versions or changelogs; skill-specific changes are named in the collection changelog.
+
 ## Definition of done
 
 - [x] Mechanism and scope are approved.
@@ -124,5 +132,5 @@ All three repository skill pages return successfully from `skills.sh`, and the R
 - [x] Execution and routing eval coverage passes.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Intended Claude, Codex, and other claimed integrations are checked.
-- [ ] Version, changelog, distribution metadata, and installation are verified.
-- [ ] Inventory status and lessons are updated.
+- [x] Version, changelog, distribution metadata, and installation are verified.
+- [x] Inventory status and lessons are updated.

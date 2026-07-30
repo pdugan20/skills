@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Documentation
+
+- Recorded the completed release, client-installation evidence, and lessons for the first audited design workflow.
+
 ## [2.0.0] - 2026-07-30
 
 ### Changed
