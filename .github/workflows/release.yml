@@ -5,8 +5,7 @@ on:
     tags:
       - v*
 
-permissions:
-  contents: write
+permissions: {}
 
 concurrency:
   group: release-${{ github.ref }}
@@ -14,8 +13,12 @@ concurrency:
 
 jobs:
   release:
+    name: Publish release
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      # Required only for creating the tagged GitHub release.
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
@@ -27,7 +30,6 @@ jobs:
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.1.0
         with:
           node-version-file: .nvmrc
-          cache: npm
 
       - name: Set up Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.1.0
