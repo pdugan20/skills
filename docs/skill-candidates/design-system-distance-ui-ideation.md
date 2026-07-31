@@ -1,7 +1,7 @@
 # Skill Candidate: Design-System-Distance UI Ideation
 
 - **Inventory ID:** `SC-012`
-- **Status:** `validated`
+- **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-31
 
@@ -77,7 +77,17 @@ Compare against the last released `code-native-ui-ideation`. A fresh NextUp repl
 
 The baseline and forward replay used the same read-only prompt and inspected the same `nextup-ios-app` design-system and rail-header sources. The baseline already produced three coherent, repository-grounded directions, held content and behavior constant, and stopped for selection. The forward replay retained those strengths while adding an explicit protected-foundation contract, separating established system idioms from changeable component conventions, naming the new rule introduced by the stretching direction, and listing the exact conventions intentionally rejected by the divergent direction.
 
-OpenAI's quick validator, the pinned `agent-ecosystem/skill-validator` v1.5.6, repository tests, Claude plugin validation, and isolated Skills CLI installation checks for all eleven skills across Claude Code, Codex, and Cursor layouts pass. This is unreleased source behavior; no new tagged-install or live-client claim is made.
+OpenAI's quick validator, the pinned `agent-ecosystem/skill-validator` v1.5.6, repository tests, Claude plugin validation, and isolated Skills CLI installation checks for all eleven skills across Claude Code, Codex, and Cursor layouts pass.
+
+### Release evidence
+
+- Patrick Skills [v2.4.0](https://github.com/pdugan20/skills/releases/tag/v2.4.0)
+  points to merge commit `27f786b3d5d239f3bdf7f15eed774883ea0a7ef3`.
+- The checksum-verified release archive contains the enhanced
+  `code-native-ui-ideation` source and matches the tag byte-for-byte.
+- A clean Skills CLI installation from the exact tag copied all eleven skill
+  trees into the Claude Code, Codex, and Cursor layouts. Cursor packaging is
+  verified without a paid-client behavior claim.
 
 ## Definition of done
 
@@ -87,5 +97,5 @@ OpenAI's quick validator, the pinned `agent-ecosystem/skill-validator` v1.5.6, r
 - [x] Execution and routing eval coverage is updated.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Intended Claude, Codex, and other claimed installation layouts are checked.
-- [ ] Version, changelog, distribution metadata, and installation are verified.
+- [x] Version, changelog, distribution metadata, and installation are verified.
 - [x] Inventory status and lessons are updated.

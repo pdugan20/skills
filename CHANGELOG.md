@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Documentation
+
+- Recorded v2.4.0 publication, curated-note and archive integrity, exact-tag
+  multi-client installation, and Skills CLI discovery evidence; marked the UI
+  video and design-system candidates as released.
+
 ## [2.4.0] - 2026-07-31
 
 ### Added

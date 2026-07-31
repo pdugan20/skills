@@ -1,7 +1,7 @@
 # Skill Candidate: Align UI to a Design System
 
 - **Inventory ID:** `SC-013`
-- **Status:** `validated`
+- **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-31
 
@@ -87,7 +87,17 @@ The no-skill replay was already strong: it found a likely VoiceOver labeling def
 
 The forward replay retained the baseline's bounded, read-only behavior and the same high-confidence VoiceOver finding. The explicit authority ladder led it to inspect the component's selected design specification and a role-equivalent full-row treatment, which exposed two additional evidence-backed issues: an undersized overflow target and missing Increased Contrast adaptation. It classified long-title behavior as uncertain pending a discriminating Dynamic Type render instead of guessing, preserved the optical wordmark values and split interaction as intentional, and proposed only one narrow shared primitive.
 
-OpenAI's quick validator, the pinned `agent-ecosystem/skill-validator` v1.5.6, repository tests, Claude plugin validation, Skills CLI discovery, and isolated installation checks for all eleven skills across Claude Code, Codex, and Cursor layouts pass. This source is validated but unreleased; no tagged-install or live-client behavior claim is made.
+OpenAI's quick validator, the pinned `agent-ecosystem/skill-validator` v1.5.6, repository tests, Claude plugin validation, Skills CLI discovery, and isolated installation checks for all eleven skills across Claude Code, Codex, and Cursor layouts pass.
+
+### Release evidence
+
+- Patrick Skills [v2.4.0](https://github.com/pdugan20/skills/releases/tag/v2.4.0)
+  points to merge commit `27f786b3d5d239f3bdf7f15eed774883ea0a7ef3`.
+- The checksum-verified release archive contains `align-ui-to-design-system`
+  and matches the tagged source byte-for-byte.
+- A clean Skills CLI installation from the exact tag copied all eleven skill
+  trees into the Claude Code, Codex, and Cursor layouts. Cursor packaging is
+  verified without a paid-client behavior claim.
 
 ## Definition of done
 
@@ -97,5 +107,5 @@ OpenAI's quick validator, the pinned `agent-ecosystem/skill-validator` v1.5.6, r
 - [x] Execution and routing eval coverage passes.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Intended Claude, Codex, and other claimed installation layouts are checked.
-- [ ] Version, changelog, distribution metadata, and installation are verified.
+- [x] Version, changelog, distribution metadata, and installation are verified.
 - [x] Inventory status and lessons are updated.

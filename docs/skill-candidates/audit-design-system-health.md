@@ -1,7 +1,7 @@
 # Skill Candidate: Audit Design-System Health
 
 - **Inventory ID:** `SC-014`
-- **Status:** `validated`
+- **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-31
 
@@ -103,7 +103,17 @@ The no-skill replay already met much of that bar. It mapped the distributed CSS,
 
 The forward replay retained the baseline's strongest findings and read-only proportionality while making the consolidation boundaries more precise. It separated legacy media retirement from an active media-control presentation primitive, recommended extracting only the noninteractive edge-fade surface rather than merging `PosterRail` behavior, distinguished an exact token bypass from a possible missing subtle-boundary token, and kept different skeleton geometries separate. Its enforcement matrix named scope, exclusions, migration prerequisites, and informational rollout, and it explicitly deferred four conclusions that require rendering instead of turning them into backlog claims.
 
-The final skills.sh overlap pass inspected the closest newly surfaced public skills as well as the earlier token, Figma, drift, and consistency candidates. The exact name remains distinct, and the narrower proportional technical-health outcome remains justified against the exhaustive `plan-uiux-unification` alternative. OpenAI's quick validator, the pinned `agent-ecosystem/skill-validator` v1.5.6, repository tests, Claude plugin validation, Skills CLI discovery, and isolated installation checks for all eleven skills across Claude Code, Codex, and Cursor layouts pass. This source is validated but unreleased; no tagged-install or live-client behavior claim is made.
+The final skills.sh overlap pass inspected the closest newly surfaced public skills as well as the earlier token, Figma, drift, and consistency candidates. The exact name remains distinct, and the narrower proportional technical-health outcome remains justified against the exhaustive `plan-uiux-unification` alternative. OpenAI's quick validator, the pinned `agent-ecosystem/skill-validator` v1.5.6, repository tests, Claude plugin validation, Skills CLI discovery, and isolated installation checks for all eleven skills across Claude Code, Codex, and Cursor layouts pass.
+
+### Release evidence
+
+- Patrick Skills [v2.4.0](https://github.com/pdugan20/skills/releases/tag/v2.4.0)
+  points to merge commit `27f786b3d5d239f3bdf7f15eed774883ea0a7ef3`.
+- The checksum-verified release archive contains `audit-design-system-health`
+  and matches the tagged source byte-for-byte.
+- A clean Skills CLI installation from the exact tag copied all eleven skill
+  trees into the Claude Code, Codex, and Cursor layouts. Cursor packaging is
+  verified without a paid-client behavior claim.
 
 ## Definition of done
 
@@ -113,5 +123,5 @@ The final skills.sh overlap pass inspected the closest newly surfaced public ski
 - [x] Execution and routing eval coverage passes.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Intended Claude, Codex, and other claimed installation layouts are checked.
-- [ ] Version, changelog, distribution metadata, and installation are verified.
+- [x] Version, changelog, distribution metadata, and installation are verified.
 - [x] Inventory status and lessons are updated.

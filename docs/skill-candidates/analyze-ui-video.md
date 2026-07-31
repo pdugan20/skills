@@ -1,7 +1,7 @@
 # Skill Candidate: Analyze a UI Screen Recording
 
 - **Inventory ID:** `SC-011`
-- **Status:** `validated`
+- **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-31
 
@@ -252,8 +252,21 @@ cases, grounded in the completed diagnoses above.
 
 Repository validation, the pinned third-party validator, official Claude
 plugin validation, and clean installation across Claude Code, Codex, and Cursor
-layouts pass. The skill remains `validated` until it is included in a tagged
-collection release and that exact tag is installation-checked.
+layouts pass.
+
+### Release evidence
+
+- Patrick Skills [v2.4.0](https://github.com/pdugan20/skills/releases/tag/v2.4.0)
+  points to merge commit `27f786b3d5d239f3bdf7f15eed774883ea0a7ef3`.
+- The release body matches the curated changelog section after normalizing
+  trailing whitespace, and the release job completed successfully.
+- The release archive digest is
+  `4ead91e06c739ef98795b1e81dc8df6ed8794344a62a6ef1c13b4e1bd6979c8b`;
+  its eleven skill folders match the tag.
+- A clean Skills CLI installation from `pdugan20/skills@v2.4.0` copied all
+  eleven tagged skill trees byte-for-byte into the Claude Code, Codex, and
+  Cursor layouts. Cursor packaging is verified without a paid-client behavior
+  claim.
 
 ## Definition of done
 
@@ -263,5 +276,5 @@ collection release and that exact tag is installation-checked.
 - [x] Execution and routing eval coverage passes.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Intended Claude, Codex, and other claimed integrations are checked.
-- [ ] Version, changelog, distribution metadata, and installation are verified.
+- [x] Version, changelog, distribution metadata, and installation are verified.
 - [x] Inventory status and initial evidence are updated.
