@@ -23,6 +23,10 @@ function listFiles(root) {
 
   function visit(directory) {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      if (entry.name === "__pycache__" || entry.name.endsWith(".pyc")) {
+        continue;
+      }
+
       const path = join(directory, entry.name);
       if (entry.isDirectory()) {
         visit(path);

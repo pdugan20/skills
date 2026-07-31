@@ -1,0 +1,54 @@
+{
+  "skill_name": "audit-design-system-health",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit this Next.js portfolio's implemented design system for drift and consolidation opportunities. Map the real sources of truth, find hardcoded or inconsistent visual decisions, identify overlapping UI components, and recommend enforcement that would actually help. Keep it read-only and preserve intentional editorial, brand, data-visualization, error-page, and experiment exceptions.",
+      "expected_output": "A source-led repository audit with normalized token evidence, semantic component clusters, explicit exceptions, selective enforcement, and stated render limitations.",
+      "files": ["evals/fixtures/web/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The audit maps distributed CSS, token, adapter, component, documentation, and enforcement authorities rather than assuming one source-of-truth file.",
+        "Static matches are normalized and traced to semantic context; literal counts are not presented as findings or percentages without a denominator.",
+        "Consolidation candidates are compared by role, states, interaction, accessibility, dependencies, and migration risk.",
+        "Enforcement recommendations name scope, exclusions, replacement or migration prerequisites, and informational versus blocking rollout.",
+        "The repository remains unchanged and intentional special domains are preserved."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Run a read-only design-system health audit on this SwiftUI app. I care about hardcoded colors and spacing, repeated media-card treatments, overlapping controls, accessibility drift, and which rules belong in SwiftLint versus shared APIs or tests.",
+      "expected_output": "A native-aware health report that separates stable theme bypasses from optical and platform exceptions and chooses enforcement mechanisms based on the claim.",
+      "files": ["evals/fixtures/swiftui/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The audit treats optical media values, data colors, platform metrics, and selected transitions as possible intentional exceptions rather than automatic violations.",
+        "Repeated views are semantically evaluated before recommending a shared component, modifier, token, or no action.",
+        "SwiftLint is proposed only for narrow deterministic rules; typed APIs, previews, accessibility tests, and device evidence are used for stronger behavioral claims.",
+        "Source-only conclusions and any skipped simulator or accessibility checks are explicit."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Audit our React Native messenger for design-system drift across the whole repo. Check theme adoption, inline styles, duplicate reaction and message controls, state and accessibility consistency, and where Storybook or linting should enforce the system. Do not refactor yet.",
+      "expected_output": "A repository-wide React Native audit combining typed-theme and source signals with semantic, Storybook, state, platform, and accessibility evidence.",
+      "files": ["evals/fixtures/react-native/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "Theme literals and inline styles are treated as leads and legitimate platform or feature-local exceptions are classified.",
+        "Reaction and message-control clusters are compared across ownership, state, gesture, screen-reader, and platform behavior before consolidation.",
+        "Lint or typed APIs cover deterministic source rules while Storybook, interaction, and device tests cover rendered behavior.",
+        "The report is prioritized without a synthetic health score and remains read-only."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Our code and Figma library may have drifted. Audit the repository's component and token health, use the available upstream Figma capability for named library evidence, and keep repository-internal drift separate from Figma-code discrepancies. I only want a report.",
+      "expected_output": "An attributed code-system audit that delegates Figma-specific inspection upstream and distinguishes Figma parity from internal repository coherence.",
+      "files": ["evals/fixtures/web/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The repository audit remains useful even if Figma access is unavailable and states that evidence limitation.",
+        "Figma-specific claims are attributed to an available upstream capability rather than invented by this skill.",
+        "Code-internal drift, design-code drift, intentional exceptions, and system gaps are reported as separate evidence classes.",
+        "No code, Figma, tooling, or CI state is modified."
+      ]
+    }
+  ]
+}

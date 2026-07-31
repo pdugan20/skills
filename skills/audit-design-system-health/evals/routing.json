@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Audit this repository's design-system health and rank the drift, gaps, and consolidation opportunities.",
+    "should_trigger": true
+  },
+  {
+    "query": "Find hardcoded visual values and inconsistent token usage across the whole app, but keep the audit read-only.",
+    "should_trigger": true
+  },
+  {
+    "query": "Which components in this codebase overlap enough to merge, extract a primitive, or deliberately keep separate?",
+    "should_trigger": true
+  },
+  {
+    "query": "Review our SwiftUI design system for drift and tell me what belongs in SwiftLint, shared APIs, previews, or tests.",
+    "should_trigger": true
+  },
+  {
+    "query": "Audit theme adoption, inline styles, duplicate controls, and Storybook consistency across this React Native repository.",
+    "should_trigger": true
+  },
+  {
+    "query": "Map the real UI sources of truth and identify where competing token vocabularies are causing drift.",
+    "should_trigger": true
+  },
+  {
+    "query": "Do a repository-wide audit of our component library, intentional exceptions, missing primitives, and enforcement gaps.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our code and Figma system may disagree; audit code health and use the upstream Figma tool for the library evidence.",
+    "should_trigger": true
+  },
+  {
+    "query": "Before a design-system cleanup, show me the highest-impact drift and a staged consolidation order without changing code.",
+    "should_trigger": true
+  },
+  {
+    "query": "Assess whether our color, spacing, type, motion, and component rules are coherent enough to enforce in CI.",
+    "should_trigger": true
+  },
+  {
+    "query": "Align this one finished card with the repository design system and apply the fixes I approve.",
+    "should_trigger": false
+  },
+  {
+    "query": "Give me three runnable directions for this new component at different distances from our design language.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a greenfield design system, token architecture, and component library for this new product.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit this single Figma frame for unbound variables and detached components.",
+    "should_trigger": false
+  },
+  {
+    "query": "Implement every item from the approved design-system audit and open a pull request.",
+    "should_trigger": false
+  },
+  {
+    "query": "Harden the selected checkout implementation for production release.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run an accessibility audit of this one page against WCAG and fix the failures.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain what design tokens are and whether our team should adopt them someday.",
+    "should_trigger": false
+  },
+  {
+    "query": "Use jscpd to report general backend source duplication; this task has no UI or design-system scope.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review the prose and information architecture of our Mintlify documentation site.",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Align UI to Design System"
+  short_description: "Review one UI against its design system"
+  default_prompt: "Use $align-ui-to-design-system to review this completed component and apply only approved conformance fixes."
+policy:
+  allow_implicit_invocation: true

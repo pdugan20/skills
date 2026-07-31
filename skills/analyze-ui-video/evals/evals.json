@@ -1,0 +1,67 @@
+{
+  "skill_name": "analyze-ui-video",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "This is probably a hard video, but it is the Continue Watching carousel horizontal scroll from the NextUp iOS client. Dissect the attached recording against the nextup-ios-app repository and propose next steps.",
+      "expected_output": "An evidence-backed but appropriately inconclusive analysis that scopes the interactions, checks the recording's timing metadata, explains the free-scrolling rail and system-owned context-menu motion from repository evidence, and asks for or recommends the smallest missing context instead of inventing a subtle bug.",
+      "files": [],
+      "assertions": [
+        "The analysis distinguishes the recording's observed average frame rate from its nominal frame rate before making timing claims.",
+        "The result describes visible behavior before assigning a cause and does not claim a defect that the supplied context cannot establish.",
+        "The repository mapping identifies the horizontal ScrollView, eager HStack, fixed-width cards, and lack of snapping behavior.",
+        "The result distinguishes platform-owned context-menu presentation from app-authored carousel behavior.",
+        "The next step requests or recommends only the smallest context or reproduction needed to identify the subtle defect."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Analyze the attached iOS screen recording around the checkmark transition. I expected the checkmark to remain centered inside its circle, but it briefly separates during the morph. Diagnose it against the SwiftUI repository and recommend the next confirming change without editing code.",
+      "expected_output": "A frame-led visual-bug diagnosis that identifies the first divergent frame, separates glyph and container motion, inspects the relevant SwiftUI view and transition placement, ranks falsifiable hypotheses, and proposes one confirming change.",
+      "files": [],
+      "assertions": [
+        "The visible frame sequence and first divergence appear before implementation theories.",
+        "Observed facts, repository corroboration, and inferences are labeled separately.",
+        "The diagnosis checks view identity, layout container, and animation transaction boundaries rather than relying on generic SwiftUI lore.",
+        "The result proposes a single confirming change and leaves implementation pending."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "There is a one-pixel bright sliver beside the phone bezel in this portfolio video. It is only visible during saturated red frames. Analyze the recording and our web media-compositing repository, then tell me the safest next step.",
+      "expected_output": "A source-versus-compositor diagnosis that inspects the affected time window and source edge pixels before proposing a global layout or mask change, then recommends a narrow confirming test or recording-local fix.",
+      "files": [],
+      "assertions": [
+        "The analysis checks whether the unexpected pixel exists in source frames before blaming CSS or the shared compositor.",
+        "The report states the analyzed window, crop, and temporal limitations.",
+        "Hypotheses are ranked with evidence that would confirm or reject each one.",
+        "The next step avoids a global change until a source artifact is ruled out."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Dissect this competitor's mini-player to full-player transition and tell me how we could reproduce the same feel in our native iOS audiobook app. I care about what moves together, timing, and whether a native transition can handle it.",
+      "expected_output": "A reference reconstruction that describes observable states, layer continuity, timing and gesture relationship, labels private implementation details as inferences, audits the target app's iOS support and navigation structure, and recommends the closest supported native or project-consistent implementation.",
+      "files": [],
+      "assertions": [
+        "The report reconstructs the observable contract before naming an API.",
+        "App-authored and platform-owned motion are distinguished where evidence permits.",
+        "Timing precision is bounded by the recording's observed frame rate.",
+        "The target repository and deployment target are inspected before recommending a native transition.",
+        "The competitor's private implementation is not presented as fact."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "We changed the horizontal card-removal animation. Compare the attached before and after recordings against this repository and verify whether the gap and backward jump are actually gone. Do not make more changes yet.",
+      "expected_output": "A controlled before-and-after verification using equivalent windows and crops, identifying the item-removal event and settled layout, reporting whether the stated artifact persists, and separating verification from further implementation.",
+      "files": [],
+      "assertions": [
+        "The two recordings are compared with equivalent temporal windows, crops, and sampling rates.",
+        "The report identifies the last correct and first divergent frames in the before recording and checks the same phase after the change.",
+        "The conclusion is limited to the gap and backward-jump contract the user named.",
+        "No fix is claimed without rendered after-evidence and no additional code change is made."
+      ]
+    }
+  ]
+}

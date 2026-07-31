@@ -37,6 +37,16 @@ Record only a safe summary and the private location category. Do not commit cred
 - **Rationale:** Why is this the lightest reliable mechanism?
 - **Scope:** Personal, repository-specific, or broadly portable.
 
+## External overlap gate
+
+- **Searches:** Record dated exact-name, trigger, adjacent-outcome, and subproblem searches from skills.sh.
+- **Closest skills:** Inspect and summarize scope, maintenance, license, portability, dependencies, and important boundaries.
+- **Decision:** Install upstream, contribute, compose or delegate, fork with preserved provenance, implement independently, or take no action.
+- **Distinct value:** State the observable difference that still justifies local work.
+- **Retirement condition:** State what future upstream capability would make this candidate redundant.
+
+Repeat the searches before validation and release because the public index changes independently.
+
 ## Reusable contents
 
 - **Instructions:** Non-obvious procedural or decision guidance.

@@ -28,6 +28,16 @@ Use this section only at the choose-directions stage:
 2. Propose three to five total comparison directions, including the user's ideas. Make each a named design decision with a short thesis and tradeoff.
 3. End with a selection question and wait. Do not load the platform implementation guide, outline files or build phases, or offer to implement all directions.
 
+### Optional design-system distance
+
+When the user wants directions at different relationships to an existing design system, first identify the repository-backed foundations that should remain stable and the component conventions that may vary. Then use the requested range; do not force these postures into unrelated exploration:
+
+- **Faithful:** Reuse established tokens, primitives, interaction patterns, and visual language. Improve the component from inside the existing vocabulary.
+- **Stretch:** Preserve the foundations while extending one named pattern, primitive, or rule. State what is new and why it could belong in the system.
+- **Divergent:** Preserve the product behavior, content, accessibility, and comparison constraints while intentionally departing from named visual or component conventions. State what changes and what remains protected.
+
+Do not present token swaps, color changes, or arbitrary decoration as meaningful distance. The directions must embody different system relationships while keeping the underlying job comparable.
+
 ## Build variants
 
 Use this section only after the user has selected directions or explicitly asked to build alternatives now:
@@ -36,6 +46,7 @@ Use this section only after the user has selected directions or explicitly asked
 2. Define one comparison contract before building:
    - Give each variant a named design decision, not merely a different label or color.
    - Use the same representative content, data snapshot, state, device or viewport, and interaction scenario across variants.
+   - When design-system distance is an axis, record the posture, protected foundations, and intentional departures for each variant.
    - Include fixtures that expose meaningful differences and edge cases.
    - Provide one obvious way to switch among or inspect the variants.
 3. Load the one relevant platform guide:
@@ -66,6 +77,7 @@ When asked to graduate a simple experiment, preserve the selection, remove aband
 - Comparing different data or states and attributing the result to the design.
 - Adding a new preview framework without checking what the repository already uses.
 - Building many superficial variants instead of a few meaningful directions.
+- Calling a color or token swap a faithful, stretching, or divergent direction without changing the underlying system relationship.
 - Treating a request for a concrete plan as permission to build ideas the user asked to narrow first.
 - Calling temporary exploration variants production-ready.
 - Leaving temporary switches, stories, fixtures, or styles in a production path after graduation.

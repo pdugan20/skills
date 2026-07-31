@@ -41,10 +41,10 @@ Do not apply pressure-test conventions to every skill. They are useful for disci
 
 The current collection classifies `code-native-ui-ideation` and
 `write-mintlify-changelog` as techniques; `feature-spike` as a pattern;
-`production-hardening` and
-`review-mintlify-docs` as discipline skills; and `feature-delivery`,
-`scaffold-mintlify-site`, and `generate-mintlify-reference` as composite
-skills.
+`production-hardening`, `review-mintlify-docs`, and
+`align-ui-to-design-system` as discipline skills; and `feature-delivery`,
+`analyze-ui-video`, `audit-design-system-health`, `scaffold-mintlify-site`, and
+`generate-mintlify-reference` as composite skills.
 
 ## Capture intent before writing
 
@@ -65,6 +65,41 @@ Start from real expertise: a completed task, Patrick's corrections, working code
 Map the flow to the mechanisms above before drafting. Several smaller skills are preferable only when they have independently useful triggers and outcomes. Keep tightly coupled phases together when splitting them would make routing ambiguous or force users to know implementation details.
 
 Record the initial decision in the [skill candidate inventory](skill-candidates.md). When a candidate has enough real evidence to develop, copy the [candidate template](skill-candidates/_template.md) into a descriptively named brief and keep it synchronized with the inventory through validation or rejection.
+
+## Check public overlap before authoring
+
+Search the live skills.sh index before piloting a new skill or materially
+expanding one. Use the pinned Skills CLI with the proposed name, natural trigger
+phrases, adjacent outcomes, and important subproblems:
+
+```bash
+npx --yes skills@1.5.21 find "<query>"
+npx --yes skills@1.5.21 use <owner/repository@skill>
+```
+
+Inspect the closest skill bodies. Names, descriptions, install counts, and
+search rank are discovery signals, not enough evidence to declare overlap.
+Record the following in the candidate brief:
+
+- exact and semantic queries, date, and relevant results;
+- what each close skill actually owns, requires, and excludes;
+- maintenance, license, portability, runtime, and external dependency limits;
+- whether to install upstream, contribute upstream, compose or delegate to it,
+  fork it, take independently implemented ideas, or author a distinct skill;
+- the observable scope difference and a retirement condition if local authoring
+  remains justified.
+
+Prefer an existing maintained skill when it owns the same trigger, outcome, and
+boundary. Compose with a narrower upstream skill when it owns one phase or
+source of evidence. Fork only when the license permits it and a durable behavior
+or compatibility difference cannot be contributed upstream. Preserve license
+and provenance when copying code or text; source-informed independent guidance
+still needs a documented overlap decision.
+
+Repeat the exact and semantic searches immediately before validation and again
+before release because skills.sh changes independently of this repository. A
+new close match reopens the mechanism decision; it does not automatically block
+the candidate or justify ignoring the match.
 
 ## Write the portable skill
 

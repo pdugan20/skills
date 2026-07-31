@@ -1,0 +1,53 @@
+{
+  "skill_name": "align-ui-to-design-system",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just finished the Continue Watching wordmark-below-card component. Review it against the design system that actually exists in this SwiftUI repository. Classify accidental deviations, intentional differences, and missing primitives. Keep this scoped to the component and do not edit yet.",
+      "expected_output": "A bounded, source- and render-backed conformance review that preserves intentional media-card choices and proposes only justified component or system corrections.",
+      "files": ["evals/fixtures/swiftui/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The review establishes repository authority from theme values, shared primitives, semantic peers, and platform behavior rather than generic taste.",
+        "Each material finding is classified as an accidental deviation, intentional exception, system gap, or uncertainty with exact evidence and confidence.",
+        "The component's selected interaction and media treatment are preserved when evidence supports them.",
+        "The result stays read-only and scoped to the component because fixes were not authorized."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Audit the completed reaction summary in this React Native messenger against our existing component system. I mainly want to know whether its stronger treatment for my own reaction is valid or drift. Don't touch the rest of the app or make changes yet.",
+      "expected_output": "A focused reaction-component review that distinguishes intentional ownership emphasis from accidental token, primitive, interaction, and accessibility drift.",
+      "files": ["evals/fixtures/react-native/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The agent compares semantic peer components and existing theme primitives rather than assuming every visual difference is a defect.",
+        "The stronger own-reaction treatment is evaluated against product role and accessibility, not normalized by visual majority alone.",
+        "Relevant pressed, selected, screen-reader, and fixture states are included when practical.",
+        "No repository-wide audit or edit is performed."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Align this finished portfolio project card with the site's design system. Keep its intentionally bespoke editorial typography, but fix the accidental spacing, focus, and color deviations you can prove. Verify it in the existing development route.",
+      "expected_output": "A narrow web patch that preserves the selected typography, replaces proven one-offs with fitting project primitives, and verifies responsive and focus behavior in the real page.",
+      "files": ["evals/fixtures/web/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The request is treated as fix authorization for the bounded card, not permission for a site-wide refactor.",
+        "The intentional display typography is preserved while only evidence-backed accidental deviations are corrected.",
+        "A possible shared-system gap is separated from component fixes rather than generalized from one occurrence.",
+        "The changed card is rendered and its responsive, pointer, keyboard, and focus behavior is checked proportionally."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Normalize this selected native settings row to the app's established system and make the fixes. It has a custom destructive action, dynamic text, loading, and disabled states, so don't flatten meaningful behavior just to match the most common row.",
+      "expected_output": "A repository-grounded correction pass that keeps role-specific destructive behavior and fixes only unjustified token, state, interaction, or accessibility differences.",
+      "files": ["evals/fixtures/swiftui/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The agent records the settings row's semantic role and full state contract before changing it.",
+        "Common peer patterns are treated as evidence rather than unquestionable authority.",
+        "Authorized fixes remain within the selected row and preserve justified destructive and state-specific behavior.",
+        "Relevant dynamic text, loading, disabled, accessibility, and interaction states are rendered or exercised."
+      ]
+    }
+  ]
+}

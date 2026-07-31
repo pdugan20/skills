@@ -1,15 +1,15 @@
 {
   "name": "patrick-skills",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "private": true,
-  "description": "Portable design, development, and documentation skills for Agent Skills clients.",
+  "description": "Portable design, UI analysis, development, and documentation skills for Agent Skills clients.",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"**/*.{json,yaml,yml}\"",
     "format:check": "prettier --check \"**/*.{json,yaml,yml}\"",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
     "skills:list": "DISABLE_TELEMETRY=1 npx --yes skills@1.5.21 add . --list",
-    "test": "python3 -m unittest discover -s scripts -p 'test_*.py' -v",
+    "test": "python3 -B -m unittest discover -s scripts -p 'test_*.py' -v",
     "test:installation": "node scripts/test_installation.mjs",
     "validate": "python3 scripts/validate_repository.py",
     "validate:claude-plugin": "claude plugin validate . --strict",
