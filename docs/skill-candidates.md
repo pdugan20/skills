@@ -47,7 +47,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | `SC-007` | Generate drift-checked CLI, MCP, and API reference docs | The released `document-reference` skill and source-backed generators in the former focused repository | **Composite skill with scripts:** the skill selects and explains the reference shape while generators enforce source fidelity | `released` | Medium | [Skill](../skills/generate-mintlify-reference/SKILL.md) |
 | `SC-008` | Review documentation content and information architecture | The released `review-docs` skill, shared editorial playbook, and quality fixture in the former focused repository | **Discipline skill with references:** page-order review and editorial judgment benefit from a bounded method | `released` | Medium | [Skill](../skills/review-mintlify-docs/SKILL.md) |
 | `SC-009` | Write reader-facing changelog entries | The released `changelog-writer` skill, routing cases, and quality fixture in the former focused repository | **Technique skill:** translating implementation changes into reader value needs judgment while repository release mechanics remain scripts | `released` | Low | [Skill](../skills/write-mintlify-changelog/SKILL.md) |
-| `SC-010` | Feature spike for value or feasibility validation | A kill-or-continue third-party capability probe, a deferred native-package performance proof of concept, and a platform experiment that changed implementation medium, plus fresh no-skill and forward replays | **Pattern skill:** `feature-spike` preserves the decision uncertainty, validity conditions, accepted decision rule, non-binary outcome, and code disposition without inheriting production delivery or UI-comparison scope | `validated` | High | [Brief](skill-candidates/feature-spike.md) |
+| `SC-010` | Feature spike for value or feasibility validation | A kill-or-continue third-party capability probe, a deferred native-package performance proof of concept, and a platform experiment that changed implementation medium, plus fresh no-skill and forward replays | **Pattern skill:** `feature-spike` preserves the decision uncertainty, validity conditions, accepted decision rule, non-binary outcome, and code disposition without inheriting production delivery or UI-comparison scope | `released` | High | [Brief](skill-candidates/feature-spike.md) |
 
 ## Current collection
 
@@ -120,7 +120,8 @@ decision rules, considered all five outcomes, and preserved a separate
 production handoff. Repository validation, the pinned third-party validator,
 official Claude validation, clean Claude Code, Codex, and Cursor layout
 installation, and the optional GitHub publishing preview all pass. `SC-010` is
-validated pending tagged distribution.
+released in Patrick Skills v2.3.0 and pinned by Patrick Plugins v3.2.0 after
+exact-tag archive, clean-install, and marketplace-install verification.
 
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 

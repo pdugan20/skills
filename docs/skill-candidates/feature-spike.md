@@ -1,7 +1,7 @@
 # Skill Candidate: Feature Spike
 
 - **Inventory ID:** `SC-010`
-- **Status:** `validated`
+- **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-30
 
@@ -201,6 +201,24 @@ Three fresh retries then:
 The pilot therefore adds observable decision quality without making the default
 responses substantially heavier.
 
+### Release evidence
+
+- Patrick Skills
+  [v2.3.0](https://github.com/pdugan20/skills/releases/tag/v2.3.0) points to
+  merge commit `02c72fede745213fc4f3807b4d213567d170d762`.
+- The release job completed successfully and used the matching curated
+  changelog section.
+- The release archive digest is
+  `d596343375178e26cbb0f1a7748f8a2f25624e76e34d925aa99e921248629ebd`;
+  its eight skill folders match the tag.
+- A clean Skills CLI installation from `pdugan20/skills@v2.3.0` copied all
+  eight tagged skill trees byte-for-byte into the Claude Code, Codex, and Cursor
+  layouts.
+- Patrick Plugins
+  [v3.2.0](https://github.com/pdugan20/plugins/releases/tag/v3.2.0) pins the
+  exact skill release. Its Claude Code and Codex marketplace installation smoke
+  test passed before publication.
+
 ## Definition of done
 
 - [x] Mechanism and scope are approved.
@@ -209,5 +227,5 @@ responses substantially heavier.
 - [x] Execution and routing eval coverage is authored.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Claude Code, Codex, and Cursor installation layouts are checked.
-- [ ] Version, changelog, distribution metadata, and installation are verified.
+- [x] Version, changelog, distribution metadata, and installation are verified.
 - [x] Inventory status and lessons are updated.

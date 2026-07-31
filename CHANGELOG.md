@@ -4,6 +4,11 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Documentation
+
+- Recorded v2.3.0 publication, exact-tag installation, archive integrity, and
+  marketplace evidence and marked `feature-spike` as released.
+
 ## [2.3.0] - 2026-07-30
 
 ### Added
