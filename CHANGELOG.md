@@ -17,8 +17,9 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Documentation
 
-- Added a concise audience and value statement to the README and removed the
-  alternate marketplace-plugin installation note.
+- Added a concise audience and value statement to the README, removed the
+  alternate marketplace-plugin installation note, and removed the unnecessary
+  Node.js badge.
 - Recorded v2.4.0 publication, curated-note and archive integrity, exact-tag
   multi-client installation, Skills CLI discovery, Patrick Plugins v3.3.0,
   and Agent Tooling v0.7.0 evidence; marked the UI video and design-system

@@ -3,7 +3,6 @@
 [![CI](https://github.com/pdugan20/skills/actions/workflows/ci.yml/badge.svg)](https://github.com/pdugan20/skills/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/pdugan20/skills?logo=github)](https://github.com/pdugan20/skills/releases/latest)
 [![skills.sh](https://skills.sh/b/pdugan20/skills)](https://skills.sh/pdugan20/skills)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22.22.2-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
 
 Portable skills for code-native design exploration, production software delivery, and technical documentation. They work with Claude Code, Codex, Cursor, and other Agent Skills clients.
