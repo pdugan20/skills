@@ -4,8 +4,21 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Added
+
+- Added a local skills.sh refresh command and daily catalog-and-snapshot
+  freshness check so the public repository page and stored skill files cannot
+  silently drift from the canonical skill tree.
+
+### Changed
+
+- Updated `skills.sh.json` to the current documented grouping schema and aligned
+  its design, product-development, and Mintlify sections with the README.
+
 ### Documentation
 
+- Added a concise audience and value statement to the README and removed the
+  alternate marketplace-plugin installation note.
 - Recorded v2.4.0 publication, curated-note and archive integrity, exact-tag
   multi-client installation, Skills CLI discovery, Patrick Plugins v3.3.0,
   and Agent Tooling v0.7.0 evidence; marked the UI video and design-system
