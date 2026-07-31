@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Document the CLI commands for the docs site",
+    "should_trigger": true
+  },
+  {
+    "query": "Generate an MCP tool reference page for the docs",
+    "should_trigger": true
+  },
+  {
+    "query": "Set up drift-checked API reference docs that regenerate from the spec",
+    "should_trigger": true
+  },
+  {
+    "query": "Add a CLI reference to our Mintlify docs",
+    "should_trigger": true
+  },
+  {
+    "query": "Document every tool the MCP server exposes on a reference page",
+    "should_trigger": true
+  },
+  {
+    "query": "Create reference pages from the OpenAPI spec",
+    "should_trigger": true
+  },
+  {
+    "query": "The reference docs keep going stale; set up generated reference pages with CI",
+    "should_trigger": true
+  },
+  {
+    "query": "Write the API reference section for the documentation site",
+    "should_trigger": true
+  },
+  {
+    "query": "Add docstrings to the CLI module",
+    "should_trigger": false
+  },
+  {
+    "query": "Document this function with a clear comment",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a guide on how to use the CLI for common workflows",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate TypeScript types from the OpenAPI spec",
+    "should_trigger": false
+  },
+  {
+    "query": "What tools does this MCP server expose?",
+    "should_trigger": false
+  },
+  {
+    "query": "Add JSDoc comments to the API client",
+    "should_trigger": false
+  },
+  {
+    "query": "Create an architecture overview page explaining how the system fits together",
+    "should_trigger": false
+  }
+]

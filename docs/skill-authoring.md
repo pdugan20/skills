@@ -39,7 +39,11 @@ Classification determines the appropriate level of prescription and evaluation.
 
 Do not apply pressure-test conventions to every skill. They are useful for discipline skills, while technique, pattern, and reference skills need realistic application and retrieval tests. Composite workflows usually need both execution coverage and boundary tests.
 
-The current collection classifies `code-native-ui-ideation` as a technique, `feature-delivery` as a composite workflow, and `production-hardening` as a discipline skill with a bounded workflow.
+The current collection classifies `code-native-ui-ideation` and
+`write-mintlify-changelog` as techniques; `production-hardening` and
+`review-mintlify-docs` as discipline workflows; and `feature-delivery`,
+`scaffold-mintlify-site`, and `generate-mintlify-reference` as composite
+workflows.
 
 ## Capture intent before writing
 
@@ -66,7 +70,10 @@ Record the initial decision in the [workflow inventory](workflow-inventory.md). 
 ### Name and metadata
 
 - Use a lowercase hyphenated name of at most 64 characters and match the directory name.
-- Keep `name` and `description` in `SKILL.md` frontmatter. Use optional spec fields only when portability requires them.
+- Keep `name`, `description`, and `license: MIT` in `SKILL.md` frontmatter. The
+  license field preserves licensing when Skills CLI copies an individual skill
+  without the repository-level LICENSE. Use other optional spec fields only
+  when portability requires them.
 - Put runtime-specific presentation or invocation policy under `agents/`, not in portable instructions.
 - Write a concise description with three parts: capability, concrete trigger contexts, and important negative boundaries.
 - Do not put procedural steps in the description. Metadata routes to the skill; the body teaches execution.
@@ -163,7 +170,7 @@ Configure the provider and API-key environment variable without committing crede
 | --- | --- | --- |
 | Agent Skills structure, frontmatter, links, orphaned resources, context size, and content heuristics | `agent-ecosystem/skill-validator` pinned in CI | Automatic |
 | Claude plugin manifest and component schema | Official `claude plugin validate --strict` from the exactly pinned Claude Code CLI | Automatic |
-| Secrets and executable script security | GitHub secret scanning and push protection, plus language-appropriate script tests and linters | Secret protection is enabled; script-specific gates become required when executable resources are introduced |
+| Secrets and executable script security | GitHub secret scanning and push protection, plus language-appropriate script tests and linters | Secret protection is enabled; documentation-skill scripts have focused tests and ShellCheck coverage where available |
 | Package versions, inventory, runtime policy, Skills CLI grouping, and eval coverage | `scripts/validate_repository.py` | Automatic |
 | Claude Code, Codex, and Cursor installation layout and packaged resources | Isolated Skills CLI copy installation with source-tree comparison | Automatic |
 | Markdown, formatting, spelling, action syntax, and workflow security | Existing repository tooling | Automatic |
@@ -185,6 +192,12 @@ This assessment was last reviewed on 2026-07-30.
 - Claude Code `2.1.220` exposes a first-party `claude plugin eval` runner with no-plugin ablation, cost ceilings, thresholds, and HTML or JSON reports. Its command currently reports that the feature is early access, and the public plugin reference does not yet document it. Reassess it when the feature is documented and stable; do not make an early-access runner a required gate.
 - [agent-skills-eval](https://github.com/darkrishabh/agent-skills-eval) version `0.1.1` can run the adopted `assertions` format against OpenAI-compatible providers with with-skill/baseline comparison. Use it for opt-in benchmarks, not as a required CI gate, because model runs are nondeterministic, credentialed, and billable and the project is still young.
 - [Skills CLI](https://github.com/vercel-labs/skills) validates discovery and distribution. It does not judge authoring quality.
+- GitHub CLI `gh skill publish --dry-run` provides an additional first-party
+  specification and repository-settings check, including skill-local license
+  metadata and immutable tag protection. The command is currently preview and
+  may change without notice, so use it as an optional pre-release audit rather
+  than a pinned CI authority. Keep the existing release workflow because it
+  publishes curated changelog sections instead of auto-generated notes.
 
 The repository therefore extends its own tooling only for collection-specific policy and eval coverage. Reimplementing the external validator's structural checks would add maintenance without improving portability. A custom model runner is not justified; use Anthropic skill-creator for guided iteration or the portable runner for repeatable provider-backed benchmarks, and prefer Claude's first-party runner for Claude-specific evidence once it leaves early access.
 
@@ -219,6 +232,9 @@ Before merging a skill change:
 - Move deterministic repetition into tested scripts and bulky detail into linked references.
 - Add or update three execution evals and at least eight balanced routing evals.
 - Run `npm run verify` and the external validator.
+- Run `gh skill publish --dry-run` when the installed GitHub CLI exposes the
+  preview command; resolve skill warnings and report repository-settings
+  recommendations separately.
 - For material behavior changes, run representative with-skill and baseline cases and review the outputs.
 - Test the intended Claude, Codex, or Cursor integrations before release when their behavior is part of the claim.
 - Update the changelog and version according to user-visible impact.

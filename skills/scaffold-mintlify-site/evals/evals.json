@@ -1,0 +1,40 @@
+{
+  "skill_name": "scaffold-mintlify-site",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up a new Mintlify documentation site for this CLI and MCP project. Keep it local for now and give me sensible project-specific directions before you generate the tree.",
+      "expected_output": "A non-destructive, project-specific scaffold created only after presenting and confirming meaningful brand and information-architecture choices.",
+      "files": ["evals/fixtures/cli-mcp-project/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The result detects both the CLI and MCP surfaces and includes a dedicated MCP documentation group.",
+        "The agent presents two or three concrete brand and information-architecture directions with a recommendation before writing the scaffold.",
+        "Any reported contrast ratio is produced by the bundled calculator using exact foreground and background values; otherwise the color is labeled provisional.",
+        "The generated tree uses bundled assets and preserves the repository's existing Makefile rather than replacing it wholesale.",
+        "No account, repository, DNS, marketplace, or deployment mutation is performed without authorization."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Bootstrap Mintlify docs for this API service. Use our OpenAPI source, create the initial local docs structure, and leave hosting for later.",
+      "expected_output": "A local Mintlify scaffold whose reference architecture uses the authoritative OpenAPI source and clearly separates local completion from hosting work.",
+      "files": ["evals/fixtures/api-project/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The result uses Mintlify's current OpenAPI integration instead of inventing a second endpoint source of truth.",
+        "The site structure includes project-specific getting-started, guide, concept, help, and reference surfaces only where relevant.",
+        "Hosting, organization, domain, and deployment actions remain explicitly deferred."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Set up Mintlify properly in this repository and replace whatever starter documentation is there with your standard structure.",
+      "expected_output": "A safe handoff that inspects and proposes extending the existing site rather than overwriting it under an ambiguous replacement request.",
+      "files": ["evals/fixtures/existing-site/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The existing docs-mintlify tree is detected before any files are written.",
+        "The agent does not overwrite the site and routes the work toward review-mintlify-docs or an explicitly approved migration.",
+        "Existing logos, preview tooling, and authored pages are treated as user work to preserve."
+      ]
+    }
+  ]
+}

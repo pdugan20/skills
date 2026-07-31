@@ -1,0 +1,16 @@
+<!-- Placeholder adaptive favicon: dark glyph by default, white in dark mode.
+     Replace the glyph in the visual pass. Mintlify
+     generates PNG derivatives at server start, so restart `mint dev` to see
+     favicon changes. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .glyph-fill { fill: #111; }
+    .glyph-stroke { fill: none; stroke: #111; }
+    @media (prefers-color-scheme: dark) {
+      .glyph-fill { fill: #fff; }
+      .glyph-stroke { stroke: #fff; }
+    }
+  </style>
+  <circle class="glyph-stroke" cx="16" cy="16" r="13" stroke-width="3" />
+  <circle class="glyph-fill" cx="16" cy="16" r="4" />
+</svg>

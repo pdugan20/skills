@@ -12,7 +12,11 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = {
     "code-native-ui-ideation": True,
     "feature-delivery": True,
+    "generate-mintlify-reference": True,
     "production-hardening": False,
+    "review-mintlify-docs": True,
+    "scaffold-mintlify-site": True,
+    "write-mintlify-changelog": True,
 }
 PLUGIN_NAME = "patrick-skills"
 VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
@@ -170,6 +174,25 @@ def validate_skill(skill_name: str, implicit: bool) -> list[str]:
     return errors
 
 
+def validate_codex_interface(manifest: dict[str, object]) -> list[str]:
+    """Validate Codex presentation limits that otherwise fail silently."""
+    errors: list[str] = []
+    interface = manifest.get("interface")
+    if not isinstance(interface, dict):
+        return [".codex-plugin/plugin.json: interface must be an object"]
+
+    prompts = interface.get("defaultPrompt")
+    if not isinstance(prompts, list) or not prompts:
+        return [".codex-plugin/plugin.json: defaultPrompt must be a non-empty array"]
+    if len(prompts) > 3:
+        errors.append(".codex-plugin/plugin.json: defaultPrompt supports at most 3 entries")
+    if any(not is_nonempty_string(prompt) for prompt in prompts):
+        errors.append(".codex-plugin/plugin.json: defaultPrompt entries must be non-empty strings")
+    if any(isinstance(prompt, str) and len(prompt) > 128 for prompt in prompts):
+        errors.append(".codex-plugin/plugin.json: defaultPrompt entries must be at most 128 characters")
+    return errors
+
+
 def validate(release_tag: str | None = None) -> list[str]:
     errors: list[str] = []
     package = load_json(ROOT / "package.json")
@@ -196,6 +219,7 @@ def validate(release_tag: str | None = None) -> list[str]:
             errors.append(f"{path}: name must be {PLUGIN_NAME}")
         if manifest.get("version") != version:
             errors.append(f"{path}: version must match package.json")
+    errors.extend(validate_codex_interface(codex))
 
     actual_skills = {path.name for path in (ROOT / "skills").iterdir() if path.is_dir()}
     if actual_skills != set(EXPECTED_SKILLS):

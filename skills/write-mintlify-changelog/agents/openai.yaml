@@ -1,0 +1,6 @@
+interface:
+  display_name: "Write Mintlify Changelog"
+  short_description: "Write reader-facing Mintlify updates"
+  default_prompt: "Use $write-mintlify-changelog to draft a concise reader-facing entry for this shipped change."
+policy:
+  allow_implicit_invocation: true

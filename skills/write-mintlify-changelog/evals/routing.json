@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Add a changelog entry for the 0.5 release to the docs site",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a changelog update for the new semantic search feature",
+    "should_trigger": true
+  },
+  {
+    "query": "Audit the changelog for consistency, the entries have drifted in style",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this draft changelog entry for voice and length before I publish it",
+    "should_trigger": true
+  },
+  {
+    "query": "We shipped delta sync this week, add it to the docs changelog",
+    "should_trigger": true
+  },
+  {
+    "query": "Check the changelog entries: cut the vanity metrics and implementation trivia",
+    "should_trigger": true
+  },
+  {
+    "query": "Draft the Update block for this release on the changelog page",
+    "should_trigger": true
+  },
+  {
+    "query": "Clean up changelog.mdx, some entries are way too long",
+    "should_trigger": true
+  },
+  {
+    "query": "Generate CHANGELOG.md from the conventional commits since the last tag",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarize the git log since the last tag",
+    "should_trigger": false
+  },
+  {
+    "query": "Update the version number in package.json",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a tweet announcing the release",
+    "should_trigger": false
+  },
+  {
+    "query": "Add an entry to the team's weekly status doc about what we shipped",
+    "should_trigger": false
+  },
+  {
+    "query": "What changed between v0.3 and v0.4 of this package?",
+    "should_trigger": false
+  },
+  {
+    "query": "Bump the dependencies and note any breaking changes",
+    "should_trigger": false
+  }
+]

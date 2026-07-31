@@ -1,5 +1,6 @@
 ---
 name: code-native-ui-ideation
+license: MIT
 description: Use when a user wants to brainstorm or compare multiple runnable UI, interaction, layout, visual, or motion directions in an existing web or native app before choosing one. Do not use for exact implementation of a selected design, production delivery, audits, or requested static or generated mockups.
 ---
 

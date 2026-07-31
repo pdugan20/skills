@@ -1,0 +1,39 @@
+{
+  "skill_name": "generate-mintlify-reference",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add complete CLI reference documentation to our Mintlify site and make CI fail whenever the commands change without regenerated docs.",
+      "expected_output": "Deterministic CLI reference generation from command introspection, grouped for navigation and enforced by a regeneration drift check.",
+      "files": ["evals/fixtures/cli/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The CLI help or application object remains the source of truth rather than a copied command list.",
+        "Generated output is deterministic, marked as generated, and split by domain when useful.",
+        "CI regenerates the pages and fails on a non-empty diff.",
+        "The result runs the generator and relevant Mintlify link or build check before claiming completion."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Replace our stale MCP tools page with generated Mintlify reference pages sourced from the live server. Keep tool schemas and domain navigation current automatically.",
+      "expected_output": "Source-backed MCP reference pages generated through introspection with stale hand-written counts removed and drift enforcement added.",
+      "files": ["evals/fixtures/mcp/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The live MCP tool schema is introspected rather than reconstructed manually.",
+        "The generator sorts output and emits one overview plus domain pages appropriate to the four modules.",
+        "The stale hand-authored generated surface is replaced through its generator, not manually patched as the long-term source."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our Mintlify API reference keeps drifting. Rebuild it from openapi.yaml, but do not create a pile of custom endpoint generation code if Mintlify already supports this.",
+      "expected_output": "Native Mintlify OpenAPI navigation backed by the authoritative spec, with a hand-authored overview and an appropriate spec freshness check.",
+      "files": ["evals/fixtures/api/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The implementation uses Mintlify's current native OpenAPI support for endpoint pages.",
+        "The generated application spec remains authoritative and its freshness is checked before documentation publication.",
+        "Only the overview and contextual framing are hand-authored; endpoint details are not duplicated."
+      ]
+    }
+  ]
+}

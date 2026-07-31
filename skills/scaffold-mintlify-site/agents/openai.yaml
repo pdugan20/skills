@@ -1,0 +1,6 @@
+interface:
+  display_name: "Scaffold Mintlify Site"
+  short_description: "Create a project-specific Mintlify site"
+  default_prompt: "Use $scaffold-mintlify-site to create a new Mintlify documentation site for this project."
+policy:
+  allow_implicit_invocation: true

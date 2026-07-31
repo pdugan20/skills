@@ -7,6 +7,15 @@
     {
       "name": "Production delivery",
       "skills": ["feature-delivery", "production-hardening"]
+    },
+    {
+      "name": "Documentation",
+      "skills": [
+        "scaffold-mintlify-site",
+        "review-mintlify-docs",
+        "generate-mintlify-reference",
+        "write-mintlify-changelog"
+      ]
     }
   ]
 }

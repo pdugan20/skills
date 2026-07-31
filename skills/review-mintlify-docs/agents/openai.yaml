@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review Mintlify Docs"
+  short_description: "Audit Mintlify content and navigation"
+  default_prompt: "Use $review-mintlify-docs to review this Mintlify site in navigation order and report the highest-value improvements."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Generate Mintlify Reference"
+  short_description: "Generate source-backed reference docs"
+  default_prompt: "Use $generate-mintlify-reference to generate drift-checked reference documentation from this project's source of truth."
+policy:
+  allow_implicit_invocation: true

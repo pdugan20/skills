@@ -1,0 +1,23 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Acme Sync",
+  "colors": {
+    "primary": "#6366f1"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "How-to guides",
+        "pages": [
+          "index",
+          "quickstart",
+          "sync",
+          "export",
+          "integrations",
+          "faq"
+        ]
+      }
+    ]
+  }
+}

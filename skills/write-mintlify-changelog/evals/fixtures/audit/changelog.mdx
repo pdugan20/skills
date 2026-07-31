@@ -1,0 +1,31 @@
+---
+title: Changelog
+description: "What's new in Acme Sync."
+icon: clock
+---
+
+<Update label="May 28, 2026" tags={["Misc"]}>
+
+## Acme Sync v0.4.3
+
+We're excited to announce a major overhaul of the sync pipeline! This release
+rolls up v0.3.0 to v0.4.3 into one entry. The new delta engine uses the `have`
+and `highlights` API parameters for incremental syncing (~95% bandwidth
+reduction), and embeddings are now 512-dim cosine via voyage-3-lite.
+
+- Added 12 new tools.
+- Added a `verify_credentials` method to the Instapaper client for credential
+  health checks.
+- Sync is faster than ever!
+- Coming soon: Goodreads support.
+
+</Update>
+
+<Update label="April 2, 2026" tags={["New features"]}>
+
+## Watching domain
+
+- Reviews and ratings -- now synced from Letterboxd.
+- `get_watching_stats` -- decade and genre breakdowns.
+
+</Update>

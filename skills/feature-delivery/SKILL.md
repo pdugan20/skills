@@ -1,5 +1,6 @@
 ---
 name: feature-delivery
+license: MIT
 description: Implement a substantial production-ready feature with proportional planning, coordinated implementation, risk-based testing, review, and verification. Use when the user asks to build, implement, or ship a production feature that spans multiple meaningful behaviors or subsystems, changes important data or security boundaries, or requires coordinated release checks. Do not use for lightweight UI iteration, visual exploration, prototypes, copy or motion tuning, small fixes, or ordinary isolated changes.
 ---
 
