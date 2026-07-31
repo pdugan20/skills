@@ -1,7 +1,7 @@
 # Skill Candidate: End-to-End Feature Development and Staged Rollout
 
 - **Inventory ID:** `SC-002`
-- **Status:** `validated`
+- **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-30
 
@@ -160,6 +160,16 @@ Cursor; paid Cursor behavior was intentionally not claimed or required.
   integration coordinator after interfaces stabilize. A single team for the
   entire plan is not a default.
 
+## Release evidence
+
+- [`pdugan20/skills` v2.2.0](https://github.com/pdugan20/skills/releases/tag/v2.2.0)
+  contains the expanded `feature-delivery` skill and its complete resources.
+- The GitHub Release body matches the curated changelog section, and the
+  checksum-verified archive contains the same seven skill folders as the tag.
+- A clean Skills CLI installation from `pdugan20/skills@v2.2.0` copied all
+  seven skills into Claude Code, Codex, and Cursor layouts, with every installed
+  file matching the tag byte-for-byte.
+
 ## Definition of done
 
 - [x] Mechanism and scope are approved.
@@ -169,5 +179,5 @@ Cursor; paid Cursor behavior was intentionally not claimed or required.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Intended Claude, Codex, and other claimed integrations are checked within
       the stated packaging and behavior boundaries.
-- [ ] Version, changelog, distribution metadata, and installation are verified.
+- [x] Version, changelog, distribution metadata, and installation are verified.
 - [x] Inventory status and lessons are updated.

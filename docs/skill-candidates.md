@@ -39,7 +39,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | ID | Skill candidate | Evidence | Classification and rationale | Status | Priority | Brief |
 | --- | --- | --- | --- | --- | --- | --- |
 | `SC-001` | Cross-platform component variant exploration | Patrick's repeated SwiftUI preview, React Native Storybook, and web dev-lab loop | **Technique skill:** enhance `code-native-ui-ideation`; the decision loop is portable while the comparison surface remains project-native | `released` | High | [Brief](skill-candidates/cross-platform-component-variant-exploration.md) |
-| `SC-002` | End-to-end feature development and staged rollout | Private iOS and backend histories for Catch Me Up, user-generated lists, and series-detail trailers, plus baseline and forward replays against `feature-delivery` | **Composite skill:** `feature-delivery` owns product discovery, cross-repository impact, specification, execution-mode selection, and staged rollout while delegating optional strict implementation mechanics to Superpowers or an available agent-team runtime | `validated` | High | [Brief](skill-candidates/end-to-end-feature-development.md) |
+| `SC-002` | End-to-end feature development and staged rollout | Private iOS and backend histories for Catch Me Up, user-generated lists, and series-detail trailers, plus baseline and forward replays against `feature-delivery` | **Composite skill:** `feature-delivery` owns product discovery, cross-repository impact, specification, execution-mode selection, and staged rollout while delegating optional strict implementation mechanics to Superpowers or an available agent-team runtime | `released` | High | [Brief](skill-candidates/end-to-end-feature-development.md) |
 | `SC-003` | Explicit production hardening | The released `production-hardening` skill plus repeated separation of exploration, implementation, and release-readiness work in the shared working agreement | **Discipline skill:** retain it as explicit-only because automatic hardening would make lightweight work unnecessarily heavy | `released` | Medium | Existing skill |
 | `SC-004` | Agent environment bootstrap and plugin reconciliation | `agent-tooling` setup, refresh, catalog, lockfile, drift, and machine-check scripts with documented source-of-truth boundaries | **Scripts + human documentation:** the operations are deterministic and stateful; a skill would be a less reliable wrapper around the existing tested commands | `classified` | Medium | No skill brief |
 | `SC-005` | Skill and plugin versioning, marketplace sync, and release | Release automation, version-sync, packaging, installation, and marketplace-bump scripts across `skills` and the former `mintlify-docs` repository | **Scripts + CI + human documentation:** transactional release steps need reproducible checks and explicit external-write approval, not agent judgment | `classified` | Medium | No skill brief |
@@ -56,7 +56,7 @@ These Patrick-owned skills are represented in the audit above so the inventory c
 | Skill | Classification | Primary boundary |
 | --- | --- | --- |
 | `code-native-ui-ideation` | Technique | Lightweight runnable design exploration, not production delivery. |
-| `feature-delivery` | Composite | Validated expansion coordinates idea-to-spec, cross-repository delivery, explicit execution-mode selection, and staged rollout without imposing strict mechanics on bounded features; publication is pending. |
+| `feature-delivery` | Composite | Released in v2.2.0; coordinates idea-to-spec, cross-repository delivery, explicit execution-mode selection, and staged rollout without imposing strict mechanics on bounded features. |
 | `production-hardening` | Discipline | Explicit release-readiness work on a selected implementation. |
 | `scaffold-mintlify-site` | Composite | New-site scaffolding, not review or external deployment. |
 | `review-mintlify-docs` | Discipline | Mintlify editorial and information-architecture review, not generated output. |
@@ -96,8 +96,8 @@ outputs could omit the execution-mode record. Tightening those two requirements
 produced fresh replays that held architectures as hypotheses until discovery
 and explicitly selected proportional inline execution. Repository verification,
 clean installation across Claude Code, Codex, and Cursor layouts, and the pinned
-third-party validator now pass. `SC-002` is validated but remains unreleased
-until the collection receives an authorized versioned release.
+third-party validator pass. `SC-002` was released in v2.2.0 after the tagged
+archive, curated notes, and exact-tag multi-client installation were verified.
 
 The next discovery pass should start from another naturally described recurring design or development process, not from the presence of an interesting third-party skill. Non-Patrick skills installed through `agent-tooling` retain their upstream provenance and are external capabilities, not evidence that Patrick owns the corresponding process.
 
