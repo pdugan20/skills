@@ -4,6 +4,11 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Documentation
+
+- Recorded exact-tag installation evidence for v2.1.0 and marked the four
+  migrated Mintlify workflows as released.
+
 ## [2.1.0] - 2026-07-30
 
 ### Added
