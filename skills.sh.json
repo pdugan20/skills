@@ -14,8 +14,8 @@
     },
     {
       "title": "Product development",
-      "description": "Validate, deliver, and harden product features.",
-      "skills": ["feature-spike", "feature-delivery", "production-hardening"]
+      "description": "Start repositories, validate ideas, and deliver product features.",
+      "skills": ["bootstrap-repository", "feature-spike", "feature-delivery"]
     },
     {
       "title": "Mintlify documentation",

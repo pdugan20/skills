@@ -17,8 +17,8 @@ production commitment, and a runnable slice can resolve it.
   directions.
 - Use `feature-delivery` when the product behavior is approved and the goal is
   production implementation and rollout.
-- Use `production-hardening` when a selected implementation needs an explicit
-  release-readiness pass.
+- Handle an explicit hardening-only request directly under the repository's
+  production instructions or a separately requested release-readiness capability.
 - Use ordinary research or investigation when documentation, source inspection,
   or analysis can answer the question without building a probe.
 - Use the project's existing experiment harness for parameter tuning inside an

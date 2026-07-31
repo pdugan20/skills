@@ -1,6 +1,0 @@
-interface:
-  display_name: "Production Hardening"
-  short_description: "Harden a selected implementation for release"
-  default_prompt: "Use $production-hardening to prepare this selected implementation for production."
-policy:
-  allow_implicit_invocation: false

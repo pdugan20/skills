@@ -52,7 +52,7 @@
     "should_trigger": false
   },
   {
-    "query": "Use production-hardening on the feature we already finished and audit its accessibility, security, performance, and release readiness.",
+    "query": "Harden the feature we already finished and audit its accessibility, security, performance, and release readiness.",
     "should_trigger": false
   },
   {

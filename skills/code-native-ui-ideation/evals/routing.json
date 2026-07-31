@@ -56,7 +56,7 @@
     "should_trigger": false
   },
   {
-    "query": "Use production-hardening on the selected checkout implementation and audit its failures, security boundaries, observability, and release checks.",
+    "query": "Harden the selected checkout implementation and audit its failures, security boundaries, observability, and release checks.",
     "should_trigger": false
   },
   {

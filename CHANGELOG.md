@@ -4,37 +4,49 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-07-31
+
 ### Added
 
 - Added a local skills.sh refresh command and daily catalog-and-snapshot
   freshness check so the public repository page and stored skill files cannot
   silently drift from the canonical skill tree.
+- Added [`bootstrap-repository`](skills/bootstrap-repository/SKILL.md) for
+  generator-backed Swift, Expo and React Native, Python, and Node repository
+  setup at exploration, maintained, or shipping maturity. The validated skill
+  includes a fixture-tested read-only local and GitHub inspector plus focused
+  stack and policy references, without templates or remote mutation helpers.
 
 ### Changed
 
 - Updated `skills.sh.json` to the current documented grouping schema and aligned
   its design, product-development, and Mintlify sections with the README.
-- Replaced the leading `production-hardening` execution prompts with natural
-  requests that do not disclose the behavior under evaluation.
 
-### Deprecated
+### Removed
 
-- Deprecated [`production-hardening`](skills/production-hardening/SKILL.md) for
-  removal in v3.0.0. Fresh, repository-backed comparisons found no reliable
-  behavioral lift over a direct hardening request, while repository production
-  instructions and `feature-delivery` already own the useful boundaries.
+- Removed `production-hardening` after fresh, repository-backed comparisons
+  found no reliable behavioral lift over a direct hardening request. Patrick
+  explicitly rejected a compatibility-only deprecation window, so the next
+  release must be a major version.
 
 ### Documentation
 
 - Added a concise audience and value statement to the README, removed the
   alternate marketplace-plugin installation note, and removed the unnecessary
   Node.js badge.
+- Validated `bootstrap-repository` after four natural candidate-absent and four
+  with-skill scaffolds confirmed proportional maturity selection, upstream
+  generator provenance, one local quality contract, and an exact GitHub policy
+  plan. Follow-up checks enforce one bounded generator-state retry and defer
+  licenses and other publisher identity decisions; universal templates,
+  reusable configuration fragments, and remote mutation helpers remain
+  unnecessary.
 - Recorded v2.4.0 publication, curated-note and archive integrity, exact-tag
   multi-client installation, Skills CLI discovery, Patrick Plugins v3.3.0,
   and Agent Tooling v0.7.0 evidence; marked the UI video and design-system
   candidates as released.
 - Recorded the real-history, public-overlap, baseline, and released-skill audit
-  that led to deprecating `production-hardening` instead of expanding it.
+  that led to removing `production-hardening` instead of expanding it.
 
 ## [2.4.0] - 2026-07-31
 
@@ -183,7 +195,8 @@ All notable changes to this project are documented in this file. The project fol
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
 - Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
 
-[unreleased]: https://github.com/pdugan20/skills/compare/v2.4.0...HEAD
+[unreleased]: https://github.com/pdugan20/skills/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/pdugan20/skills/compare/v2.4.0...v3.0.0
 [2.4.0]: https://github.com/pdugan20/skills/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/pdugan20/skills/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/pdugan20/skills/compare/v2.1.0...v2.2.0

@@ -1,7 +1,7 @@
 ---
 name: feature-delivery
 license: MIT
-description: Take a substantial production feature from an idea or selected behavior through specification, coordinated implementation, integration, and staged user availability. Use when delivery spans meaningful product or architecture decisions, multiple repositories or subsystems, important data or security boundaries, client and backend compatibility, or controlled rollout. Do not use for UI direction exploration, bounded feature spikes, production-hardening-only work, deployment of an already completed build, small fixes, or ordinary isolated changes.
+description: Take a substantial production feature from an idea or selected behavior through specification, coordinated implementation, integration, and staged user availability. Use when delivery spans meaningful product or architecture decisions, multiple repositories or subsystems, important data or security boundaries, client and backend compatibility, or controlled rollout. Do not use for UI direction exploration, bounded feature spikes, hardening-only work, deployment of an already completed build, small fixes, or ordinary isolated changes.
 ---
 
 # Feature Delivery
@@ -16,8 +16,10 @@ distribution, and exposure states independently.
 
 1. **Qualify the outcome.** Confirm that this is production feature delivery.
    Route UI comparison to `code-native-ui-ideation`, a bounded learning
-   experiment to the applicable feature-spike skill, and a dedicated release audit
-   to `production-hardening`. Handle an ordinary isolated change directly.
+   experiment to the applicable feature-spike skill. Handle a dedicated
+   hardening or release-readiness request directly under repository production
+   instructions or a separately requested release-readiness capability. Handle
+   an ordinary isolated change directly.
 2. **Investigate before designing.** Read applicable instructions and inspect
    the current behavior, architecture, tests, repositories, environments,
    release path, and uncommitted work. Do not infer a backend boundary, data
