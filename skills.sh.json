@@ -1,8 +1,8 @@
 {
   "groups": [
     {
-      "name": "Design exploration",
-      "skills": ["code-native-ui-ideation"]
+      "name": "Design and UI analysis",
+      "skills": ["code-native-ui-ideation", "analyze-ui-video"]
     },
     {
       "name": "Product development",

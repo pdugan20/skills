@@ -1,7 +1,7 @@
 # Skill Candidate: Analyze a UI Screen Recording
 
 - **Inventory ID:** `SC-011`
-- **Status:** `classified`
+- **Status:** `validated`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-31
 
@@ -225,13 +225,43 @@ recording. Existing written teardowns and diagnosis histories justify the
 classification and initial contents, but a real video is necessary to validate
 the media intake, extraction artifacts, and usefulness of the final report.
 
+### Baseline and forward evidence
+
+The first no-skill replay used Patrick's 15.4-second NextUp Continue Watching
+recording. It competently narrated the rail, mapped the horizontal `ScrollView`
+and eager `HStack`, and separated system context-menu motion from app-owned
+content. It did not inspect the media integrity or produce a reproducible
+timestamp manifest. The existing repository-local contact-sheet helper also
+reported the container's nominal 120 fps as if it were the observed rate,
+despite 916 frames over 15.403 seconds.
+
+The pilot corrected those gaps. Its helper reported the 59.468 fps observed
+average separately from the nominal 120 fps, created overview and detail sheets
+with absolute-timestamp manifests, and passed five focused tests covering rate
+selection, frame-count fallback, overview bounds, manifest mapping, and crop
+validation. A fresh-context replay loaded the pilot, used those artifacts,
+narrated the visible sequence before assigning ownership, mapped the exact
+SwiftUI implementation, and recommended one discriminating slow-drag recording
+with touch indicators instead of claiming an unsupported defect.
+
+Patrick identified the supplied bug as extremely subtle and potentially a poor
+evaluation target. This recording is therefore retained as an ambiguity and
+media-timing case, not as gold evidence that an agent can find the hidden bug.
+The clearer symbol-separation and source-edge cases remain the behavioral defect
+cases, grounded in the completed diagnoses above.
+
+Repository validation, the pinned third-party validator, official Claude
+plugin validation, and clean installation across Claude Code, Codex, and Cursor
+layouts pass. The skill remains `validated` until it is included in a tagged
+collection release and that exact tag is installation-checked.
+
 ## Definition of done
 
 - [x] Mechanism and scope are classified.
-- [ ] Reusable resources are implemented and referenced.
-- [ ] Structural and repository validation passes.
-- [ ] Execution and routing eval coverage passes.
-- [ ] Representative with-skill and baseline results are reviewed.
-- [ ] Intended Claude, Codex, and other claimed integrations are checked.
+- [x] Reusable resources are implemented and referenced.
+- [x] Structural and repository validation passes.
+- [x] Execution and routing eval coverage passes.
+- [x] Representative with-skill and baseline results are reviewed.
+- [x] Intended Claude, Codex, and other claimed integrations are checked.
 - [ ] Version, changelog, distribution metadata, and installation are verified.
 - [x] Inventory status and initial evidence are updated.

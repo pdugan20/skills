@@ -1,0 +1,6 @@
+interface:
+  display_name: "Analyze UI Video"
+  short_description: "Dissect UI recordings against real code"
+  default_prompt: "Use $analyze-ui-video to dissect this screen recording against the target repository and recommend evidence-backed next steps."
+policy:
+  allow_implicit_invocation: true

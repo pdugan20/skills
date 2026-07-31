@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = {
+    "analyze-ui-video": True,
     "code-native-ui-ideation": True,
     "feature-delivery": True,
     "feature-spike": True,

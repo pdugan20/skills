@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Dissect this competitor screen recording and explain how its card transition could map to our React Native app.",
+    "should_trigger": true
+  },
+  {
+    "query": "Look at the attached iOS video around eight seconds and tell me why the sheet jumps before settling.",
+    "should_trigger": true
+  },
+  {
+    "query": "Compare what I expected with what this screen recording actually shows, then inspect the repository and propose next steps.",
+    "should_trigger": true
+  },
+  {
+    "query": "Reverse engineer the timing and layer movement in this competitor's mini-player animation.",
+    "should_trigger": true
+  },
+  {
+    "query": "The web carousel clips for one frame in this video but looks fine in screenshots. Diagnose it against the codebase.",
+    "should_trigger": true
+  },
+  {
+    "query": "I recorded the visual bug again after the fix. Verify from the before and after videos that it is actually gone.",
+    "should_trigger": true
+  },
+  {
+    "query": "Analyze this long screen recording; I only know the unexpected navigation occurs somewhere after I drag the third card.",
+    "should_trigger": true
+  },
+  {
+    "query": "This context-menu preview feels subtly different from the reference video. Work out which motion is system-owned and which part is ours.",
+    "should_trigger": true
+  },
+  {
+    "query": "There is a thin bright edge in this phone recording. Check whether it comes from the source video or our compositor.",
+    "should_trigger": true
+  },
+  {
+    "query": "I cannot describe the jank well, but it is visible in this recording. Break down the relevant frames before suggesting a cause.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this static screenshot for spacing, typography, and contrast issues.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review the animation code in this pull request against our motion craft standards; there is no recording.",
+    "should_trigger": false
+  },
+  {
+    "query": "Trim this demo video, remove the audio, and export a smaller WebM for the website.",
+    "should_trigger": false
+  },
+  {
+    "query": "Brainstorm three new carousel designs and build them in our SwiftUI preview catalog.",
+    "should_trigger": false
+  },
+  {
+    "query": "Implement the approved matched-geometry transition exactly as specified; I do not have a reference video.",
+    "should_trigger": false
+  },
+  {
+    "query": "Diagnose this crash from the stack trace and Sentry breadcrumbs.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit this component library for accessibility problems and inconsistent states.",
+    "should_trigger": false
+  },
+  {
+    "query": "What is the difference between an ease-out curve and a spring animation?",
+    "should_trigger": false
+  },
+  {
+    "query": "Production-harden the selected carousel implementation for accessibility, performance, and release readiness.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate a polished image mockup of a music player expanding from its mini-player.",
+    "should_trigger": false
+  }
+]

@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Added
+
+- Added [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) for
+  evidence-first screen-recording diagnosis and reference reconstruction.
+- Added a deterministic video probe and contact-sheet helper that distinguishes
+  observed and nominal frame rates, plus focused tests, execution evals, and
+  balanced routing cases.
+
 ### Changed
 
 - Grouped the README skill catalog into design and development skills and
