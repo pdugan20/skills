@@ -19,6 +19,8 @@ npx skills@latest add pdugan20/skills
 ### Design and development
 
 - [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) — Brainstorm and compare runnable UI directions before choosing one.
+- [`align-ui-to-design-system`](skills/align-ui-to-design-system/SKILL.md) — Review one completed UI surface against its repository's design system and apply only approved corrections.
+- [`audit-design-system-health`](skills/audit-design-system-health/SKILL.md) — Audit repository-wide design drift, missing system capabilities, consolidation candidates, and enforceable rules.
 - [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) — Dissect UI recordings against a target repository before diagnosing or reconstructing behavior.
 - [`feature-spike`](skills/feature-spike/SKILL.md) — Test feature value or technical feasibility before production investment.
 - [`feature-delivery`](skills/feature-delivery/SKILL.md) — Take substantial features from idea through coordinated implementation and staged rollout.

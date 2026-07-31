@@ -2,7 +2,12 @@
   "groups": [
     {
       "name": "Design and UI analysis",
-      "skills": ["code-native-ui-ideation", "analyze-ui-video"]
+      "skills": [
+        "code-native-ui-ideation",
+        "align-ui-to-design-system",
+        "audit-design-system-health",
+        "analyze-ui-video"
+      ]
     },
     {
       "name": "Product development",

@@ -69,6 +69,19 @@
         "Hover behavior and both compact and wide layouts are exercised in the browser.",
         "The result explains how the temporary comparison surface will be removed or retained after selection."
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "Before building, propose three directions for a new section header in this SwiftUI app: one that strictly follows the existing design system, one that stretches it, and one that deliberately diverges. Inspect the repository enough to ground the choices, keep the header's content and behavior comparable, and let me choose which versions to build.",
+      "expected_output": "Three repository-grounded directions at deliberate design-system distances, with stable foundations, named departures, and a selection gate before implementation.",
+      "files": ["evals/fixtures/swiftui/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "The agent inspects repository evidence and distinguishes protected foundations from component conventions that may vary.",
+        "The faithful direction works within established tokens, primitives, interaction patterns, and visual language.",
+        "The stretch direction extends one named system pattern or rule, while the divergent direction names what it departs from and what remains protected.",
+        "All directions preserve comparable content, behavior, state, and accessibility constraints rather than differing only by color or decoration.",
+        "The agent stops for selection before implementation because the prompt asks to choose first."
+      ]
     }
   ]
 }

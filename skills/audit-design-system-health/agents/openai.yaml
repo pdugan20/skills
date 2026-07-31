@@ -1,0 +1,6 @@
+interface:
+  display_name: "Audit Design-System Health"
+  short_description: "Find design drift and consolidation opportunities"
+  default_prompt: "Use $audit-design-system-health to audit this repository for design drift, consolidation opportunities, and enforceable rules."
+policy:
+  allow_implicit_invocation: true

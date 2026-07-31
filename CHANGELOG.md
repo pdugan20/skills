@@ -6,6 +6,12 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Added
 
+- Added [`audit-design-system-health`](skills/audit-design-system-health/SKILL.md)
+  for read-only repository-wide drift, consolidation, system-gap, and
+  enforcement audits across native and web codebases.
+- Added [`align-ui-to-design-system`](skills/align-ui-to-design-system/SKILL.md)
+  for bounded, evidence-backed conformance review and approved correction of a
+  completed native or web UI surface.
 - Added [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) for
   evidence-first screen-recording diagnosis and reference reconstruction.
 - Added a deterministic video probe and contact-sheet helper that distinguishes
@@ -16,6 +22,9 @@ All notable changes to this project are documented in this file. The project fol
 
 - Grouped the README skill catalog into design and development skills and
   Mintlify documentation skills.
+- Extended [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md)
+  with an optional faithful, stretching, and divergent design-system distance
+  axis grounded in protected foundations and intentional departures.
 
 ### Removed
 
@@ -24,6 +33,9 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Documentation
 
+- Added a mandatory skills.sh overlap gate before pilot, validation, and release,
+  including source inspection, upstream/fork/compose decisions, provenance, and
+  retirement criteria in each candidate brief.
 - Recorded v2.3.0 publication, exact-tag installation, archive integrity, and
   marketplace evidence and marked `feature-spike` as released.
 - Classified `analyze-ui-video` as one portable skill candidate for

@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Review this finished SwiftUI card against the design system and tell me which differences are accidental or intentional.",
+    "should_trigger": true
+  },
+  {
+    "query": "Align this completed component with the repository's existing UI system and make only the justified fixes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Normalize this one React Native screen without redesigning it or touching the rest of the app.",
+    "should_trigger": true
+  },
+  {
+    "query": "Does this selected component reveal a missing design-system primitive, or is it just accidental drift?",
+    "should_trigger": true
+  },
+  {
+    "query": "I finished this portfolio module; preserve its bespoke type but correct anything that conflicts with our real tokens and focus patterns.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check this bounded UI surface for token, primitive, state, interaction, and accessibility conformance before I choose fixes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Bring this selected settings row back in line with the app's visual language while keeping its special destructive role.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review the component I just built and separate actual system violations from intentional product choices.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fix the proven design-system deviations in this single Storybook component and verify its states.",
+    "should_trigger": true
+  },
+  {
+    "query": "Compare this finished control to semantic peers and tell me whether the odd styling is drift, an exception, or a system gap.",
+    "should_trigger": true
+  },
+  {
+    "query": "Give me three faithful, stretching, and radically different directions for this new component before we build.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit the whole repository for hardcoded values, duplicate components, token drift, and consolidation opportunities.",
+    "should_trigger": false
+  },
+  {
+    "query": "Implement this approved Figma frame exactly and preserve pixel-level parity.",
+    "should_trigger": false
+  },
+  {
+    "query": "Harden this completed checkout for release across failures, security, observability, and performance.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix the obvious typo and nothing else; the component design is already correct.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a new design system and token architecture for this greenfield application.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain the general difference between design tokens and shared components.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review this pull request for correctness and regressions; it does not contain UI work.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate static image mockups showing three possible visual languages for the landing page.",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up Storybook and migrate our existing stories without changing component design.",
+    "should_trigger": false
+  }
+]

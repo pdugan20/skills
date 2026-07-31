@@ -40,6 +40,14 @@
     "should_trigger": true
   },
   {
+    "query": "Give me faithful, system-stretching, and deliberately divergent directions for this new component before we decide which ones to build.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build three runnable versions of this card at different distances from our current design language and keep their behavior comparable.",
+    "should_trigger": true
+  },
+  {
     "query": "We picked the second onboarding direction. Implement the complete production flow now, including persistence, analytics, accessibility, and tests.",
     "should_trigger": false
   },
@@ -61,6 +69,14 @@
   },
   {
     "query": "Audit the existing component library for accessibility and consistency problems, but do not change any code.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review this completed component against the repository design system and fix only the accidental deviations.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit the entire repository for token drift, overlapping components, and design-system consolidation opportunities.",
     "should_trigger": false
   },
   {
