@@ -48,6 +48,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | `SC-008` | Review documentation content and information architecture | The released `review-docs` skill, shared editorial playbook, and quality fixture in the former focused repository | **Discipline skill with references:** page-order review and editorial judgment benefit from a bounded method | `released` | Medium | [Skill](../skills/review-mintlify-docs/SKILL.md) |
 | `SC-009` | Write reader-facing changelog entries | The released `changelog-writer` skill, routing cases, and quality fixture in the former focused repository | **Technique skill:** translating implementation changes into reader value needs judgment while repository release mechanics remain scripts | `released` | Low | [Skill](../skills/write-mintlify-changelog/SKILL.md) |
 | `SC-010` | Feature spike for value or feasibility validation | A kill-or-continue third-party capability probe, a deferred native-package performance proof of concept, and a platform experiment that changed implementation medium, plus fresh no-skill and forward replays | **Pattern skill:** `feature-spike` preserves the decision uncertainty, validity conditions, accepted decision rule, non-binary outcome, and code disposition without inheriting production delivery or UI-comparison scope | `released` | High | [Brief](skill-candidates/feature-spike.md) |
+| `SC-011` | Analyze a UI screen recording | Two frame-led diagnoses in `nextup-ios-app`, a 60 fps competitor transition reconstruction in `audiobook-ios`, and a source-frame artifact diagnosis in `pat-portfolio` | **Composite skill with a script:** `analyze-ui-video` should share one evidence-first temporal analysis method, then branch into reference reconstruction or visual-bug diagnosis and audit the target repository before proposing implementation steps | `classified` | High | [Brief](skill-candidates/analyze-ui-video.md) |
 
 ## Current collection
 
@@ -122,6 +123,17 @@ official Claude validation, clean Claude Code, Codex, and Cursor layout
 installation, and the optional GitHub publishing preview all pass. `SC-010` is
 released in Patrick Skills v2.3.0 and pinned by Patrick Plugins v3.2.0 after
 exact-tag archive, clean-install, and marketplace-install verification.
+
+The next discovery pass captured `SC-011` after Patrick described the same
+screen-recording analysis loop for competitor references and visual bugs. The
+existing evidence shows that these are two branches of one skill rather than
+separate mobile, web, animation, and debugging skills: both require the agent to
+scope the relevant moment, inspect rendered frames before forming a theory,
+separate observations from inferences, and inspect the target repository before
+recommending an implementation. The existing `verify-motion` contact-sheet
+script is a strong platform-neutral starting point, while its SwiftUI-specific
+diagnostic advice should remain outside the portable core. The candidate is
+classified and ready for a pilot against the next representative recording.
 
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 

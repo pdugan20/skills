@@ -8,6 +8,9 @@ All notable changes to this project are documented in this file. The project fol
 
 - Recorded v2.3.0 publication, exact-tag installation, archive integrity, and
   marketplace evidence and marked `feature-spike` as released.
+- Classified `analyze-ui-video` as one portable skill candidate for
+  evidence-first screen-recording analysis, with reference-reconstruction and
+  visual-bug branches grounded in three completed repository examples.
 
 ## [2.3.0] - 2026-07-30
 
