@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Documentation
+
+- Recorded Patrick Skills v3.0.0 release and exact-tag installation evidence,
+  downstream Patrick Plugins v3.4.0 and Agent Tooling v0.8.0 verification, the
+  remaining skills.sh stale-snapshot gate, and the requirement to dogfood
+  `bootstrap-repository` only on the next genuinely new or empty real repository.
+
 ## [3.0.0] - 2026-07-31
 
 ### Added

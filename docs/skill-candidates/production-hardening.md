@@ -102,5 +102,5 @@ The result supports removal rather than expansion. It does not claim that the fo
 - [x] Natural-prompt no-skill and released-skill results reviewed.
 - [x] Leading execution eval prompts replaced.
 - [x] Skill, README entry, grouping, and packaged metadata removed from current source.
-- [ ] Removal published in the next major release.
-- [ ] Patrick Plugins and Agent Tooling updated to the v3 removal after the release exists.
+- [x] Removal published in Patrick Skills v3.0.0.
+- [x] Patrick Plugins v3.4.0 and Agent Tooling v0.8.0 updated to the v3 removal.

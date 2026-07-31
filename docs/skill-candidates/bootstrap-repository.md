@@ -189,5 +189,13 @@ mutation helper were justified.
 - [x] Execution and routing eval coverage passes.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Intended Claude Code, Codex, and Cursor installation layouts are checked.
-- [ ] Version, release metadata, and installation from a published tag are verified.
+- [x] Version, release metadata, and installation from a published tag are verified.
 - [x] Inventory status and lessons are updated.
+
+## Release and dogfood follow-up
+
+- [x] Published in [Patrick Skills v3.0.0](https://github.com/pdugan20/skills/releases/tag/v3.0.0) from merge commit `a8b78d9d122b7f89e61836ed95168b9db6a14d0a` with curated notes and a tag-matching release archive.
+- [x] Verified a clean exact-tag Skills CLI install for the Claude Code, Codex, and Cursor layouts; all installed files match the tagged skill tree byte-for-byte. Cursor remains packaging-compatible rather than behavior-verified because no paid Cursor account was used.
+- [x] Updated downstream distribution in [Patrick Plugins v3.4.0](https://github.com/pdugan20/plugins/releases/tag/v3.4.0) and [Agent Tooling v0.8.0](https://github.com/pdugan20/agent-tooling/releases/tag/v0.8.0), then applied and verified the Agent Tooling setup on Patrick's current Mac.
+- [ ] Confirm that skills.sh has replaced every stored snapshot with v3.0 content and removed the retired `production-hardening` record. The new `bootstrap-repository` record is discoverable, but the collection remains affected by [the upstream stale-snapshot defect](https://github.com/vercel-labs/skills/issues/780).
+- [ ] Dogfood the skill on the next genuinely new or empty real repository and record any refinements. Do not substitute an established repository audit: `audiobook-ios`, the newest plausible candidate, already has a client, backend, tests, research, and 18 commits.
