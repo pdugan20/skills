@@ -197,6 +197,13 @@ code-repository-first, native-and-web scope. The candidate briefs record the
 specific upstream-use and retirement conditions so this conclusion can be
 rechecked before later releases.
 
+Patrick Plugins v3.3.0 pins Patrick Skills v2.4.0 in both runtime catalogs; its
+Claude Code and Codex marketplace installation smoke test passed before and
+after publication. Agent Tooling v0.7.0 locks all eleven Patrick-owned skill
+snapshots to the same source tag and verified the complete Codex and Claude
+setup on Patrick's current Mac. The Cursor claim remains installation-layout
+compatibility only because no paid Cursor account was used for live behavior.
+
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 
 ## Working rules
