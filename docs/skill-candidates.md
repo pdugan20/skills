@@ -49,6 +49,9 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | `SC-009` | Write reader-facing changelog entries | The released `changelog-writer` skill, routing cases, and quality fixture in the former focused repository | **Technique skill:** translating implementation changes into reader value needs judgment while repository release mechanics remain scripts | `released` | Low | [Skill](../skills/write-mintlify-changelog/SKILL.md) |
 | `SC-010` | Feature spike for value or feasibility validation | A kill-or-continue third-party capability probe, a deferred native-package performance proof of concept, and a platform experiment that changed implementation medium, plus fresh no-skill and forward replays | **Pattern skill:** `feature-spike` preserves the decision uncertainty, validity conditions, accepted decision rule, non-binary outcome, and code disposition without inheriting production delivery or UI-comparison scope | `released` | High | [Brief](skill-candidates/feature-spike.md) |
 | `SC-011` | Analyze a UI screen recording | Two frame-led diagnoses in `nextup-ios-app`, a 60 fps competitor transition reconstruction in `audiobook-ios`, a source-frame artifact diagnosis in `pat-portfolio`, and a fresh ambiguous-video replay | **Composite skill with a script:** `analyze-ui-video` shares one evidence-first temporal analysis method, then branches into reference reconstruction or visual-bug diagnosis and audits the target repository before proposing implementation steps | `validated` | High | [Brief](skill-candidates/analyze-ui-video.md) |
+| `SC-012` | Explore UI directions at deliberate design-system distances | Patrick sometimes wants component variants that strictly reuse an existing system, stretch its vocabulary, or deliberately diverge from it | **Likely enhancement to `code-native-ui-ideation`:** the trigger, comparison surface, and selection artifact are unchanged; add design-system posture as an optional comparison axis instead of creating another ideation skill | `captured` | High | No brief yet |
+| `SC-013` | Align a completed component with its design system | Patrick runs a focused conformance pass after building a component to find accidental token, primitive, state, interaction, or visual-language deviations | **Likely targeted skill:** inspect one completed surface against repository evidence, distinguish violations from intentional exceptions and system gaps, and optionally apply approved fixes without expanding into a repository-wide audit | `captured` | High | No brief yet |
+| `SC-014` | Audit design-system drift and consolidation opportunities | Patrick audits repositories for hardcoded values, inconsistent conventions, overlapping visual components, and candidates for consolidation or stronger enforcement | **Likely composite skill with stack-specific tooling:** combine deterministic token and duplication signals with rendered and semantic review, then produce a prioritized read-only system-health and consolidation report rather than automatically refactoring the repository | `captured` | High | No brief yet |
 
 ## Current collection
 
@@ -148,6 +151,33 @@ as unusually subtle, this clip validates ambiguity handling rather than hidden
 defect discovery. Structural, routing, behavioral, external-validator, plugin,
 and multi-client installation gates pass, so `SC-011` is validated but remains
 unreleased until an exact tagged archive is verified.
+
+The following discovery pass captured three related design-system intents but
+did not collapse them into one large skill. `SC-012` is another axis inside the
+released `code-native-ui-ideation` loop: the user still chooses and compares
+runnable directions, but the directions intentionally occupy faithful,
+stretching, and divergent relationships to the existing system. `SC-013` is a
+narrow post-build conformance pass on one component or surface. `SC-014` is a
+repository-wide health and consolidation audit whose cost, artifact, and
+default read-only boundary are materially different. The latter two therefore
+remain separate skill candidates that can share evidence concepts without
+sharing a trigger.
+
+External tooling covers pieces rather than the complete intent. Google's
+[DESIGN.md](https://github.com/google-labs-code/design.md) provides an alpha
+design-system contract and linter, while its
+[Stitch skills](https://github.com/google-labs-code/stitch-skills) can extract
+that contract from frontend code. OpenAI's Figma skills reconcile code with
+Figma libraries, but remain Figma-specific. Maintained tools such as
+[Stylelint](https://stylelint.io/user-guide/rules/declaration-property-value-allowed-list/)
+and [SwiftLint](https://github.com/realm/SwiftLint) can enforce approved token
+rules in target repositories, and [jscpd](https://github.com/kucherenko/jscpd)
+can identify duplicated source as one consolidation signal. None can decide
+whether a visual deviation is intentional, whether two differently implemented
+components are semantically redundant, or how far an exploratory direction
+should push an existing system. Those judgment boundaries are the candidate
+skills' reusable value; deterministic enforcement should remain stack-specific
+and be added only after an audit establishes the repository's actual rules.
 
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 

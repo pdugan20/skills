@@ -29,6 +29,9 @@ All notable changes to this project are documented in this file. The project fol
 - Classified `analyze-ui-video` as one portable skill candidate for
   evidence-first screen-recording analysis, with reference-reconstruction and
   visual-bug branches grounded in three completed repository examples.
+- Captured design-system-aware ideation as an enhancement to
+  `code-native-ui-ideation`, plus separate candidates for component-level
+  conformance and repository-wide design-system drift auditing.
 
 ## [2.3.0] - 2026-07-30
 
