@@ -4,6 +4,8 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-07-31
+
 ### Added
 
 - Added [`audit-design-system-health`](skills/audit-design-system-health/SKILL.md)
@@ -149,7 +151,8 @@ All notable changes to this project are documented in this file. The project fol
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
 - Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
 
-[unreleased]: https://github.com/pdugan20/skills/compare/v2.3.0...HEAD
+[unreleased]: https://github.com/pdugan20/skills/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/pdugan20/skills/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/pdugan20/skills/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/pdugan20/skills/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/pdugan20/skills/compare/v2.0.0...v2.1.0
