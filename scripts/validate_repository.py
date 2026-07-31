@@ -26,6 +26,7 @@ PLUGIN_NAME = "patrick-skills"
 VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
 MIN_EXECUTION_EVALS = 3
 MIN_ROUTING_EVALS_PER_CLASS = 4
+SKILLS_SH_SCHEMA = "https://skills.sh/schemas/skills.sh.schema.json"
 
 
 def load_json(path: Path) -> object:
@@ -197,6 +198,42 @@ def validate_codex_interface(manifest: dict[str, object]) -> list[str]:
     return errors
 
 
+def validate_skills_sh_config(config: dict[str, object]) -> list[str]:
+    """Validate the current skills.sh repository-page configuration contract."""
+    errors: list[str] = []
+    if config.get("$schema") != SKILLS_SH_SCHEMA:
+        errors.append(f"skills.sh.json: $schema must be {SKILLS_SH_SCHEMA}")
+    if config.get("notGrouped") not in {"top", "bottom"}:
+        errors.append('skills.sh.json: notGrouped must be "top" or "bottom"')
+
+    groupings = config.get("groupings")
+    if not isinstance(groupings, list) or not groupings:
+        return errors + ["skills.sh.json: groupings must be a non-empty array"]
+
+    grouped: list[str] = []
+    for index, grouping in enumerate(groupings):
+        label = f"skills.sh.json: groupings[{index}]"
+        if not isinstance(grouping, dict):
+            errors.append(f"{label} must be an object")
+            continue
+        if not is_nonempty_string(grouping.get("title")):
+            errors.append(f"{label}.title must be a non-empty string")
+        description = grouping.get("description")
+        if description is not None and not is_nonempty_string(description):
+            errors.append(f"{label}.description must be a non-empty string when present")
+        skills = grouping.get("skills")
+        if not isinstance(skills, list) or any(not is_nonempty_string(skill) for skill in skills):
+            errors.append(f"{label}.skills must contain only non-empty strings")
+            continue
+        grouped.extend(skills)
+
+    if len(grouped) != len(set(grouped)):
+        errors.append("skills.sh.json: each skill may appear in only one grouping")
+    if sorted(grouped) != sorted(EXPECTED_SKILLS):
+        errors.append("skills.sh.json: groupings must include every skill exactly once")
+    return errors
+
+
 def validate(release_tag: str | None = None) -> list[str]:
     errors: list[str] = []
     package = load_json(ROOT / "package.json")
@@ -233,10 +270,7 @@ def validate(release_tag: str | None = None) -> list[str]:
 
     skills_config = load_json(ROOT / "skills.sh.json")
     assert isinstance(skills_config, dict)
-    groups = skills_config.get("groups", [])
-    grouped = [skill for group in groups for skill in group.get("skills", [])]
-    if sorted(grouped) != sorted(EXPECTED_SKILLS):
-        errors.append("skills.sh.json: groupings must include every skill exactly once")
+    errors.extend(validate_skills_sh_config(skills_config))
 
     if release_tag is not None and release_tag != f"v{version}":
         errors.append(f"release tag {release_tag!r} must equal v{version}")

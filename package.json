@@ -9,6 +9,8 @@
     "format:check": "prettier --check \"**/*.{json,yaml,yml}\"",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
     "skills:list": "DISABLE_TELEMETRY=1 npx --yes skills@1.5.21 add . --list",
+    "check:skills-sh": "python3 scripts/check_skills_sh.py",
+    "refresh:skills-sh": "node scripts/refresh_skills_sh.mjs",
     "test": "python3 -B -m unittest discover -s scripts -p 'test_*.py' -v",
     "test:installation": "node scripts/test_installation.mjs",
     "validate": "python3 scripts/validate_repository.py",

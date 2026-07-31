@@ -2,7 +2,8 @@
 
 `pdugan20/skills` is a versioned skill collection and dual-runtime plugin. It is
 not published to npm. A release is complete only when the tagged source,
-curated GitHub Release, packaged archive, and exact-tag installation agree.
+curated GitHub Release, packaged archive, exact-tag installation, and live
+skills.sh catalog agree.
 
 ## Prerequisites
 
@@ -51,7 +52,18 @@ git push origin "v$VERSION"
 gh run watch --repo pdugan20/skills \
   "$(gh run list --repo pdugan20/skills --workflow Release --limit 1 --json databaseId --jq '.[0].databaseId')" \
   --exit-status
+npm run refresh:skills-sh
 ```
+
+Run `refresh:skills-sh` locally from current `main`, with Skills CLI telemetry
+enabled. skills.sh discovers and refreshes repository skills from successful
+`skills add` events; pushing a release or running `skills add --list` does not
+update the catalog. The refresh command performs an isolated install, verifies
+that GitHub `main` matches the local skill set, and confirms that skills.sh
+stores the current file snapshot for every skill. The public repository page is
+eventually consistent and has a [known indexing delay](https://github.com/vercel-labs/skills/issues/765)
+of up to roughly two hours, so run the live catalog check again after that
+window when necessary.
 
 Then verify:
 
@@ -59,9 +71,20 @@ Then verify:
 2. The attached archive contains the same skill folders as the tag.
 3. A clean installation from `pdugan20/skills@v$VERSION` succeeds for Claude
    Code, Codex, and Cursor and matches the tagged files byte-for-byte.
-4. The skills appear through Skills CLI discovery.
-5. Only after those checks pass, change the skill candidate inventory rows from
+4. `npm run check:skills-sh` reports that the live skills.sh page contains the
+   complete current skill set.
+5. The skills appear through Skills CLI discovery.
+6. Only after those checks pass, change the skill candidate inventory rows from
    `validated` to `released` and update downstream marketplace pins.
 
 If publication fails after the tag is pushed, repair or rerun the release
 workflow. Do not move or recreate the tag at a different commit.
+
+The daily `Skills.sh freshness` GitHub Action provides a read-only backstop and
+alerts when the catalog drifts from `main`. It cannot replace the local refresh
+step because skills.sh does not expose a publisher rescan endpoint.
+If the catalog is still stale after the known indexing window, report the exact
+missing skill set in the [upstream issue tracker](https://github.com/vercel-labs/skills/issues)
+and keep the release verification incomplete until the live check passes.
+If existing skill files remain stale, add the repository and mismatched paths
+to the upstream [stale-snapshot tracker](https://github.com/vercel-labs/skills/issues/780).

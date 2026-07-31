@@ -3,10 +3,22 @@
 [![CI](https://github.com/pdugan20/skills/actions/workflows/ci.yml/badge.svg)](https://github.com/pdugan20/skills/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/pdugan20/skills?logo=github)](https://github.com/pdugan20/skills/releases/latest)
 [![skills.sh](https://skills.sh/b/pdugan20/skills)](https://skills.sh/pdugan20/skills)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22.22.2-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
 
 Portable skills for code-native design exploration, production software delivery, and technical documentation. They work with Claude Code, Codex, Cursor, and other Agent Skills clients.
+
+## Who is this for?
+
+These skills are for designers and engineers who build products directly in code and use agents across design, implementation, release, and documentation—not just code generation.
+
+They help an agent recognize what kind of work it is doing and apply the right level of rigor:
+
+- Explore runnable alternatives before choosing one.
+- Analyze a finished interface or recording against repository evidence.
+- Distinguish a feature spike from production delivery and final hardening.
+- Produce documentation grounded in the actual product instead of generic filler.
+
+The collection does not impose one visual style or stack. It encodes repeatable decision points, evidence standards, and approval boundaries so an agent can work more like a thoughtful collaborator.
 
 ## Install
 
@@ -32,8 +44,6 @@ npx skills@latest add pdugan20/skills
 - [`review-mintlify-docs`](skills/review-mintlify-docs/SKILL.md) — Review Mintlify content, navigation, and launch readiness.
 - [`generate-mintlify-reference`](skills/generate-mintlify-reference/SKILL.md) — Generate drift-checked CLI, MCP, and API reference pages.
 - [`write-mintlify-changelog`](skills/write-mintlify-changelog/SKILL.md) — Write concise reader-facing Mintlify changelog entries.
-
-Claude Code and Codex users can also install the collection as the `patrick-skills` plugin from [Patrick's Plugins](https://github.com/pdugan20/plugins).
 
 The Mintlify skills use the official Mintlify capability for current component and schema mechanics when it is available, while keeping Patrick's editorial guidance portable and self-contained.
 

@@ -1,7 +1,10 @@
 {
-  "groups": [
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
     {
-      "name": "Design and UI analysis",
+      "title": "Design and UI",
+      "description": "Explore, analyze, and align product interfaces.",
       "skills": [
         "code-native-ui-ideation",
         "align-ui-to-design-system",
@@ -10,11 +13,13 @@
       ]
     },
     {
-      "name": "Product development",
+      "title": "Product development",
+      "description": "Validate, deliver, and harden product features.",
       "skills": ["feature-spike", "feature-delivery", "production-hardening"]
     },
     {
-      "name": "Documentation",
+      "title": "Mintlify documentation",
+      "description": "Create, review, and maintain Mintlify documentation.",
       "skills": [
         "scaffold-mintlify-site",
         "review-mintlify-docs",

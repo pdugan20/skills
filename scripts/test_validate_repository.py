@@ -58,6 +58,28 @@ class ValidateRepositoryTests(unittest.TestCase):
             errors,
         )
 
+    def test_skills_sh_config_uses_current_schema(self) -> None:
+        config = validate_repository.load_json(validate_repository.ROOT / "skills.sh.json")
+        self.assertIsInstance(config, dict)
+        self.assertEqual(validate_repository.validate_skills_sh_config(config), [])
+        self.assertNotIn("groups", config)
+
+    def test_skills_sh_config_rejects_duplicate_skills(self) -> None:
+        config = {
+            "$schema": validate_repository.SKILLS_SH_SCHEMA,
+            "notGrouped": "bottom",
+            "groupings": [
+                {
+                    "title": "Duplicate",
+                    "skills": ["feature-spike", "feature-spike"],
+                }
+            ],
+        }
+
+        errors = validate_repository.validate_skills_sh_config(config)
+
+        self.assertIn("skills.sh.json: each skill may appear in only one grouping", errors)
+
     def test_eval_manifest_requires_execution_coverage(self) -> None:
         with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
             skill_dir = Path(directory)
