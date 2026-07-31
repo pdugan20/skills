@@ -19,6 +19,7 @@ as a skill or script.
 | `pilot` | The flow was selected for implementation and evaluation. |
 | `validated` | The implementation passed its structural, routing, and behavioral evidence bar. |
 | `released` | The selected reusable mechanism is versioned, distributed, and installation-checked. |
+| `deprecated` | A released mechanism no longer justifies continued use and remains only for a documented compatibility window before removal. |
 | `no-action` | Existing agent behavior is sufficient or the flow should not become reusable tooling. |
 
 ## Prioritization signals
