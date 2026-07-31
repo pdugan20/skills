@@ -9,4 +9,4 @@ This sanitized fixture represents an existing Next.js portfolio.
 - Development-only routes and controls can be excluded from production builds.
 - The comparison must cover pointer hover plus compact and wide browser layouts.
 
-The fixture is intentionally descriptive rather than compilable. Evaluate workflow decisions, comparison quality, platform choice, and cleanup boundaries—not React syntax.
+The fixture is intentionally descriptive rather than compilable. Evaluate process decisions, comparison quality, platform choice, and cleanup boundaries—not React syntax.

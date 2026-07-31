@@ -20,7 +20,7 @@ curated GitHub Release, packaged archive, and exact-tag installation agree.
 1. Move completed entries from `[Unreleased]` into a dated version section.
 2. Update the package and plugin versions. Use a minor release for compatible
    skill additions and a major release only for breaking collection contracts.
-3. Keep migrated workflow inventory rows at `validated` until exact-tag
+3. Keep skill candidate inventory rows at `validated` until exact-tag
    installation succeeds.
 4. Run the release gates:
 
@@ -60,7 +60,7 @@ Then verify:
 3. A clean installation from `pdugan20/skills@v$VERSION` succeeds for Claude
    Code, Codex, and Cursor and matches the tagged files byte-for-byte.
 4. The skills appear through Skills CLI discovery.
-5. Only after those checks pass, change the workflow inventory rows from
+5. Only after those checks pass, change the skill candidate inventory rows from
    `validated` to `released` and update downstream marketplace pins.
 
 If publication fails after the tag is pushed, repair or rerun the release

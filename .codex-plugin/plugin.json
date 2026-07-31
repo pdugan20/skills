@@ -1,6 +1,6 @@
 {
   "name": "patrick-skills",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Portable skills for code-native design exploration, production delivery, hardening, and technical documentation.",
   "author": {
     "name": "Pat Dugan",
@@ -30,7 +30,7 @@
     "websiteURL": "https://github.com/pdugan20/skills",
     "defaultPrompt": [
       "Use $code-native-ui-ideation to brainstorm and compare these UI directions in the running project.",
-      "Use $feature-delivery to implement this substantial feature for production.",
+      "Use $feature-delivery to take this substantial feature from idea or selected behavior through implementation and rollout.",
       "Use $review-mintlify-docs to review this Mintlify documentation site."
     ]
   }

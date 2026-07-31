@@ -19,7 +19,7 @@ npx skills@latest add pdugan20/skills
 | Skill | Use it for |
 | --- | --- |
 | [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) | Brainstorming and comparing runnable UI directions before choosing one. |
-| [`feature-delivery`](skills/feature-delivery/SKILL.md) | Implementing substantial production features with proportional rigor. |
+| [`feature-delivery`](skills/feature-delivery/SKILL.md) | Taking substantial features from idea through coordinated implementation and staged rollout. |
 | [`production-hardening`](skills/production-hardening/SKILL.md) | Explicit release-readiness review of a selected implementation. |
 | [`scaffold-mintlify-site`](skills/scaffold-mintlify-site/SKILL.md) | Creating a project-specific Mintlify documentation site. |
 | [`review-mintlify-docs`](skills/review-mintlify-docs/SKILL.md) | Reviewing Mintlify content, navigation, and launch readiness. |
@@ -28,7 +28,7 @@ npx skills@latest add pdugan20/skills
 
 Claude Code and Codex users can also install the collection as the `patrick-skills` plugin from [Patrick's Plugins](https://github.com/pdugan20/plugins).
 
-The Mintlify skills use the official Mintlify capability for current component and schema mechanics when it is available, while keeping Patrick's editorial workflows portable and self-contained.
+The Mintlify skills use the official Mintlify capability for current component and schema mechanics when it is available, while keeping Patrick's editorial guidance portable and self-contained.
 
 ## Versioning
 
@@ -41,4 +41,4 @@ npm ci
 npm run verify
 ```
 
-See the [skill authoring standard](docs/skill-authoring.md), [workflow inventory](docs/workflow-inventory.md), and [release guide](RELEASING.md) when maintaining the collection.
+See the [skill authoring standard](docs/skill-authoring.md), [skill candidate inventory](docs/skill-candidates.md), and [release guide](RELEASING.md) when maintaining the collection.

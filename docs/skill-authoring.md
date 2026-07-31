@@ -9,7 +9,7 @@ The standard has four layers:
 3. Encode the behavioral claim as execution and routing evals.
 4. Enforce objective properties automatically and review judgment-based properties with evidence.
 
-## Decide where the workflow belongs
+## Decide what the recurring process needs
 
 Use the lightest mechanism that can reliably produce the desired behavior.
 
@@ -19,11 +19,11 @@ Use the lightest mechanism that can reliably produce the desired behavior.
 | `AGENTS.md` | A repository rule, safety boundary, or working agreement must remain active across tasks. | The guidance is relevant only to a narrow task family. |
 | Script | A deterministic transformation or fragile operation should execute the same way every time. | Judgment, adaptation, or contextual reasoning is the main value. |
 | Reference | The agent needs domain knowledge, schemas, examples, or variant-specific detail on demand. | The content is the core procedure and is short enough for `SKILL.md`. |
-| Asset | The workflow needs templates, starter files, icons, or other material copied into outputs. | The file is documentation for the agent. |
+| Asset | The skill needs templates, starter files, icons, or other material copied into outputs. | The file is documentation for the agent. |
 | Plugin | Distribution also needs runtime metadata, MCP servers, hooks, applications, or several related skills. | One portable skill folder is sufficient. |
 | Human documentation | The material explains governance, maintenance, or concepts to people but should not enter task context. | It directly changes how the agent should perform a recurring task. |
 
-A good skill candidate has a recognizable trigger, a repeatable outcome, non-obvious reusable guidance, and enough variation that an agent should still exercise judgment. If a workflow is both deterministic and agent-guided, put the fragile operation in a tested script and let the skill decide when and how to use it.
+A good skill candidate has a recognizable trigger, a repeatable outcome, non-obvious reusable guidance, and enough variation that an agent should still exercise judgment. If a process is both deterministic and agent-guided, put the fragile operation in a tested script and let the skill decide when and how to use it.
 
 ## Classify the skill
 
@@ -35,15 +35,15 @@ Classification determines the appropriate level of prescription and evaluation.
 | Pattern | Encodes a reusable structure or decision pattern. | Recognition plus correct adaptation. |
 | Reference | Supplies authoritative facts, APIs, schemas, or conventions. | Retrieval accuracy and correct use. |
 | Discipline | Prevents rationalization or skipped safeguards under pressure. | Compliance under realistic pressure and near misses. |
-| Composite workflow | Coordinates several phases or concerns toward an outcome. | End-to-end behavior, boundaries, and proportionality. |
+| Composite | Coordinates several phases or concerns toward an outcome. | End-to-end behavior, boundaries, and proportionality. |
 
-Do not apply pressure-test conventions to every skill. They are useful for discipline skills, while technique, pattern, and reference skills need realistic application and retrieval tests. Composite workflows usually need both execution coverage and boundary tests.
+Do not apply pressure-test conventions to every skill. They are useful for discipline skills, while technique, pattern, and reference skills need realistic application and retrieval tests. Composite skills usually need both execution coverage and boundary tests.
 
 The current collection classifies `code-native-ui-ideation` and
 `write-mintlify-changelog` as techniques; `production-hardening` and
-`review-mintlify-docs` as discipline workflows; and `feature-delivery`,
+`review-mintlify-docs` as discipline skills; and `feature-delivery`,
 `scaffold-mintlify-site`, and `generate-mintlify-reference` as composite
-workflows.
+skills.
 
 ## Capture intent before writing
 
@@ -57,13 +57,13 @@ When Patrick describes a design or development flow, capture:
 - failure modes, safety boundaries, and approval points;
 - examples of a successful result and a poor result;
 - repeated work that should become a script, reference, or asset;
-- whether the workflow is personal, repository-specific, or broadly portable.
+- whether the process is personal, repository-specific, or broadly portable.
 
 Start from real expertise: a completed task, Patrick's corrections, working code, project artifacts, review history, or actual failure cases. Do not ask a model to invent a generic best-practices skill from its training knowledge alone.
 
 Map the flow to the mechanisms above before drafting. Several smaller skills are preferable only when they have independently useful triggers and outcomes. Keep tightly coupled phases together when splitting them would make routing ambiguous or force users to know implementation details.
 
-Record the initial decision in the [workflow inventory](workflow-inventory.md). When a candidate has enough real evidence to develop, copy the [candidate template](workflows/_template.md) into a descriptively named brief and keep it synchronized with the inventory through validation or rejection.
+Record the initial decision in the [skill candidate inventory](skill-candidates.md). When a candidate has enough real evidence to develop, copy the [candidate template](skill-candidates/_template.md) into a descriptively named brief and keep it synchronized with the inventory through validation or rejection.
 
 ## Write the portable skill
 
@@ -79,7 +79,7 @@ Record the initial decision in the [workflow inventory](workflow-inventory.md). 
 - Do not put procedural steps in the description. Metadata routes to the skill; the body teaches execution.
 - Avoid keyword stuffing. Use representative language and let routing evals expose gaps.
 
-This description convention reconciles a small difference in vendor wording. The Agent Skills specification and OpenAI guidance require both what the skill does and when to use it. Some workflow-writing guidance warns that summarizing the procedure in metadata can cause an agent to skip the body. Capability plus routing context satisfies the first requirement without leaking the procedure.
+This description convention reconciles a small difference in vendor wording. The Agent Skills specification and OpenAI guidance require both what the skill does and when to use it. Some skill-writing guidance warns that summarizing the procedure in metadata can cause an agent to skip the body. Capability plus routing context satisfies the first requirement without leaking the procedure.
 
 ### Body
 
@@ -138,7 +138,7 @@ When claiming that a new or changed skill improves behavior, compare the same ca
 
 ### Routing evals
 
-`evals/routing.json` uses the trigger-eval shape from Anthropic's description optimization workflow:
+`evals/routing.json` uses the trigger-eval shape from Anthropic's description optimization process:
 
 ```json
 [
@@ -174,8 +174,8 @@ Configure the provider and API-key environment variable without committing crede
 | Package versions, inventory, runtime policy, Skills CLI grouping, and eval coverage | `scripts/validate_repository.py` | Automatic |
 | Claude Code, Codex, and Cursor installation layout and packaged resources | Isolated Skills CLI copy installation with source-tree comparison | Automatic |
 | Markdown, formatting, spelling, action syntax, and workflow security | Existing repository tooling | Automatic |
-| Trigger precision, near-miss behavior, and observable workflow outcomes | Versioned routing and execution evals | Evidence-based review |
-| Taste, proportionality, novelty, overlap, and whether the workflow should exist as a skill | Author review using this rubric | Human judgment |
+| Trigger precision, near-miss behavior, and observable skill outcomes | Versioned routing and execution evals | Evidence-based review |
+| Taste, proportionality, novelty, overlap, and whether the process should become a skill | Author review using this rubric | Human judgment |
 
 Do not turn subjective heuristics into brittle regex gates. Automated checks should reject objective defects and require evidence for semantic claims, not claim to understand design quality.
 
@@ -226,7 +226,7 @@ Improving `claude-code-lint` remains worthwhile as a separate product effort. It
 
 Before merging a skill change:
 
-- Confirm the workflow belongs in a skill and record its classification.
+- Confirm the recurring process belongs in a skill and record its classification.
 - Read the description alone and verify its positive and negative routing boundaries.
 - Read the body for non-obvious value, proportional freedom, safety, and runtime portability.
 - Move deterministic repetition into tested scripts and bulky detail into linked references.

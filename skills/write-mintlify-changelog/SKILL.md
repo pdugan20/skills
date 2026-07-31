@@ -220,7 +220,7 @@ cycle, and deletions propagate from Instapaper. `/health/sync` now includes the
 Reading domain.
 ```
 
-## New entries, workflow
+## New entry process
 
 1. Read the release's diff or summary. Pull out reader-facing changes only.
 2. Pick the tags from the closed set.

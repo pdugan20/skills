@@ -1,34 +1,82 @@
 [
   {
-    "query": "Build the production account deletion feature across settings, the API, our identity provider, database cleanup, audit logging, and regression tests.",
+    "query": "I have an idea for a new iOS feature and want to work through the product design, backend impact, implementation, internal build, and TestFlight rollout.",
     "should_trigger": true
   },
   {
-    "query": "Implement workspace roles and invitations end to end. This crosses the database, authorization middleware, email delivery, admin UI, and release checks.",
+    "query": "Take this web feature from an unresolved product idea through an approved technical design, implementation, migration, and gated production rollout.",
     "should_trigger": true
   },
   {
-    "query": "Ship offline note editing in the mobile app with persistence, conflict resolution, cancellation, synchronization status, and concurrency tests.",
+    "query": "Write the cross-repository feature spec, settle the API contract, and then hand the independent client and backend workstreams to an agent team.",
     "should_trigger": true
   },
   {
-    "query": "We need a production billing-plan migration flow touching Stripe, entitlements, the customer portal, webhooks, observability, and rollback behavior.",
+    "query": "Use the full Superpowers TDD flow for this substantial client and backend feature, then coordinate its staged release.",
     "should_trigger": true
   },
   {
-    "query": "Try three different spacing and typography directions for the profile screen in runnable code so I can choose one before implementation.",
+    "query": "Finish our partially built sharing feature: the backend is on a dev branch, the mobile client is incomplete, and we need compatibility, feature flags, internal distribution, and rollback.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build production account deletion across the web UI, API, identity provider, stored data, audit trail, and controlled rollout.",
+    "should_trigger": true
+  },
+  {
+    "query": "Deliver offline editing and synchronization in the mobile app, including the data contract, conflict policy, implementation, device verification, and release gates.",
+    "should_trigger": true
+  },
+  {
+    "query": "Take role-based workspace invitations from the product brief through database, authorization, email, admin UI, observability, and staged availability.",
+    "should_trigger": true
+  },
+  {
+    "query": "Graduate the selected prototype into a substantial production feature spanning the app, backend service, migration, and beta rollout.",
+    "should_trigger": true
+  },
+  {
+    "query": "The server endpoint exists but the iOS feature does not. Verify the contract, build the complete client experience, and carry it through real-device checks and TestFlight gating.",
+    "should_trigger": true
+  },
+  {
+    "query": "Spike the smallest working version of this idea with fake data and tell me whether it is feasible enough to invest in.",
     "should_trigger": false
   },
   {
-    "query": "Change the button label from Save to Update and run the focused component test. This is an isolated copy correction.",
+    "query": "Show me three runnable treatments for this SwiftUI component so I can compare them before choosing one.",
     "should_trigger": false
   },
   {
-    "query": "Use production-hardening to audit the already implemented invitation flow for release readiness without adding a new feature scope.",
+    "query": "Change this isolated button label and run the focused component test.",
     "should_trigger": false
   },
   {
-    "query": "Prototype a throwaway chart interaction with fake data so the team can decide whether the idea is worth pursuing.",
+    "query": "Use production-hardening on the feature we already finished and audit its accessibility, security, performance, and release readiness.",
+    "should_trigger": false
+  },
+  {
+    "query": "Deploy the existing backend build to production now; no feature implementation or specification work remains.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix the null pointer in the existing list screen without changing feature behavior.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review this pull request and report defects, but do not implement or deliver a new feature.",
+    "should_trigger": false
+  },
+  {
+    "query": "Research whether the external video SDK supports picture-in-picture; do not build production code yet.",
+    "should_trigger": false
+  },
+  {
+    "query": "Add one analytics event to the existing checkout success handler and verify it in the focused test.",
+    "should_trigger": false
+  },
+  {
+    "query": "Prepare TestFlight metadata and release notes for the already completed and approved build.",
     "should_trigger": false
   }
 ]
