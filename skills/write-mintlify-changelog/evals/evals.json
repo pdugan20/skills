@@ -1,0 +1,40 @@
+{
+  "skill_name": "write-mintlify-changelog",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a Mintlify changelog entry for the shipped delta-sync release. Users now transfer only changed bookmarks and can inspect sync health at /health/sync. Internally we moved to voyage-3-lite embeddings, reduced bandwidth by 95%, and added verify_credentials. Goodreads support is planned next.",
+      "expected_output": "A short Mintlify Update entry that names the shipped reader capabilities and omits internal metrics, implementation details, and future work.",
+      "files": [],
+      "assertions": [
+        "The entry uses only allowed Mintlify changelog tags and a capability-led heading.",
+        "It includes delta transfer and /health/sync because readers can use or observe them.",
+        "It omits the model name, bandwidth vanity metric, internal method, and planned Goodreads work.",
+        "The result does not modify or generate the repository CHANGELOG.md."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Audit this Mintlify changelog for consistency and give me the findings before you rewrite anything.",
+      "expected_output": "A per-entry punch list that identifies invalid tags, version archaeology, vanity, internal trivia, future work, voice problems, and separator issues without editing the fixture.",
+      "files": ["evals/fixtures/audit/changelog.mdx"],
+      "assertions": [
+        "The output reports findings per Update entry before proposing edits.",
+        "The May entry's invalid tag, version heading, promotional framing, counts, internal details, future work, and unsupported metric are identified.",
+        "The already concise April entry is not needlessly rewritten.",
+        "No file is modified because the request asks for findings first."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write the top entry in docs-mintlify/changelog.mdx for a shipped API improvement: search responses now expose next_cursor, and the search guide already documents pagination. Keep it proportionate and link readers to the guide.",
+      "expected_output": "A single concise Update entry describing the observable next_cursor field and linking to the existing pagination guide.",
+      "files": [],
+      "assertions": [
+        "The entry is one short sentence or similarly proportionate for a single field addition.",
+        "The next_cursor field is named concretely and the pagination guide is linked rather than restated.",
+        "The entry is inserted conceptually at the top in reverse chronological order without unrelated changelog cleanup."
+      ]
+    }
+  ]
+}

@@ -4,9 +4,29 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-07-30
+
+### Added
+
+- Consolidated and hardened the former `mintlify-docs` collection as [`scaffold-mintlify-site`](skills/scaffold-mintlify-site/SKILL.md), [`review-mintlify-docs`](skills/review-mintlify-docs/SKILL.md), [`generate-mintlify-reference`](skills/generate-mintlify-reference/SKILL.md), and [`write-mintlify-changelog`](skills/write-mintlify-changelog/SKILL.md).
+- Added self-contained editorial references, standard assets, cross-runtime metadata, execution evals, routing evals, and clean-install coverage for the documentation skills.
+- Added skill-local MIT metadata so licensing survives individual Skills CLI installations.
+- Added a permanent migration guide from the retired `mintlify-docs` skill and plugin names.
+- Added a security policy covering agent instructions, bundled scripts, and packaging risks.
+- Added a release runbook for immutable tags, curated notes, exact-tag installation, and downstream marketplace sequencing.
+
+### Changed
+
+- Replaced the former generic Mintlify skill names `review-docs`, `document-reference`, and `changelog-writer` with explicit globally installable names.
+- Made the official Mintlify capability an optional source of current syntax and schema mechanics instead of a runtime-specific requirement for loading Patrick's editorial workflows.
+- Replaced the historical mirror-repository default with Mintlify's current direct repository and subdirectory model, while keeping all publishing actions explicit and separately authorized.
+- Added deterministic contrast checking and hardened the bundled reference generators, starter MDX, favicon, and local validation commands.
+
 ### Documentation
 
 - Recorded the completed release, client-installation evidence, and lessons for the first audited design workflow.
+- Classified end-to-end feature development as a candidate expansion of `feature-delivery`, grounded in three private cross-repository feature histories and an explicit composition boundary with optional Superpowers and agent-team execution.
+- Captured feature spikes as a separate evidence-seeking workflow whose outcome is a continue, change, or stop decision rather than production delivery.
 
 ## [2.0.0] - 2026-07-30
 
@@ -48,7 +68,8 @@ All notable changes to this project are documented in this file. The project fol
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
 - Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
 
-[unreleased]: https://github.com/pdugan20/skills/compare/v2.0.0...HEAD
+[unreleased]: https://github.com/pdugan20/skills/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/pdugan20/skills/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/pdugan20/skills/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/pdugan20/skills/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/pdugan20/skills/releases/tag/v1.0.0

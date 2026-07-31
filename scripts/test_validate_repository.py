@@ -39,6 +39,25 @@ class ValidateRepositoryTests(unittest.TestCase):
         errors = validate_repository.validate("v9.9.9")
         self.assertTrue(any(f"must equal v{package['version']}" in error for error in errors))
 
+    def test_codex_starter_prompt_limits_are_enforced(self) -> None:
+        manifest = {
+            "interface": {
+                "defaultPrompt": [
+                    "Prompt one.",
+                    "Prompt two.",
+                    "Prompt three.",
+                    "Prompt four.",
+                ]
+            }
+        }
+
+        errors = validate_repository.validate_codex_interface(manifest)
+
+        self.assertIn(
+            ".codex-plugin/plugin.json: defaultPrompt supports at most 3 entries",
+            errors,
+        )
+
     def test_eval_manifest_requires_execution_coverage(self) -> None:
         with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
             skill_dir = Path(directory)

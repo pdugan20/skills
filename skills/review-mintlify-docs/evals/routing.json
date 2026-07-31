@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Review the docs site before we launch",
+    "should_trigger": true
+  },
+  {
+    "query": "Do a content pass on the documentation in docs-mintlify",
+    "should_trigger": true
+  },
+  {
+    "query": "Audit our Mintlify docs against best practices and give me what to fix",
+    "should_trigger": true
+  },
+  {
+    "query": "Polish the docs: check the voice, callouts, and links on every page",
+    "should_trigger": true
+  },
+  {
+    "query": "Check the IA of the docs site, the nav feels cluttered",
+    "should_trigger": true
+  },
+  {
+    "query": "Walk through every docs page and give me a per-page punch list",
+    "should_trigger": true
+  },
+  {
+    "query": "Review docs-mintlify/quickstart.mdx for style and structure",
+    "should_trigger": true
+  },
+  {
+    "query": "Run a pre-launch check on the documentation site",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this pull request",
+    "should_trigger": false
+  },
+  {
+    "query": "Review the API design in server.py and suggest improvements",
+    "should_trigger": false
+  },
+  {
+    "query": "Proofread this email draft to a customer",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit the npm dependencies for vulnerabilities",
+    "should_trigger": false
+  },
+  {
+    "query": "Review the changelog entries for the last release",
+    "should_trigger": false
+  },
+  {
+    "query": "Check the README for typos",
+    "should_trigger": false
+  },
+  {
+    "query": "Do a security review of the auth module",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "skill_name": "review-mintlify-docs",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this Mintlify site before launch. Report the complete information-architecture and per-page punch list, but do not edit any files.",
+      "expected_output": "A report-only review that starts with navigation, then walks pages in canonical order and cites specific editorial and launch-readiness defects.",
+      "files": [
+        "evals/fixtures/site/docs.json",
+        "evals/fixtures/site/index.mdx",
+        "evals/fixtures/site/quickstart.mdx",
+        "evals/fixtures/site/sync.mdx",
+        "evals/fixtures/site/export.mdx",
+        "evals/fixtures/site/integrations.mdx",
+        "evals/fixtures/site/faq.mdx"
+      ],
+      "assertions": [
+        "The review begins with the oversized flat navigation group and missing required page classes.",
+        "It then follows the docs.json page order rather than alphabetical file order.",
+        "It identifies the accidental indigo, missing frontmatter fields, em dash, hardcoded count, Tip, and stacked callouts.",
+        "It returns the seven-page review as one concise report without narrating the file-reading process.",
+        "No fixture is modified."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review only quickstart.mdx in the attached Mintlify site. Give me two or three options for the structural problems and recommend one; do not rewrite until I choose.",
+      "expected_output": "A page-scoped review informed by navigation context that offers bounded structural choices and a recommendation without editing.",
+      "files": [
+        "evals/fixtures/site/docs.json",
+        "evals/fixtures/site/quickstart.mdx"
+      ],
+      "assertions": [
+        "The review remains scoped to quickstart.mdx while using docs.json for context.",
+        "It identifies the missing description, hardcoded tool count, Tip, and stacked callouts.",
+        "It offers two or three meaningful repair directions plus a recommendation.",
+        "No edit is made before the user's choice."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Polish our generated MCP reference page directly. The content is stale, but I only want the fastest manual fix in the MDX file.",
+      "expected_output": "A refusal to make a fragile hand edit, followed by a focused plan to fix the source generator and regenerate the Mintlify reference.",
+      "files": [],
+      "assertions": [
+        "The generated output is not edited directly despite the user's request for speed.",
+        "The response routes the repair to generate-mintlify-reference or the existing generator source.",
+        "The scope remains reference freshness rather than expanding into a whole-site editorial pass."
+      ]
+    }
+  ]
+}

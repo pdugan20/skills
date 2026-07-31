@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Set up a Mintlify docs site for this project",
+    "should_trigger": true
+  },
+  {
+    "query": "We need documentation for this CLI tool. Scaffold a docs site with a sensible structure.",
+    "should_trigger": true
+  },
+  {
+    "query": "Bootstrap docs for my MCP server, something I can host on Mintlify",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a docs-mintlify directory with a starter IA for this repo",
+    "should_trigger": true
+  },
+  {
+    "query": "Stand up product docs for this Python package: quickstart, guides, and a reference section",
+    "should_trigger": true
+  },
+  {
+    "query": "I want a documentation site for this API. Set up the initial structure and nav.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help me get a Mintlify site going for this repo, nav and starter pages included",
+    "should_trigger": true
+  },
+  {
+    "query": "Scaffold documentation for this project so I can start filling in pages",
+    "should_trigger": true
+  },
+  {
+    "query": "Set up a README for this project with installation and usage sections",
+    "should_trigger": false
+  },
+  {
+    "query": "Scaffold a new Next.js app with TypeScript and Tailwind",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up Docusaurus for this repo",
+    "should_trigger": false
+  },
+  {
+    "query": "Add docstrings to the functions in this module",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up mkdocs with the material theme for this package",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a CONTRIBUTING guide for new collaborators",
+    "should_trigger": false
+  },
+  {
+    "query": "Initialize a new git repo for this folder and push it to GitHub",
+    "should_trigger": false
+  }
+]

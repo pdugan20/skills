@@ -1,5 +1,6 @@
 ---
 name: production-hardening
+license: MIT
 description: Prepare a selected implementation for production through a proportionate release-readiness review of product quality and operational risk. Use only when the user explicitly requests production hardening after exploration or implementation. Do not trigger during lightweight design iteration.
 ---
 
