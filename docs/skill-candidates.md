@@ -47,7 +47,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | `SC-007` | Generate drift-checked CLI, MCP, and API reference docs | The released `document-reference` skill and source-backed generators in the former focused repository | **Composite skill with scripts:** the skill selects and explains the reference shape while generators enforce source fidelity | `released` | Medium | [Skill](../skills/generate-mintlify-reference/SKILL.md) |
 | `SC-008` | Review documentation content and information architecture | The released `review-docs` skill, shared editorial playbook, and quality fixture in the former focused repository | **Discipline skill with references:** page-order review and editorial judgment benefit from a bounded method | `released` | Medium | [Skill](../skills/review-mintlify-docs/SKILL.md) |
 | `SC-009` | Write reader-facing changelog entries | The released `changelog-writer` skill, routing cases, and quality fixture in the former focused repository | **Technique skill:** translating implementation changes into reader value needs judgment while repository release mechanics remain scripts | `released` | Low | [Skill](../skills/write-mintlify-changelog/SKILL.md) |
-| `SC-010` | Feature spike for value or feasibility validation | Patrick's recurring need to build the smallest useful slice before deciding whether a feature deserves production investment | **Provisional experiment skill:** keep a hypothesis, bounded implementation, evidence, and continue-or-stop decision distinct from production feature delivery and UI-direction comparison; concrete completed examples are still required before authoring | `needs-evidence` | High | Brief deferred pending evidence |
+| `SC-010` | Feature spike for value or feasibility validation | A kill-or-continue third-party capability probe, a deferred native-package performance proof of concept, and a platform experiment that changed implementation medium, plus fresh no-skill and forward replays | **Pattern skill:** `feature-spike` preserves the decision uncertainty, validity conditions, accepted decision rule, non-binary outcome, and code disposition without inheriting production delivery or UI-comparison scope | `validated` | High | [Brief](skill-candidates/feature-spike.md) |
 
 ## Current collection
 
@@ -56,6 +56,7 @@ These Patrick-owned skills are represented in the audit above so the inventory c
 | Skill | Classification | Primary boundary |
 | --- | --- | --- |
 | `code-native-ui-ideation` | Technique | Lightweight runnable design exploration, not production delivery. |
+| `feature-spike` | Pattern | Bounded runnable evidence for an investment decision, not UI comparison or production delivery. |
 | `feature-delivery` | Composite | Released in v2.2.0; coordinates idea-to-spec, cross-repository delivery, explicit execution-mode selection, and staged rollout without imposing strict mechanics on bounded features. |
 | `production-hardening` | Discipline | Explicit release-readiness work on a selected implementation. |
 | `scaffold-mintlify-site` | Composite | New-site scaffolding, not review or external deployment. |
@@ -100,6 +101,26 @@ third-party validator pass. `SC-002` was released in v2.2.0 after the tagged
 archive, curated notes, and exact-tag multi-client installation were verified.
 
 The next discovery pass should start from another naturally described recurring design or development process, not from the presence of an interesting third-party skill. Non-Patrick skills installed through `agent-tooling` retain their upstream provenance and are external capabilities, not evidence that Patrick owns the corresponding process.
+
+The next pass supplied the missing `SC-010` evidence. A throwaway integration
+probe removed backend scope while preserving an inconclusive commercial gate; a
+native package proof of concept produced a large performance win but a `defer`
+decision; and a platform experiment changed implementation medium without
+rejecting the product objective. Fresh no-skill baselines already kept spikes
+small, but they invented decision thresholds, collapsed results into binary
+recommendations, and omitted invalid-test or code-disposition rules. The pilot
+therefore targets those specific decision failures rather than teaching agents
+that a spike should simply be quick.
+
+Initial forward replays showed that the pilot still allowed arbitrary experiment
+budgets and could aggregate several unknowns into one false gate. After
+tightening those boundaries, fresh integration, architecture, and product-value
+replays kept budgets provisional, classified independent gates, used accepted
+decision rules, considered all five outcomes, and preserved a separate
+production handoff. Repository validation, the pinned third-party validator,
+official Claude validation, clean Claude Code, Codex, and Cursor layout
+installation, and the optional GitHub publishing preview all pass. `SC-010` is
+validated pending tagged distribution.
 
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 

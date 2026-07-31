@@ -1,7 +1,7 @@
 {
   "name": "patrick-skills",
-  "version": "2.2.0",
-  "description": "Portable skills for code-native design exploration, production delivery, hardening, and technical documentation.",
+  "version": "2.3.0",
+  "description": "Portable skills for code-native design exploration, feature validation and delivery, hardening, and technical documentation.",
   "author": {
     "name": "Pat Dugan",
     "url": "https://github.com/pdugan20"
@@ -22,16 +22,16 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Patrick Skills",
-    "shortDescription": "Design, delivery, and documentation skills.",
-    "longDescription": "Explore interfaces in runnable code, deliver and harden production features, and create or maintain source-backed Mintlify documentation.",
+    "shortDescription": "Design, validation, delivery, and documentation skills.",
+    "longDescription": "Explore interfaces in runnable code, validate feature ideas, deliver and harden production features, and maintain source-backed Mintlify documentation.",
     "developerName": "Pat Dugan",
     "category": "Developer Tools",
     "capabilities": ["Write"],
     "websiteURL": "https://github.com/pdugan20/skills",
     "defaultPrompt": [
       "Use $code-native-ui-ideation to brainstorm and compare these UI directions in the running project.",
-      "Use $feature-delivery to take this substantial feature from idea or selected behavior through implementation and rollout.",
-      "Use $review-mintlify-docs to review this Mintlify documentation site."
+      "Use $feature-spike to test this feature's value or feasibility before production investment.",
+      "Use $feature-delivery to take this substantial feature from idea or selected behavior through implementation and rollout."
     ]
   }
 }

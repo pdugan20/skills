@@ -1,0 +1,67 @@
+{
+  "skill_name": "feature-spike",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm considering a native audiobook client that connects to a third-party media server. Before I commit to the app, I need to know whether auth, library browsing, remote chapter extraction, playback progress write-back, and a remote-streaming entitlement rule actually work. Can you spike this without building the product?",
+      "expected_output": "A bounded end-to-end probe that tests the real dependency boundary, defines valid and invalid conditions for each gating question, excludes product architecture and polished UI, protects credentials, and returns mixed evidence plus a continue, change, stop, defer, or inconclusive decision.",
+      "files": [],
+      "assertions": [
+        "The response defines the investment decision, gating unknowns, exclusions, and code disposition before implementation.",
+        "The response distinguishes hard blockers from scope, architecture, commercial, or exposure gates instead of assuming all five questions are jointly required.",
+        "The entitlement test names conditions that could invalidate an apparent success and preserves an inconclusive result when those conditions cannot be met.",
+        "The slice reaches the real integration boundary with representative data instead of mocking the central uncertainty.",
+        "The handoff includes sanitized evidence, plan consequences, unresolved questions, and no claim of production readiness."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our iOS test suite is slow, and I suspect extracting the business logic into a Swift package would make headless tests much faster. I don't want to commit to a full migration unless that's true in this codebase. Can you build a small spike that tells us whether to proceed?",
+      "expected_output": "A representative package extraction and controlled before-and-after benchmark that records build and test timings, coupling and migration friction, uses a baseline or approved decision rule rather than inventing a threshold, and allows continue, defer, change, or stop.",
+      "files": [],
+      "assertions": [
+        "The proposed seam is representative but does not become a partial migration.",
+        "The comparison runs equivalent behavior and separates relevant timing categories over repeated measurements.",
+        "The response does not invent a universal success threshold.",
+        "The decision accounts for extraction cost and timing, so a positive benchmark may still result in defer."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I have an idea for an AI catch-up summary in our iOS app, but I'm not ready to build the full client/backend feature. I want the smallest real slice that will tell us whether the summaries are useful enough to justify the investment. Can you spike it?",
+      "expected_output": "A privacy-safe, internal product-value slice that establishes the current baseline and usefulness evidence, separates value from model and infrastructure feasibility, avoids unneeded production systems, and defines what happens to the experiment after the decision.",
+      "files": [],
+      "assertions": [
+        "The response tests one coherent value hypothesis rather than comparing visual directions or planning the production feature.",
+        "Inputs are synthetic, anonymized, or otherwise safe, and limitations of fixture-backed outputs are explicit.",
+        "Usefulness criteria are derived from a baseline or user decision rather than invented after implementation.",
+        "Any proposed budget, audience, sample size, or observation window is justified and remains provisional until the decision owner accepts it.",
+        "The handoff distinguishes value evidence from feasibility, cost, privacy, and production readiness."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Can you make a proof of concept that tells me whether Figma's new generative plugin API can populate and theme one of our real design-system components? If the API is too constrained, I want to know whether exporting the idea into a normal plugin is still worth pursuing.",
+      "expected_output": "A real extension-point test using one difficult representative component operation, with explicit evidence for direct support, platform limits, and the alternative exported implementation path. The result can change the implementation medium without rejecting the product objective.",
+      "files": [],
+      "assertions": [
+        "The central platform boundary is exercised rather than simulated.",
+        "The spike separates the user outcome from the initial tool choice.",
+        "A change decision is treated as a successful outcome when the original implementation medium fails.",
+        "The proof of concept remains bounded and does not silently become the production plugin."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "The spike proved authentication, browsing, playback, and progress sync, but the paywall check also succeeded while I was on the server's LAN with a paid account. Is that enough to call the whole spike green and start the production build?",
+      "expected_output": "A mixed verdict that accepts the valid technical evidence, rejects the paywall observation as invalid, records the commercial question as inconclusive, explains the smallest valid rerun, and leaves the production investment decision conditional instead of reporting a false green.",
+      "files": [],
+      "assertions": [
+        "The response does not treat the whole spike as green.",
+        "It explains why local access and a paid entitlement invalidate the paywall observation.",
+        "It preserves valid findings and translates them into scope or architecture consequences.",
+        "It defines the smallest conclusive next test and does not begin production delivery without a user decision."
+      ]
+    }
+  ]
+}

@@ -19,6 +19,7 @@ npx skills@latest add pdugan20/skills
 | Skill | Use it for |
 | --- | --- |
 | [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) | Brainstorming and comparing runnable UI directions before choosing one. |
+| [`feature-spike`](skills/feature-spike/SKILL.md) | Testing feature value or technical feasibility before production investment. |
 | [`feature-delivery`](skills/feature-delivery/SKILL.md) | Taking substantial features from idea through coordinated implementation and staged rollout. |
 | [`production-hardening`](skills/production-hardening/SKILL.md) | Explicit release-readiness review of a selected implementation. |
 | [`scaffold-mintlify-site`](skills/scaffold-mintlify-site/SKILL.md) | Creating a project-specific Mintlify documentation site. |

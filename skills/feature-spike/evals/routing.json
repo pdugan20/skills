@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Before we build the whole iOS feature, can you spike the riskiest part and tell me whether it's worth continuing?",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a small proof of concept to see whether moving our core models into a Swift package actually speeds up tests.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can we make the smallest real slice of this AI summary idea and decide if users find it useful?",
+    "should_trigger": true
+  },
+  {
+    "query": "Probe the third-party API end to end before we commit to using it in the product.",
+    "should_trigger": true
+  },
+  {
+    "query": "I want a kill-or-continue experiment for this feature, not a production implementation.",
+    "should_trigger": true
+  },
+  {
+    "query": "Test whether the new platform extension can perform our hardest representative operation before we choose it.",
+    "should_trigger": true
+  },
+  {
+    "query": "Please do a technical feasibility spike for the client/backend split before we write the production spec.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can you build a throwaway latency and cost probe so we know whether this architecture is viable?",
+    "should_trigger": true
+  },
+  {
+    "query": "We need evidence for whether to continue, change direction, or stop this feature idea.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make a bounded prototype against real representative data, then recommend whether to invest further.",
+    "should_trigger": true
+  },
+  {
+    "query": "Give me four runnable visual directions for this SwiftUI component so I can compare them.",
+    "should_trigger": false
+  },
+  {
+    "query": "The feature design is approved; implement it across iOS and backend and stage it through TestFlight.",
+    "should_trigger": false
+  },
+  {
+    "query": "Harden the completed notification feature for production release.",
+    "should_trigger": false
+  },
+  {
+    "query": "Research whether Apple's public documentation says this API is available; don't write code.",
+    "should_trigger": false
+  },
+  {
+    "query": "We already completed the spike and chose the package architecture. Now migrate the production modules.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run the existing recommendation experiment harness with three new weight values.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix the crash caused by an array index going out of bounds.",
+    "should_trigger": false
+  },
+  {
+    "query": "The production feature is built; deploy it and turn on the feature flag for ten percent of users.",
+    "should_trigger": false
+  },
+  {
+    "query": "Investigate the sudden spike in Sentry errors after yesterday's release.",
+    "should_trigger": false
+  },
+  {
+    "query": "Turn the approved product requirements into a detailed implementation plan.",
+    "should_trigger": false
+  }
+]

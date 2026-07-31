@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-07-30
+
+### Added
+
+- Added the [`feature-spike`](skills/feature-spike/SKILL.md) skill for bounded
+  product-value and technical-feasibility experiments that end in a
+  `continue`, `change`, `stop`, `defer`, or `inconclusive` decision.
+- Added focused evidence guidance, a reusable feature-spike brief, five
+  execution evals, and twenty balanced routing cases grounded in three
+  completed proofs of concept and fresh no-skill baselines.
+
 ### Documentation
 
 - Recorded v2.2.0 publication and exact-tag installation evidence and marked
@@ -97,7 +108,8 @@ All notable changes to this project are documented in this file. The project fol
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
 - Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
 
-[unreleased]: https://github.com/pdugan20/skills/compare/v2.2.0...HEAD
+[unreleased]: https://github.com/pdugan20/skills/compare/v2.3.0...HEAD
+[2.3.0]: https://github.com/pdugan20/skills/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/pdugan20/skills/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/pdugan20/skills/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/pdugan20/skills/compare/v1.1.0...v2.0.0

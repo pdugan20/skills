@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "patrick-skills",
-  "version": "2.2.0",
-  "description": "Portable skills for code-native design exploration, production delivery, hardening, and technical documentation.",
+  "version": "2.3.0",
+  "description": "Portable skills for code-native design exploration, feature validation and delivery, hardening, and technical documentation.",
   "author": {
     "name": "Pat Dugan",
     "url": "https://github.com/pdugan20"

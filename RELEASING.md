@@ -56,7 +56,7 @@ gh run watch --repo pdugan20/skills \
 Then verify:
 
 1. The GitHub Release notes equal the matching changelog section.
-2. The attached archive contains the same seven skill folders as the tag.
+2. The attached archive contains the same skill folders as the tag.
 3. A clean installation from `pdugan20/skills@v$VERSION` succeeds for Claude
    Code, Codex, and Cursor and matches the tagged files byte-for-byte.
 4. The skills appear through Skills CLI discovery.
