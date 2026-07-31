@@ -67,7 +67,7 @@ These Patrick-owned skills are represented in the audit above so the inventory c
 | `analyze-ui-video` | Composite | Recording-led diagnosis or reference reconstruction, not code-only motion review or automatic implementation. |
 | `feature-spike` | Pattern | Bounded runnable evidence for an investment decision, not UI comparison or production delivery. |
 | `feature-delivery` | Composite | Released in v2.2.0; coordinates idea-to-spec, cross-repository delivery, explicit execution-mode selection, and staged rollout without imposing strict mechanics on bounded features. |
-| `bootstrap-repository` | Composite | Validated for new or empty repositories; selects proportional maturity, delegates to maintained generators, and keeps remote mutation separately authorized. |
+| `bootstrap-repository` | Composite | Published in v3.0.0 for new or empty repositories; selects proportional maturity, delegates to maintained generators, and keeps remote mutation separately authorized. Inventory promotion awaits a current skills.sh snapshot. |
 | `scaffold-mintlify-site` | Composite | New-site scaffolding, not review or external deployment. |
 | `review-mintlify-docs` | Discipline | Mintlify editorial and information-architecture review, not generated output. |
 | `generate-mintlify-reference` | Composite | Source-backed Mintlify reference generation and drift checks. |
@@ -259,6 +259,18 @@ patches, or hand reconstruction; licenses and other publisher identities remain
 deferred until the owner chooses them. Structural, routing, script, installation
 layout, and focused follow-up behavioral checks pass, so `SC-015` is validated
 but not yet released.
+
+Patrick Skills v3.0.0 now publishes `bootstrap-repository` and removes the
+former `production-hardening` skill. The curated release notes, archive, and
+clean exact-tag Claude Code, Codex, and Cursor layout installations were
+verified, and Patrick Plugins v3.4.0 plus Agent Tooling v0.8.0 carry the same
+collection boundary. The skills.sh collection discovered the new skill but
+still serves stale stored files for three older records and retains the removed
+record under the upstream stale-snapshot defect. `SC-015` therefore remains
+`validated` until that external catalog gate passes. Real-repository dogfood is
+also tracked separately for the next genuinely new or empty repository;
+established projects such as `audiobook-ios` are deliberately excluded from
+that bootstrap test.
 
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 
