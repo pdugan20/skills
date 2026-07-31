@@ -14,6 +14,10 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = "pdugan20/skills"
 CATALOG_URL = f"https://skills.sh/{REPOSITORY}"
+RETRYABLE_HTTP_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
+MAX_RETRY_AFTER_SECONDS = 60.0
+REQUEST_RETRIES = 1
+DEFAULT_REQUEST_DELAY_SECONDS = 6.5
 
 
 class JsonLdParser(HTMLParser):
@@ -83,14 +87,41 @@ def catalog_skills(html: str, repository: str = REPOSITORY) -> set[str]:
     raise ValueError("skills.sh CollectionPage JSON-LD was not found")
 
 
+def retry_delay_seconds(error: HTTPError, attempt: int) -> float:
+    """Return a bounded server-directed or exponential retry delay."""
+
+    retry_after = error.headers.get("Retry-After") if error.headers else None
+    if retry_after is not None:
+        try:
+            return min(max(float(retry_after), 0.0), MAX_RETRY_AFTER_SECONDS)
+        except ValueError:
+            pass
+    return min(float(2**attempt), MAX_RETRY_AFTER_SECONDS)
+
+
+def read_request(request: Request, retries: int = REQUEST_RETRIES) -> bytes:
+    """Read one request, retrying only transient HTTP failures."""
+
+    for attempt in range(retries + 1):
+        try:
+            with urlopen(request, timeout=20) as response:
+                return response.read()
+        except HTTPError as error:
+            if error.code not in RETRYABLE_HTTP_STATUS_CODES or attempt == retries:
+                raise
+            delay = retry_delay_seconds(error, attempt)
+            error.close()
+            time.sleep(delay)
+    raise RuntimeError("unreachable request retry state")
+
+
 def fetch_catalog(url: str = CATALOG_URL) -> str:
     separator = "&" if "?" in url else "?"
     request = Request(
         f"{url}{separator}freshness={int(time.time())}",
         headers={"User-Agent": "pdugan20-skills-freshness-check/1.0"},
     )
-    with urlopen(request, timeout=20) as response:
-        return response.read().decode("utf-8")
+    return read_request(request).decode("utf-8")
 
 
 def fetch_snapshot(skill_name: str, repository: str = REPOSITORY) -> dict[str, str]:
@@ -102,8 +133,7 @@ def fetch_snapshot(skill_name: str, repository: str = REPOSITORY) -> dict[str, s
             "User-Agent": "pdugan20-skills-freshness-check/1.0",
         },
     )
-    with urlopen(request, timeout=20) as response:
-        payload = json.loads(response.read().decode("utf-8"))
+    payload = json.loads(read_request(request).decode("utf-8"))
     files = payload.get("files") if isinstance(payload, dict) else None
     if not isinstance(files, list):
         raise ValueError(f"{skill_name}: snapshot has no files array")
@@ -146,12 +176,20 @@ def main() -> int:
     parser.add_argument("--page-only", action="store_true")
     parser.add_argument("--attempts", type=int, default=1)
     parser.add_argument("--delay-seconds", type=float, default=10)
+    parser.add_argument(
+        "--request-delay-seconds",
+        type=float,
+        default=DEFAULT_REQUEST_DELAY_SECONDS,
+        help="Minimum pause between separate skills.sh reads",
+    )
     parser.add_argument("--no-refresh-guidance", action="store_true")
     args = parser.parse_args()
     if args.attempts < 1:
         parser.error("--attempts must be at least 1")
     if args.delay_seconds < 0:
         parser.error("--delay-seconds cannot be negative")
+    if args.request_delay_seconds < 0:
+        parser.error("--request-delay-seconds cannot be negative")
     if args.snapshots_only and args.page_only:
         parser.error("--snapshots-only and --page-only cannot be combined")
 
@@ -160,20 +198,50 @@ def main() -> int:
     last_messages: list[str] = []
     for attempt in range(1, args.attempts + 1):
         last_messages = []
+        made_network_request = False
+        rate_limited = False
+
+        def pace_request() -> None:
+            nonlocal made_network_request
+            if made_network_request and args.request_delay_seconds:
+                time.sleep(args.request_delay_seconds)
+            made_network_request = True
+
         if not args.snapshots_only:
             try:
-                html = args.html.read_text(encoding="utf-8") if args.html else fetch_catalog(args.url)
+                if args.html:
+                    html = args.html.read_text(encoding="utf-8")
+                else:
+                    pace_request()
+                    html = fetch_catalog(args.url)
                 actual = catalog_skills(html)
                 last_messages.extend(compare(expected, actual))
-            except (HTTPError, URLError, OSError, ValueError) as error:
+            except HTTPError as error:
+                if error.code == 429:
+                    rate_limited = True
+                    last_messages.append(
+                        "skills.sh rate limit persisted after its bounded retry; retry later"
+                    )
+                else:
+                    last_messages.append(f"could not read the skills.sh catalog: {error}")
+            except (URLError, OSError, ValueError) as error:
                 last_messages.append(f"could not read the skills.sh catalog: {error}")
 
-        if not args.page_only:
+        if not args.page_only and not rate_limited:
             for skill_name, local_files in sorted(expected_files.items()):
                 try:
+                    pace_request()
                     snapshot = fetch_snapshot(skill_name)
                     last_messages.extend(compare_snapshot(skill_name, local_files, snapshot))
-                except (HTTPError, URLError, OSError, ValueError, json.JSONDecodeError) as error:
+                except HTTPError as error:
+                    if error.code == 429:
+                        rate_limited = True
+                        last_messages.append(
+                            "skills.sh rate limit persisted after its bounded retry; retry later"
+                        )
+                        break
+                    last_messages.append(f"could not read the {skill_name} snapshot: {error}")
+                except (URLError, OSError, ValueError, json.JSONDecodeError) as error:
                     last_messages.append(f"could not read the {skill_name} snapshot: {error}")
 
         if not last_messages:
