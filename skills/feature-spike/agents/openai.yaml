@@ -1,0 +1,6 @@
+interface:
+  display_name: "Feature Spike"
+  short_description: "Test feature value or feasibility before investing"
+  default_prompt: "Use $feature-spike to build the smallest decisive slice and return evidence for a continue, change, stop, defer, or inconclusive decision."
+policy:
+  allow_implicit_invocation: true

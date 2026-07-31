@@ -40,7 +40,8 @@ Classification determines the appropriate level of prescription and evaluation.
 Do not apply pressure-test conventions to every skill. They are useful for discipline skills, while technique, pattern, and reference skills need realistic application and retrieval tests. Composite skills usually need both execution coverage and boundary tests.
 
 The current collection classifies `code-native-ui-ideation` and
-`write-mintlify-changelog` as techniques; `production-hardening` and
+`write-mintlify-changelog` as techniques; `feature-spike` as a pattern;
+`production-hardening` and
 `review-mintlify-docs` as discipline skills; and `feature-delivery`,
 `scaffold-mintlify-site`, and `generate-mintlify-reference` as composite
 skills.

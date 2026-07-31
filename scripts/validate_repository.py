@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = {
     "code-native-ui-ideation": True,
     "feature-delivery": True,
+    "feature-spike": True,
     "generate-mintlify-reference": True,
     "production-hardening": False,
     "review-mintlify-docs": True,
