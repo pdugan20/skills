@@ -1,16 +1,16 @@
-# Workflow Candidate: [Name]
+# Skill Candidate: [Name]
 
-- **Inventory ID:** `WF-000`
+- **Inventory ID:** `SC-000`
 - **Status:** `captured`
 - **Owner:** Patrick
 - **Last reviewed:** YYYY-MM-DD
 
 ## Intent
 
-- **Outcome:** What recurring result should this flow produce?
+- **Outcome:** What recurring result should this skill produce?
 - **Trigger:** What would Patrick or another user naturally ask for?
 - **Artifact:** What code, design, document, decision, or other output results?
-- **Non-goals:** Which adjacent requests should remain outside this flow?
+- **Non-goals:** Which adjacent requests should remain outside this skill?
 
 ## Real evidence
 
@@ -33,7 +33,7 @@ Record only a safe summary and the private location category. Do not commit cred
 ## Mechanism decision
 
 - **Decision:** Skill, `AGENTS.md`, script, reference, asset, plugin, human documentation, or no action.
-- **Classification:** Technique, pattern, reference, discipline, or composite workflow when the decision is a skill.
+- **Classification:** Technique, pattern, reference, discipline, or composite when the decision is a skill.
 - **Rationale:** Why is this the lightest reliable mechanism?
 - **Scope:** Personal, repository-specific, or broadly portable.
 

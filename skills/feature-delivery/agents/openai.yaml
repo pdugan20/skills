@@ -1,6 +1,6 @@
 interface:
   display_name: "Feature Delivery"
-  short_description: "Deliver substantial production-ready features"
-  default_prompt: "Use $feature-delivery to implement this substantial feature for production."
+  short_description: "Coordinate features from idea through rollout"
+  default_prompt: "Use $feature-delivery to take this substantial feature from idea or selected behavior through implementation and rollout."
 policy:
   allow_implicit_invocation: true

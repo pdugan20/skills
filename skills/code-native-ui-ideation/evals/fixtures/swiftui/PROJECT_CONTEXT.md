@@ -9,4 +9,4 @@ This sanitized fixture represents an existing episode-tracking app.
 - The comparison must be evaluated in Xcode previews or the iOS simulator.
 - Preview-only controls and fixtures must not enter the production application path.
 
-The fixture is intentionally descriptive rather than compilable. Evaluate workflow decisions, comparison quality, platform choice, and cleanup boundaries—not Swift syntax.
+The fixture is intentionally descriptive rather than compilable. Evaluate process decisions, comparison quality, platform choice, and cleanup boundaries—not Swift syntax.

@@ -1,7 +1,7 @@
-# Workflow Candidate: End-to-End Feature Development and Staged Rollout
+# Skill Candidate: End-to-End Feature Development and Staged Rollout
 
-- **Inventory ID:** `WF-002`
-- **Status:** `classified`
+- **Inventory ID:** `SC-002`
+- **Status:** `validated`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-30
 
@@ -45,7 +45,7 @@ Use sanitized summaries for private product plans, user data, credentials, backe
 ## Mechanism decision
 
 - **Decision:** Expand the existing `feature-delivery` skill into a portable outer coordinator and use linked references for formal specification, cross-repository delivery, staged rollout, and optional execution-engine adapters.
-- **Classification:** Composite workflow.
+- **Classification:** Composite skill.
 - **Rationale:** The valuable Patrick-specific behavior is not another implementation loop. It is the lifecycle that discovers the real scope, produces a handoff-quality contract, selects proportional execution mechanics, coordinates repositories and environments, and carries code through controlled exposure. Existing Superpowers skills implement strict inner loops but do not own this cross-repository product and rollout context. Duplicating their detailed procedures would create drift and make the skill dependent on one plugin.
 - **Scope:** Broadly portable across native and web products, with repository-specific commands, schemas, environments, branch policy, and release operations supplied by each project.
 
@@ -59,21 +59,21 @@ The skill should lean heavily on Superpowers when Patrick selects the strict flo
 | Cross-repository and environment impact | `feature-delivery` | None. The outer skill must map repositories, contracts, data, deployment order, compatibility, gating, and rollback. |
 | Design document and specification approval | `feature-delivery` by default | Offer `brainstorming` as an explicit full-Superpowers mode when its question-by-question and approval gates are desired. |
 | Implementation plan | Selected execution engine | Invoke `writing-plans` after the specification is approved when strict Superpowers execution is selected. |
-| Test discipline | Selected execution engine | Invoke `test-driven-development` only when strict TDD is explicitly selected; the spike workflow remains an explicit exception. |
+| Test discipline | Selected execution engine | Invoke `test-driven-development` only when strict TDD is explicitly selected; the `feature-spike` skill remains an explicit exception. |
 | Workspace isolation | Selected execution engine per repository | Use `using-git-worktrees` only with the required consent or standing preference. The outer skill coordinates branch and environment relationships across repositories. |
 | Task execution | Selected execution engine | Choose `subagent-driven-development` for review-gated task handoffs or `executing-plans` for inline checkpoint execution. An available Claude agent team can consume the same specification and task boundaries as an alternative adapter. |
 | Parallel work | `feature-delivery` | Use parallel agents only for independent investigations or implementation streams after interfaces and ownership are stable; never parallelize coupled tasks merely for speed. |
 | Review and verification | Shared | Reuse `requesting-code-review` and `verification-before-completion` principles strongly, then add cross-repository integration and release-gate evidence. |
 | Source integration | Selected execution engine | `finishing-a-development-branch` can own branch integration choices, but the outer skill still owns backend deployment, build distribution, feature exposure, monitoring, rollback, and gate cleanup. |
 
-Superpowers is therefore an optional strict implementation backend, not the definition of the feature-development workflow. The canonical specification, repo impact map, acceptance criteria, and rollout plan must remain useful to Codex, Claude Code, Cursor, a human engineer, or another execution system without Superpowers installed.
+Superpowers is therefore an optional strict implementation backend, not the definition of the `feature-delivery` skill. The canonical specification, repo impact map, acceptance criteria, and rollout plan must remain useful to Codex, Claude Code, Cursor, a human engineer, or another execution system without Superpowers installed.
 
 ## Reusable contents
 
 - **Instructions:** Intake and scope discovery; current-state investigation; product and technical decision gates; cross-repository impact mapping; specification approval; execution-mode selection; staged rollout; and final outcome verification.
 - **Scripts:** None initially. Repository discovery or release automation should remain in tested project tooling until repeated use proves a safe portable script is possible.
 - **References:** A formal feature-specification method, a cross-repository dependency and compatibility checklist, a staged-rollout method, and a small execution-engine adapter explaining normal, Superpowers, and agent-team handoffs.
-- **Assets:** A concise feature specification and rollout-state template is likely justified by the three reviewed histories. Extract only their recurring decision fields during the pilot rather than copying large private project documents or preserving historical ceremony that did not add value.
+- **Assets:** A concise feature specification and rollout-state template captures the recurring decision and evidence fields without copying private project documents or preserving historical ceremony that did not add value.
 - **Dependencies:** Read access to every potentially affected repository; repository instructions and tests; access to development or emulator environments where applicable; and explicit authorization for external writes or releases. Superpowers and agent-team support are optional execution dependencies, not portability requirements.
 
 ## Safety and boundaries
@@ -102,20 +102,72 @@ Superpowers is therefore an optional strict implementation backend, not the defi
 
 Compare against the released `feature-delivery` skill. Retain the expansion only if it more reliably delays implementation until the product and technical contract is approved, discovers affected repositories and environments, makes execution-engine selection explicit, and distinguishes source completion from gated user availability without imposing the full strict flow on a genuinely bounded feature.
 
-## Open evidence questions
+### Baseline observations
 
-- Does explicitly invoking the expanded `feature-delivery` skill itself authorize strict TDD, or should every feature still choose between proportional tests and the strict Superpowers red-green-refactor contract?
-- Should the pilot use one of the reviewed features as a historical replay, or should the first evaluation be a new feature whose decisions and rollout can be observed prospectively?
-- Which recurring fields from the reviewed design documents should become the minimal portable template, and which should remain repository-specific?
-- When Claude agent teams are available, should Patrick prefer one team for the complete plan or separate owners per repository with one integration coordinator?
+Three fresh-context replays on 2026-07-30 used the released `feature-delivery`
+skill before the expansion:
+
+- The bounded single-repository web case chose a concise working contract,
+  proportional inline implementation, risk-based tests, browser verification,
+  and normal preview gates. The expansion must preserve that behavior.
+- The ambiguous client/backend case produced strong compatibility and rollout
+  detail but recommended a backend-centric architecture before inspecting the
+  repositories or obtaining approval for the material split. It also never
+  selected an execution mode.
+- The partially implemented client/backend case separated backend, client,
+  internal distribution, TestFlight, and exposure states well, but its process
+  was generated from the prompt rather than guaranteed by the released skill.
+  It did not record execution machinery or provide a canonical handoff artifact.
+
+The baseline therefore shows that a capable model can infer much of the
+delivery discipline, but the released skill does not reliably enforce the
+distinctive boundaries this skill exists to preserve.
+
+### Forward-test observations
+
+Fresh-context replays against the expanded skill used the same three scenarios:
+
+- The bounded web feature selected proportional inline execution, kept the
+  delivery contract in the working plan, and retained risk-based tests,
+  browser verification, and normal preview gates without strict ceremony.
+- The partially implemented client/backend feature produced a canonical brief,
+  old/new version matrix, real integration gate, independent rollback model,
+  and separate backend, distribution, exposure, observation, and cleanup
+  states.
+- The first ambiguous client/backend replay still led with a provisional
+  architecture recommendation and two initial cross-repository replays omitted
+  the execution-mode record. The instructions were tightened to prohibit
+  recommendations without repository evidence and require an explicit
+  `Execution mode` line. Fresh retries then kept architectures as hypotheses
+  until discovery and recorded proportional inline execution.
+
+These are Codex fresh-agent behavior checks, not a multi-provider benchmark.
+The clean-install test verifies packaged layout for Claude Code, Codex, and
+Cursor; paid Cursor behavior was intentionally not claimed or required.
+
+## Pilot decisions
+
+- Invoking `feature-delivery` does not authorize strict TDD. Proportional
+  risk-based testing remains the default; strict Superpowers TDD requires an
+  explicit user request.
+- The pilot uses two sanitized historical replays plus a bounded
+  single-repository counterexample so cross-repository rigor does not become
+  universal ceremony.
+- The portable template retains outcome, behavior, current-state evidence,
+  selected design, impact, acceptance, execution, rollout, and status fields.
+  Repository-specific schemas and commands remain in project documentation.
+- Agent-team work uses separate repository or workstream owners and one
+  integration coordinator after interfaces stabilize. A single team for the
+  entire plan is not a default.
 
 ## Definition of done
 
-- [ ] Mechanism and scope are approved.
-- [ ] Reusable resources are implemented and referenced.
-- [ ] Structural and repository validation passes.
-- [ ] Execution and routing eval coverage passes.
-- [ ] Representative with-skill and baseline results are reviewed.
-- [ ] Intended Claude, Codex, and other claimed integrations are checked.
+- [x] Mechanism and scope are approved.
+- [x] Reusable resources are implemented and referenced.
+- [x] Structural and repository validation passes.
+- [x] Execution and routing eval coverage passes.
+- [x] Representative with-skill and baseline results are reviewed.
+- [x] Intended Claude, Codex, and other claimed integrations are checked within
+      the stated packaging and behavior boundaries.
 - [ ] Version, changelog, distribution metadata, and installation are verified.
-- [ ] Inventory status and lessons are updated.
+- [x] Inventory status and lessons are updated.

@@ -127,7 +127,7 @@ and generated endpoint pages. Hand-author only framing that the specification
 cannot express. For CLI and MCP references, require deterministic sorting,
 generated banners, and CI that fails when regeneration changes committed output.
 
-Mintlify changelog pages use their dedicated writing workflow. Repository
+Mintlify changelog pages use their dedicated writing skill. Repository
 `CHANGELOG.md` files are a separate release artifact.
 
 ## Validation and launch readiness

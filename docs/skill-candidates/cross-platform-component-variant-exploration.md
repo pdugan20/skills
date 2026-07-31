@@ -1,6 +1,6 @@
-# Workflow Candidate: Cross-Platform Component Variant Exploration
+# Skill Candidate: Cross-Platform Component Variant Exploration
 
-- **Inventory ID:** `WF-001`
+- **Inventory ID:** `SC-001`
 - **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-30
@@ -47,7 +47,7 @@ The default interaction should be proportional:
 3. When Patrick asked to explore rather than immediately build, present a concise direction set and let him select the two to four worth implementing.
 4. Build the selected variants behind one project-native comparison surface using a shared data and state contract.
 5. Render and exercise the variants on the real target platform, including relevant interaction and responsive or dynamic states.
-6. Record the selection. When asked to graduate it, preserve the chosen implementation, remove abandoned variants and temporary controls, and hand substantial production work to the appropriate delivery workflow.
+6. Record the selection. When asked to graduate it, preserve the chosen implementation, remove abandoned variants and temporary controls, and hand substantial production work to `feature-delivery`.
 
 If Patrick explicitly asks the agent to build alternatives immediately, it should choose a small representative set and proceed without adding a redundant approval pause.
 
@@ -95,7 +95,7 @@ At the start of the pilot, the released skill already required runnable in-proje
 ### Pilot implementation
 
 - The main skill now contains the shared comparison contract and ideate-versus-build branch.
-- Three directly linked references adapt the method for SwiftUI, React Native, and web repositories without duplicating the core workflow.
+- Three directly linked references adapt the method for SwiftUI, React Native, and web repositories without duplicating the core skill.
 - Six execution cases cover general exploration plus the three platform adapters.
 - Twenty routing cases are balanced between realistic triggers and adjacent near misses.
 - Repository verification, Skills CLI discovery, `agent-ecosystem/skill-validator` v1.5.6, and the official Claude plugin validator pass. The tooling audit is complete: the temporary `claude-code-lint` gate was replaced with the exactly pinned official Claude Code CLI.
@@ -114,7 +114,7 @@ Codex `0.145.0` also completed a read-only live run from a disposable project co
 
 Cursor Agent `2026.07.23-e383d2b` is installed from Cursor's official installer and exposes read-only plan and ask modes plus local plugin loading. The automated Skills CLI test copies every skill and resource byte-for-byte into Cursor's supported `.agents/skills` project location. No authenticated Cursor account is currently available, so no live model-output claim is made; installation and packaging compatibility are the verified boundary.
 
-All three repository skill pages return successfully from `skills.sh`, and the README now exposes the official install-count badge and catalog link. Discovery is driven by anonymous Skills CLI install telemetry rather than a separate submission workflow; release tags remain the reproducible installation mechanism.
+All three repository skill pages return successfully from `skills.sh`, and the README now exposes the official install-count badge and catalog link. Discovery is driven by anonymous Skills CLI install telemetry rather than a separate submission process; release tags remain the reproducible installation mechanism.
 
 ### Release and distribution evidence
 

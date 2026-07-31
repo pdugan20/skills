@@ -4,10 +4,29 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-07-30
+
+### Changed
+
+- Expanded [`feature-delivery`](skills/feature-delivery/SKILL.md) from a thin
+  implementation loop into an evidence-led coordinator for product and
+  technical specification, cross-repository contracts, explicit execution-mode
+  selection, integration, and staged user availability.
+- Added a reusable feature-delivery template and focused references for
+  specification, cross-repository compatibility, optional Superpowers or
+  agent-team execution, and independently gated rollout and rollback.
+- Expanded `feature-delivery` to six execution evals and twenty balanced routing
+  cases, with baseline and fresh-context forward replays covering ambiguous
+  architecture, mid-flight mobile/backend rollout, and proportional
+  single-repository delivery.
+- Replaced the old inventory naming and `WF-*` records with a skill candidate
+  inventory and `SC-*` identifiers so the repository consistently describes
+  the reusable artifacts as skills.
+
 ### Documentation
 
 - Recorded exact-tag installation evidence for v2.1.0 and marked the four
-  migrated Mintlify workflows as released.
+  migrated Mintlify skills as released.
 
 ## [2.1.0] - 2026-07-30
 
@@ -23,15 +42,15 @@ All notable changes to this project are documented in this file. The project fol
 ### Changed
 
 - Replaced the former generic Mintlify skill names `review-docs`, `document-reference`, and `changelog-writer` with explicit globally installable names.
-- Made the official Mintlify capability an optional source of current syntax and schema mechanics instead of a runtime-specific requirement for loading Patrick's editorial workflows.
+- Made the official Mintlify capability an optional source of current syntax and schema mechanics instead of a runtime-specific requirement for loading Patrick's editorial skills.
 - Replaced the historical mirror-repository default with Mintlify's current direct repository and subdirectory model, while keeping all publishing actions explicit and separately authorized.
 - Added deterministic contrast checking and hardened the bundled reference generators, starter MDX, favicon, and local validation commands.
 
 ### Documentation
 
-- Recorded the completed release, client-installation evidence, and lessons for the first audited design workflow.
+- Recorded the completed release, client-installation evidence, and lessons for the first audited design skill.
 - Classified end-to-end feature development as a candidate expansion of `feature-delivery`, grounded in three private cross-repository feature histories and an explicit composition boundary with optional Superpowers and agent-team execution.
-- Captured feature spikes as a separate evidence-seeking workflow whose outcome is a continue, change, or stop decision rather than production delivery.
+- Captured `feature-spike` as a separate evidence-seeking skill candidate whose outcome is a continue, change, or stop decision rather than production delivery.
 
 ## [2.0.0] - 2026-07-30
 
@@ -50,8 +69,8 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Added
 
-- A researched skill authoring standard covering workflow selection, portable structure, routing, evaluation, external tools, and review.
-- A durable workflow inventory and evidence-based candidate brief template for auditing Patrick's real design and development processes.
+- A researched skill authoring standard covering skill selection, portable structure, routing, evaluation, external tools, and review.
+- A durable skill candidate inventory and evidence-based brief template for auditing Patrick's real design and development processes.
 - Versioned execution and routing evals for [`code-native-ui-ideation`](https://github.com/pdugan20/skills/tree/v1.1.0/skills/code-native-ui-ideation), [`feature-delivery`](https://github.com/pdugan20/skills/tree/v1.1.0/skills/feature-delivery), and [`production-hardening`](https://github.com/pdugan20/skills/tree/v1.1.0/skills/production-hardening), enforced by repository validation.
 - An isolated Skills CLI installation smoke test for Claude Code, Codex, and Cursor, enforced in CI.
 - A pinned external Agent Skills validation gate for structure, links, context size, orphaned resources, and content-quality heuristics.
@@ -73,7 +92,8 @@ All notable changes to this project are documented in this file. The project fol
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
 - Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
 
-[unreleased]: https://github.com/pdugan20/skills/compare/v2.1.0...HEAD
+[unreleased]: https://github.com/pdugan20/skills/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/pdugan20/skills/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/pdugan20/skills/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/pdugan20/skills/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/pdugan20/skills/compare/v1.0.0...v1.1.0

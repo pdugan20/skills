@@ -9,4 +9,4 @@ This sanitized fixture represents an existing messenger application.
 - Storybook controls can switch component props without changing fixture data.
 - The comparison must be exercised in the native simulator or development client.
 
-The fixture is intentionally descriptive rather than compilable. Evaluate workflow decisions, comparison quality, platform choice, and cleanup boundaries—not React Native syntax.
+The fixture is intentionally descriptive rather than compilable. Evaluate process decisions, comparison quality, platform choice, and cleanup boundaries—not React Native syntax.

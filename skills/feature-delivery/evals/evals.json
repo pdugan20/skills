@@ -3,35 +3,74 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Implement production account deletion across the web UI, API, authentication provider, and stored user data. Include confirmation, partial-failure handling, authorization, auditability, and tests.",
-      "expected_output": "A coordinated production implementation with safe data handling, user-visible states, risk-based tests, and verification evidence.",
+      "prompt": "Take a personalized catch-up summary feature from idea through delivery. We have a separate iOS client and backend/functions repository, but have not decided whether generation and caching should live on-device, on the backend, or be split. It eventually needs to reach internal builds and TestFlight safely, including older-client compatibility, offline behavior, and a way to turn it off.",
+      "expected_output": "An evidence-led cross-repository delivery process that resolves the architecture before implementation and carries the selected contract through integration and staged availability.",
       "files": [],
       "assertions": [
-        "The implementation establishes behavior and safety boundaries before mutating important data.",
-        "Authorization, partial failures, and user-visible states receive explicit treatment.",
-        "Verification is proportional to the cross-system and data-deletion risk."
+        "The agent inspects or requests evidence from both repositories and their environments before treating a client/backend split as decided.",
+        "Material product and architecture choices are captured in an approvable specification before implementation begins.",
+        "The output maps compatibility, dependency order, integration, gating, rollback, and status across backend, client, distribution, and exposure.",
+        "The execution mode is selected explicitly without implicitly requiring strict TDD, worktrees, or an agent team."
       ]
     },
     {
       "id": 2,
-      "prompt": "Build offline editing and background synchronization for notes in the existing mobile app. It needs conflict handling, cancellation, persistence, accessible status, and coverage for concurrency failures.",
-      "expected_output": "An end-to-end mobile feature that handles persistence and concurrency deliberately and is exercised in the relevant simulator.",
+      "prompt": "Finish and ship a user-created lists feature. A backend branch already has new rules, indexes, count projection, and worker jobs in a development environment. The iOS client has models and some screens but has not been tested against that backend. Support the current App Store client during rollout, distribute an internal build before TestFlight, gate exposure, verify deletion and sync behavior, and allow independent rollback of each layer.",
+      "expected_output": "A dependency-aware continuation plan that verifies the existing work, closes contract and integration gaps, and advances each release layer through independent gates.",
       "files": [],
       "assertions": [
-        "The implementation coordinates storage, synchronization, UI state, and conflict behavior coherently.",
-        "Tests target persistence and concurrency regressions rather than following a mandatory test-first ceremony.",
-        "The user-visible interaction is exercised on the relevant platform."
+        "The current backend and client states are treated as evidence to verify rather than as completed phases.",
+        "Current-client compatibility, real development-environment integration, deletion, synchronization, indexes, rules, and worker failure behavior receive explicit exit evidence.",
+        "Backend deployment, internal distribution, TestFlight, exposure, observation, and cleanup are tracked as distinct states.",
+        "Each separately deployable layer has an independent safe-disable or rollback path."
       ]
     },
     {
       "id": 3,
-      "prompt": "Ship role-based workspace invitations across our database, API, email flow, and admin interface. Preserve existing behavior, handle expired invitations, and report anything that still needs deployment approval.",
-      "expected_output": "A production-ready invitation flow with coherent permissions, lifecycle states, tests, and a clear handoff for external release actions.",
+      "prompt": "Add saved searches to an existing small Next.js application. The UI, route handler, and database code are all in one repository, product behavior is already selected, and deployment uses the project's normal preview-to-production flow. This is a meaningful production feature, but I do not want strict TDD, a worktree, an agent team, or heavyweight design-document ceremony.",
+      "expected_output": "A concise single-repository implementation with enough contract definition to protect data and user behavior, risk-based tests, browser verification, and normal preview gates.",
       "files": [],
       "assertions": [
-        "Permission and invitation lifecycle boundaries are implemented across each affected subsystem.",
-        "Expired, invalid, loading, and failure states are covered where relevant.",
-        "Deployment or other external mutations remain clearly separated from the completed implementation."
+        "The skill preserves the selected behavior and keeps specification and planning proportional rather than generating a ceremonial document.",
+        "The agent explicitly chooses proportional inline execution and does not invoke strict TDD, worktrees, or an agent team.",
+        "Persistence, ownership, validation, important UI states, focused tests, browser exercise, and repository gates are addressed.",
+        "Preview verification and production promotion remain separate from source completion and require the applicable authorization."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Take a production subscription-pause feature from idea to a gated rollout. It crosses the web UI, API, database, analytics, billing provider, and customer email, and active subscriptions must remain recoverable if any provider call or migration step fails.",
+      "expected_output": "A cross-system feature specification and phased delivery plan with durable state semantics, failure recovery, observability, and controlled exposure.",
+      "files": [],
+      "assertions": [
+        "The skill discovers current provider, database, and application contracts before selecting the architecture.",
+        "The specification covers state transitions, idempotency, partial failures, authorization, data migration, analytics, communication, and recovery.",
+        "Producer and consumer dependencies are ordered and real integration evidence is required.",
+        "Rollout gates include monitoring, halt conditions, rollback or forward-repair behavior, and explicit external-action approvals."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Ship a horizontal trailers rail on the iOS series-detail screen. The backend already claims to expose the video contract, so this may be client-only. It uses an external player dependency and must work on a real device with full-screen playback, picture-in-picture, errors, and slow networks.",
+      "expected_output": "A proportional native feature plan that verifies the existing backend contract, avoids invented backend scope if it is sufficient, and treats real-device playback as release evidence.",
+      "files": [],
+      "assertions": [
+        "The agent verifies the backend contract and data quality before accepting or rejecting the client-only assumption.",
+        "The skill does not manufacture backend implementation, formal ceremony, or parallel agents when the existing contract is sufficient.",
+        "The selected client work covers loading, empty, error, cancellation, accessibility, external-player behavior, and performance where relevant.",
+        "Simulator or automated success is not used as a substitute for required real-device full-screen and picture-in-picture evidence."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Use the full Superpowers TDD flow to deliver a cross-repository workspace-sharing feature. First settle the product and API contract, then create the strict plan and hand implementation to review-gated subagents. It needs a backend dark launch, compatible clients, internal rollout, and independent rollback controls.",
+      "expected_output": "An outer feature-delivery process that composes the explicitly requested Superpowers skills for implementation while retaining cross-repository integration and rollout ownership.",
+      "files": [],
+      "assertions": [
+        "Product behavior, repositories, contracts, compatibility, and rollout gates are established before strict implementation planning.",
+        "Strict Superpowers planning, TDD, and review-gated subagent execution are invoked because the user explicitly selected them.",
+        "Stable interfaces and ownership precede parallel work, and an integration owner verifies the combined result.",
+        "Superpowers source-integration completion is not treated as backend deployment, client distribution, exposure, or stable user availability."
       ]
     }
   ]
