@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Use production-hardening on the selected file-upload implementation. Remove experiment code and audit accessibility, cancellation, partial failures, authorization, observability, performance, and release verification.",
+      "prompt": "We selected the fifth UI option from this branch. Harden it for production today without redesigning it, and tell me whether it is ready.",
       "expected_output": "A focused release-readiness pass that preserves the selected behavior, fixes justified gaps, and reports remaining risks or approvals.",
       "files": [],
       "assertions": [
@@ -14,23 +14,23 @@
     },
     {
       "id": 2,
-      "prompt": "Invoke production-hardening for the checkout flow we just finished. Check loading and failure states, keyboard and screen-reader behavior, payment idempotency, secrets, metrics, and the release gate.",
-      "expected_output": "A production-readiness review and targeted improvements for checkout with evidence from appropriate tests and checks.",
+      "prompt": "The mobile client is implemented and its automated tests are green. The matching backend gates are still off. Harden it for a TestFlight candidate tonight and tell me whether it is ready.",
+      "expected_output": "A production-readiness review that distinguishes a dormant client build from live feature exposure and grounds its verdict in appropriate evidence.",
       "files": [],
       "assertions": [
-        "Accessibility, payment failure behavior, idempotency, secrets, and observability are examined where relevant.",
+        "Client, backend, account, failure, observability, and staged-exposure risks are examined where relevant.",
         "Tests are added according to regression risk without forcing a rewrite of completed code.",
         "Focused checks precede the broader release-relevant verification."
       ]
     },
     {
       "id": 3,
-      "prompt": "Run the production-hardening skill on the chosen responsive navigation direction. Clean up abandoned variants and verify localization, reduced motion, browser behavior, performance, and release readiness.",
-      "expected_output": "The chosen navigation is cleaned up and assessed across relevant experience and release risks without reopening design exploration.",
+      "prompt": "Take this selected simulator-focused app prototype and harden it for a 1.0 release. Keep the prototype boundary and tell me what you would change.",
+      "expected_output": "The selected prototype is assessed across relevant experience and release risks without being expanded into a live production service.",
       "files": [],
       "assertions": [
-        "Abandoned variants and temporary affordances are removed while preserving the chosen direction.",
-        "Relevant localization, motion, browser, accessibility, and performance risks are checked.",
+        "Debug residue and temporary affordances are reviewed while the chosen direction and prototype boundary are preserved.",
+        "Relevant motion, accessibility, platform, configuration, and verification risks are checked.",
         "The work remains a hardening pass rather than a new design exploration."
       ]
     }

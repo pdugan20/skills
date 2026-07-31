@@ -14,6 +14,15 @@ All notable changes to this project are documented in this file. The project fol
 
 - Updated `skills.sh.json` to the current documented grouping schema and aligned
   its design, product-development, and Mintlify sections with the README.
+- Replaced the leading `production-hardening` execution prompts with natural
+  requests that do not disclose the behavior under evaluation.
+
+### Deprecated
+
+- Deprecated [`production-hardening`](skills/production-hardening/SKILL.md) for
+  removal in v3.0.0. Fresh, repository-backed comparisons found no reliable
+  behavioral lift over a direct hardening request, while repository production
+  instructions and `feature-delivery` already own the useful boundaries.
 
 ### Documentation
 
@@ -24,6 +33,8 @@ All notable changes to this project are documented in this file. The project fol
   multi-client installation, Skills CLI discovery, Patrick Plugins v3.3.0,
   and Agent Tooling v0.7.0 evidence; marked the UI video and design-system
   candidates as released.
+- Recorded the real-history, public-overlap, baseline, and released-skill audit
+  that led to deprecating `production-hardening` instead of expanding it.
 
 ## [2.4.0] - 2026-07-31
 

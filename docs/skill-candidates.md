@@ -40,7 +40,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | --- | --- | --- | --- | --- | --- | --- |
 | `SC-001` | Cross-platform component variant exploration | Patrick's repeated SwiftUI preview, React Native Storybook, and web dev-lab loop | **Technique skill:** enhance `code-native-ui-ideation`; the decision loop is portable while the comparison surface remains project-native | `released` | High | [Brief](skill-candidates/cross-platform-component-variant-exploration.md) |
 | `SC-002` | End-to-end feature development and staged rollout | Private iOS and backend histories for Catch Me Up, user-generated lists, and series-detail trailers, plus baseline and forward replays against `feature-delivery` | **Composite skill:** `feature-delivery` owns product discovery, cross-repository impact, specification, execution-mode selection, and staged rollout while delegating optional strict implementation mechanics to Superpowers or an available agent-team runtime | `released` | High | [Brief](skill-candidates/end-to-end-feature-development.md) |
-| `SC-003` | Explicit production hardening | The released `production-hardening` skill plus repeated separation of exploration, implementation, and release-readiness work in the shared working agreement | **Discipline skill:** retain it as explicit-only because automatic hardening would make lightweight work unnecessarily heavy | `released` | Medium | Existing skill |
+| `SC-003` | Explicit production hardening | Three completed hardening histories plus fresh natural-prompt comparisons with and without the released skill | **No standalone skill:** deprecate `production-hardening` because a direct hardening request already activates the needed production behavior; keep repository instructions, `feature-delivery`, and optional release-operation skills in their narrower roles | `deprecated` | Medium | [Brief](skill-candidates/production-hardening.md) |
 | `SC-004` | Agent environment bootstrap and plugin reconciliation | `agent-tooling` setup, refresh, catalog, lockfile, drift, and machine-check scripts with documented source-of-truth boundaries | **Scripts + human documentation:** the operations are deterministic and stateful; a skill would be a less reliable wrapper around the existing tested commands | `classified` | Medium | No skill brief |
 | `SC-005` | Skill and plugin versioning, marketplace sync, and release | Release automation, version-sync, packaging, installation, and marketplace-bump scripts across `skills` and the former `mintlify-docs` repository | **Scripts + CI + human documentation:** transactional release steps need reproducible checks and explicit external-write approval, not agent judgment | `classified` | Medium | No skill brief |
 | `SC-006` | Scaffold a Mintlify documentation site | The released `scaffold-mintlify-site` skill, templates, generators, mirror sync, and drift CI in the former focused repository | **Composite skill with scripts and assets:** information architecture requires judgment while detection, reusable files, and drift checks are deterministic | `released` | Medium | [Skill](../skills/scaffold-mintlify-site/SKILL.md) |
@@ -65,7 +65,7 @@ These Patrick-owned skills are represented in the audit above so the inventory c
 | `analyze-ui-video` | Composite | Recording-led diagnosis or reference reconstruction, not code-only motion review or automatic implementation. |
 | `feature-spike` | Pattern | Bounded runnable evidence for an investment decision, not UI comparison or production delivery. |
 | `feature-delivery` | Composite | Released in v2.2.0; coordinates idea-to-spec, cross-repository delivery, explicit execution-mode selection, and staged rollout without imposing strict mechanics on bounded features. |
-| `production-hardening` | Discipline | Explicit release-readiness work on a selected implementation. |
+| `production-hardening` | Deprecated discipline skill | Retained for v2 compatibility; planned for removal in v3.0.0 after no reliable lift over a direct hardening request. |
 | `scaffold-mintlify-site` | Composite | New-site scaffolding, not review or external deployment. |
 | `review-mintlify-docs` | Discipline | Mintlify editorial and information-architecture review, not generated output. |
 | `generate-mintlify-reference` | Composite | Source-backed Mintlify reference generation and drift checks. |
@@ -203,6 +203,20 @@ after publication. Agent Tooling v0.7.0 locks all eleven Patrick-owned skill
 snapshots to the same source tag and verified the complete Codex and Claude
 setup on Patrick's current Mac. The Cursor claim remains installation-layout
 compatibility only because no paid Cursor account was used for live behavior.
+
+The next audit revisited `SC-003` instead of assuming that a released skill
+should keep expanding. Three real hardening histories supplied the evidence:
+quote-share variant graduation in `pat-portfolio`, actionable-notification
+acceptance in `nextup-ios-app`, and the simulator-focused Messenger 1.0 pass.
+An initial comparison was discarded because its prompts disclosed the desired
+review checklist. Fresh natural-prompt controls and released-skill runs both
+found concrete historical defects, preserved the selected behavior, stayed
+proportional, and withheld release actions. The released skill did not produce
+a reliable lift. `production-hardening` is therefore deprecated for removal in
+v3.0.0 rather than expanded. Repository production instructions remain useful;
+`feature-delivery` still owns substantial feature completion, and maintained
+release-readiness skills may be composed when the requested artifact is an
+operational go/no-go and rollout plan.
 
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 
