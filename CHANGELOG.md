@@ -4,6 +4,11 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Documentation
+
+- Recorded v2.2.0 publication and exact-tag installation evidence and marked
+  the expanded `feature-delivery` skill as released.
+
 ## [2.2.0] - 2026-07-30
 
 ### Changed
