@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Changed
+
+- Grouped the README skill catalog into design and development skills and
+  Mintlify documentation skills.
+
+### Removed
+
+- Removed the obsolete `mintlify-docs` migration guide; its only user already
+  migrated to this collection.
+
 ### Documentation
 
 - Recorded v2.3.0 publication, exact-tag installation, archive integrity, and

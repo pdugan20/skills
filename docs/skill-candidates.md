@@ -76,8 +76,9 @@ Patrick-owned skills without a necessary independent release cadence. Their
 canonical source is moving into this collection, with explicit names,
 self-contained resources, standard evals, and clean-install coverage. The old
 repository should be deprecated and archived only after the combined release is
-installed and verified; it should not be deleted because its history, releases,
-and incoming links remain useful migration evidence.
+installed and verified. It can remain archived to preserve its history and
+releases, but the sole user has migrated and does not need a user-facing
+migration guide.
 
 The second discovery pass reopened `SC-002` after Patrick described a larger scope than the released thin skill covered: turning an idea into an approved design and specification, investigating effects across client and backend repositories, selecting an implementation engine, and planning gated delivery through development environments and TestFlight or equivalent release channels. It also captured `SC-010` as a distinct feature-spike outcome. A spike is complete when it produces enough evidence for a continue, change, or stop decision; it is not an abbreviated production release and should not inherit strict TDD or rollout ceremony by default.
 

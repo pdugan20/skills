@@ -16,16 +16,19 @@ npx skills@latest add pdugan20/skills
 
 ## Skills
 
-| Skill | Use it for |
-| --- | --- |
-| [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) | Brainstorming and comparing runnable UI directions before choosing one. |
-| [`feature-spike`](skills/feature-spike/SKILL.md) | Testing feature value or technical feasibility before production investment. |
-| [`feature-delivery`](skills/feature-delivery/SKILL.md) | Taking substantial features from idea through coordinated implementation and staged rollout. |
-| [`production-hardening`](skills/production-hardening/SKILL.md) | Explicit release-readiness review of a selected implementation. |
-| [`scaffold-mintlify-site`](skills/scaffold-mintlify-site/SKILL.md) | Creating a project-specific Mintlify documentation site. |
-| [`review-mintlify-docs`](skills/review-mintlify-docs/SKILL.md) | Reviewing Mintlify content, navigation, and launch readiness. |
-| [`generate-mintlify-reference`](skills/generate-mintlify-reference/SKILL.md) | Generating drift-checked CLI, MCP, and API reference pages. |
-| [`write-mintlify-changelog`](skills/write-mintlify-changelog/SKILL.md) | Writing concise reader-facing Mintlify changelog entries. |
+### Design and development
+
+- [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) — Brainstorm and compare runnable UI directions before choosing one.
+- [`feature-spike`](skills/feature-spike/SKILL.md) — Test feature value or technical feasibility before production investment.
+- [`feature-delivery`](skills/feature-delivery/SKILL.md) — Take substantial features from idea through coordinated implementation and staged rollout.
+- [`production-hardening`](skills/production-hardening/SKILL.md) — Review a selected implementation for release readiness.
+
+### Mintlify and documentation
+
+- [`scaffold-mintlify-site`](skills/scaffold-mintlify-site/SKILL.md) — Create a project-specific Mintlify documentation site.
+- [`review-mintlify-docs`](skills/review-mintlify-docs/SKILL.md) — Review Mintlify content, navigation, and launch readiness.
+- [`generate-mintlify-reference`](skills/generate-mintlify-reference/SKILL.md) — Generate drift-checked CLI, MCP, and API reference pages.
+- [`write-mintlify-changelog`](skills/write-mintlify-changelog/SKILL.md) — Write concise reader-facing Mintlify changelog entries.
 
 Claude Code and Codex users can also install the collection as the `patrick-skills` plugin from [Patrick's Plugins](https://github.com/pdugan20/plugins).
 
@@ -33,7 +36,7 @@ The Mintlify skills use the official Mintlify capability for current component a
 
 ## Versioning
 
-Releases version the collection as a whole. Install a release tag when reproducibility matters, and see the [changelog](CHANGELOG.md) for skill-specific history. Previous `mintlify-docs` users can follow the [migration guide](docs/migrations/mintlify-docs.md).
+Releases version the collection as a whole. Install a release tag when reproducibility matters, and see the [changelog](CHANGELOG.md) for skill-specific history.
 
 ## Development
 
