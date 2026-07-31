@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Set up a new SwiftUI iOS repository with the right local checks, CI, README, and GitHub settings for a maintained app.",
+    "should_trigger": true
+  },
+  {
+    "query": "Bootstrap this Expo prototype, but keep the repository lightweight because I may discard it next week.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a production-ready Python package repository that we can eventually publish to PyPI.",
+    "should_trigger": true
+  },
+  {
+    "query": "Turn this empty directory into a properly configured React and TypeScript project for a small team.",
+    "should_trigger": true
+  },
+  {
+    "query": "Start a new React Native app repo and make sure Dependabot, required CI, branch protection, and the setup docs all agree.",
+    "should_trigger": true
+  },
+  {
+    "query": "Initialize a new public CLI repository with formatting, tests, releases, security guidance, tags, and sensible GitHub metadata.",
+    "should_trigger": true
+  },
+  {
+    "query": "Scaffold a throwaway Swift experiment without copying all of the infrastructure from our production iOS app.",
+    "should_trigger": true
+  },
+  {
+    "query": "I ran create-next-app in a fresh folder; finish setting up the new repository so it is maintainable and GitHub-ready.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create the local foundation and repository policy for a new service that will be deployed and maintained in production.",
+    "should_trigger": true
+  },
+  {
+    "query": "Stand up a new macOS app repository with proportional linting, CI, release preparation, and GitHub configuration.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add one missing test job to this mature repository's existing CI workflow.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit our current GitHub repositories and tell me which ones have weak branch protection.",
+    "should_trigger": false
+  },
+  {
+    "query": "Modernize every configuration file in this ten-year-old monorepo.",
+    "should_trigger": false
+  },
+  {
+    "query": "Implement the first onboarding feature in the app we scaffolded yesterday.",
+    "should_trigger": false
+  },
+  {
+    "query": "Deploy the existing Next.js build to Vercel and configure the production domain.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create an empty private GitHub repository named fieldnotes and stop there.",
+    "should_trigger": false
+  },
+  {
+    "query": "Add Dependabot for Swift packages to this established iOS project.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review this existing repository's README and rewrite the quick start.",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up my laptop with Node, Xcode, Python, and all of our agent plugins.",
+    "should_trigger": false
+  },
+  {
+    "query": "Publish the already verified Python wheel and create its GitHub release.",
+    "should_trigger": false
+  }
+]

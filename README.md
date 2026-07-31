@@ -15,7 +15,8 @@ They help an agent recognize what kind of work it is doing and apply the right l
 
 - Explore runnable alternatives before choosing one.
 - Analyze a finished interface or recording against repository evidence.
-- Distinguish a feature spike from production delivery and final hardening.
+- Distinguish a feature spike from production delivery.
+- Stand up a new repository with rigor that matches its intended maturity.
 - Produce documentation grounded in the actual product instead of generic filler.
 
 The collection does not impose one visual style or stack. It encodes repeatable decision points, evidence standards, and approval boundaries so an agent can work more like a thoughtful collaborator.
@@ -36,7 +37,7 @@ npx skills@latest add pdugan20/skills
 - [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) — Dissect UI recordings against a target repository before diagnosing or reconstructing behavior.
 - [`feature-spike`](skills/feature-spike/SKILL.md) — Test feature value or technical feasibility before production investment.
 - [`feature-delivery`](skills/feature-delivery/SKILL.md) — Take substantial features from idea through coordinated implementation and staged rollout.
-- [`production-hardening`](skills/production-hardening/SKILL.md) — Deprecated; retained for v2 compatibility and removed in v3.0.0.
+- [`bootstrap-repository`](skills/bootstrap-repository/SKILL.md) — Scaffold new repositories with proportional local tooling, CI, and GitHub policy.
 
 ### Mintlify and documentation
 

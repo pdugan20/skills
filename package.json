@@ -1,8 +1,8 @@
 {
   "name": "patrick-skills",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "private": true,
-  "description": "Portable design, UI analysis, development, and documentation skills for Agent Skills clients.",
+  "description": "Portable repository, design, UI analysis, development, and documentation skills for Agent Skills clients.",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"**/*.{json,yaml,yml}\"",

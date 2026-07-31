@@ -41,9 +41,9 @@ Do not apply pressure-test conventions to every skill. They are useful for disci
 
 The current collection classifies `code-native-ui-ideation` and
 `write-mintlify-changelog` as techniques; `feature-spike` as a pattern;
-`production-hardening`, `review-mintlify-docs`, and
-`align-ui-to-design-system` as discipline skills; and `feature-delivery`,
-`analyze-ui-video`, `audit-design-system-health`, `scaffold-mintlify-site`, and
+`review-mintlify-docs` and `align-ui-to-design-system` as discipline skills; and
+`feature-delivery`, `analyze-ui-video`, `audit-design-system-health`,
+`bootstrap-repository`, `scaffold-mintlify-site`, and
 `generate-mintlify-reference` as composite skills.
 
 ## Capture intent before writing

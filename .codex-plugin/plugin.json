@@ -1,7 +1,7 @@
 {
   "name": "patrick-skills",
-  "version": "2.4.0",
-  "description": "Portable skills for code-native design exploration, design-system alignment and auditing, UI video analysis, feature validation and delivery, hardening, and technical documentation.",
+  "version": "3.0.0",
+  "description": "Portable skills for repository setup, code-native design exploration, design-system alignment and auditing, UI video analysis, feature validation and delivery, and technical documentation.",
   "author": {
     "name": "Pat Dugan",
     "url": "https://github.com/pdugan20"
@@ -17,6 +17,7 @@
     "design",
     "design-system",
     "development",
+    "repository-scaffolding",
     "documentation",
     "screen-recording",
     "video-analysis",
@@ -25,8 +26,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Patrick Skills",
-    "shortDescription": "Design, UI analysis, delivery, and documentation skills.",
-    "longDescription": "Explore interfaces in runnable code, align completed UI, audit repository design-system health, dissect UI recordings, validate feature ideas, deliver and harden production features, and maintain source-backed Mintlify documentation.",
+    "shortDescription": "Repository, design, delivery, and documentation skills.",
+    "longDescription": "Scaffold proportional software repositories, explore interfaces in runnable code, align completed UI, audit repository design-system health, dissect UI recordings, validate feature ideas, deliver production features, and maintain source-backed Mintlify documentation.",
     "developerName": "Pat Dugan",
     "category": "Developer Tools",
     "capabilities": ["Write"],

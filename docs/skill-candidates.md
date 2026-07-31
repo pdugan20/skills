@@ -41,7 +41,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | --- | --- | --- | --- | --- | --- | --- |
 | `SC-001` | Cross-platform component variant exploration | Patrick's repeated SwiftUI preview, React Native Storybook, and web dev-lab loop | **Technique skill:** enhance `code-native-ui-ideation`; the decision loop is portable while the comparison surface remains project-native | `released` | High | [Brief](skill-candidates/cross-platform-component-variant-exploration.md) |
 | `SC-002` | End-to-end feature development and staged rollout | Private iOS and backend histories for Catch Me Up, user-generated lists, and series-detail trailers, plus baseline and forward replays against `feature-delivery` | **Composite skill:** `feature-delivery` owns product discovery, cross-repository impact, specification, execution-mode selection, and staged rollout while delegating optional strict implementation mechanics to Superpowers or an available agent-team runtime | `released` | High | [Brief](skill-candidates/end-to-end-feature-development.md) |
-| `SC-003` | Explicit production hardening | Three completed hardening histories plus fresh natural-prompt comparisons with and without the released skill | **No standalone skill:** deprecate `production-hardening` because a direct hardening request already activates the needed production behavior; keep repository instructions, `feature-delivery`, and optional release-operation skills in their narrower roles | `deprecated` | Medium | [Brief](skill-candidates/production-hardening.md) |
+| `SC-003` | Explicit production hardening | Three completed hardening histories plus fresh natural-prompt comparisons with and without the former released skill | **No standalone skill:** remove `production-hardening` because a direct hardening request already activates the needed behavior; keep repository instructions, `feature-delivery`, and optional release-operation skills in their narrower roles | `no-action` | Medium | [Brief](skill-candidates/production-hardening.md) |
 | `SC-004` | Agent environment bootstrap and plugin reconciliation | `agent-tooling` setup, refresh, catalog, lockfile, drift, and machine-check scripts with documented source-of-truth boundaries | **Scripts + human documentation:** the operations are deterministic and stateful; a skill would be a less reliable wrapper around the existing tested commands | `classified` | Medium | No skill brief |
 | `SC-005` | Skill and plugin versioning, marketplace sync, and release | Release automation, version-sync, packaging, installation, and marketplace-bump scripts across `skills` and the former `mintlify-docs` repository | **Scripts + CI + human documentation:** transactional release steps need reproducible checks and explicit external-write approval, not agent judgment | `classified` | Medium | No skill brief |
 | `SC-006` | Scaffold a Mintlify documentation site | The released `scaffold-mintlify-site` skill, templates, generators, mirror sync, and drift CI in the former focused repository | **Composite skill with scripts and assets:** information architecture requires judgment while detection, reusable files, and drift checks are deterministic | `released` | Medium | [Skill](../skills/scaffold-mintlify-site/SKILL.md) |
@@ -53,6 +53,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | `SC-012` | Explore UI directions at deliberate design-system distances | Patrick sometimes wants component variants that strictly reuse an existing system, stretch its vocabulary, or deliberately diverge from it, plus baseline and forward NextUp section-header replays | **Enhancement to `code-native-ui-ideation`:** the trigger, comparison surface, and selection artifact are unchanged; design-system posture is an optional comparison axis instead of another ideation skill | `released` | High | [Brief](skill-candidates/design-system-distance-ui-ideation.md) |
 | `SC-013` | Align a completed component with its design system | Patrick runs a focused conformance pass after building a component to find accidental token, primitive, state, interaction, or visual-language deviations, plus no-skill and forward NextUp component replays | **Targeted skill:** `align-ui-to-design-system` reviews one completed surface against repository evidence, distinguishes violations from intentional exceptions and system gaps, and applies only approved fixes without expanding into a repository-wide audit | `released` | High | [Brief](skill-candidates/align-ui-to-design-system.md) |
 | `SC-014` | Audit design-system drift and consolidation opportunities | Patrick audits repositories for hardcoded values, inconsistent conventions, overlapping visual components, and candidates for consolidation or stronger enforcement, plus no-skill and forward `pat-portfolio` replays | **Composite skill with stack-specific tooling:** `audit-design-system-health` combines deterministic token and duplication signals with rendered and semantic review, then produces a prioritized read-only health, consolidation, and enforcement report rather than automatically refactoring the repository | `released` | High | [Brief](skill-candidates/audit-design-system-health.md) |
+| `SC-015` | Bootstrap a repository to its intended maturity | A current audit of active Swift, Expo/React Native, Python, and TypeScript repositories plus four candidate-absent and four forward scaffold evaluations | **Composite skill with a read-only inspector and stack references:** `bootstrap-repository` selects an upstream project generator, applies an exploration, maintained, or shipping profile, prepares local quality gates and GitHub policy proportionally, then verifies the result; stack mechanics stay delegated to official generators and focused upstream skills | `validated` | High | [Brief](skill-candidates/bootstrap-repository.md) |
 
 ## Current collection
 
@@ -66,7 +67,7 @@ These Patrick-owned skills are represented in the audit above so the inventory c
 | `analyze-ui-video` | Composite | Recording-led diagnosis or reference reconstruction, not code-only motion review or automatic implementation. |
 | `feature-spike` | Pattern | Bounded runnable evidence for an investment decision, not UI comparison or production delivery. |
 | `feature-delivery` | Composite | Released in v2.2.0; coordinates idea-to-spec, cross-repository delivery, explicit execution-mode selection, and staged rollout without imposing strict mechanics on bounded features. |
-| `production-hardening` | Deprecated discipline skill | Retained for v2 compatibility; planned for removal in v3.0.0 after no reliable lift over a direct hardening request. |
+| `bootstrap-repository` | Composite | Validated for new or empty repositories; selects proportional maturity, delegates to maintained generators, and keeps remote mutation separately authorized. |
 | `scaffold-mintlify-site` | Composite | New-site scaffolding, not review or external deployment. |
 | `review-mintlify-docs` | Discipline | Mintlify editorial and information-architecture review, not generated output. |
 | `generate-mintlify-reference` | Composite | Source-backed Mintlify reference generation and drift checks. |
@@ -213,11 +214,51 @@ An initial comparison was discarded because its prompts disclosed the desired
 review checklist. Fresh natural-prompt controls and released-skill runs both
 found concrete historical defects, preserved the selected behavior, stayed
 proportional, and withheld release actions. The released skill did not produce
-a reliable lift. `production-hardening` is therefore deprecated for removal in
-v3.0.0 rather than expanded. Repository production instructions remain useful;
-`feature-delivery` still owns substantial feature completion, and maintained
+a reliable lift. Patrick rejected a compatibility-only deprecation window, so
+`production-hardening` was removed from the current source collection rather
+than expanded. The next release must therefore be a major release. Repository
+production instructions remain useful; `feature-delivery` still owns
+substantial feature completion, and maintained
 release-readiness skills may be composed when the requested artifact is an
 operational go/no-go and rollout plan.
+
+The next discovery pass captured `SC-015` after Patrick described standing up
+Swift, React Native, Python, and other repositories with the right local and
+GitHub configuration. The active-repository audit found that intended maturity,
+not programming language, is the primary rigor axis. Lightweight prototypes
+need a fast quality floor; maintained applications need reproducible setup,
+tests, dependency updates, and required CI; shipped apps, services, and packages
+add release automation, security policy, and protected tags. Platform-specific
+generators and focused Expo, Vercel, Swift, and Python tooling already own many
+mechanics, so the candidate should coordinate and verify them instead of
+maintaining competing framework boilerplate. GitHub description, topics,
+merge policy, rulesets, Dependabot, security features, and release/tag policy
+are part of the repository outcome rather than a separate skill.
+
+Four fresh candidate-absent scaffolds confirmed a narrower pilot. Capable
+agents produced runnable, verified local projects, but the maintained Expo and
+React cases omitted CI, dependency automation, and a concrete GitHub settings
+plan; the shipping Python case hand-authored its scaffold instead of starting
+from `uv init`; and the React case reconstructed current generator output after
+the generator could not write its preference state. The lightweight Swift case
+was appropriately small but added no reusable quality command or promotion
+triggers. The pilot therefore needs to coordinate maturity, generator
+provenance, local verification, and remote policy. It starts with one read-only
+inspector and focused references, not a universal template, copied framework
+boilerplate, reusable CI assets, or a GitHub mutation helper.
+
+Four forward scaffolds then showed the intended lift. The lightweight Swift
+project gained a reusable local contract and promotion triggers without being
+overbuilt. Maintained Expo and React projects kept their official generators
+while adding clean-install checks, CI, dependency automation, runtime pins, and
+concrete GitHub plans. The shipping Python package moved to `uv init` and added
+verified distribution artifacts plus an inert release path. The replays also
+exposed two necessary boundaries: generator recovery stops after one narrowly
+redirected state retry and may not escalate into internal inspection, shims,
+patches, or hand reconstruction; licenses and other publisher identities remain
+deferred until the owner chooses them. Structural, routing, script, installation
+layout, and focused follow-up behavioral checks pass, so `SC-015` is validated
+but not yet released.
 
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 

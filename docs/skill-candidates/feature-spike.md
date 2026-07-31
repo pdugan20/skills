@@ -116,7 +116,8 @@ details remain outside this repository and its evals.
   paid resource creation, deployment, destructive cleanup, or exposure.
 - `code-native-ui-ideation` owns comparison between visual directions.
 - `feature-delivery` owns approved production implementation and rollout.
-- `production-hardening` owns explicit release-readiness review.
+- Explicit hardening after delivery follows the user request and repository
+  production instructions rather than a separate collection skill.
 - Ordinary research owns questions that do not require runnable evidence.
 
 ## Evaluation plan

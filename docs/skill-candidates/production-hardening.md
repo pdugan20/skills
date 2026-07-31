@@ -1,7 +1,7 @@
 # Skill Candidate: Production Hardening
 
 - **Inventory ID:** `SC-003`
-- **Status:** `deprecated`
+- **Status:** `no-action`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-07-31
 
@@ -35,10 +35,10 @@ The evaluation used private repository history through read-only local snapshots
 
 ## Mechanism decision
 
-- **Decision:** Deprecate the standalone `production-hardening` skill and remove it in v3.0.0. Keep it present through the v2 line so existing exact-tag and plugin installs do not break in a patch release.
-- **Classification:** No standalone skill after the compatibility window.
+- **Decision:** Remove the standalone `production-hardening` skill from the current source collection. Patrick explicitly rejected a compatibility-only deprecation window; the removal requires the next release to be a major version.
+- **Classification:** No standalone skill.
 - **Rationale:** Natural requests to harden a completed implementation already caused fresh agents to inspect the selected behavior, find real historical defects, preserve scope, give evidence-backed verdicts, and avoid unauthorized release actions. Loading the released seven-step skill did not produce a reliable improvement across the same cases. The remaining value belongs in the user's explicit request, repository production instructions, `feature-delivery` for substantial feature work, and deterministic repository verification.
-- **Scope:** The deprecation applies to this portable collection. Repository-specific production rules remain valuable and should stay in `AGENTS.md` or tested scripts.
+- **Scope:** The removal applies to this portable collection. Repository-specific production rules remain valuable and should stay in `AGENTS.md` or tested scripts.
 
 ## External overlap gate
 
@@ -54,7 +54,7 @@ Do not fork or copy these skills. Use the QA release-readiness skill only when i
 
 ## Reusable contents
 
-- **Instructions:** No standalone portable instructions after v3. Keep the production-mode boundary in repository or user instructions.
+- **Instructions:** No standalone portable instructions. Keep the production-mode boundary in repository or user instructions.
 - **Scripts:** Use each repository's deterministic lint, test, build, archive, and release preflight commands.
 - **References:** None required.
 - **Assets:** None required.
@@ -62,8 +62,8 @@ Do not fork or copy these skills. Use the QA release-readiness skill only when i
 
 ## Safety and boundaries
 
-- Do not remove a published skill in a patch release. Remove it with a documented major release and synchronize downstream plugins and lockfiles.
-- Do not turn deprecation into silent deployment, production mutation, or release authorization.
+- Publish the removal only in a documented major release and synchronize downstream plugins and lockfiles from that release.
+- Do not turn a hardening request into silent deployment, production mutation, or release authorization.
 - Do not replace a proportional code-hardening request with an exhaustive operational audit unless the user asks for that separate outcome.
 
 ## Evaluation plan
@@ -76,7 +76,7 @@ Do not fork or copy these skills. Use the QA release-readiness skill only when i
 
 ### Routing
 
-- **Should trigger while the v2 compatibility skill exists:** Explicit requests to harden a selected implementation, prepare it for production, or run a final release-readiness pass.
+- **Former skill trigger:** Explicit requests to harden a selected implementation, prepare it for production, or run a final release-readiness pass. These requests now rely on the user request and repository production instructions rather than a collection skill.
 - **Should not trigger:** Lightweight visual exploration, initial feature design, a normal read-only code review, or an operational rollout request whose primary artifact is a go/no-go checklist.
 
 ### Baseline
@@ -92,7 +92,7 @@ An initial comparison was discarded because its prompts listed the expected revi
 - The no-skill Messenger review found overlapping AI turns, release gating, stale async preview work, accessibility gaps, metadata drift, and missing exact-revision verification.
 - Released-skill runs found comparable defects, including notification retry triggers and Messenger cancellation, logging, accessibility, device-target, and dependency concerns. They did not consistently discover more, scope more proportionally, or produce stronger approval boundaries than the controls.
 
-The result supports deprecation rather than expansion. It does not claim that the skill is harmful or that every model will behave identically; it records that the local collection lacks evidence for the skill's incremental value.
+The result supports removal rather than expansion. It does not claim that the former skill was harmful or that every model will behave identically; it records that the local collection lacks evidence for its incremental value.
 
 ## Definition of done
 
@@ -101,6 +101,6 @@ The result supports deprecation rather than expansion. It does not claim that th
 - [x] Live public overlap searched and source-inspected.
 - [x] Natural-prompt no-skill and released-skill results reviewed.
 - [x] Leading execution eval prompts replaced.
-- [ ] Deprecation published in the final v2 release.
-- [ ] Skill, README entry, grouping, and packaged metadata removed in v3.0.0.
+- [x] Skill, README entry, grouping, and packaged metadata removed from current source.
+- [ ] Removal published in the next major release.
 - [ ] Patrick Plugins and Agent Tooling updated to the v3 removal after the release exists.

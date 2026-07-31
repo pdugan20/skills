@@ -1,0 +1,57 @@
+{
+  "skill_name": "bootstrap-repository",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm trying a small iPhone SwiftUI prototype to test a page-turn reading interaction. Set up a new local project here called PageTurnLab that I can open in Xcode and run in the iOS Simulator. This is an experiment and may be thrown away, but I want it tidy enough to revisit or hand to one other developer. Don't build the page-turn feature yet, create a GitHub repository, sign anything, deploy anything, or publish a release.",
+      "expected_output": "A minimal runnable iOS repository based on an explicit Apple project source of truth, with exploration-level hygiene, a successful simulator build, and clear promotion triggers but no product, signing, remote, or release machinery.",
+      "files": [],
+      "assertions": [
+        "Selects and reports the exploration profile instead of applying maintained or shipping infrastructure.",
+        "Creates an iOS application project rather than substituting a macOS app or Swift Package executable.",
+        "Records generator or project-source provenance and does not manually implement the page-turn behavior.",
+        "Provides a concise README, root agent guidance, repository hygiene, and a proportionate build or quality command.",
+        "Does not create a remote, commit without disclosure, configure signing, add release automation, deploy, or publish."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm starting an Expo React Native app called FieldNotes for iOS and Android. I expect to maintain it for at least a year and probably share the repository with one or two other developers. Set up the new local project and repository so we can start feature work confidently, using the current normal Expo approach. Don't build product features yet. The GitHub repository does not exist, so keep remote configuration as recommendations and do not create, deploy, or publish anything.",
+      "expected_output": "A current generator-backed Expo repository with a maintained local quality contract, checked-in CI and dependency automation, and a concrete unapplied GitHub plan that respects Expo compatibility boundaries.",
+      "files": [],
+      "assertions": [
+        "Uses the current maintained create-expo-app path and records its provenance instead of reconstructing a starter.",
+        "Selects the maintained profile and pins the runtime, package manager, and lockfile consistently.",
+        "Exposes one verification command covering the applicable Expo Doctor, format, lint, type, test, and build or export checks.",
+        "Checks in CI and compatibility-aware dependency automation with one stable aggregate required-check candidate.",
+        "Produces an exact but unapplied GitHub settings plan and does not create a remote, EAS project, build, deployment, or release."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm starting a public Python CLI called Docweave Check that will eventually scan a documentation folder for broken internal links. I plan to publish it to PyPI and maintain it, but not today. Set up the new local project and repository so it is ready for serious feature development and eventual releases. Implement only a minimal placeholder CLI, not the link checker. Keep GitHub, PyPI, releases, and credentials untouched, and tell me what remains remote-only.",
+      "expected_output": "A uv-generated shipping-package foundation with proportionate quality and package checks, inert release readiness, and explicit unresolved registry and GitHub decisions without publishing.",
+      "files": [],
+      "assertions": [
+        "Starts from the current uv generator with recorded provenance rather than hand-authoring a substitute scaffold.",
+        "Selects the shipping profile and creates a src package, lockfile, minimal CLI, and one authoritative verification entry point.",
+        "Adds risk-based tests, Ruff, a supported type-checker decision, package build validation, CI, and dependency automation without inventing a universal 100 percent coverage gate.",
+        "Prepares changelog, license and metadata decisions, trusted-publishing boundaries, protected release policy, and an inert release path.",
+        "Does not reserve a package name, create a remote, configure credentials, tag, release, or publish."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I'm starting a React and TypeScript site called PatternShelf to catalog UI patterns. It will be maintained and probably deployed to Vercel later, but I have not created the remote project yet. Set up the new local project and repository so feature work can begin, using the current standard framework approach you think fits. Don't build the catalog yet, create remote resources, link Vercel, or deploy anything.",
+      "expected_output": "A maintained, official-generator-backed React and TypeScript repository with reproducible local checks, CI and dependency automation, plus deferred Vercel and GitHub plans.",
+      "files": [],
+      "assertions": [
+        "Chooses and records an official maintained framework generator instead of rebuilding its current output from package-version queries.",
+        "Selects the maintained profile and pins a supported Node range, package manager, and lockfile.",
+        "Provides root agent guidance, concise setup docs, tests proportional to the placeholder, and one verification command including lint, typecheck, and production build.",
+        "Checks in CI and dependency automation and identifies a stable aggregate required-check candidate for the future GitHub ruleset.",
+        "Keeps Vercel linking, environment access, remote creation, deployment, and publishing explicitly deferred."
+      ]
+    }
+  ]
+}

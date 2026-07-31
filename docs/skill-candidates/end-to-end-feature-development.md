@@ -96,7 +96,7 @@ Superpowers is therefore an optional strict implementation backend, not the defi
 ### Routing
 
 - **Should trigger:** “I have an idea for a NextUp feature and want to work through the design, backend impact, implementation, and TestFlight rollout”; “Write the spec and then hand this production feature to an agent team”; “Use the full Superpowers TDD flow for this cross-repository feature”; “Take this web feature from idea through a gated production rollout.”
-- **Should not trigger:** “Spike the smallest version of this and tell me whether it is worth building”; “Show me three runnable card designs”; “Change this isolated label”; “Use production-hardening on the implementation we already finished”; “Deploy the existing build now.”
+- **Should not trigger:** “Spike the smallest version of this and tell me whether it is worth building”; “Show me three runnable card designs”; “Change this isolated label”; “Harden the implementation we already finished”; “Deploy the existing build now.”
 
 ### Baseline
 
