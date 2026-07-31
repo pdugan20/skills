@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Fixed
+
+- Made the skills.sh freshness monitor honor bounded `Retry-After` guidance and
+  retry transient HTTP failures so catalog throttling is not mistaken for
+  stale skill content.
+
 ### Documentation
 
 - Recorded Patrick Skills v3.0.0 release and exact-tag installation evidence,
