@@ -3,8 +3,8 @@
   "notGrouped": "bottom",
   "groupings": [
     {
-      "title": "Design and UI",
-      "description": "Explore, analyze, and align product interfaces.",
+      "title": "Interface Design",
+      "description": "Explore interface directions, understand existing systems, and diagnose UI behavior.",
       "skills": [
         "code-native-ui-ideation",
         "align-ui-to-design-system",
@@ -13,8 +13,8 @@
       ]
     },
     {
-      "title": "Product development",
-      "description": "Start repositories, validate ideas, tune mobile interactions, integrate Apple system experiences, and deliver product features.",
+      "title": "Product Development",
+      "description": "Start repositories, validate ideas, tune mobile interactions, integrate platform experiences, and deliver production software.",
       "skills": [
         "bootstrap-repository",
         "feature-spike",
@@ -24,8 +24,8 @@
       ]
     },
     {
-      "title": "Mintlify documentation",
-      "description": "Create, review, and maintain Mintlify documentation.",
+      "title": "Documentation",
+      "description": "Create, review, and maintain documentation sites, reference material, and changelogs.",
       "skills": [
         "scaffold-mintlify-site",
         "review-mintlify-docs",

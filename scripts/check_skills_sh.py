@@ -21,25 +21,45 @@ DEFAULT_REQUEST_DELAY_SECONDS = 6.5
 
 
 class JsonLdParser(HTMLParser):
-    """Collect JSON-LD script contents without third-party dependencies."""
+    """Collect repository JSON-LD and visible skill-group metadata."""
 
     def __init__(self) -> None:
         super().__init__()
         self._active: list[str] | None = None
+        self._group: dict[str, list[str]] | None = None
+        self._group_field: str | None = None
         self.documents: list[str] = []
+        self.groupings: list[tuple[str, str]] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if tag == "script" and dict(attrs).get("type") == "application/ld+json":
+        attributes = dict(attrs)
+        if tag == "script" and attributes.get("type") == "application/ld+json":
             self._active = []
+        if tag == "section" and str(attributes.get("aria-labelledby", "")).startswith(
+            "skill-group-"
+        ):
+            self._group = {"title": [], "description": []}
+        elif self._group is not None and tag in {"h2", "p"}:
+            self._group_field = "title" if tag == "h2" else "description"
 
     def handle_data(self, data: str) -> None:
         if self._active is not None:
             self._active.append(data)
+        if self._group is not None and self._group_field is not None:
+            self._group[self._group_field].append(data)
 
     def handle_endtag(self, tag: str) -> None:
         if tag == "script" and self._active is not None:
             self.documents.append("".join(self._active))
             self._active = None
+        if tag in {"h2", "p"}:
+            self._group_field = None
+        if tag == "section" and self._group is not None:
+            title = " ".join("".join(self._group["title"]).split())
+            description = " ".join("".join(self._group["description"]).split())
+            if title:
+                self.groupings.append((title, description))
+            self._group = None
 
 
 def expected_skills(skills_root: Path | None = None) -> set[str]:
@@ -85,6 +105,27 @@ def catalog_skills(html: str, repository: str = REPOSITORY) -> set[str]:
         }
         return {name for name in names if name}
     raise ValueError("skills.sh CollectionPage JSON-LD was not found")
+
+
+def configured_groupings(config_path: Path | None = None) -> list[tuple[str, str]]:
+    """Return the exact visible title and description expected from skills.sh."""
+    config_path = config_path or ROOT / "skills.sh.json"
+    payload = json.loads(config_path.read_text(encoding="utf-8"))
+    groupings = payload.get("groupings") if isinstance(payload, dict) else None
+    if not isinstance(groupings, list):
+        raise ValueError("skills.sh.json has no groupings array")
+    return [
+        (grouping["title"], grouping.get("description", ""))
+        for grouping in groupings
+        if isinstance(grouping, dict) and isinstance(grouping.get("title"), str)
+    ]
+
+
+def catalog_groupings(html: str) -> list[tuple[str, str]]:
+    """Return visible configured group headings, excluding the fallback group."""
+    parser = JsonLdParser()
+    parser.feed(html)
+    return [grouping for grouping in parser.groupings if grouping[0] != "Other skills"]
 
 
 def retry_delay_seconds(error: HTTPError, attempt: int) -> float:
@@ -157,6 +198,22 @@ def compare(expected: set[str], actual: set[str]) -> list[str]:
     return messages
 
 
+def compare_groupings(
+    expected: list[tuple[str, str]], actual: list[tuple[str, str]]
+) -> list[str]:
+    if expected == actual:
+        return []
+    expected_text = "; ".join(f"{title}: {description}" for title, description in expected)
+    actual_text = (
+        "; ".join(f"{title}: {description}" for title, description in actual)
+        if actual
+        else "none"
+    )
+    return [
+        f"repository page groupings differ; expected {expected_text}; found {actual_text}"
+    ]
+
+
 def compare_snapshot(
     skill_name: str, expected: dict[str, str], actual: dict[str, str]
 ) -> list[str]:
@@ -195,6 +252,7 @@ def main() -> int:
 
     expected_files = local_skill_files(args.skills_root)
     expected = set(expected_files)
+    expected_groups = configured_groupings()
     last_messages: list[str] = []
     for attempt in range(1, args.attempts + 1):
         last_messages = []
@@ -216,6 +274,7 @@ def main() -> int:
                     html = fetch_catalog(args.url)
                 actual = catalog_skills(html)
                 last_messages.extend(compare(expected, actual))
+                last_messages.extend(compare_groupings(expected_groups, catalog_groupings(html)))
             except HTTPError as error:
                 if error.code == 429:
                     rate_limited = True

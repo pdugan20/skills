@@ -16,7 +16,11 @@ from urllib.request import Request
 import check_skills_sh
 
 
-def collection_html(skills: list[str]) -> str:
+def collection_html(
+    skills: list[str], groupings: list[tuple[str, str]] | None = None
+) -> str:
+    if groupings is None:
+        groupings = check_skills_sh.configured_groupings()
     parts = [
         {
             "@type": "SoftwareApplication",
@@ -36,7 +40,14 @@ def collection_html(skills: list[str]) -> str:
           "hasPart": {__import__('json').dumps(parts)}
         }}
         </script>
-        </head></html>
+        </head><body>
+        {''.join(
+            f'<section aria-labelledby="skill-group-{index}">'
+            f'<h2 id="skill-group-{index}">{title}</h2>'
+            f'<p>{description}</p></section>'
+            for index, (title, description) in enumerate(groupings)
+        )}
+        </body></html>
     """
 
 
@@ -199,6 +210,26 @@ class CheckSkillsShTests(unittest.TestCase):
             [
                 "missing from skills.sh: feature-delivery",
                 "not present in this repository: obsolete-skill",
+            ],
+        )
+
+    def test_extracts_visible_group_titles_and_descriptions(self) -> None:
+        expected = [
+            ("Interface Design", "Explore interface directions."),
+            ("Documentation", "Maintain reference material."),
+        ]
+        html = collection_html(["feature-spike"], expected)
+
+        self.assertEqual(check_skills_sh.catalog_groupings(html), expected)
+
+    def test_reports_missing_visible_groupings(self) -> None:
+        expected = [("Interface Design", "Explore interface directions.")]
+
+        self.assertEqual(
+            check_skills_sh.compare_groupings(expected, []),
+            [
+                "repository page groupings differ; expected "
+                "Interface Design: Explore interface directions.; found none"
             ],
         )
 

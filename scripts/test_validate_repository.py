@@ -80,6 +80,57 @@ class ValidateRepositoryTests(unittest.TestCase):
 
         self.assertIn("skills.sh.json: each skill may appear in only one grouping", errors)
 
+    def test_w011_audit_exception_requires_runtime_trust_boundary(self) -> None:
+        policy = {
+            "requiredProviders": ["snyk"],
+            "exceptions": [
+                {
+                    "skill": "feature-spike",
+                    "provider": "snyk",
+                    "status": "warn",
+                    "riskLevel": "medium",
+                    "issueCodes": ["W011"],
+                    "owner": "pdugan20",
+                    "reviewBy": "2026-10-31",
+                    "rationale": "The skill consumes required user input.",
+                    "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392",
+                }
+            ],
+        }
+        with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
+            skills_root = Path(directory)
+            skill_dir = skills_root / "feature-spike"
+            skill_dir.mkdir()
+            (skill_dir / "SKILL.md").write_text("# Feature spike\n", encoding="utf-8")
+
+            errors = validate_repository.validate_skills_sh_audit_policy(
+                policy, skills_root
+            )
+
+        self.assertTrue(any("require a ## Trust boundary" in error for error in errors))
+
+    def test_audit_policy_never_accepts_fail_verdicts(self) -> None:
+        policy = {
+            "requiredProviders": ["snyk"],
+            "exceptions": [
+                {
+                    "skill": "feature-spike",
+                    "provider": "snyk",
+                    "status": "fail",
+                    "riskLevel": "high",
+                    "issueCodes": ["W999"],
+                    "owner": "pdugan20",
+                    "reviewBy": "2026-10-31",
+                    "rationale": "This must still be rejected.",
+                    "upstreamIssue": "https://example.com/issue",
+                }
+            ],
+        }
+
+        errors = validate_repository.validate_skills_sh_audit_policy(policy)
+
+        self.assertTrue(any("fail verdicts cannot be accepted" in error for error in errors))
+
     def test_eval_manifest_requires_execution_coverage(self) -> None:
         with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
             skill_dir = Path(directory)
