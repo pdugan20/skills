@@ -288,16 +288,17 @@ routing, repository, installation, and strict external validation passed.
 
 ## Catalog sequencing
 
-1. Release and exact-tag install `tune-mobile-client-performance`
-   independently.
+1. Continue using the independently released `tune-mobile-client-performance`
+   skill while its refreshed skills.sh snapshot converges.
 2. Continue the pinned XcodeBuildMCP pilot in normal Apple tasks while retaining
    computer use and Instruments; do not install `build-ios-apps` to obtain it.
-3. Use the validated compact `integrate-app-intents` skill on future Apple
-   system-integration work; its authorized v3.2.0 release remains pending.
+3. Use the v3.2.0 `integrate-app-intents` skill on future Apple
+   system-integration work; keep its inventory status `validated` until the
+   skills.sh page and snapshots converge.
 4. Dogfood Apple's Memgraph tooling on the next real lifetime investigation and
    ETTrace only on a focused CPU case that survives the Instruments gate.
 
 The official XcodeBuildMCP skill and pinned Codex server pilot were added to
-`agent-tooling`. The App Intents skill was authored and validated locally. No
-`build-ios-apps` installation, external-skill install or fork, App Intents skill
-release, or external App Intents publication was performed.
+`agent-tooling`. The App Intents skill was released in Patrick Skills v3.2.0
+and pinned into the same Agent Tooling catalog. No `build-ios-apps`
+installation, external-skill install, or external-skill fork was performed.

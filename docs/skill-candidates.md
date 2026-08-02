@@ -74,7 +74,7 @@ These Patrick-owned skills are represented in the audit above so the inventory c
 | `feature-delivery` | Composite | Released in v2.2.0; coordinates idea-to-spec, cross-repository delivery, explicit execution-mode selection, and staged rollout without imposing strict mechanics on bounded features. |
 | `bootstrap-repository` | Composite | Published in v3.0.0 for new or empty repositories; selects proportional maturity, delegates to maintained generators, and keeps remote mutation separately authorized. Inventory promotion awaits a current skills.sh snapshot. |
 | `tune-mobile-client-performance` | Composite | One concrete SwiftUI or React Native smoothness symptom across motion, rendering, state, media, network, and observability; not a whole-app audit or motion-ideation workflow. |
-| `integrate-app-intents` | Composite | One Apple system integration across app-owned data, concurrency, routing, privacy, availability, discoverability, and layered verification; not ordinary in-app SwiftUI or broad Apple setup. |
+| `integrate-app-intents` | Composite | Published in v3.2.0 for one Apple system integration across app-owned data, concurrency, routing, privacy, availability, discoverability, and layered verification; inventory promotion awaits a current skills.sh page and snapshots. |
 | `scaffold-mintlify-site` | Composite | New-site scaffolding, not review or external deployment. |
 | `review-mintlify-docs` | Discipline | Mintlify editorial and information-architecture review, not generated output. |
 | `generate-mintlify-reference` | Composite | Source-backed Mintlify reference generation and drift checks. |
@@ -137,6 +137,14 @@ a targeted reference and eval correction, a fresh replay selected current
 and canonical routing, and preserved account, Spotlight, XCUITest, and
 physical-device boundaries. That compact corrected method was validated
 without installing or forking an external skill.
+
+Patrick Skills v3.2.0 published that method and passed tagged-archive,
+exact-tag Claude Code, Codex, and Cursor installation, downstream Agent Tooling
+pinning, CI, and canonical machine-setup verification. The skills.sh refresh
+path now reads the new skill snapshot, but the public collection page still
+omits it and lists retired `production-hardening`; the mobile-performance
+snapshot also retains its pre-v3.2.0 SwiftUI reference. `SC-020` therefore
+remains `validated` until the upstream catalog fully converges.
 
 The next pass supplied the missing `SC-010` evidence. A throwaway integration
 probe removed backend scope while preserving an inconclusive commercial gate; a

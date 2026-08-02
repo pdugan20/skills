@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Documentation
+
+- Recorded v3.2.0 archive integrity, exact-tag multi-client installation,
+  downstream Agent Tooling adoption, and the remaining skills.sh page and
+  snapshot lag.
+
 ## [3.2.0] - 2026-08-02
 
 ### Added
