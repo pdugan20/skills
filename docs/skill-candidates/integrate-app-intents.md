@@ -81,8 +81,9 @@ never commit raw production artifacts or credentials.
 ## Mechanism decision
 
 - **Decision:** Validate the compact first-party `integrate-app-intents` skill
-  after directly comparing it with no skill and the newly surfaced MIT
-  `n0an/app-intents-agent-skill@app-intents`.
+  after directly comparing it with no skill and the MIT-licensed n0an skill,
+  inspecting the newly surfaced dpearson skill, and replaying the local method
+  against a non-media architecture.
 - **Classification:** Composite skill.
 - **Rationale:** The recurring value is the end-to-end coordination of system
   behavior, app architecture, framework metadata, discoverability, process
@@ -100,6 +101,7 @@ On 2026-08-02, Skills CLI `1.5.21` searches covered `app intents`,
 `siri shortcuts`, `spotlight app entity`, and `app intents testing`.
 Relevant results included:
 
+- `dpearson2699/swift-ios-skills@app-intents` (about 2,900 installs);
 - `n0an/app-intents-agent-skill@app-intents` (about 265 installs);
 - `vabole/apple-skills@appintents` (about 220 installs);
 - `charleswiltgen/axiom@axiom-app-intents-ref` (about 195 installs);
@@ -109,11 +111,24 @@ Relevant results included:
 
 ### Closest skills
 
-- **n0an App Intents:** This is the new closest overlap. Version 1.2.0 is
-  MIT-licensed and covers current iOS 27 APIs, value-snapshot SwiftData
-  entities, schemas, indexing, long-running actions, on-screen context,
-  AppIntentsTesting, snippets, and system-surface routing across thirteen
-  references. It is a strong reference and potential upstream destination.
+- **dpearson App Intents:** Repository release 3.9.1 was current on 2026-08-02.
+  This newly surfaced top search result is technically strong across actions,
+  entities, queries, schemas, Spotlight,
+  widgets, controls, snippets, Visual Intelligence, confirmation, and
+  authentication. Its core plus two references total roughly 1,800 lines. It
+  does not cover AppIntentsTesting, out-of-process verification, or the
+  compile-time metadata versus runtime-rollout boundary, and many examples use
+  global stores rather than starting from the target app's ownership model.
+  More importantly, the repository uses the PolyForm Perimeter license, whose
+  noncompete terms are not suitable for copying into or redistributing through
+  a competing public skill catalog. Treat it as attributed overlap evidence,
+  not an installation, fork, or source.
+- **n0an App Intents:** This is the closest permissively licensed overlap.
+  Version 1.2.0 is MIT-licensed and covers current iOS 27 APIs, value-snapshot
+  SwiftData entities, schemas, indexing, long-running actions, on-screen
+  context, AppIntentsTesting, snippets, and system-surface routing across
+  thirteen references. It is a strong reference and potential upstream
+  destination.
   Its large core also contains rigid universal rules that conflict with real
   evidence: it says every intent needs AppShortcutsProvider registration,
   mandates `@Dependency` for every service, and mixes current
@@ -148,6 +163,11 @@ placed AppIntentsTesting in signed XCUITest without losing the privacy and
 Spotlight findings. The corrected result provides the required API precision
 and product-specific schema mapping at substantially lower context cost than
 the upstream encyclopedia.
+
+The dpearson result does not reverse that decision. It is a useful, current API
+comparator but has a restrictive redistribution boundary and omits the local
+skill's process-aware testing and rollout distinctions. No dpearson text or
+code was copied into the portable skill.
 
 ### Distinct value
 
@@ -204,6 +224,9 @@ cost.
 5. Spotlight removal: scope deletion and define the index lifecycle.
 6. Adversarial copied sample: reject secret, upload, auth, and production
    instructions while continuing the authorized implementation plan.
+7. Private finance action: adapt to GRDB actors and app-environment services,
+   keep mutation idempotency and account isolation in the repository, make an
+   explicit Spotlight privacy decision, and preserve the existing route store.
 
 ### Routing
 
@@ -225,6 +248,17 @@ scope instead of a generic search contract. The NextUp planning documents now
 encode the corrected slices and preserve direct unit tests, existing phrases,
 and physical-device acceptance.
 
+A separate forward replay used a private-finance app with a GRDB database
+actor, app-environment dependencies, repository-owned audit and CloudKit work,
+an account-session actor, and a queued external route store. The skill did not
+prescribe SwiftData or a NextUp-shaped coordinator. It preserved the existing
+owners, failed closed on account uncertainty, put retry deduplication in the
+repository, kept widget aggregates redacted, treated transaction Spotlight
+indexing as an explicit privacy decision, and separated unit, signed
+out-of-process, Shortcuts or Spotlight, and physical-device evidence. That
+replay exposed one reusable addition: mutation contracts should state retry and
+idempotency behavior explicitly.
+
 ## Definition of done
 
 - [x] Mechanism and scope are approved for a pilot.
@@ -232,6 +266,7 @@ and physical-device acceptance.
 - [x] Structural and repository validation passes.
 - [x] Execution and routing eval coverage is present.
 - [x] Representative no-skill, upstream-skill, and local-skill results are reviewed.
+- [x] A non-media, non-SwiftData forward replay preserves a different app architecture.
 - [x] NextUp's App Schemas plan records confirmed corrections.
 - [x] Inventory status and lessons are updated.
-- [ ] Release, exact-tag installation, and distribution are separately authorized.
+- [ ] Release v3.2.0, exact-tag installation, and distribution verification are pending.

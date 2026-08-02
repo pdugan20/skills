@@ -49,6 +49,7 @@ Write the smallest end-to-end behavior before choosing protocols:
 - the oldest supported OS and the SDK used to build;
 - the system-visible result, dialog, snippet, route, or indexed content;
 - privacy, confirmation, authentication, and destructive-action expectations;
+- retry, replay, cancellation, and mutation-idempotency expectations;
 - the automated and on-device observation that establishes success.
 
 Do not begin with a catalog of every system surface. One reliable action or
@@ -120,6 +121,9 @@ Preserve repository and actor rules in every execution mode:
   testable without carrying non-Sendable state in the intent.
 - Perform mutations through the same repository or service path as the app so
   validation, local state, sync, analytics, and conflict policy do not diverge.
+- Make retry-sensitive mutations idempotent at the app-owned action or
+  repository boundary. Do not invent a framework invocation identifier when
+  the active SDK does not provide a durable one.
 - Mark UI or persistence work with the actor isolation it actually requires;
   do not move actor-bound models across the boundary.
 - Make foreground continuation and deep-link delivery deterministic for both an

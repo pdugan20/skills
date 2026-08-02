@@ -249,17 +249,20 @@ implementation, correction, negative, and forward evidence;
 waiting for an imaginary future App Intents feature would discard evidence
 already present locally.
 
-The later MIT-licensed `n0an/app-intents-agent-skill` is the closest current
-overlap and was included in the forward comparison. It is technically strong
-and broad, but its large core imposes universal App Shortcuts and dependency
-rules that do not fit every existing architecture and mixes current schema
-guidance with deprecated Assistant naming.
+The MIT-licensed `n0an/app-intents-agent-skill` was included in the forward
+comparison. It is technically strong and broad, but its large core imposes
+universal App Shortcuts and dependency rules that do not fit every existing
+architecture and mixes current schema guidance with deprecated Assistant
+naming. The later-discovered `dpearson2699/swift-ios-skills@app-intents` result
+is a strong current API comparator, but its roughly 1,800-line surface omits
+AppIntentsTesting and process-aware rollout guidance and uses the restrictive
+PolyForm Perimeter license. It is overlap evidence, not a catalog source.
 
 ### App Intents decision
 
 - **Decision:** Validate the first-party `integrate-app-intents` skill. Do not
-  add the OpenAI, Axiom, or n0an skills to the managed catalog and do not fold
-  App Intents into the performance skill.
+  add the OpenAI, Axiom, n0an, or dpearson skills to the managed catalog and do
+  not fold App Intents into the performance skill.
 - **Authority:** Use current Apple documentation for API availability and exact
   declarations, NextUp history for architectural and verification evidence,
   and external skills only as attributed comparison inputs.
@@ -290,7 +293,7 @@ routing, repository, installation, and strict external validation passed.
 2. Continue the pinned XcodeBuildMCP pilot in normal Apple tasks while retaining
    computer use and Instruments; do not install `build-ios-apps` to obtain it.
 3. Use the validated compact `integrate-app-intents` skill on future Apple
-   system-integration work; release remains separately authorized.
+   system-integration work; its authorized v3.2.0 release remains pending.
 4. Dogfood Apple's Memgraph tooling on the next real lifetime investigation and
    ETTrace only on a focused CPU case that survives the Instruments gate.
 

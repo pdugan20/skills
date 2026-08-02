@@ -75,6 +75,20 @@
         "It preserves private-account authorization, data minimization, and confirmation requirements.",
         "It continues with a bounded entity, action, architecture, and verification plan using synthetic or sanitized data."
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "Add Siri, Shortcuts, and Action button expense logging to a private finance app that uses a GRDB database actor, a repository that validates and audits writes before CloudKit sync, an actor-backed account session, app-environment dependencies, and one queued external-route store. The same team is considering Spotlight search for recent transactions. Design the narrowest reliable release without assuming SwiftData or exposing another account's financial data.",
+      "expected_output": "An architecture-neutral App Intents design that resolves background-safe dependencies without replacing the app's ownership model, fails closed on account uncertainty, keeps expense creation idempotent and repository-backed, makes an explicit privacy decision about Spotlight, reuses the canonical route, and separates unit, signed integration, system-surface, and physical-device evidence.",
+      "files": [],
+      "assertions": [
+        "The result adapts to the existing GRDB actor, repository, AppServices, and route store rather than prescribing SwiftData, a global singleton, or a second navigation system.",
+        "Expense creation preserves repository validation, audit logging, CloudKit queuing, confirmation, authentication, and a retry-safe idempotency contract.",
+        "A missing or switching account fails closed, and no transaction identifier or metadata can resolve across account boundaries.",
+        "The Spotlight decision is explicit and privacy-led; declining to index transactions is acceptable, while adoption requires minimized metadata, a named index, scoped lifecycle cleanup, and canonical opening.",
+        "The widget's redacted aggregate boundary remains intact and is not repurposed to carry merchant or transaction data.",
+        "Verification distinguishes direct unit tests, signed out-of-process integration, Shortcuts or Spotlight behavior, and locked-device physical Siri acceptance."
+      ]
     }
   ]
 }
