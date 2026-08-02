@@ -58,7 +58,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | `SC-017` | Automate Apple builds, Simulator flows, and runtime debugging | Current project automation plus a live XcodeBuildMCP 2.7.0 semantic snapshot, runtime-log capture, and LLDB stack cycle against the Messenger Simulator | **External tool plus upstream skill:** pinned Codex-first XcodeBuildMCP pilot in `agent-tooling`, retaining computer use for visual surfaces and Instruments for performance attribution; do not write a competing skill or install `build-ios-apps` | `pilot` | High | [Brief](skill-candidates/ios-development-capabilities.md#sc-017-structured-apple-runtime-control) |
 | `SC-018` | Investigate iOS memory lifetimes with memgraphs | Apple Memory Graph and `leaks` tooling, OpenAI's capture and summary helpers, and current public overlap, but no real local leak case yet | **Needs real-case evidence:** use Apple's tools on the next app-owned leak or retained-growth investigation, then decide whether repeated capture and analysis failures justify a script-backed first-party skill | `needs-evidence` | Medium | [Brief](skill-candidates/ios-development-capabilities.md#sc-018-memgraph-lifetime-investigation) |
 | `SC-019` | Profile a focused iOS CPU path with ETTrace | Upstream ETTrace workflow, OpenAI's dSYM and flamegraph helpers, and local synthetic checks, but no current local CPU case that Instruments failed to answer | **Task-level fallback:** keep ETTrace outside the managed catalog until a bounded real case demonstrates actionable lift over Instruments or `xctrace` and tolerates temporary app linkage | `needs-evidence` | Low | [Brief](skill-candidates/ios-development-capabilities.md#sc-019-ettrace-cpu-profiling) |
-| `SC-020` | Build App Intents system integrations | NextUp's shipped entities, intents, interactive snippets, Spotlight, routing, tests, post-launch corrections, device-verification debt, and planned App Schemas upgrade | **First-party skill pilot:** author a compact `integrate-app-intents` skill from current Apple APIs and NextUp evidence, using the App Schemas upgrade as its first forward evaluation; do not import the stale OpenAI templates or oversized Axiom reference | `pilot` | High | [Brief](skill-candidates/ios-development-capabilities.md#sc-020-app-intents-integration) |
+| `SC-020` | Build App Intents system integrations | NextUp's shipped entities, intents, interactive snippets, Spotlight, routing, tests, post-launch corrections, corrected App Schemas plan, and three-way forward comparison | **Validated first-party skill:** `integrate-app-intents` preserves app-owned architecture across Apple system surfaces, verifies current SDK metadata before adopting schemas, and separates unit, out-of-process, and physical-device evidence; no external skill was installed or forked | `validated` | High | [Brief](skill-candidates/integrate-app-intents.md) |
 
 ## Current collection
 
@@ -74,6 +74,7 @@ These Patrick-owned skills are represented in the audit above so the inventory c
 | `feature-delivery` | Composite | Released in v2.2.0; coordinates idea-to-spec, cross-repository delivery, explicit execution-mode selection, and staged rollout without imposing strict mechanics on bounded features. |
 | `bootstrap-repository` | Composite | Published in v3.0.0 for new or empty repositories; selects proportional maturity, delegates to maintained generators, and keeps remote mutation separately authorized. Inventory promotion awaits a current skills.sh snapshot. |
 | `tune-mobile-client-performance` | Composite | One concrete SwiftUI or React Native smoothness symptom across motion, rendering, state, media, network, and observability; not a whole-app audit or motion-ideation workflow. |
+| `integrate-app-intents` | Composite | One Apple system integration across app-owned data, concurrency, routing, privacy, availability, discoverability, and layered verification; not ordinary in-app SwiftUI or broad Apple setup. |
 | `scaffold-mintlify-site` | Composite | New-site scaffolding, not review or external deployment. |
 | `review-mintlify-docs` | Discipline | Mintlify editorial and information-architecture review, not generated output. |
 | `generate-mintlify-reference` | Composite | Source-backed Mintlify reference generation and drift checks. |
@@ -125,7 +126,17 @@ selecting the first causal boundary and one-variable experiment across motion,
 state publication, rendering, media, network, and instrumentation—not adding
 another framework optimization checklist. The separate capability brief records
 why XcodeBuildMCP is an agent-tooling pilot, Memgraph and ETTrace remain
-case-triggered, and App Intents proceeds as a focused first-party pilot.
+case-triggered, and App Intents warranted a focused first-party skill.
+
+The App Intents comparison found that both an unassisted agent and the closest
+MIT upstream skill already rejected nonexistent schemas, runtime registration,
+and Catalyst-only verification. The first local replay preserved the stronger
+architecture and privacy findings but used deprecated `.system.search`; after
+a targeted reference and eval correction, a fresh replay selected current
+`.system.searchInApp` with the honest `.tv` scope, retained existing phrases
+and canonical routing, and preserved account, Spotlight, XCUITest, and
+physical-device boundaries. That compact corrected method was validated
+without installing or forking an external skill.
 
 The next pass supplied the missing `SC-010` evidence. A throwaway integration
 probe removed backend scope while preserving an inconclusive commercial gate; a

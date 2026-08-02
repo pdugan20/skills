@@ -18,6 +18,7 @@ EXPECTED_SKILLS = {
     "feature-delivery": True,
     "feature-spike": True,
     "generate-mintlify-reference": True,
+    "integrate-app-intents": True,
     "review-mintlify-docs": True,
     "scaffold-mintlify-site": True,
     "tune-mobile-client-performance": True,

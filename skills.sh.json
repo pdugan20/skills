@@ -14,11 +14,12 @@
     },
     {
       "title": "Product development",
-      "description": "Start repositories, validate ideas, tune mobile interactions, and deliver product features.",
+      "description": "Start repositories, validate ideas, tune mobile interactions, integrate Apple system experiences, and deliver product features.",
       "skills": [
         "bootstrap-repository",
         "feature-spike",
         "tune-mobile-client-performance",
+        "integrate-app-intents",
         "feature-delivery"
       ]
     },

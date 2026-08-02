@@ -13,7 +13,7 @@
 | `SC-017` | Structured Apple build, Simulator, and runtime debugging | Run a pinned Codex-first XcodeBuildMCP pilot; keep computer use as its visual complement and Instruments as the profiler | `pilot` |
 | `SC-018` | Memgraph leak and retained-growth investigation | Wait for one real lifetime bug before authoring or cataloging a workflow | `needs-evidence` |
 | `SC-019` | Focused iOS CPU profiling with ETTrace | Keep as a task-level fallback after Instruments or `xctrace`, not a managed dependency | `needs-evidence` |
-| `SC-020` | App Intents feature integration | Author a compact first-party skill from NextUp's shipped system integrations; do not import the external skills | `pilot` |
+| `SC-020` | App Intents feature integration | Use the validated compact first-party skill derived from NextUp and a three-way forward comparison; do not import the external skills | `validated` |
 
 ## Shared evidence
 
@@ -245,15 +245,21 @@ the shared deep-link service, preserving actor-safe test seams, fixing
 system-spoken episode labels, and correcting image identity and size on system
 surfaces. The repository also has a concrete next App Intents feature: the
 planned App Schemas and `AppIntentsTesting` upgrade. That supplies enough real
-implementation, correction, negative, and forward evidence to begin a pilot;
+implementation, correction, negative, and forward evidence;
 waiting for an imaginary future App Intents feature would discard evidence
 already present locally.
 
+The later MIT-licensed `n0an/app-intents-agent-skill` is the closest current
+overlap and was included in the forward comparison. It is technically strong
+and broad, but its large core imposes universal App Shortcuts and dependency
+rules that do not fit every existing architecture and mixes current schema
+guidance with deprecated Assistant naming.
+
 ### App Intents decision
 
-- **Decision:** Start a first-party `integrate-app-intents` skill pilot. Do not
-  add the OpenAI or Axiom skills to the managed catalog and do not fold App
-  Intents into the performance skill.
+- **Decision:** Validate the first-party `integrate-app-intents` skill. Do not
+  add the OpenAI, Axiom, or n0an skills to the managed catalog and do not fold
+  App Intents into the performance skill.
 - **Authority:** Use current Apple documentation for API availability and exact
   declarations, NextUp history for architectural and verification evidence,
   and external skills only as attributed comparison inputs.
@@ -261,33 +267,34 @@ already present locally.
   entities and data boundaries, execution and app handoff, discoverability and
   system surfaces, and testing plus on-device verification. Do not copy an API
   encyclopedia into the skill.
-- **First forward feature:** Use NextUp's App Schemas and
-  `AppIntentsTesting` upgrade to evaluate whether the pilot improves API
-  validation, actor and process boundaries, fallback preservation, and the
-  simulator-versus-device verification split.
+- **Forward feature:** NextUp's App Schemas and `AppIntentsTesting` upgrade
+  confirmed the need for current SDK validation, actor and process boundaries,
+  fallback preservation, and an explicit simulator-versus-device verification
+  split.
 
-### App Intents promotion gate
+### App Intents validation result
 
-Before implementation, replay natural requests against the pre-Phase-0
-foundation, the unsafe unscoped Spotlight and cold-deep-link states, and the
-current App Schemas plan. Forward evaluation must improve architecture or
-verification decisions beyond what the repository and Apple documentation
-already produce, remain well under the collection's context limits, and include
-negative routing for ordinary SwiftUI features that do not involve system
-surfaces. Do not release until a device-verification result or explicitly owed
-manual debt is reported rather than inferred from Catalyst tests.
+Natural requests were replayed against the historical unsafe Spotlight and
+cold-deep-link states and the current App Schemas plan. The no-skill and n0an
+passes were strong. The first local pass failed exact API precision by using
+deprecated `.system.search`; a corrected reference and eval produced a fresh
+replay using `.system.searchInApp` and `.tv` while preserving NextUp's existing
+intents, phrases, account isolation, queued routing, Spotlight lifecycle,
+signed XCUITest placement, and physical-device acceptance. Structural,
+routing, repository, installation, and strict external validation passed.
 
 ## Catalog sequencing
 
-1. Finish and release `tune-mobile-client-performance` independently when
-   authorized. None of these four decisions blocks that release.
+1. Release and exact-tag install `tune-mobile-client-performance`
+   independently.
 2. Continue the pinned XcodeBuildMCP pilot in normal Apple tasks while retaining
    computer use and Instruments; do not install `build-ios-apps` to obtain it.
-3. Author and evaluate the compact `integrate-app-intents` pilot against the
-   historical corrections and the planned NextUp App Schemas upgrade.
+3. Use the validated compact `integrate-app-intents` skill on future Apple
+   system-integration work; release remains separately authorized.
 4. Dogfood Apple's Memgraph tooling on the next real lifetime investigation and
    ETTrace only on a focused CPU case that survives the Instruments gate.
 
 The official XcodeBuildMCP skill and pinned Codex server pilot were added to
-`agent-tooling`. No `build-ios-apps` installation, external-skill fork, skill
-release, or external publication was performed.
+`agent-tooling`. The App Intents skill was authored and validated locally. No
+`build-ios-apps` installation, external-skill install or fork, App Intents skill
+release, or external App Intents publication was performed.
