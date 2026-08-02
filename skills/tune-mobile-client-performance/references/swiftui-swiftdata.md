@@ -55,6 +55,6 @@ are routing cues for evidence, not a generic optimization checklist.
 The observation, identity, image, and Instruments intake categories were
 cross-checked against Dimillian's MIT-licensed
 [`swiftui-performance-audit`](https://github.com/Dimillian/Skills/tree/main/swiftui-performance-audit).
-This reference is independently written around the causal gaps found in local
-NextUp histories; consult current Apple Developer documentation for exact
-Instruments and platform APIs.
+This reference is independently written around causal gaps found across
+repeated SwiftUI performance investigations; consult current Apple Developer
+documentation for exact Instruments and platform APIs.

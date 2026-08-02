@@ -38,6 +38,7 @@ npx skills@latest add pdugan20/skills
 - [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) — Dissect UI recordings against a target repository before diagnosing or reconstructing behavior.
 - [`feature-spike`](skills/feature-spike/SKILL.md) — Test feature value or technical feasibility before production investment.
 - [`tune-mobile-client-performance`](skills/tune-mobile-client-performance/SKILL.md) — Trace one jittery or late mobile interaction to its causal boundary and verify the smallest supported adjustment.
+- [`integrate-app-intents`](skills/integrate-app-intents/SKILL.md) — Add Apple system experiences without bypassing app-owned data, routing, privacy, or availability boundaries.
 - [`feature-delivery`](skills/feature-delivery/SKILL.md) — Take substantial features from idea through coordinated implementation and staged rollout.
 - [`bootstrap-repository`](skills/bootstrap-repository/SKILL.md) — Scaffold new repositories with proportional local tooling, CI, and GitHub policy.
 

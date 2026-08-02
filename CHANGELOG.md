@@ -4,6 +4,19 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Added
+
+- Added [`integrate-app-intents`](skills/integrate-app-intents/SKILL.md) for
+  architecture-preserving Apple system integrations across Siri, Shortcuts,
+  Spotlight, snippets, App Schemas, onscreen context, and AppIntentsTesting,
+  with seven execution evals and twenty balanced routing cases.
+
+### Changed
+
+- Added a non-media GRDB portability case and explicit mutation-idempotency
+  guidance to `integrate-app-intents`, and removed project-specific provenance
+  from the runtime guidance in `tune-mobile-client-performance`.
+
 ## [3.1.0] - 2026-08-02
 
 ### Added

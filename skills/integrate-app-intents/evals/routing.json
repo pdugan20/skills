@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Add a Siri action that marks an episode watched without bypassing our repository.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make our AppEntity discoverable in Spotlight and clean up stale indexed items.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our OpenIntent loses the deep link on a cold app launch.",
+    "should_trigger": true
+  },
+  {
+    "query": "Upgrade these @AssistantIntent declarations to the current App Schema API.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add AppIntentsTesting coverage for our entity query and Spotlight index.",
+    "should_trigger": true
+  },
+  {
+    "query": "Expose this action through AppShortcutsProvider with natural Siri phrases.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build an interactive SnippetIntent result that can open the selected episode.",
+    "should_trigger": true
+  },
+  {
+    "query": "Annotate these visible rows with App Entity identifiers so Siri understands 'this one'.",
+    "should_trigger": true
+  },
+  {
+    "query": "Decide whether our tracker honestly fits any App Schema domain before we add macros.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fix the actor-isolation errors in this SwiftData EntityQuery.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a normal in-app SwiftUI search screen with filters and recent queries.",
+    "should_trigger": false
+  },
+  {
+    "query": "Style this WidgetKit timeline card to match the app's design system.",
+    "should_trigger": false
+  },
+  {
+    "query": "Add an internal NavigationStack route from Home to Show Detail.",
+    "should_trigger": false
+  },
+  {
+    "query": "Why is Siri giving me the wrong answer to a general knowledge question?",
+    "should_trigger": false
+  },
+  {
+    "query": "Profile why this SwiftUI animation drops frames on device.",
+    "should_trigger": false
+  },
+  {
+    "query": "Implement the backend endpoint that marks an episode watched.",
+    "should_trigger": false
+  },
+  {
+    "query": "Add a Home Screen quick action using UIApplicationShortcutItem only.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review our whole iOS project for modern Swift concurrency practices.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create three visual directions for the Siri snippet card before we choose one.",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up Xcode, boot a Simulator, and run the existing app.",
+    "should_trigger": false
+  }
+]

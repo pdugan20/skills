@@ -1,0 +1,6 @@
+interface:
+  display_name: "Integrate App Intents"
+  short_description: "Build reliable Apple system integrations"
+  default_prompt: "Use $integrate-app-intents to add this Siri, Shortcuts, Spotlight, or other App Intents experience without bypassing the app architecture."
+policy:
+  allow_implicit_invocation: true
