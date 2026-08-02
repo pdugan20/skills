@@ -14,8 +14,13 @@
     },
     {
       "title": "Product development",
-      "description": "Start repositories, validate ideas, and deliver product features.",
-      "skills": ["bootstrap-repository", "feature-spike", "feature-delivery"]
+      "description": "Start repositories, validate ideas, tune mobile interactions, and deliver product features.",
+      "skills": [
+        "bootstrap-repository",
+        "feature-spike",
+        "tune-mobile-client-performance",
+        "feature-delivery"
+      ]
     },
     {
       "title": "Mintlify documentation",

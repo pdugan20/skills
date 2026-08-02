@@ -20,6 +20,7 @@ EXPECTED_SKILLS = {
     "generate-mintlify-reference": True,
     "review-mintlify-docs": True,
     "scaffold-mintlify-site": True,
+    "tune-mobile-client-performance": True,
     "write-mintlify-changelog": True,
 }
 PLUGIN_NAME = "patrick-skills"

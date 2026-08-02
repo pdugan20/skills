@@ -1,0 +1,82 @@
+[
+  {
+    "query": "This SwiftUI list still stutters after the images are warm. Find the actual owner and smooth the scroll.",
+    "should_trigger": true
+  },
+  {
+    "query": "The React Native keyboard transition fights the chat list and makes the composer jump.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make this mobile screen reveal feel seamless; it pauses for two frames halfway through.",
+    "should_trigger": true
+  },
+  {
+    "query": "Profile why this SwiftUI animation drops frames on a physical device in Release.",
+    "should_trigger": true
+  },
+  {
+    "query": "The first paint of this Expo thread is wrong for a few frames and then corrects itself.",
+    "should_trigger": true
+  },
+  {
+    "query": "Is this endpoint making the iOS sheet feel slow, or are we blocking the main thread?",
+    "should_trigger": true
+  },
+  {
+    "query": "TestFlight scrolling regressed but the Simulator is fine; isolate the performance difference.",
+    "should_trigger": true
+  },
+  {
+    "query": "Tune this mobile feature without changing its design or stacking speculative optimizations.",
+    "should_trigger": true
+  },
+  {
+    "query": "This Expo search transition hesitates while the results tree mounts. Diagnose and fix it.",
+    "should_trigger": true
+  },
+  {
+    "query": "The SwiftData-backed watch history gets progressively more janky as the library grows.",
+    "should_trigger": true
+  },
+  {
+    "query": "Invent three animation directions for this onboarding card and build the best two.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review these easing curves for motion craft; there is no reported runtime problem.",
+    "should_trigger": false
+  },
+  {
+    "query": "Analyze the attached screen recording and describe the first visual divergence, but do not inspect or change code.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit the entire mobile app for memory, battery, startup, and networking opportunities.",
+    "should_trigger": false
+  },
+  {
+    "query": "Optimize this backend endpoint and its database query plan.",
+    "should_trigger": false
+  },
+  {
+    "query": "Production-harden the app for release, including performance, accessibility, and observability.",
+    "should_trigger": false
+  },
+  {
+    "query": "What would you call this animation where the card expands into a full-screen detail view?",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix this static layout mismatch between the screenshot and the SwiftUI preview.",
+    "should_trigger": false
+  },
+  {
+    "query": "Implement the approved matched-geometry transition exactly as specified; no profiling is needed.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain the difference between a spring and an ease-out curve in React Native Reanimated.",
+    "should_trigger": false
+  }
+]

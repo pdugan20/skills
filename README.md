@@ -15,6 +15,7 @@ They help an agent recognize what kind of work it is doing and apply the right l
 
 - Explore runnable alternatives before choosing one.
 - Analyze a finished interface or recording against repository evidence.
+- Trace one mobile interaction from a visible hitch to its causal boundary.
 - Distinguish a feature spike from production delivery.
 - Stand up a new repository with rigor that matches its intended maturity.
 - Produce documentation grounded in the actual product instead of generic filler.
@@ -36,6 +37,7 @@ npx skills@latest add pdugan20/skills
 - [`audit-design-system-health`](skills/audit-design-system-health/SKILL.md) — Audit repository-wide design drift, missing system capabilities, consolidation candidates, and enforceable rules.
 - [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) — Dissect UI recordings against a target repository before diagnosing or reconstructing behavior.
 - [`feature-spike`](skills/feature-spike/SKILL.md) — Test feature value or technical feasibility before production investment.
+- [`tune-mobile-client-performance`](skills/tune-mobile-client-performance/SKILL.md) — Trace one jittery or late mobile interaction to its causal boundary and verify the smallest supported adjustment.
 - [`feature-delivery`](skills/feature-delivery/SKILL.md) — Take substantial features from idea through coordinated implementation and staged rollout.
 - [`bootstrap-repository`](skills/bootstrap-repository/SKILL.md) — Scaffold new repositories with proportional local tooling, CI, and GitHub policy.
 

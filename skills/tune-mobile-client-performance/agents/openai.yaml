@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tune Mobile Client Performance"
+  short_description: "Diagnose and smooth a mobile interaction"
+  default_prompt: "Use $tune-mobile-client-performance to trace this mobile hitch to its causal boundary, make the smallest supported adjustment, and verify the same interaction."
+policy:
+  allow_implicit_invocation: true
