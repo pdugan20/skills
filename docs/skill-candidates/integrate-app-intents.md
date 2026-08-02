@@ -259,6 +259,33 @@ out-of-process, Shortcuts or Spotlight, and physical-device evidence. That
 replay exposed one reusable addition: mutation contracts should state retry and
 idempotency behavior explicitly.
 
+## Release and distribution evidence
+
+Patrick Skills
+[`v3.2.0`](https://github.com/pdugan20/skills/releases/tag/v3.2.0) was
+published from annotated tag commit `9e0ac5833d93e2afdca812bd61609d719bd9e851`.
+The curated release notes match this changelog section after terminal-newline
+normalization. The 162-file release archive has SHA-256
+`be6af0c93705ed7c4fb78c88a58350f8ace39c4468bb65c95068d98f5b55e6ac`;
+its extracted path set, executable modes, and file bytes match the tagged Git
+tree.
+
+The literal tag URL installed all thirteen skills into the Claude Code, Codex,
+and Cursor layouts. Both installed trees match the tagged source byte-for-byte,
+and the generated lock records `ref: v3.2.0`. Agent Tooling
+[#18](https://github.com/pdugan20/agent-tooling/pull/18) pins all thirteen
+Patrick-owned snapshots to the same tag, includes `integrate-app-intents`, and
+passes repository CI plus the canonical machine bootstrap and setup check.
+
+The supported skills.sh refresh path installed the current thirteen-skill main
+tree and caused the new App Intents snapshot to become readable, but public
+distribution has not fully converged. The collection page still omits
+`integrate-app-intents` and lists retired `production-hardening`, while the
+`tune-mobile-client-performance` snapshot still serves the pre-v3.2.0 SwiftUI
+reference. Keep this candidate `validated` until those upstream page and
+snapshot defects clear; the same stale-snapshot behavior is tracked in
+[skills issue #780](https://github.com/vercel-labs/skills/issues/780).
+
 ## Definition of done
 
 - [x] Mechanism and scope are approved for a pilot.
@@ -269,4 +296,7 @@ idempotency behavior explicitly.
 - [x] A non-media, non-SwiftData forward replay preserves a different app architecture.
 - [x] NextUp's App Schemas plan records confirmed corrections.
 - [x] Inventory status and lessons are updated.
-- [ ] Release v3.2.0, exact-tag installation, and distribution verification are pending.
+- [x] Release v3.2.0, verify its archive, install the exact tag across clients,
+  and pin it in Agent Tooling.
+- [ ] Confirm that skills.sh lists the current collection and serves every
+  v3.2.0 snapshot before promoting the candidate to `released`.
