@@ -4,6 +4,8 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-08-02
+
 ### Added
 
 - Added [`integrate-app-intents`](skills/integrate-app-intents/SKILL.md) for
