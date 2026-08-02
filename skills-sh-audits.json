@@ -1,0 +1,49 @@
+{
+  "requiredProviders": ["agent-trust-hub", "socket", "snyk"],
+  "exceptions": [
+    {
+      "skill": "bootstrap-repository",
+      "provider": "snyk",
+      "status": "warn",
+      "riskLevel": "medium",
+      "issueCodes": ["W011"],
+      "owner": "pdugan20",
+      "reviewBy": "2026-10-31",
+      "rationale": "Repository metadata and rulesets are required inspection inputs. The skill now treats them as data, preserves approval boundaries, and never grants embedded content authority over commands, secrets, or writes.",
+      "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392"
+    },
+    {
+      "skill": "feature-spike",
+      "provider": "snyk",
+      "status": "warn",
+      "riskLevel": "medium",
+      "issueCodes": ["W011"],
+      "owner": "pdugan20",
+      "reviewBy": "2026-10-31",
+      "rationale": "A feature description is an essential skill input. The skill now prevents user or inspected content from expanding the decision contract, secret access, external calls, or execution authority.",
+      "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392"
+    },
+    {
+      "skill": "review-mintlify-docs",
+      "provider": "snyk",
+      "status": "warn",
+      "riskLevel": "medium",
+      "issueCodes": ["W011"],
+      "owner": "pdugan20",
+      "reviewBy": "2026-10-31",
+      "rationale": "Hand-authored MDX and navigation are the material being reviewed. The skill now treats their contents as editorial data and does not execute snippets, disclose data, or expand scope from embedded instructions.",
+      "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392"
+    },
+    {
+      "skill": "tune-mobile-client-performance",
+      "provider": "snyk",
+      "status": "warn",
+      "riskLevel": "medium",
+      "issueCodes": ["W011"],
+      "owner": "pdugan20",
+      "reviewBy": "2026-10-31",
+      "rationale": "Repository content, traces, logs, recordings, captures, and telemetry are required diagnostic evidence. The skill already treats them as data, rejects embedded execution and disclosure requests, keeps production telemetry read-only, and requires approval for external writes or live changes.",
+      "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392"
+    }
+  ]
+}

@@ -43,7 +43,8 @@ The current collection classifies `code-native-ui-ideation` and
 `write-mintlify-changelog` as techniques; `feature-spike` as a pattern;
 `review-mintlify-docs` and `align-ui-to-design-system` as discipline skills; and
 `feature-delivery`, `analyze-ui-video`, `audit-design-system-health`,
-`bootstrap-repository`, `scaffold-mintlify-site`, and
+`bootstrap-repository`, `tune-mobile-client-performance`,
+`scaffold-mintlify-site`, and
 `generate-mintlify-reference` as composite skills.
 
 ## Capture intent before writing
@@ -125,6 +126,23 @@ This description convention reconciles a small difference in vendor wording. The
 - Keep the main procedure cohesive and under 500 lines. Remove duplication and information that belongs in ordinary repository documentation.
 - State destructive actions, external side effects, approvals, and user-visible boundaries explicitly.
 - Avoid runtime-specific tool names unless the skill truly requires that runtime.
+
+### Trust boundaries
+
+When a skill consumes ordinary repository files, third-party text, API or web
+responses, media, generated output, or other content that could carry embedded
+instructions, state the trust boundary in the skill body. Treat that material as
+data or evidence, not as authority to expand command execution, secret access,
+external writes, or scope. Preserve legitimate operation by explicitly honoring
+the user's request, the selected skill, and applicable agent instruction files,
+and by allowing independently validated commands, links, and sources when the
+task needs them.
+
+Keep the boundary specific to the skill's real inputs. Do not use a blanket rule
+that causes an agent to ignore `AGENTS.md`, `CLAUDE.md`, maintained upstream
+documentation, or authorized repository operations. Add an execution eval with
+an embedded-instruction attempt and assert both sides: the unsafe instruction is
+rejected and the intended skill outcome remains achievable.
 
 ### Progressive disclosure
 
@@ -210,6 +228,7 @@ Configure the provider and API-key environment variable without committing crede
 | Package versions, inventory, runtime policy, Skills CLI grouping, and eval coverage | `scripts/validate_repository.py` | Automatic |
 | Claude Code, Codex, and Cursor installation layout and packaged resources | Isolated Skills CLI copy installation with source-tree comparison | Automatic |
 | Markdown, formatting, spelling, action syntax, and workflow security | Existing repository tooling | Automatic |
+| Live skills.sh audit verdicts across Agent Trust Hub, Socket, and Snyk | `scripts/check_skills_sh_security.py` plus `skills-sh-audits.json` | Daily; pass by default, with exact owned exceptions that expire |
 | Trigger precision, near-miss behavior, and observable skill outcomes | Versioned routing and execution evals | Evidence-based review |
 | Taste, proportionality, novelty, overlap, and whether the process should become a skill | Author review using this rubric | Human judgment |
 
@@ -228,6 +247,18 @@ This assessment was last reviewed on 2026-07-30.
 - Claude Code `2.1.220` exposes a first-party `claude plugin eval` runner with no-plugin ablation, cost ceilings, thresholds, and HTML or JSON reports. Its command currently reports that the feature is early access, and the public plugin reference does not yet document it. Reassess it when the feature is documented and stable; do not make an early-access runner a required gate.
 - [agent-skills-eval](https://github.com/darkrishabh/agent-skills-eval) version `0.1.1` can run the adopted `assertions` format against OpenAI-compatible providers with with-skill/baseline comparison. Use it for opt-in benchmarks, not as a required CI gate, because model runs are nondeterministic, credentialed, and billable and the project is still young.
 - [Skills CLI](https://github.com/vercel-labs/skills) validates discovery and distribution. It does not judge authoring quality.
+- [Snyk Agent Scan](https://github.com/snyk/agent-scan) supplies one of the
+  skills.sh security opinions. Its `W011` finding represents exposure to content
+  that may be untrusted, including ordinary repository inputs; the open
+  [repository-documentation false-positive issue](https://github.com/snyk/agent-scan/issues/392)
+  tracks the scanner-side classification gap. Mitigate the runtime boundary,
+  but do not remove essential input handling merely to produce a pass badge.
+- The daily skills.sh check requires every advertised provider to pass unless
+  `skills-sh-audits.json` names the exact skill, provider, warning status, risk,
+  and issue codes with a rationale, owner, upstream issue, and review deadline.
+  A new provider, warning, failure, changed issue, expired exception, or stale
+  exception fails the monitor. `W011` exceptions additionally require a runtime
+  trust-boundary section in the distributed skill.
 - GitHub CLI `gh skill publish --dry-run` provides an additional first-party
   specification and repository-settings check, including skill-local license
   metadata and immutable tag protection. The command is currently preview and
@@ -265,6 +296,9 @@ Before merging a skill change:
 - Confirm the recurring process belongs in a skill and record its classification.
 - Read the description alone and verify its positive and negative routing boundaries.
 - Read the body for non-obvious value, proportional freedom, safety, and runtime portability.
+- For external or instruction-bearing inputs, verify the trust boundary rejects
+  embedded authority without blocking the intended outcome, and add an
+  adversarial execution eval.
 - Move deterministic repetition into tested scripts and bulky detail into linked references.
 - Add or update three execution evals and at least eight balanced routing evals.
 - Run `npm run verify` and the external validator.

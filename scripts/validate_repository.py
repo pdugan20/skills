@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +30,8 @@ VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
 MIN_EXECUTION_EVALS = 3
 MIN_ROUTING_EVALS_PER_CLASS = 4
 SKILLS_SH_SCHEMA = "https://skills.sh/schemas/skills.sh.schema.json"
+AUDIT_ISSUE_CODE_RE = re.compile(r"^[A-Z]\d{3}$")
+AUDIT_RISK_LEVELS = {"low", "medium", "high", "critical"}
 
 
 def load_json(path: Path) -> object:
@@ -236,6 +239,86 @@ def validate_skills_sh_config(config: dict[str, object]) -> list[str]:
     return errors
 
 
+def validate_skills_sh_audit_policy(
+    config: dict[str, object], skills_root: Path | None = None
+) -> list[str]:
+    """Validate reviewed live-audit exceptions and their runtime safeguards."""
+    errors: list[str] = []
+    skills_root = skills_root or ROOT / "skills"
+    providers = config.get("requiredProviders")
+    if (
+        not isinstance(providers, list)
+        or not providers
+        or any(not is_nonempty_string(provider) for provider in providers)
+    ):
+        return ["skills-sh-audits.json: requiredProviders must be a non-empty string array"]
+    if len(providers) != len(set(providers)):
+        errors.append("skills-sh-audits.json: requiredProviders must be unique")
+
+    exceptions = config.get("exceptions")
+    if not isinstance(exceptions, list):
+        return errors + ["skills-sh-audits.json: exceptions must be an array"]
+
+    seen: set[tuple[str, str]] = set()
+    for index, exception in enumerate(exceptions):
+        label = f"skills-sh-audits.json: exceptions[{index}]"
+        if not isinstance(exception, dict):
+            errors.append(f"{label} must be an object")
+            continue
+        skill = exception.get("skill")
+        provider = exception.get("provider")
+        if skill not in EXPECTED_SKILLS:
+            errors.append(f"{label}.skill must name a packaged skill")
+        if provider not in providers:
+            errors.append(f"{label}.provider must be a required provider")
+        if isinstance(skill, str) and isinstance(provider, str):
+            key = (skill, provider)
+            if key in seen:
+                errors.append(f"{label} duplicates {skill}/{provider}")
+            seen.add(key)
+        if exception.get("status") != "warn":
+            errors.append(f"{label}.status must be warn; fail verdicts cannot be accepted")
+        if exception.get("riskLevel") not in AUDIT_RISK_LEVELS:
+            errors.append(f"{label}.riskLevel is invalid")
+        issue_codes = exception.get("issueCodes")
+        if (
+            not isinstance(issue_codes, list)
+            or not issue_codes
+            or any(
+                not isinstance(code, str) or not AUDIT_ISSUE_CODE_RE.fullmatch(code)
+                for code in issue_codes
+            )
+        ):
+            errors.append(f"{label}.issueCodes must contain security issue codes")
+            issue_codes = []
+        elif len(issue_codes) != len(set(issue_codes)):
+            errors.append(f"{label}.issueCodes must be unique")
+        for field in ("owner", "rationale", "upstreamIssue"):
+            if not is_nonempty_string(exception.get(field)):
+                errors.append(f"{label}.{field} must be a non-empty string")
+        upstream_issue = exception.get("upstreamIssue")
+        if isinstance(upstream_issue, str) and not upstream_issue.startswith("https://"):
+            errors.append(f"{label}.upstreamIssue must use https")
+        review_by = exception.get("reviewBy")
+        if not isinstance(review_by, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review_by):
+            errors.append(f"{label}.reviewBy must be YYYY-MM-DD")
+        else:
+            try:
+                date.fromisoformat(review_by)
+            except ValueError:
+                errors.append(f"{label}.reviewBy must be a real date")
+
+        if skill in EXPECTED_SKILLS and "W011" in issue_codes:
+            skill_file = skills_root / str(skill) / "SKILL.md"
+            if not skill_file.is_file() or "\n## Trust boundary\n" not in skill_file.read_text(
+                encoding="utf-8"
+            ):
+                errors.append(
+                    f"{skill_file}: W011 exceptions require a ## Trust boundary section"
+                )
+    return errors
+
+
 def validate(release_tag: str | None = None) -> list[str]:
     errors: list[str] = []
     package = load_json(ROOT / "package.json")
@@ -273,6 +356,10 @@ def validate(release_tag: str | None = None) -> list[str]:
     skills_config = load_json(ROOT / "skills.sh.json")
     assert isinstance(skills_config, dict)
     errors.extend(validate_skills_sh_config(skills_config))
+
+    audit_policy = load_json(ROOT / "skills-sh-audits.json")
+    assert isinstance(audit_policy, dict)
+    errors.extend(validate_skills_sh_audit_policy(audit_policy))
 
     if release_tag is not None and release_tag != f"v{version}":
         errors.append(f"release tag {release_tag!r} must equal v{version}")

@@ -14,9 +14,9 @@ concurrency:
 
 jobs:
   freshness:
-    name: Check skills.sh catalog
+    name: Check skills.sh catalog and audits
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
@@ -25,3 +25,6 @@ jobs:
 
       - name: Compare catalog with repository
         run: python3 scripts/check_skills_sh.py
+
+      - name: Compare security audits with reviewed policy
+        run: python3 scripts/check_skills_sh_security.py

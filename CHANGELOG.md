@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Security
+
+- Added narrow trust boundaries and adversarial eval coverage to
+  [`feature-spike`](skills/feature-spike/SKILL.md),
+  [`bootstrap-repository`](skills/bootstrap-repository/SKILL.md), and
+  [`review-mintlify-docs`](skills/review-mintlify-docs/SKILL.md) without removing
+  their required user, repository, API, or documentation inputs.
+- Added a pass-by-default daily skills.sh audit monitor across Agent Trust Hub,
+  Socket, and Snyk. The four current medium Snyk `W011` warnings are exact,
+  owned, expiring exceptions tied to runtime safeguards and the upstream
+  repository-content classification issue; new or changed findings fail.
+
 ### Documentation
 
 - Recorded v3.2.0 archive integrity, exact-tag multi-client installation,
@@ -51,6 +63,11 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Documentation
 
+- Separated general iOS capability decisions from mobile performance tuning:
+  advanced pinned standalone XcodeBuildMCP into an `agent-tooling` pilot, kept
+  Memgraph and ETTrace task-gated, and selected a first-party App Intents skill
+  pilot from NextUp's existing shipped implementation rather than installing or
+  forking `build-ios-apps`.
 - Recorded Patrick Skills v3.0.0 release and exact-tag installation evidence,
   downstream Patrick Plugins v3.4.0 and Agent Tooling v0.8.0 verification, the
   remaining skills.sh stale-snapshot gate, and the requirement to dogfood

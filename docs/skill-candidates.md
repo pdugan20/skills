@@ -306,6 +306,71 @@ also tracked separately for the next genuinely new or empty repository;
 established projects such as `audiobook-ios` are deliberately excluded from
 that bootstrap test.
 
+The next discovery pass captured `SC-016` from Patrick's description of mobile
+features and animations that feel jittery, slow, or less seamless than they
+should. The private NextUp and Messenger histories show one recurring outcome
+but many possible owners: SwiftUI observation fan-out and unstable identity,
+clustered model publications, full-size image decode, late or unbatched data
+publication, React store over-subscription, JS work mounted during a transition,
+competing keyboard and scroll mechanisms, first-paint measurement limits, and
+even session-replay instrumentation. The visible animation was often innocent.
+The reusable behavior is therefore a causal diagnostic loop, not a catalog of
+animation constants or a framework-specific performance audit.
+
+The 2026-08-02 skills.sh pass found strong adjacent platform skills, especially
+`swiftui-performance-audit` and `expo-react-native-performance`, plus thinner
+generic mobile and browser-animation guides. Codex also lists an MIT-licensed
+`swiftui-performance-audit` inside OpenAI's `build-ios-apps` plugin; that plugin
+is available but not installed, and neither `agent-tooling` nor NextUp's skill
+lock currently carries it. These skills own useful code smells, profiling
+intake, and stack remedies, but not the complete cross-platform path from one
+visible interaction through network, state, rendering, media, and observability
+boundaries to a controlled before/after result.
+
+Fresh read-only baselines against isolated pre-fix snapshots established a
+narrow behavior gap. On watch-history jank, both the current catalog and
+Dimillian audit found observation fan-out but ranked image decode first instead
+of the multiplicative row subscriptions and unstable identity. On the
+Messenger search transition, the current catalog found the duplicate-field
+geometry and results work but recommended easing and coordinating the second
+field before removing the competing owner and keeping the heavy panel out of
+the travel window. The TestFlight observability baseline was already excellent:
+it isolated buffered Session Replay, preserved unrelated tracing, and proposed
+an otherwise identical build-cohort experiment. With-skill replays corrected
+the first experiment on both weaker cases—row-scaled observation ownership for
+SwiftUI and one persistent field owner for React Native—while preserving the
+strong Replay result. The skill earns validation from that behavioral lift; it
+does not justify a generic profiling encyclopedia.
+
+The `build-ios-apps` bundle is not required to deliver `SC-016`. Its overlapping
+SwiftUI audit does not supply the candidate's cross-stack causal coordinator,
+and installing the plugin would unnecessarily couple this skill to unrelated
+runtime and system-integration capabilities. `SC-017` through `SC-020` now own
+the separate XcodeBuildMCP, Memgraph, ETTrace, and App Intents decisions in
+their [shared capability brief](skill-candidates/ios-development-capabilities.md).
+
+`SC-016` is validated with independently written SwiftUI/SwiftData and React
+Native/Expo references, explicit attribution for the MIT-licensed upstream
+audit concepts, six execution cases, twenty balanced routing cases, three
+reviewed same-prompt comparisons, strict external validation, and source-tree
+installation checks across Claude Code, Codex, and Cursor layouts. Release and
+the exact-tag Agent Tooling catalog update remain separately authorized.
+
+The same discovery pass separated four general iOS capabilities rather than
+folding them into the performance skill. A live semantic Simulator snapshot
+established enough benefit to classify pinned standalone XcodeBuildMCP for an
+`agent-tooling` pilot alongside computer use. Memgraph and ETTrace remain
+task-gated until real lifetime and CPU investigations show repeatable lift.
+NextUp's App Intents history now supports a validated first-party skill. A
+three-way review showed that the MIT n0an upstream is genuinely useful and
+current enough to keep as an overlap benchmark, but its encyclopedic context
+and rigid dependency/shortcut rules do not fit the collection's proportional,
+architecture-neutral method. The first local replay exposed its own deprecated
+`.system.search` miss; after an explicit `.system.searchInApp` checkpoint and
+eval assertion, the repeated replay preserved the upstream's coverage while
+selecting the TV-specific scope and producing the corrected NextUp plan. No
+external App Intents skill is installed or forked.
+
 `SC-001` validated the general-purpose approach: the ideation and comparison loop belongs in one portable skill, while SwiftUI, React Native, and web guidance belongs in platform references loaded only when relevant. The pilot also established that behavior claims require trace-backed evaluation, distribution claims require clean installation from a published tag, and an unavailable authenticated client should be described as packaging-compatible rather than behavior-verified. Future candidates should reuse those evidence boundaries instead of splitting skills by framework or overstating client support.
 
 ## Working rules
