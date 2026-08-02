@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Fixed
+
+- Aligned skills.sh section titles and descriptions with the portfolio catalog,
+  and extended the freshness check to detect a stale flat repository page even
+  when its skill inventory has partially updated.
+
 ### Security
 
 - Added narrow trust boundaries and adversarial eval coverage to
