@@ -4,6 +4,24 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-08-02
+
+### Added
+
+- Added
+  [`tune-mobile-client-performance`](skills/tune-mobile-client-performance/SKILL.md)
+  for evidence-led tuning of a specific SwiftUI or React Native interaction
+  across motion, observation, rendering, media, network, and observability
+  boundaries, with six execution evals and twenty balanced routing cases.
+
+### Documentation
+
+- Separated general iOS capability decisions from mobile performance tuning:
+  advanced pinned standalone XcodeBuildMCP into an `agent-tooling` pilot, kept
+  Memgraph and ETTrace task-gated, and selected a first-party App Intents skill
+  pilot from NextUp's existing shipped implementation rather than installing or
+  forking `build-ios-apps`.
+
 ### Fixed
 
 - Made the skills.sh freshness monitor honor bounded `Retry-After` guidance and
@@ -208,7 +226,8 @@ All notable changes to this project are documented in this file. The project fol
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
 - Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
 
-[unreleased]: https://github.com/pdugan20/skills/compare/v3.0.0...HEAD
+[unreleased]: https://github.com/pdugan20/skills/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/pdugan20/skills/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/pdugan20/skills/compare/v2.4.0...v3.0.0
 [2.4.0]: https://github.com/pdugan20/skills/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/pdugan20/skills/compare/v2.2.0...v2.3.0
