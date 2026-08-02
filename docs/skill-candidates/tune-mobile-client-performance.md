@@ -423,7 +423,8 @@ history regression and fix sequence rather than another synthesized prompt.
   isolation of the row mutation as the one-variable experiment, and preserve
   source-side metadata repair as the follow-up. That matches the observed
   return to the smooth baseline.
-- Commit `ba5256c2` independently confirms the next ranked boundary: roughly
+- A later observation-and-identity correction independently confirms the next
+  ranked boundary: roughly
   six live SwiftData observations per mounted row plus index identity. The
   historical change hoisted observation and adopted stable composite identity
   while explicitly deferring image and still-resolution work. The skill reaches
