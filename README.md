@@ -7,6 +7,11 @@
 
 Portable skills for code-native design exploration, production software delivery, and technical documentation. They work with Claude Code, Codex, Cursor, and other Agent Skills clients.
 
+The repository root is also a portable [Agent Plugin](https://agent-plugins.org/),
+with the canonical skills discovered from `skills/`. The portable `plugin.json`
+coexists with the Claude Code and Codex manifests so current client-specific
+installation and presentation metadata remain available.
+
 ## Who is this for?
 
 These skills are for designers and engineers who build products directly in code and use agents across design, implementation, release, and documentation—not just code generation.

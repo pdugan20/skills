@@ -27,6 +27,30 @@ EXPECTED_SKILLS = {
 }
 PLUGIN_NAME = "patrick-skills"
 VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
+AGENT_PLUGIN_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
+AGENT_PLUGIN_NAME_RE = re.compile(
+    r"^(?!.*(?:--|\.\.))[a-z0-9](?:[a-z0-9.-]{0,62}[a-z0-9])?$"
+)
+AGENT_PLUGIN_FIELDS = {
+    "$schema",
+    "name",
+    "version",
+    "description",
+    "author",
+    "homepage",
+    "repository",
+    "license",
+    "keywords",
+    "extensions",
+}
+SHARED_PLUGIN_METADATA_FIELDS = (
+    "description",
+    "author",
+    "homepage",
+    "repository",
+    "license",
+    "keywords",
+)
 MIN_EXECUTION_EVALS = 3
 MIN_ROUTING_EVALS_PER_CLASS = 4
 SKILLS_SH_SCHEMA = "https://skills.sh/schemas/skills.sh.schema.json"
@@ -49,6 +73,58 @@ def frontmatter(text: str) -> str:
 
 def is_nonempty_string(value: object) -> bool:
     return isinstance(value, str) and bool(value.strip())
+
+
+def validate_agent_plugin_manifest(manifest: dict[str, object]) -> list[str]:
+    """Validate the portable Agent Plugins identity and closed metadata schema."""
+    errors: list[str] = []
+    label = "plugin.json"
+
+    if manifest.get("$schema") != AGENT_PLUGIN_SCHEMA:
+        errors.append(f"{label}: $schema must be {AGENT_PLUGIN_SCHEMA}")
+
+    unknown_fields = sorted(set(manifest) - AGENT_PLUGIN_FIELDS)
+    if unknown_fields:
+        errors.append(f"{label}: unsupported fields: {', '.join(unknown_fields)}")
+
+    name = manifest.get("name")
+    if not isinstance(name, str) or not AGENT_PLUGIN_NAME_RE.fullmatch(name):
+        errors.append(f"{label}: name must satisfy the Agent Plugins v1 constraints")
+
+    for field in ("version", "description", "homepage", "repository", "license"):
+        if field in manifest and not isinstance(manifest[field], str):
+            errors.append(f"{label}: {field} must be a string when present")
+
+    author = manifest.get("author")
+    if author is not None:
+        if not isinstance(author, dict):
+            errors.append(f"{label}: author must be an object when present")
+        else:
+            unknown_author_fields = sorted(set(author) - {"name", "email", "url"})
+            if unknown_author_fields:
+                errors.append(
+                    f"{label}: unsupported author fields: "
+                    f"{', '.join(unknown_author_fields)}"
+                )
+            for field, value in author.items():
+                if not isinstance(value, str):
+                    errors.append(f"{label}: author.{field} must be a string")
+
+    keywords = manifest.get("keywords")
+    if keywords is not None and (
+        not isinstance(keywords, list)
+        or any(not isinstance(keyword, str) for keyword in keywords)
+    ):
+        errors.append(f"{label}: keywords must contain only strings")
+
+    extensions = manifest.get("extensions")
+    if extensions is not None:
+        if not isinstance(extensions, dict):
+            errors.append(f"{label}: extensions must be an object when present")
+        elif any(not isinstance(value, dict) for value in extensions.values()):
+            errors.append(f"{label}: each extension value must be an object")
+
+    return errors
 
 
 def validate_evals(skill_name: str, skill_dir: Path) -> list[str]:
@@ -323,10 +399,12 @@ def validate(release_tag: str | None = None) -> list[str]:
     errors: list[str] = []
     package = load_json(ROOT / "package.json")
     package_lock = load_json(ROOT / "package-lock.json")
+    portable = load_json(ROOT / "plugin.json")
     claude = load_json(ROOT / ".claude-plugin" / "plugin.json")
     codex = load_json(ROOT / ".codex-plugin" / "plugin.json")
     assert isinstance(package, dict)
     assert isinstance(package_lock, dict)
+    assert isinstance(portable, dict)
     assert isinstance(claude, dict)
     assert isinstance(codex, dict)
     version = package.get("version")
@@ -340,11 +418,19 @@ def validate(release_tag: str | None = None) -> list[str]:
         errors.append(f"package-lock.json: names must be {PLUGIN_NAME}")
     if package_lock.get("version") != version or lock_package.get("version") != version:
         errors.append("package-lock.json: versions must match package.json")
-    for path, manifest in ((".claude-plugin/plugin.json", claude), (".codex-plugin/plugin.json", codex)):
+    errors.extend(validate_agent_plugin_manifest(portable))
+    for path, manifest in (
+        ("plugin.json", portable),
+        (".claude-plugin/plugin.json", claude),
+        (".codex-plugin/plugin.json", codex),
+    ):
         if manifest.get("name") != PLUGIN_NAME:
             errors.append(f"{path}: name must be {PLUGIN_NAME}")
         if manifest.get("version") != version:
             errors.append(f"{path}: version must match package.json")
+    for field in SHARED_PLUGIN_METADATA_FIELDS:
+        if portable.get(field) != claude.get(field) or portable.get(field) != codex.get(field):
+            errors.append(f"plugin manifests: {field} must remain synchronized")
     errors.extend(validate_codex_interface(codex))
 
     actual_skills = {path.name for path in (ROOT / "skills").iterdir() if path.is_dir()}

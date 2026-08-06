@@ -17,6 +17,9 @@ class ValidateRepositoryTests(unittest.TestCase):
 
     def test_package_and_plugin_identity_is_explicit(self) -> None:
         package = validate_repository.load_json(validate_repository.ROOT / "package.json")
+        portable = validate_repository.load_json(
+            validate_repository.ROOT / "plugin.json"
+        )
         claude = validate_repository.load_json(
             validate_repository.ROOT / ".claude-plugin" / "plugin.json"
         )
@@ -25,8 +28,32 @@ class ValidateRepositoryTests(unittest.TestCase):
         )
 
         self.assertEqual(package["name"], validate_repository.PLUGIN_NAME)
+        self.assertEqual(portable["name"], validate_repository.PLUGIN_NAME)
+        self.assertEqual(portable["$schema"], validate_repository.AGENT_PLUGIN_SCHEMA)
         self.assertEqual(claude["name"], validate_repository.PLUGIN_NAME)
         self.assertEqual(codex["name"], validate_repository.PLUGIN_NAME)
+
+    def test_agent_plugin_manifest_rejects_unknown_fields(self) -> None:
+        manifest = {
+            "$schema": validate_repository.AGENT_PLUGIN_SCHEMA,
+            "name": "patrick-skills",
+            "skills": "./skills/",
+        }
+
+        errors = validate_repository.validate_agent_plugin_manifest(manifest)
+
+        self.assertIn("plugin.json: unsupported fields: skills", errors)
+
+    def test_agent_plugin_manifest_rejects_invalid_extensions(self) -> None:
+        manifest = {
+            "$schema": validate_repository.AGENT_PLUGIN_SCHEMA,
+            "name": "patrick-skills",
+            "extensions": {"com.example.client": "invalid"},
+        }
+
+        errors = validate_repository.validate_agent_plugin_manifest(manifest)
+
+        self.assertIn("plugin.json: each extension value must be an object", errors)
 
     def test_release_tag_matches_version(self) -> None:
         package = validate_repository.load_json(validate_repository.ROOT / "package.json")

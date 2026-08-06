@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Added
+
+- Added an Agent Plugins 1.0.0 root manifest so the canonical collection can
+  be discovered as one portable plugin while retaining the existing Claude
+  Code and Codex compatibility manifests and Skills CLI distribution path.
+
 ### Fixed
 
 - Aligned skills.sh section titles and descriptions with the portfolio catalog,
