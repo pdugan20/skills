@@ -3,7 +3,10 @@
 ## Architecture
 
 - `skills/` is the canonical portable skill tree. Keep one `SKILL.md` per skill and add only resources the skill actually needs.
-- `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` package the same skill tree for their respective plugin systems.
+- Root `plugin.json` gives the collection its portable Agent Plugins identity;
+  `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` retain
+  client-specific compatibility and presentation metadata for the same skill
+  tree.
 - `skills.sh.json` controls the groupings shown by Skills CLI-compatible indexes.
 - `skills-sh-audits.json` records reviewed exceptions to the pass-by-default
   skills.sh security policy. Exceptions must be exact, owned, and temporary.

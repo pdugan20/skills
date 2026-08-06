@@ -1,15 +1,15 @@
 # Releasing
 
-`pdugan20/skills` is a versioned skill collection and dual-runtime plugin. It is
-not published to npm. A release is complete only when the tagged source,
-curated GitHub Release, packaged archive, exact-tag installation, and live
-skills.sh catalog agree.
+`pdugan20/skills` is a versioned skill collection, portable Agent Plugin, and
+dual-runtime plugin. It is not published to npm. A release is complete only
+when the tagged source, curated GitHub Release, packaged archive, exact-tag
+installation, and live skills.sh catalog agree.
 
 ## Prerequisites
 
 - Work from a release branch based on current `main`.
-- Keep `package.json`, `package-lock.json`, and both plugin manifests on the
-  same semantic version.
+- Keep `package.json`, `package-lock.json`, the portable root `plugin.json`, and
+  both client-specific plugin manifests on the same semantic version.
 - Protect `main` with pull requests and the `Verify skills` and
   `Audit workflow security` checks.
 - Protect `refs/tags/v*` from deletion and updates so release tags are
@@ -69,12 +69,14 @@ Then verify:
 
 1. The GitHub Release notes equal the matching changelog section.
 2. The attached archive contains the same skill folders as the tag.
-3. A clean installation from `pdugan20/skills@v$VERSION` succeeds for Claude
+3. The release archive contains a valid root Agent Plugins manifest and the
+   complete fixed-location `skills/` component tree.
+4. A clean installation from `pdugan20/skills@v$VERSION` succeeds for Claude
    Code, Codex, and Cursor and matches the tagged files byte-for-byte.
-4. `npm run check:skills-sh` reports that the live skills.sh page contains the
+5. `npm run check:skills-sh` reports that the live skills.sh page contains the
    complete current skill set.
-5. The skills appear through Skills CLI discovery.
-6. Only after those checks pass, change the skill candidate inventory rows from
+6. The skills appear through Skills CLI discovery.
+7. Only after those checks pass, change the skill candidate inventory rows from
    `validated` to `released` and update downstream marketplace pins.
 
 If publication fails after the tag is pushed, repair or rerun the release

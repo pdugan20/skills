@@ -1,6 +1,6 @@
 # Skill Authoring Standard
 
-This is the authoring, evaluation, and review standard for Patrick's portable design and development skills. It reconciles the open Agent Skills specification with current Anthropic and OpenAI guidance and records which external tools this repository trusts.
+This is the authoring, evaluation, and review standard for Patrick's portable design and development skills. It reconciles the open Agent Skills and Agent Plugins specifications with current Anthropic and OpenAI guidance and records which external tools this repository trusts.
 
 The standard has four layers:
 
@@ -157,7 +157,9 @@ The metadata is always visible, `SKILL.md` loads when selected, and bundled reso
 
 ### Versioning and changelogs
 
-- Version the collection once using semantic versioning; keep `package.json` and both plugin manifests synchronized.
+- Version the collection once using semantic versioning; keep `package.json`,
+  the portable root `plugin.json`, and both client-specific plugin manifests
+  synchronized.
 - Do not add a non-standard version field to skill frontmatter. A tag identifies the exact version of every skill it contains.
 - Record user-visible changes in the repository `CHANGELOG.md`, naming and linking every affected skill so each skill retains a searchable history.
 - Use the matching changelog section verbatim as the GitHub Release body. Release automation must fail when that section is missing or empty.
@@ -223,6 +225,7 @@ Configure the provider and API-key environment variable without committing crede
 | Concern | Enforcement | Gate |
 | --- | --- | --- |
 | Agent Skills structure, frontmatter, links, orphaned resources, context size, and content heuristics | `agent-ecosystem/skill-validator` pinned in CI | Automatic |
+| Agent Plugins manifest identity, schema target, metadata shape, and version synchronization | `scripts/validate_repository.py` | Automatic |
 | Claude plugin manifest and component schema | Official `claude plugin validate --strict` from the exactly pinned Claude Code CLI | Automatic |
 | Secrets and executable script security | GitHub secret scanning and push protection, plus language-appropriate script tests and linters | Secret protection is enabled; documentation-skill scripts have focused tests and ShellCheck coverage where available |
 | Package versions, inventory, runtime policy, Skills CLI grouping, and eval coverage | `scripts/validate_repository.py` | Automatic |
@@ -236,8 +239,12 @@ Do not turn subjective heuristics into brittle regex gates. Automated checks sho
 
 ## External tooling decision
 
-This assessment was last reviewed on 2026-07-30.
+This assessment was last reviewed on 2026-08-06.
 
+- [Agent Plugins 1.0.0](https://agent-plugins.org/specification) is the portable
+  package baseline. The root `plugin.json` supplies shared identity, `skills/`
+  is discovered from its fixed location, and client-specific manifests remain
+  alongside it for compatibility while distribution stays client-owned.
 - [Agent Skills specification](https://agentskills.io/specification), [authoring guide](https://agentskills.io/skill-creation/best-practices), [evaluation guide](https://agentskills.io/skill-creation/evaluating-skills), and [description guide](https://agentskills.io/skill-creation/optimizing-descriptions) are the portability and authoring baseline.
 - The official [`skills-ref`](https://github.com/agentskills/agentskills/tree/main/skills-ref) implementation validates the core schema, but its maintainers explicitly label it demonstration-only and unsuitable for production use.
 - [Anthropic skill-creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator) automates baseline comparison, qualitative review, benchmarking, and trigger optimization.

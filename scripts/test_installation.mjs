@@ -1,8 +1,12 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import {
+  copyFileSync,
+  cpSync,
   existsSync,
   mkdtempSync,
+  mkdirSync,
+  readFileSync,
   readdirSync,
   rmSync,
   statSync,
@@ -13,6 +17,8 @@ import { fileURLToPath } from "node:url";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sourceSkillsRoot = join(repositoryRoot, "skills");
+const agentPluginSchema =
+  "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json";
 const installationRoot = mkdtempSync(
   join(tmpdir(), "patrick-skills-install-")
 );
@@ -69,8 +75,43 @@ try {
     .filter((name) => statSync(join(sourceSkillsRoot, name)).isDirectory())
     .sort();
 
+  const portablePluginRoot = join(
+    installationRoot,
+    "agent-plugins",
+    "patrick-skills"
+  );
+  mkdirSync(portablePluginRoot, { recursive: true });
+  copyFileSync(
+    join(repositoryRoot, "plugin.json"),
+    join(portablePluginRoot, "plugin.json")
+  );
+  cpSync(sourceSkillsRoot, join(portablePluginRoot, "skills"), {
+    recursive: true,
+  });
+
+  const portableManifest = JSON.parse(
+    readFileSync(join(portablePluginRoot, "plugin.json"), "utf8")
+  );
+  assert.equal(portableManifest.$schema, agentPluginSchema);
+  assert.equal(portableManifest.name, "patrick-skills");
+  assert.deepEqual(
+    readdirSync(join(portablePluginRoot, "skills"))
+      .filter((name) =>
+        existsSync(join(portablePluginRoot, "skills", name, "SKILL.md"))
+      )
+      .sort(),
+    skillNames,
+    "Portable Agent Plugin did not discover every immediate skill child"
+  );
+
   for (const skillName of skillNames) {
     const sourceFiles = listFiles(join(sourceSkillsRoot, skillName));
+
+    assert.deepEqual(
+      listFiles(join(portablePluginRoot, "skills", skillName)),
+      sourceFiles,
+      `${skillName} resources differ in the portable Agent Plugin package`
+    );
 
     for (const clientRoot of [".claude/skills", ".agents/skills"]) {
       const installedSkill = join(installationRoot, clientRoot, skillName);
@@ -92,7 +133,7 @@ try {
   );
 
   console.log(
-    `Installation validation passed for ${skillNames.length} skills across Claude Code, Codex, and Cursor.`
+    `Installation validation passed for ${skillNames.length} skills across the portable Agent Plugin, Claude Code, Codex, and Cursor packages.`
   );
 } finally {
   rmSync(installationRoot, { recursive: true, force: true });

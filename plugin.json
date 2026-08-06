@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "patrick-skills",
+  "version": "3.2.0",
+  "description": "Portable skills for repository setup, code-native design exploration, design-system alignment and auditing, UI video analysis, mobile performance tuning, Apple system integration, feature validation and delivery, and technical documentation.",
+  "author": {
+    "name": "Pat Dugan",
+    "url": "https://github.com/pdugan20"
+  },
+  "homepage": "https://github.com/pdugan20/skills",
+  "repository": "https://github.com/pdugan20/skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "codex",
+    "claude-code",
+    "cursor",
+    "design",
+    "design-system",
+    "development",
+    "repository-scaffolding",
+    "documentation",
+    "screen-recording",
+    "video-analysis",
+    "mintlify"
+  ]
+}
