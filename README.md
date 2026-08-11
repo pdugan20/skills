@@ -33,26 +33,35 @@ The collection does not impose one visual style or stack. It encodes repeatable 
 npx skills@latest add pdugan20/skills
 ```
 
-## Skills
+## Available skills
 
-### Design and development
+### Interface Design
 
-- [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) — Brainstorm and compare runnable UI directions before choosing one.
+Explore interface directions, understand existing systems, and diagnose UI behavior.
+
+- [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) — Brainstorm and compare runnable UI directions in the product before choosing one.
 - [`align-ui-to-design-system`](skills/align-ui-to-design-system/SKILL.md) — Review one completed UI surface against its repository's design system and apply only approved corrections.
 - [`audit-design-system-health`](skills/audit-design-system-health/SKILL.md) — Audit repository-wide design drift, missing system capabilities, consolidation candidates, and enforceable rules.
 - [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) — Dissect UI recordings against a target repository before diagnosing or reconstructing behavior.
-- [`feature-spike`](skills/feature-spike/SKILL.md) — Test feature value or technical feasibility before production investment.
-- [`tune-mobile-client-performance`](skills/tune-mobile-client-performance/SKILL.md) — Trace one jittery or late mobile interaction to its causal boundary and verify the smallest supported adjustment.
+
+### Product Development
+
+Start repositories, validate ideas, tune mobile interactions, integrate platform experiences, and deliver production software.
+
+- [`bootstrap-repository`](skills/bootstrap-repository/SKILL.md) — Scaffold new repositories with proportional local tooling, CI, conventions, and GitHub policy.
+- [`feature-spike`](skills/feature-spike/SKILL.md) — Test a feature's value or technical feasibility with a small runnable slice before production investment.
+- [`tune-mobile-client-performance`](skills/tune-mobile-client-performance/SKILL.md) — Trace jittery or late mobile interactions to their causal boundary and verify the smallest supported adjustment.
 - [`integrate-app-intents`](skills/integrate-app-intents/SKILL.md) — Add Apple system experiences without bypassing app-owned data, routing, privacy, or availability boundaries.
-- [`feature-delivery`](skills/feature-delivery/SKILL.md) — Take substantial features from idea through coordinated implementation and staged rollout.
-- [`bootstrap-repository`](skills/bootstrap-repository/SKILL.md) — Scaffold new repositories with proportional local tooling, CI, and GitHub policy.
+- [`feature-delivery`](skills/feature-delivery/SKILL.md) — Take substantial features from idea through specification, coordinated implementation, integration, and staged rollout.
 
-### Mintlify and documentation
+### Documentation
 
-- [`scaffold-mintlify-site`](skills/scaffold-mintlify-site/SKILL.md) — Create a project-specific Mintlify documentation site.
-- [`review-mintlify-docs`](skills/review-mintlify-docs/SKILL.md) — Review Mintlify content, navigation, and launch readiness.
-- [`generate-mintlify-reference`](skills/generate-mintlify-reference/SKILL.md) — Generate drift-checked CLI, MCP, and API reference pages.
-- [`write-mintlify-changelog`](skills/write-mintlify-changelog/SKILL.md) — Write concise reader-facing Mintlify changelog entries.
+Create, review, and maintain documentation sites, reference material, and changelogs.
+
+- [`scaffold-mintlify-site`](skills/scaffold-mintlify-site/SKILL.md) — Create a project-specific Mintlify site with its information architecture, starter pages, assets, and local tooling.
+- [`review-mintlify-docs`](skills/review-mintlify-docs/SKILL.md) — Review Mintlify content, navigation, source fidelity, editorial quality, and launch readiness.
+- [`generate-mintlify-reference`](skills/generate-mintlify-reference/SKILL.md) — Generate drift-checked CLI, MCP, and API reference pages from authoritative project sources.
+- [`write-mintlify-changelog`](skills/write-mintlify-changelog/SKILL.md) — Write concise reader-facing Mintlify changelog entries with clear headings, useful tags, and consistent voice.
 
 The Mintlify skills use the official Mintlify capability for current component and schema mechanics when it is available, while keeping Patrick's editorial guidance portable and self-contained.
 
