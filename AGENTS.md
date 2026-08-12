@@ -16,6 +16,15 @@
 - Every skill keeps execution evals in `evals/evals.json` and routing evals in `evals/routing.json`.
 - Keep manifest and package versions synchronized. Release tags use `v<version>`.
 
+## Code Review Rules
+
+- Flag a skill behavior, scope, or description change that lacks corresponding execution
+  and routing eval updates, including an adversarial eval when untrusted content is read.
+- Flag runtime-specific invocation or presentation requirements placed in portable
+  `SKILL.md` content instead of the appropriate `agents/` metadata.
+- Flag new trust exceptions that are broad, ownerless, unbounded, stale, or not recorded
+  exactly in the security audit and candidate inventory.
+
 ## Changes
 
 - Preserve Agent Skills portability in `SKILL.md`; place runtime-specific presentation metadata under `agents/`.
