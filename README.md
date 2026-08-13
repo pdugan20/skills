@@ -1,9 +1,9 @@
-# Skills for Design and Development
+# skills
 
-[![CI](https://github.com/pdugan20/skills/actions/workflows/ci.yml/badge.svg)](https://github.com/pdugan20/skills/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/pdugan20/skills?logo=github)](https://github.com/pdugan20/skills/releases/latest)
+[![CI](https://github.com/pdugan20/skills/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/pdugan20/skills/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/pdugan20/skills)](https://github.com/pdugan20/skills/releases/latest)
 [![skills.sh](https://skills.sh/b/pdugan20/skills)](https://skills.sh/pdugan20/skills)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/github/license/pdugan20/skills)](LICENSE)
 
 Portable skills for code-native design exploration, production software delivery, and technical documentation. They work with Claude Code, Codex, Cursor, and other Agent Skills clients.
 
