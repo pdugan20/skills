@@ -54,12 +54,50 @@ SHARED_PLUGIN_METADATA_FIELDS = (
 MIN_EXECUTION_EVALS = 3
 MIN_ROUTING_EVALS_PER_CLASS = 4
 SKILLS_SH_SCHEMA = "https://skills.sh/schemas/skills.sh.schema.json"
+RENOVATE_SCHEMA = "https://docs.renovatebot.com/renovate-schema.json"
+RENOVATE_FIELDS = {"$schema", "enabled", "enabledManagers"}
+RENOVATE_MANAGERS = ["npm", "github-actions"]
 AUDIT_ISSUE_CODE_RE = re.compile(r"^[A-Z]\d{3}$")
 AUDIT_RISK_LEVELS = {"low", "medium", "high", "critical"}
 
 
 def load_json(path: Path) -> object:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def reject_duplicate_json_keys(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate key: {key}")
+        result[key] = value
+    return result
+
+
+def validate_renovate_bootstrap(path: Path | None = None) -> list[str]:
+    """Require the exact inert updater envelope until activation is reviewed."""
+    path = path or ROOT / "renovate.json"
+    try:
+        config = json.loads(
+            path.read_text(encoding="utf-8"),
+            object_pairs_hook=reject_duplicate_json_keys,
+        )
+    except (json.JSONDecodeError, OSError, ValueError) as error:
+        return [f"renovate.json: invalid or ambiguous JSON ({error})"]
+
+    if not isinstance(config, dict):
+        return ["renovate.json: root must be an object"]
+
+    errors: list[str] = []
+    if set(config) != RENOVATE_FIELDS:
+        errors.append("renovate.json: disabled bootstrap must contain only exact fields")
+    if config.get("$schema") != RENOVATE_SCHEMA:
+        errors.append(f"renovate.json: $schema must be {RENOVATE_SCHEMA}")
+    if config.get("enabled") is not False:
+        errors.append("renovate.json: enabled must be the boolean false")
+    if config.get("enabledManagers") != RENOVATE_MANAGERS:
+        errors.append("renovate.json: managers must be exactly npm and github-actions")
+    return errors
 
 
 def frontmatter(text: str) -> str:
@@ -397,6 +435,7 @@ def validate_skills_sh_audit_policy(
 
 def validate(release_tag: str | None = None) -> list[str]:
     errors: list[str] = []
+    errors.extend(validate_renovate_bootstrap())
     package = load_json(ROOT / "package.json")
     package_lock = load_json(ROOT / "package-lock.json")
     portable = load_json(ROOT / "plugin.json")

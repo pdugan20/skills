@@ -33,6 +33,49 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertEqual(claude["name"], validate_repository.PLUGIN_NAME)
         self.assertEqual(codex["name"], validate_repository.PLUGIN_NAME)
 
+    def validate_renovate_text(self, contents: str) -> list[str]:
+        with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
+            path = Path(directory) / "renovate.json"
+            path.write_text(contents, encoding="utf-8")
+            return validate_repository.validate_renovate_bootstrap(path)
+
+    def test_renovate_bootstrap_is_exact_disabled_and_bounded(self) -> None:
+        self.assertEqual(validate_repository.validate_renovate_bootstrap(), [])
+
+        for enabled in (True, 0, 1, None, "false"):
+            with self.subTest(enabled=enabled):
+                config = {
+                    "$schema": validate_repository.RENOVATE_SCHEMA,
+                    "enabled": enabled,
+                    "enabledManagers": validate_repository.RENOVATE_MANAGERS,
+                }
+                self.assertTrue(self.validate_renovate_text(json.dumps(config)))
+
+        expanded = {
+            "$schema": validate_repository.RENOVATE_SCHEMA,
+            "enabled": False,
+            "enabledManagers": ["npm", "github-actions", "custom.regex"],
+        }
+        self.assertTrue(self.validate_renovate_text(json.dumps(expanded)))
+
+        active_policy = {
+            "$schema": validate_repository.RENOVATE_SCHEMA,
+            "enabled": False,
+            "enabledManagers": validate_repository.RENOVATE_MANAGERS,
+            "automerge": True,
+        }
+        self.assertTrue(self.validate_renovate_text(json.dumps(active_policy)))
+
+    def test_renovate_bootstrap_rejects_duplicate_keys(self) -> None:
+        errors = self.validate_renovate_text(
+            '{"$schema":"https://docs.renovatebot.com/renovate-schema.json",'
+            '"enabled":true,"enabled":false,'
+            '"enabledManagers":["npm"],'
+            '"enabledManagers":["npm","github-actions"]}'
+        )
+
+        self.assertTrue(any("ambiguous JSON" in error for error in errors))
+
     def test_agent_plugin_manifest_rejects_unknown_fields(self) -> None:
         manifest = {
             "$schema": validate_repository.AGENT_PLUGIN_SCHEMA,
