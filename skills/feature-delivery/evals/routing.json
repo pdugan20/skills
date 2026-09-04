@@ -16,6 +16,10 @@
     "should_trigger": true
   },
   {
+    "query": "Deliver this cross-repository feature with the full Superpowers flow, but first verify those skills are actually installed and give me a safe fallback if they are unavailable.",
+    "should_trigger": true
+  },
+  {
     "query": "Finish our partially built sharing feature: the backend is on a dev branch, the mobile client is incomplete, and we need compatibility, feature flags, internal distribution, and rollback.",
     "should_trigger": true
   },
@@ -77,6 +81,10 @@
   },
   {
     "query": "Prepare TestFlight metadata and release notes for the already completed and approved build.",
+    "should_trigger": false
+  },
+  {
+    "query": "Install the Superpowers plugin so I can use its skills later; there is no feature to specify or deliver right now.",
     "should_trigger": false
   }
 ]

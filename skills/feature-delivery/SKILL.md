@@ -43,8 +43,14 @@ distribution, and exposure states independently.
    backward/forward compatibility, migrations, branch and environment
    relationships, integration evidence, gating, and rollback per layer.
 5. **Select the execution mode.** Record whether the work will use proportional
-   inline execution, explicitly requested Superpowers, an available agent team,
-   or a mixed/human handoff. Follow
+   inline execution, explicitly requested and available Superpowers, an
+   available agent team, or a mixed/human handoff. Verify named external skills
+   and delegation capabilities are discoverable in the current runtime before
+   selecting them; documentation or user intent alone does not prove
+   availability. If a requested mode is unavailable, name the missing
+   capabilities and offer proportional inline execution or a pause for
+   installation as explicit choices. Do not impersonate a missing skill or
+   silently switch modes. Follow
    [references/execution-modes.md](references/execution-modes.md). Activating
    this skill never implicitly authorizes strict TDD, worktrees, agent teams,
    branch finishing, or other explicit-only skills. Every delivery plan must

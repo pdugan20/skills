@@ -68,13 +68,21 @@ The skill should lean heavily on Superpowers when Patrick selects the strict flo
 
 Superpowers is therefore an optional strict implementation backend, not the definition of the `feature-delivery` skill. The canonical specification, repo impact map, acceptance criteria, and rollout plan must remain useful to Codex, Claude Code, Cursor, a human engineer, or another execution system without Superpowers installed.
 
+Selecting that backend requires positive discovery of the named skills in the
+current runtime; references in documentation or a user's request do not prove
+availability. When the requested adapter is absent, the outer coordinator keeps
+the approved contract intact, reports the exact missing capabilities, and asks
+before falling back to proportional inline execution. Agent-team execution has
+the same capability check and remains limited to authorized, genuinely
+independent workstreams with stable interfaces and explicit ownership.
+
 ## Reusable contents
 
 - **Instructions:** Intake and scope discovery; current-state investigation; product and technical decision gates; cross-repository impact mapping; specification approval; execution-mode selection; staged rollout; and final outcome verification.
 - **Scripts:** None initially. Repository discovery or release automation should remain in tested project tooling until repeated use proves a safe portable script is possible.
 - **References:** A formal feature-specification method, a cross-repository dependency and compatibility checklist, a staged-rollout method, and a small execution-engine adapter explaining normal, Superpowers, and agent-team handoffs.
 - **Assets:** A concise feature specification and rollout-state template captures the recurring decision and evidence fields without copying private project documents or preserving historical ceremony that did not add value.
-- **Dependencies:** Read access to every potentially affected repository; repository instructions and tests; access to development or emulator environments where applicable; and explicit authorization for external writes or releases. Superpowers and agent-team support are optional execution dependencies, not portability requirements.
+- **Dependencies:** Read access to every potentially affected repository; repository instructions and tests; access to development or emulator environments where applicable; and explicit authorization for external writes or releases. Superpowers and agent-team support are optional, capability-checked execution dependencies, not portability requirements.
 
 ## Safety and boundaries
 

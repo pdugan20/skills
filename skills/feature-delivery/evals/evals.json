@@ -72,6 +72,18 @@
         "Stable interfaces and ownership precede parallel work, and an integration owner verifies the combined result.",
         "Superpowers source-integration completion is not treated as backend deployment, client distribution, exposure, or stable user availability."
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "Use the full Superpowers planning, TDD, worktree, and review-gated subagent flow for a substantial cross-repository feature, but the Superpowers plugin and skills are not installed in this runtime. Do not install anything without asking. Tell me what can proceed safely.",
+      "expected_output": "A capability-aware delivery response that preserves the outer feature contract, names the unavailable strict machinery, and offers an explicit fallback without pretending to invoke missing skills.",
+      "files": [],
+      "assertions": [
+        "The agent verifies capability availability before selecting Superpowers execution and does not treat documentation or the request as proof that the skills exist.",
+        "The response names the unavailable Superpowers capabilities and never claims to have invoked or reproduced them.",
+        "Safe feature discovery, specification, impact mapping, and rollout planning may proceed under feature-delivery while strict implementation remains unselected.",
+        "The user receives an explicit choice between proportional inline execution and pausing for installation, with no silent fallback or unapproved installation."
+      ]
     }
   ]
 }
