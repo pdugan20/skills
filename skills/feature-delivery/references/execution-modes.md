@@ -18,7 +18,14 @@ team, branch, or commit solely because the feature is substantial.
 ## Explicit Superpowers execution
 
 Use Superpowers only when the user names a Superpowers skill or explicitly asks
-for that strict mode. Compose its inner loops instead of copying them:
+for that strict mode. Before selecting it, confirm the required named skills are
+discoverable in the current runtime; a mention in project guidance, a plan, or
+this reference is not evidence that they are installed. If a required skill is
+missing, report its exact name and do not simulate its procedure. Continue with
+proportional inline execution only when the user explicitly accepts that
+fallback or has already authorized it; otherwise pause at the delivery contract
+so the capability can be installed. Compose available inner loops instead of
+copying them:
 
 - `superpowers:brainstorming` when the user wants its formal discovery and
   design-approval flow;
@@ -40,6 +47,9 @@ deployment, distribution, exposure, monitoring, rollback, and gate cleanup.
 
 Use an available agent team when the user requests it or the active working
 agreement permits it and the feature contains genuinely independent workstreams.
+Confirm the runtime exposes delegation before selecting this mode. If it does
+not, state that constraint and keep execution inline or create a human handoff
+only with the user's agreement.
 Give every member the same approved specification and stable interfaces. Assign
 one owner per repository or workstream, explicit file/service ownership, and an
 integration coordinator. Run dependent work in waves. An independent verifier

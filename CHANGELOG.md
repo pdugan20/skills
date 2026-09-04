@@ -10,6 +10,12 @@ All notable changes to this project are documented in this file. The project fol
   be discovered as one portable plugin while retaining the existing Claude
   Code and Codex compatibility manifests and Skills CLI distribution path.
 
+### Changed
+
+- Made `feature-delivery` verify that requested Superpowers skills or agent-team
+  delegation are available before selecting those execution modes, and require
+  an explicit fallback when the requested capability is missing.
+
 ### Fixed
 
 - Aligned skills.sh section titles and descriptions with the portfolio catalog,
