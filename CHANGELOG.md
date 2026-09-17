@@ -4,6 +4,8 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-09-16
+
 ### Added
 
 - Added an Agent Plugins 1.0.0 root manifest so the canonical collection can
@@ -284,7 +286,9 @@ All notable changes to this project are documented in this file. The project fol
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
 - Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
 
-[unreleased]: https://github.com/pdugan20/skills/compare/v3.1.0...HEAD
+[unreleased]: https://github.com/pdugan20/skills/compare/v3.3.0...HEAD
+[3.3.0]: https://github.com/pdugan20/skills/compare/v3.2.0...v3.3.0
+[3.2.0]: https://github.com/pdugan20/skills/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/pdugan20/skills/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/pdugan20/skills/compare/v2.4.0...v3.0.0
 [2.4.0]: https://github.com/pdugan20/skills/compare/v2.3.0...v2.4.0
