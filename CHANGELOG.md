@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Security
+
+- Removed the stale Snyk `W011` audit exceptions for `bootstrap-repository`,
+  `review-mintlify-docs`, and `tune-mobile-client-performance` after skills.sh
+  began reporting passing audits for them. `feature-spike` keeps its reviewed
+  exception.
+
 ## [3.3.0] - 2026-09-16
 
 ### Added
