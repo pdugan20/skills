@@ -1,0 +1,6 @@
+interface:
+  display_name: "Capture Feature"
+  short_description: "Record reproducible feature review bundles"
+  default_prompt: "Use $capture-feature to record this feature as a reproducible Slack-ready review bundle with optional Figma publication."
+policy:
+  allow_implicit_invocation: true
