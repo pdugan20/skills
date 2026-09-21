@@ -40,6 +40,8 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 | ID | Skill candidate | Evidence | Classification and rationale | Status | Priority | Brief |
 | --- | --- | --- | --- | --- | --- | --- |
 | `SC-023` | Run a remote development server | A completed always-on host/traveling-client setup, direct tailnet connectivity, key-only SSH, localhost/Serve distinction, and corrections for unrelated listeners and historical proxy assumptions | **Composite skill:** reconcile remote source state, persistent process lifecycle, localhost health, private Serve routing, client verification and scoped teardown without provisioning the host or exposing it publicly | `validated` | High | [Brief](skill-candidates/run-remote-dev-server.md) |
+| `SC-022` | Capture a feature for review | Rune Playground's implemented deterministic card and spatial-map recipes, Slack bundle contract, Figma manifest and corrected viewport, timing, server-isolation and video-lead-in failures | **Technique skill:** repository scripts own deterministic capture while the skill owns review-story selection, evidence inspection, provenance and external-write boundaries | `pilot` | High | [Brief](skill-candidates/capture-feature.md) |
+| `SC-021` | Review deployment constraints | A private feature-flag proposal and repeated corrections separating policy, assumptions, platform responsibilities and deployment scope | **Composite skill:** source reconciliation and scoped proposal findings; customer requirements remain in their internal home | `pilot` | High | [Brief](skill-candidates/review-deployment-constraints.md) |
 | `SC-001` | Cross-platform component variant exploration | Patrick's repeated SwiftUI preview, React Native Storybook, and web dev-lab loop | **Technique skill:** enhance `code-native-ui-ideation`; the decision loop is portable while the comparison surface remains project-native | `released` | High | [Brief](skill-candidates/cross-platform-component-variant-exploration.md) |
 | `SC-002` | End-to-end feature development and staged rollout | Private iOS and backend histories for Catch Me Up, user-generated lists, and series-detail trailers, plus baseline and forward replays against `feature-delivery` | **Composite skill:** `feature-delivery` owns product discovery, cross-repository impact, specification, execution-mode selection, and staged rollout while delegating optional strict implementation mechanics only to capability-checked Superpowers or an available agent-team runtime | `released` | High | [Brief](skill-candidates/end-to-end-feature-development.md) |
 | `SC-003` | Explicit production hardening | Three completed hardening histories plus fresh natural-prompt comparisons with and without the former released skill | **No standalone skill:** remove `production-hardening` because a direct hardening request already activates the needed behavior; keep repository instructions, `feature-delivery`, and optional release-operation skills in their narrower roles | `no-action` | Medium | [Brief](skill-candidates/production-hardening.md) |
@@ -69,11 +71,26 @@ installation checks, and fresh baseline/with-skill transcript review covering
 source mismatch, route collisions, malicious instructions, and scoped teardown.
 See the [candidate brief](skill-candidates/run-remote-dev-server.md).
 
+`SC-022` adds an unreleased pilot for lightweight, deterministic feature
+captures. Rune Playground supplies the first working implementation and failure
+evidence. Structural and behavioral evaluation remain before the skill can be
+called validated or released. See the [candidate brief](skill-candidates/capture-feature.md).
+
+`SC-021` adds an unreleased pilot for source-backed deployment-constraint review.
+Its customer policy reconciliation and owner confirmation remain incomplete;
+structural checks must not be presented as validated policy or behavioral lift.
+Paired synthetic benchmarks and transcript review found residual invented facts,
+unnecessary gates and incomplete outputs despite favorable scores on some cases.
+The skill remains advisory rather than an automatic release gate.
+See the [candidate brief](skill-candidates/review-deployment-constraints.md).
+
 These Patrick-owned skills are represented in the audit above so the inventory covers the complete recurring process instead of only net-new ideas:
 
 | Skill | Classification | Primary boundary |
 | --- | --- | --- |
 | `run-remote-dev-server` | Composite | Existing SSH-reachable development hosts and private Tailscale previews, not host provisioning, source synchronization, public tunnels, or production services. |
+| `capture-feature` | Technique | Reproducible short feature-review bundles and authorized destination adapters, not existing-video analysis or narrated marketing production. |
+| `review-deployment-constraints` | Composite | Unreleased pilot; scoped proposal review against attributable environment requirements, not certification, general hardening, or a bundled customer policy catalog. |
 | `code-native-ui-ideation` | Technique | Lightweight runnable design exploration, not production delivery. |
 | `align-ui-to-design-system` | Discipline | Bounded post-build UI conformance and approved corrections, not repository-wide auditing. |
 | `audit-design-system-health` | Composite | Read-only repository-wide drift, consolidation, system-gap, and enforcement analysis, not automatic remediation. |

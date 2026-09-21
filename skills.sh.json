@@ -4,12 +4,13 @@
   "groupings": [
     {
       "title": "Interface Design",
-      "description": "Explore interface directions, understand existing systems, and diagnose UI behavior.",
+      "description": "Explore interface directions, capture review evidence, understand existing systems, and diagnose UI behavior.",
       "skills": [
         "code-native-ui-ideation",
         "align-ui-to-design-system",
         "audit-design-system-health",
-        "analyze-ui-video"
+        "analyze-ui-video",
+        "capture-feature"
       ]
     },
     {
@@ -21,6 +22,7 @@
         "feature-spike",
         "tune-mobile-client-performance",
         "integrate-app-intents",
+        "review-deployment-constraints",
         "feature-delivery"
       ]
     },
