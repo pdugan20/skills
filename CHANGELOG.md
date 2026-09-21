@@ -16,6 +16,11 @@ All notable changes to this project are documented in this file. The project fol
   findings, explicit uncertainty, synthetic execution cases and routing coverage.
   Customer requirements and authorization packages remain in their internal homes.
 
+### Changed
+
+- Recorded `run-remote-dev-server` as released after its v3.4.0 archive, downstream
+  Agent Tooling pin, and canonical machine installation passed verification.
+
 ## [3.4.0] - 2026-09-21
 
 ### Added

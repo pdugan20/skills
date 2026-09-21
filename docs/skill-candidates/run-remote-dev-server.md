@@ -1,7 +1,7 @@
 # Skill Candidate: Run a Remote Development Server
 
 - **Inventory ID:** `SC-023`
-- **Status:** `validated`
+- **Status:** `released`
 - **Owner:** Patrick
 - **Last reviewed:** 2026-09-21
 
@@ -199,5 +199,5 @@ local benchmark workspace; no private host or account details enter the skill.
 - [x] Execution and routing eval coverage passes.
 - [x] Representative with-skill and baseline results are reviewed.
 - [x] Intended Claude, Codex, and other claimed integrations are checked.
-- [ ] Version, changelog, distribution metadata, and installation are verified.
+- [x] Version, changelog, distribution metadata, and installation are verified.
 - [x] Inventory status and lessons are updated.
