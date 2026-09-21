@@ -47,7 +47,7 @@
   interactive prototype and one answerable feedback question.
 - Slack upload and Figma edits are external writes. Prepare locally by default;
   require a named destination before mutating either service.
-- Figma is an optional visual archive. The running prototype and captured PNGs,
+- Figma is an optional visual archive. The running prototype and captured PNG files,
   not an editable reconstruction, are the rendering authority.
 
 ### Sensitive material

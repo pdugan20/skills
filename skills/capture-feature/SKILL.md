@@ -110,7 +110,7 @@ exists.
 
 Create one labeled auto-layout section with feature title, description, date,
 revision, linked prototype URL, feedback prompt, poster, and checkpoints. Use
-the captured PNGs as review evidence. Use live-page-to-Figma conversion only
+the captured PNG files as review evidence. Use live-page-to-Figma conversion only
 when the user specifically needs an editable representation.
 
 ## Report provenance and boundaries
