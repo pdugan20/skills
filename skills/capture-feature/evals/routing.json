@@ -1,0 +1,66 @@
+[
+  {
+    "query": "Record this web feature so I can share a short video and exact prototype link in Slack.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add a reusable snapshot workflow for our playground experiments, including screenshots and a trace.",
+    "should_trigger": true
+  },
+  {
+    "query": "Re-record the checkout prototype from its existing capture recipe after the UI change.",
+    "should_trigger": true
+  },
+  {
+    "query": "Prepare a Slack-ready MP4, poster, message, and feedback prompt for this feature walkthrough.",
+    "should_trigger": true
+  },
+  {
+    "query": "Capture this prototype and archive the poster and checkpoints in our Figma review file.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make this feature demo reproducible from a fixed scenario instead of manually recording it every time.",
+    "should_trigger": true
+  },
+  {
+    "query": "Generate visual evidence for this interaction and preserve the Git revision and browser trace.",
+    "should_trigger": true
+  },
+  {
+    "query": "Snapshot the selected experiment as stills and a short review clip without posting it anywhere.",
+    "should_trigger": true
+  },
+  {
+    "query": "Analyze the attached screen recording and tell me why the card jumps at eight seconds.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run our ordinary Playwright regression suite and fix the failing checkout test.",
+    "should_trigger": false
+  },
+  {
+    "query": "Take one manual screenshot of this page for me; I do not need a reusable workflow.",
+    "should_trigger": false
+  },
+  {
+    "query": "Produce a narrated three-minute launch video with voiceover, captions, and branded title cards.",
+    "should_trigger": false
+  },
+  {
+    "query": "Trim the attached video and remove its audio without interacting with the application.",
+    "should_trigger": false
+  },
+  {
+    "query": "Turn this Figma design into working React code.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review this static screenshot for spacing and contrast problems.",
+    "should_trigger": false
+  },
+  {
+    "query": "Deploy the approved playground build to production and announce the release.",
+    "should_trigger": false
+  }
+]
