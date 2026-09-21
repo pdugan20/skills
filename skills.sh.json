@@ -14,9 +14,10 @@
     },
     {
       "title": "Product Development",
-      "description": "Start repositories, validate ideas, tune mobile interactions, integrate platform experiences, and deliver production software.",
+      "description": "Start repositories, run private remote previews, validate ideas, tune mobile interactions, integrate platform experiences, and deliver production software.",
       "skills": [
         "bootstrap-repository",
+        "run-remote-dev-server",
         "feature-spike",
         "tune-mobile-client-performance",
         "integrate-app-intents",

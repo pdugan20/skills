@@ -4,8 +4,20 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-09-21
+
+### Added
+
+- Added
+  [`run-remote-dev-server`](skills/run-remote-dev-server/SKILL.md) for
+  source-aware, persistent remote development processes and collision-safe
+  private previews through Tailscale Serve, without public exposure or host
+  provisioning.
+
 ### Security
 
+- Added a collection threat model, review rules, Claude compatibility shim,
+  and weekly dependency and GitHub Actions update policy.
 - Removed the stale Snyk `W011` audit exceptions for `bootstrap-repository`,
   `review-mintlify-docs`, and `tune-mobile-client-performance` after skills.sh
   began reporting passing audits for them. `feature-spike` keeps its reviewed

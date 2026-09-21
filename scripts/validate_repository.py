@@ -21,6 +21,7 @@ EXPECTED_SKILLS = {
     "generate-mintlify-reference": True,
     "integrate-app-intents": True,
     "review-mintlify-docs": True,
+    "run-remote-dev-server": True,
     "scaffold-mintlify-site": True,
     "tune-mobile-client-performance": True,
     "write-mintlify-changelog": True,
