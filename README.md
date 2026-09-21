@@ -46,9 +46,10 @@ Explore interface directions, understand existing systems, and diagnose UI behav
 
 ### Product Development
 
-Start repositories, validate ideas, tune mobile interactions, integrate platform experiences, and deliver production software.
+Start repositories, run private remote previews, validate ideas, tune mobile interactions, integrate platform experiences, and deliver production software.
 
 - [`bootstrap-repository`](skills/bootstrap-repository/SKILL.md) — Scaffold new repositories with proportional local tooling, CI, conventions, and GitHub policy.
+- [`run-remote-dev-server`](skills/run-remote-dev-server/SKILL.md) — Run an existing project on a remote development host and expose a verified private preview through Tailscale Serve.
 - [`feature-spike`](skills/feature-spike/SKILL.md) — Test a feature's value or technical feasibility with a small runnable slice before production investment.
 - [`tune-mobile-client-performance`](skills/tune-mobile-client-performance/SKILL.md) — Trace jittery or late mobile interactions to their causal boundary and verify the smallest supported adjustment.
 - [`integrate-app-intents`](skills/integrate-app-intents/SKILL.md) — Add Apple system experiences without bypassing app-owned data, routing, privacy, or availability boundaries.

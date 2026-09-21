@@ -1,0 +1,6 @@
+interface:
+  display_name: "Run Remote Dev Server"
+  short_description: "Host private remote development previews"
+  default_prompt: "Use $run-remote-dev-server to run this project on my remote development host and give me a private Tailscale preview URL."
+policy:
+  allow_implicit_invocation: true

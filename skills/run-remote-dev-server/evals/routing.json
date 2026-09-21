@@ -1,0 +1,66 @@
+[
+  {
+    "query": "Run this project on my home Mac and give me a private URL I can open from my laptop while traveling.",
+    "should_trigger": true
+  },
+  {
+    "query": "Start the dev server on my remote workstation over SSH and expose it only through Tailscale.",
+    "should_trigger": true
+  },
+  {
+    "query": "The preview on my build machine stopped responding. Check its tmux logs and restart it without changing the code.",
+    "should_trigger": true
+  },
+  {
+    "query": "Stop the remote checkout preview and remove only the private route created for it.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can you run this Vite app on my always-on Linux box so I can use it from another tailnet device?",
+    "should_trigger": true
+  },
+  {
+    "query": "Use my SSH host alias studio-server to launch the documented development command and return the Tailscale Serve address.",
+    "should_trigger": true
+  },
+  {
+    "query": "Inspect which revision and port the remote development preview is currently serving.",
+    "should_trigger": true
+  },
+  {
+    "query": "Keep the dev process alive when my laptop disconnects, but do not make it public.",
+    "should_trigger": true
+  },
+  {
+    "query": "Run npm dev on this laptop so I can open localhost in the same browser.",
+    "should_trigger": false
+  },
+  {
+    "query": "Deploy this application to production on Vercel.",
+    "should_trigger": false
+  },
+  {
+    "query": "Make my local webhook receiver public on the internet for a vendor callback.",
+    "should_trigger": false
+  },
+  {
+    "query": "Install Tailscale on a new server and design our tailnet access policy.",
+    "should_trigger": false
+  },
+  {
+    "query": "SSH into the database host and inspect PostgreSQL replication lag.",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up Screen Sharing so I can control my Mac remotely.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write Playwright tests for the development server's login page.",
+    "should_trigger": false
+  },
+  {
+    "query": "Configure a permanent system service and public domain for this production API.",
+    "should_trigger": false
+  }
+]

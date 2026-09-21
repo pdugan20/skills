@@ -1,7 +1,7 @@
 {
   "name": "patrick-skills",
-  "version": "3.3.0",
-  "description": "Portable skills for repository setup, code-native design exploration, design-system alignment and auditing, UI video analysis, mobile performance tuning, Apple system integration, feature validation and delivery, and technical documentation.",
+  "version": "3.4.0",
+  "description": "Portable skills for repository setup, private remote development, code-native design exploration, design-system alignment and auditing, UI video analysis, mobile performance tuning, Apple system integration, feature validation and delivery, and technical documentation.",
   "author": {
     "name": "Pat Dugan",
     "url": "https://github.com/pdugan20"
@@ -17,6 +17,8 @@
     "design",
     "design-system",
     "development",
+    "remote-development",
+    "tailscale",
     "repository-scaffolding",
     "documentation",
     "screen-recording",
@@ -26,8 +28,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Patrick Skills",
-    "shortDescription": "Repository, design, Apple integration, and delivery skills.",
-    "longDescription": "Scaffold proportional software repositories, explore interfaces in runnable code, align completed UI, audit repository design-system health, dissect UI recordings, tune mobile interactions, integrate App Intents without bypassing app architecture, validate feature ideas, deliver production features, and maintain source-backed Mintlify documentation.",
+    "shortDescription": "Repository, remote development, design, and delivery skills.",
+    "longDescription": "Scaffold proportional software repositories, run private remote development previews, explore interfaces in runnable code, align completed UI, audit repository design-system health, dissect UI recordings, tune mobile interactions, integrate App Intents without bypassing app architecture, validate feature ideas, deliver production features, and maintain source-backed Mintlify documentation.",
     "developerName": "Pat Dugan",
     "category": "Developer Tools",
     "capabilities": ["Write"],
