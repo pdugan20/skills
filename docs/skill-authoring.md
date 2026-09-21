@@ -45,7 +45,9 @@ The current collection classifies `code-native-ui-ideation` and
 `feature-delivery`, `analyze-ui-video`, `audit-design-system-health`,
 `bootstrap-repository`, `tune-mobile-client-performance`,
 `scaffold-mintlify-site`, and
-`generate-mintlify-reference` as composite skills.
+`generate-mintlify-reference` as composite skills. The unreleased
+`review-deployment-constraints` pilot is also composite: source reconciliation and
+scoped proposal assessment share one outcome, with customer policy kept external.
 
 ## Capture intent before writing
 
