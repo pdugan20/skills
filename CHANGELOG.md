@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Added
+
+- Added an unreleased pilot of
+  [`capture-feature`](skills/capture-feature/SKILL.md) for deterministic,
+  repository-native feature recordings with Slack-ready review bundles,
+  provenance and optional authorized Figma publication.
+- Added an unreleased pilot of
+  [`review-deployment-constraints`](skills/review-deployment-constraints/SKILL.md)
+  for source-backed proposal review and requirements inventories, with scoped
+  findings, explicit uncertainty, synthetic execution cases and routing coverage.
+  Customer requirements and authorization packages remain in their internal homes.
+
 ## [3.4.0] - 2026-09-21
 
 ### Added
