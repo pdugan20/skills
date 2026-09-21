@@ -39,7 +39,7 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 
 | ID | Skill candidate | Evidence | Classification and rationale | Status | Priority | Brief |
 | --- | --- | --- | --- | --- | --- | --- |
-| `SC-023` | Run a remote development server | A completed always-on host/traveling-client setup, direct tailnet connectivity, key-only SSH, localhost/Serve distinction, and corrections for unrelated listeners and historical proxy assumptions | **Composite skill:** reconcile remote source state, persistent process lifecycle, localhost health, private Serve routing, client verification and scoped teardown without provisioning the host or exposing it publicly | `validated` | High | [Brief](skill-candidates/run-remote-dev-server.md) |
+| `SC-023` | Run a remote development server | A completed always-on host/traveling-client setup, direct tailnet connectivity, key-only SSH, localhost/Serve distinction, and corrections for unrelated listeners and historical proxy assumptions | **Composite skill:** reconcile remote source state, persistent process lifecycle, localhost health, private Serve routing, client verification and scoped teardown without provisioning the host or exposing it publicly | `released` | High | [Brief](skill-candidates/run-remote-dev-server.md) |
 | `SC-022` | Capture a feature for review | Rune Playground's implemented deterministic card and spatial-map recipes, Slack bundle contract, Figma manifest and corrected viewport, timing, server-isolation and video-lead-in failures | **Technique skill:** repository scripts own deterministic capture while the skill owns review-story selection, evidence inspection, provenance and external-write boundaries | `pilot` | High | [Brief](skill-candidates/capture-feature.md) |
 | `SC-021` | Review deployment constraints | A private feature-flag proposal and repeated corrections separating policy, assumptions, platform responsibilities and deployment scope | **Composite skill:** source reconciliation and scoped proposal findings; customer requirements remain in their internal home | `pilot` | High | [Brief](skill-candidates/review-deployment-constraints.md) |
 | `SC-001` | Cross-platform component variant exploration | Patrick's repeated SwiftUI preview, React Native Storybook, and web dev-lab loop | **Technique skill:** enhance `code-native-ui-ideation`; the decision loop is portable while the comparison surface remains project-native | `released` | High | [Brief](skill-candidates/cross-platform-component-variant-exploration.md) |
@@ -65,10 +65,11 @@ Prefer a pilot with strong evidence, recurring friction, and observable outcomes
 
 ## Current collection
 
-`SC-023` adds a validated skill for private remote development previews. Its
+`SC-023` adds a released skill for private remote development previews. Its
 evidence includes the completed host/client setup, structural and multi-client
-installation checks, and fresh baseline/with-skill transcript review covering
-source mismatch, route collisions, malicious instructions, and scoped teardown.
+installation checks, fresh baseline/with-skill transcript review covering
+source mismatch, route collisions, malicious instructions and scoped teardown,
+and exact-tag downstream installation through Agent Tooling.
 See the [candidate brief](skill-candidates/run-remote-dev-server.md).
 
 `SC-022` adds an unreleased pilot for lightweight, deterministic feature
