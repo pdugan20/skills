@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review Deployment Constraints"
+  short_description: "Check proposals against sourced deployment rules"
+  default_prompt: "Use $review-deployment-constraints to assess this proposal against the applicable documented requirements and identify unresolved decisions."
+policy:
+  allow_implicit_invocation: true

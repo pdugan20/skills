@@ -1,0 +1,78 @@
+[
+  {
+    "query": "Check whether this feature-flag proposal is allowed in our operational deployment.",
+    "should_trigger": true
+  },
+  {
+    "query": "Gather our documented environment restrictions into a sourced requirements register.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can we add an external commenting service to this government-hosted application?",
+    "should_trigger": true
+  },
+  {
+    "query": "Review the design against our approved deployment boundary and data-handling rules.",
+    "should_trigger": true
+  },
+  {
+    "query": "Which of these security checklist requirements actually apply to our internal prototype?",
+    "should_trigger": true
+  },
+  {
+    "query": "Reconcile these conflicting policy documents before we choose an analytics integration.",
+    "should_trigger": true
+  },
+  {
+    "query": "Determine what controls our hosting platform covers and what our application must supply.",
+    "should_trigger": true
+  },
+  {
+    "query": "Validate this screenshot-sharing workflow against the customer's permitted data destinations.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can we operate release 3 under this expired test approval and a newer unsigned authorization draft?",
+    "should_trigger": true
+  },
+  {
+    "query": "Extract a reusable review method from these restricted deployment policies without copying their contents into the public skill.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fix the spacing on this sidebar in our government customer's app.",
+    "should_trigger": false
+  },
+  {
+    "query": "Perform a general vulnerability audit of the repository.",
+    "should_trigger": false
+  },
+  {
+    "query": "Certify that our organization is legally compliant with all regulations.",
+    "should_trigger": false
+  },
+  {
+    "query": "Deploy the already approved release to staging.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write unit tests for the feature-flag resolver.",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarize this regulation for general background; don't assess a project.",
+    "should_trigger": false
+  },
+  {
+    "query": "Benchmark our offline application's launch performance.",
+    "should_trigger": false
+  },
+  {
+    "query": "Rename this environment variable and update its references.",
+    "should_trigger": false
+  },
+  {
+    "query": "Our earlier review confirmed Alpha-only rules do not apply to this separate local prototype. Implement the approved prototype styling.",
+    "should_trigger": false
+  }
+]
