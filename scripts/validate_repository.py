@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = {
     "align-ui-to-design-system": True,
     "analyze-ui-video": True,
+    "animate-watercolor": True,
     "audit-design-system-health": True,
     "bootstrap-repository": True,
     "capture-feature": True,

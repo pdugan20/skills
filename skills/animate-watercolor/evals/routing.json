@@ -1,0 +1,66 @@
+[
+  {
+    "query": "Make this accepted watercolor illustration paint in on hover.",
+    "should_trigger": true
+  },
+  {
+    "query": "Match our working Ichiro brush reveal for a new watercolor subject.",
+    "should_trigger": true
+  },
+  {
+    "query": "The can lid and gold bands jump to finished detail at the end.",
+    "should_trigger": true
+  },
+  {
+    "query": "White fabric fades in globally when the watercolor plays on dark mode.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our painted glass has black matte holes; preserve its transparency.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add quiet continuous carbonation after the watercolor finishes.",
+    "should_trigger": true
+  },
+  {
+    "query": "The condensation should travel once and reset when the painting replays.",
+    "should_trigger": true
+  },
+  {
+    "query": "Consolidate these watercolor reveals into a common player and tuning rail.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make this dropdown spring animation faster.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate a watercolor portrait from this photo; no animation needed.",
+    "should_trigger": false
+  },
+  {
+    "query": "Stylize this live-action baseball video with an AI video model.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create an original generative flow-field artwork in p5.js.",
+    "should_trigger": false
+  },
+  {
+    "query": "Remove the background from this product photo only.",
+    "should_trigger": false
+  },
+  {
+    "query": "Make a CSS loading spinner for the checkout.",
+    "should_trigger": false
+  },
+  {
+    "query": "Research famous watercolor artists with image references.",
+    "should_trigger": false
+  },
+  {
+    "query": "Export this existing watercolor PNG at a smaller file size.",
+    "should_trigger": false
+  }
+]

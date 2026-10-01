@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Added
 
+- Added the local pilot [`animate-watercolor`](skills/animate-watercolor/SKILL.md)
+  for material-aware brush reveals, transparent compositing, shared playback
+  controls and restrained ambient motion, grounded in the Ichiro/Rainier work.
+
 - Added an unreleased pilot of
   [`capture-feature`](skills/capture-feature/SKILL.md) for deterministic,
   repository-native feature recordings with Slack-ready review bundles,

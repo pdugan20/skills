@@ -1,0 +1,6 @@
+interface:
+  display_name: "Animate Watercolor"
+  short_description: "Author coherent watercolor reveals and quiet motion"
+  default_prompt: "Use $animate-watercolor to inspect the accepted illustration system and build or refine this watercolor reveal with verified material coverage and timing."
+policy:
+  allow_implicit_invocation: true

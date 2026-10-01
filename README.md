@@ -37,6 +37,8 @@ npx skills@latest add pdugan20/skills
 
 ### Interface Design
 
+- [`animate-watercolor`](skills/animate-watercolor/SKILL.md) — Author material-aware watercolor reveals with shared playback and quiet ambient motion. Unreleased local pilot.
+
 Explore interface directions, capture review evidence, understand existing systems, and diagnose UI behavior.
 
 - [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) — Brainstorm and compare runnable UI directions in the product before choosing one.
