@@ -13,7 +13,7 @@ The renderer reads `briefs/before.json` and any available `treatments/{baseline,
 
 ## Shared layout and palette
 
-- 430 × 850 points at 2×, producing 860 × 1700 pixel PNGs.
+- 430 × 850 points at 2×, producing 860 × 1700 pixel PNG files.
 - 28-point horizontal margins and a 374-point article measure.
 - Brand and Saved story share a native first-baseline-aligned horizontal header at y=28. A 0.5-point rule sits at y=76.
 - Article begins at y=112. The gap between eyebrow and title is fixed at 14 points. Title-to-deck, deck-to-author, date-to-section, section-to-body, and paragraph gaps use the corresponding treatment values. Author-to-date spacing is fixed at 4 points.
@@ -31,7 +31,7 @@ For example, the before body resolves to `.NewYork-Regular` at 17 points. Its re
 
 ## Verification
 
-Compilation and rendering succeeded on the execution host. The final set contains before plus baseline, impeccable, and original, for eight PNGs and seven distinct canvases. All seven distinct images were opened for visual inspection. Header, title, deck, author, date, Opening note, both complete paragraphs, and both footer strings are visible; no clipped glyphs, horizontal overflow, or footer collision was observed. The final measured article bottoms are:
+Compilation and rendering succeeded on the execution host. The final set contains before plus baseline, impeccable, and original, for eight PNG files and seven distinct canvases. All seven distinct images were opened for visual inspection. Header, title, deck, author, date, Opening note, both complete paragraphs, and both footer strings are visible; no clipped glyphs, horizontal overflow, or footer collision was observed. The final measured article bottoms are:
 
 | Treatment | Article bottom | Clearance to footer rule |
 | --- | ---: | ---: |
@@ -54,7 +54,7 @@ Wrapping asserts that normalized source copy equals normalized concatenated line
 - All three treatment arms were present for the final execution. Future configuration changes require a new render and inspection; the current evidence applies to these saved configurations.
 - The canvas exercises typography, not scrolling, interaction, accessibility, Dynamic Type, device safe areas, or iOS font rendering. A 430-point canvas alone is not evidence of an iPhone build.
 - Word wrapping is deliberately delegated to TextKit, not SwiftUI's full paragraph layout. Individual lines are native SwiftUI text. This choice enables exact baseline control but can differ from a single SwiftUI `Text` paragraph in a production app.
-- macOS font versions and system serif optical behavior can differ from other operating-system versions. The PNGs and resolved metrics are the record of this execution, not a cross-platform rendering guarantee.
+- macOS font versions and system serif optical behavior can differ from other operating-system versions. The PNG files and resolved metrics are the record of this execution, not a cross-platform rendering guarantee.
 - Geometry reports detect measured block overflow, not every possible ink overhang. Visual inspection is still required, particularly for a newly supplied treatment.
 - The brief's `value` role has no corresponding native content and therefore does not appear on this canvas. All other roles are exercised. No invented numeric content was added to force coverage.
 - This renderer never tunes treatment values after seeing the output. Visual differences and unusual rags remain evidence for the comparison.
