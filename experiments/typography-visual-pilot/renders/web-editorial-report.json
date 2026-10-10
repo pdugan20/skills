@@ -1,0 +1,128 @@
+[
+  {
+    "name": "editorial-before",
+    "contentBottom": 610.7890625,
+    "fonts": "loaded",
+    "footerTop": 834.15625,
+    "size": [1100, 900],
+    "title": {
+      "bottom": 268.3984375,
+      "height": 87,
+      "left": 48,
+      "right": 958,
+      "top": 181.3984375,
+      "width": 910,
+      "x": 48,
+      "y": 181.3984375
+    },
+    "viewport": [1100, 900]
+  },
+  {
+    "name": "editorial-new-baseline",
+    "contentBottom": 670.40625,
+    "fonts": "loaded",
+    "footerTop": 834.8046875,
+    "size": [1100, 900],
+    "title": {
+      "bottom": 309.6640625,
+      "height": 135.671875,
+      "left": 48,
+      "right": 958,
+      "top": 173.9921875,
+      "width": 910,
+      "x": 48,
+      "y": 173.9921875
+    },
+    "viewport": [1100, 900]
+  },
+  {
+    "name": "editorial-new-impeccable",
+    "contentBottom": 682.359375,
+    "fonts": "loaded",
+    "footerTop": 834.8046875,
+    "size": [1100, 900],
+    "title": {
+      "bottom": 313.8671875,
+      "height": 140.078125,
+      "left": 48,
+      "right": 958,
+      "top": 173.7890625,
+      "width": 910,
+      "x": 48,
+      "y": 173.7890625
+    },
+    "viewport": [1100, 900]
+  },
+  {
+    "name": "editorial-new-original",
+    "contentBottom": 739.078125,
+    "fonts": "loaded",
+    "footerTop": 834.8046875,
+    "size": [1100, 900],
+    "title": {
+      "bottom": 306.5,
+      "height": 133.109375,
+      "left": 48,
+      "right": 958,
+      "top": 173.390625,
+      "width": 910,
+      "x": 48,
+      "y": 173.390625
+    },
+    "viewport": [1100, 900]
+  },
+  {
+    "name": "editorial-refine-baseline",
+    "contentBottom": 597.8828125,
+    "fonts": "loaded",
+    "footerTop": 834.8046875,
+    "size": [1100, 900],
+    "title": {
+      "bottom": 242.1953125,
+      "height": 66,
+      "left": 48,
+      "right": 958,
+      "top": 176.1953125,
+      "width": 910,
+      "x": 48,
+      "y": 176.1953125
+    },
+    "viewport": [1100, 900]
+  },
+  {
+    "name": "editorial-refine-impeccable",
+    "contentBottom": 667.28125,
+    "fonts": "loaded",
+    "footerTop": 834.8046875,
+    "size": [1100, 900],
+    "title": {
+      "bottom": 304.7890625,
+      "height": 129.59375,
+      "left": 48,
+      "right": 958,
+      "top": 175.1953125,
+      "width": 910,
+      "x": 48,
+      "y": 175.1953125
+    },
+    "viewport": [1100, 900]
+  },
+  {
+    "name": "editorial-refine-original",
+    "contentBottom": 602.1875,
+    "fonts": "loaded",
+    "footerTop": 834.15625,
+    "size": [1100, 900],
+    "title": {
+      "bottom": 246.1953125,
+      "height": 64.796875,
+      "left": 48,
+      "right": 958,
+      "top": 181.3984375,
+      "width": 910,
+      "x": 48,
+      "y": 181.3984375
+    },
+    "viewport": [1100, 900]
+  }
+]

@@ -1,0 +1,230 @@
+{
+  "product": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "title": {
+        "font": "Inter",
+        "size": 38,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "deck": {
+        "font": "Inter",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "body": {
+        "font": "Inter",
+        "size": 15,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "section": {
+        "font": "Inter",
+        "size": 14,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "item": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "value": {
+        "font": "Inter",
+        "size": 25,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      }
+    },
+    "space": {
+      "titleAfter": 18,
+      "deckAfter": 24,
+      "sectionBefore": 28,
+      "rowGap": 18,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "Shared competent before treatment, authored before the comparison arms; not a no-skill outcome."
+  },
+  "editorial": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "title": {
+        "font": "Source Serif 4",
+        "size": 60,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "deck": {
+        "font": "Source Serif 4",
+        "size": 24,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "body": {
+        "font": "Source Serif 4",
+        "size": 20,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "section": {
+        "font": "Inter",
+        "size": 15,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "item": {
+        "font": "Source Serif 4",
+        "size": 26,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "value": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      }
+    },
+    "space": {
+      "titleAfter": 18,
+      "deckAfter": 24,
+      "sectionBefore": 28,
+      "rowGap": 18,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "Shared competent before treatment, authored before the comparison arms; not a no-skill outcome."
+  },
+  "native": {
+    "roles": {
+      "brand": {
+        "font": "system",
+        "size": 19,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "eyebrow": {
+        "font": "system",
+        "size": 11,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "title": {
+        "font": "serif",
+        "size": 36,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "deck": {
+        "font": "system",
+        "size": 18,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "body": {
+        "font": "serif",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "system",
+        "size": 12,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "section": {
+        "font": "system",
+        "size": 15,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "item": {
+        "font": "system",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "value": {
+        "font": "system",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      }
+    },
+    "space": {
+      "titleAfter": 18,
+      "deckAfter": 24,
+      "sectionBefore": 28,
+      "rowGap": 18,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "Shared competent before treatment, authored before the comparison arms; not a no-skill outcome."
+  }
+}

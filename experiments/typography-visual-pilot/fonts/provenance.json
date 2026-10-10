@@ -1,0 +1,50 @@
+[
+  {
+    "family": "inter",
+    "file": "inter-Inter[opsz,wght].ttf",
+    "source": "https://github.com/google/fonts/blob/main/ofl/inter/Inter[opsz,wght].ttf",
+    "download": "https://raw.githubusercontent.com/google/fonts/main/ofl/inter/Inter%5Bopsz%2Cwght%5D.ttf",
+    "git_blob": "047c92f6e2212473dc436020afed689527076d44",
+    "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+  },
+  {
+    "family": "inter",
+    "file": "inter-OFL.txt",
+    "source": "https://github.com/google/fonts/blob/main/ofl/inter/OFL.txt",
+    "download": "https://raw.githubusercontent.com/google/fonts/main/ofl/inter/OFL.txt",
+    "git_blob": "21f6aff961064c2e429f570995e446bcdd555422",
+    "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+  },
+  {
+    "family": "sourceserif4",
+    "file": "sourceserif4-OFL.txt",
+    "source": "https://github.com/google/fonts/blob/main/ofl/sourceserif4/OFL.txt",
+    "download": "https://raw.githubusercontent.com/google/fonts/main/ofl/sourceserif4/OFL.txt",
+    "git_blob": "318074ec9d43c936a56ee1dae92999f4df073ce8",
+    "sha256": "5f94c3fd3a23131a417ab5a0c8452de57e70c3cfb9f604d88241f7065ebf9fd9"
+  },
+  {
+    "family": "sourceserif4",
+    "file": "sourceserif4-SourceSerif4[opsz,wght].ttf",
+    "source": "https://github.com/google/fonts/blob/main/ofl/sourceserif4/SourceSerif4[opsz,wght].ttf",
+    "download": "https://raw.githubusercontent.com/google/fonts/main/ofl/sourceserif4/SourceSerif4%5Bopsz%2Cwght%5D.ttf",
+    "git_blob": "40bbb58cb58e893ad0470f0bb291e096c73d3554",
+    "sha256": "97b2d4da6e3cb494b5a1e66ae176914d852ccabef49e0c02c0df25f3e39aca0b"
+  },
+  {
+    "family": "ibmplexsans",
+    "file": "ibmplexsans-IBMPlexSans[wdth,wght].ttf",
+    "source": "https://github.com/google/fonts/blob/main/ofl/ibmplexsans/IBMPlexSans[wdth,wght].ttf",
+    "download": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsans/IBMPlexSans%5Bwdth%2Cwght%5D.ttf",
+    "git_blob": "30f837e8b02e8ecddce6cbebc425b1f422392515",
+    "sha256": "3b031aa4216174205bd8471f88a49b91f093169e9e87bd5262242bc5967fe2e3"
+  },
+  {
+    "family": "ibmplexsans",
+    "file": "ibmplexsans-OFL.txt",
+    "source": "https://github.com/google/fonts/blob/main/ofl/ibmplexsans/OFL.txt",
+    "download": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsans/OFL.txt",
+    "git_blob": "c35c4c618fab33da8695177b3a6cefe0810b7b28",
+    "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+  }
+]
