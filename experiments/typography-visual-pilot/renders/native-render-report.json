@@ -1,0 +1,2008 @@
+[
+  {
+    "arm": "before",
+    "articleBottom": 655.85000000000002,
+    "articleFrames": [
+      {
+        "bottom": 126,
+        "height": 14,
+        "id": "eyebrow",
+        "width": 110,
+        "x": 28,
+        "y": 112
+      },
+      {
+        "bottom": 235.19999999999999,
+        "height": 95.199999999999989,
+        "id": "title",
+        "width": 286,
+        "x": 28,
+        "y": 140
+      },
+      {
+        "bottom": 300.29999999999995,
+        "height": 47.099999999999994,
+        "id": "deck",
+        "width": 352.5,
+        "x": 28,
+        "y": 253.19999999999999
+      },
+      {
+        "bottom": 339.29999999999995,
+        "height": 15,
+        "id": "author",
+        "width": 71,
+        "x": 28,
+        "y": 324.29999999999995
+      },
+      {
+        "bottom": 358.29999999999995,
+        "height": 15,
+        "id": "date",
+        "width": 99,
+        "x": 28,
+        "y": 343.29999999999995
+      },
+      {
+        "bottom": 405.29999999999995,
+        "height": 19,
+        "id": "section",
+        "width": 96.5,
+        "x": 28,
+        "y": 386.29999999999995
+      },
+      {
+        "bottom": 518.25,
+        "height": 94.949999999999989,
+        "id": "paragraph-1",
+        "width": 355,
+        "x": 28,
+        "y": 423.29999999999995
+      },
+      {
+        "bottom": 655.85000000000002,
+        "height": 119.59999999999999,
+        "id": "paragraph-2",
+        "width": 364,
+        "x": 28,
+        "y": 536.25
+      }
+    ],
+    "canvasPoints": [430, 850],
+    "case": "new",
+    "copyPreservation": "Whitespace-normalized input equals concatenated wrapped lines; asserted for every rendered text block.",
+    "file": "native-new-before.png",
+    "issues": [],
+    "pixels": [860, 1700],
+    "provenance": "Native SwiftUI macOS canvas; TextKit wraps strings, SwiftUI Text and ImageRenderer draw pixels. Not an iOS simulator.",
+    "roleMetrics": {
+      "body": {
+        "ascender": 16.1865234375,
+        "descender": -4.1005859375,
+        "differenceFromNativeLineHeight": 4.6499999999999986,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 24.649999999999999,
+        "resolvedFont": ".NewYork-Regular",
+        "trackingPoints": 0
+      },
+      "brand": {
+        "ascender": 18.369140625,
+        "descender": -4.0078125,
+        "differenceFromNativeLineHeight": 5.5500000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 22,
+        "pointSize": 19,
+        "requestedBaselineAdvance": 27.550000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "deck": {
+        "ascender": 17.40234375,
+        "descender": -3.796875,
+        "differenceFromNativeLineHeight": 5.0999999999999979,
+        "nativeLeading": 0,
+        "nativeLineHeight": 21,
+        "pointSize": 18,
+        "requestedBaselineAdvance": 26.099999999999998,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "eyebrow": {
+        "ascender": 10.634765625,
+        "descender": -2.3203125,
+        "differenceFromNativeLineHeight": 2.9499999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 13,
+        "pointSize": 11,
+        "requestedBaselineAdvance": 15.949999999999999,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      },
+      "item": {
+        "ascender": 15.46875,
+        "descender": -3.375,
+        "differenceFromNativeLineHeight": 5.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 16,
+        "requestedBaselineAdvance": 23.199999999999999,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      },
+      "meta": {
+        "ascender": 11.6015625,
+        "descender": -2.53125,
+        "differenceFromNativeLineHeight": 2.3999999999999986,
+        "nativeLeading": 0,
+        "nativeLineHeight": 15,
+        "pointSize": 12,
+        "requestedBaselineAdvance": 17.399999999999999,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "section": {
+        "ascender": 14.501953125,
+        "descender": -3.1640625,
+        "differenceFromNativeLineHeight": 3.75,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 15,
+        "requestedBaselineAdvance": 21.75,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "title": {
+        "ascender": 34.27734375,
+        "descender": -8.68359375,
+        "differenceFromNativeLineHeight": 9.1999999999999957,
+        "nativeLeading": 0,
+        "nativeLineHeight": 43,
+        "pointSize": 36,
+        "requestedBaselineAdvance": 52.199999999999996,
+        "resolvedFont": ".NewYork-Semibold",
+        "trackingPoints": 0
+      },
+      "value": {
+        "ascender": 19.3359375,
+        "descender": -4.21875,
+        "differenceFromNativeLineHeight": 6,
+        "nativeLeading": 0,
+        "nativeLineHeight": 23,
+        "pointSize": 20,
+        "requestedBaselineAdvance": 29,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      }
+    },
+    "scale": 2,
+    "wrappedCopy": [
+      {
+        "baselineAdvance": 15.949999999999999,
+        "id": "eyebrow",
+        "lineCount": 1,
+        "lines": ["ESSAY · 8 MIN READ"],
+        "text": "ESSAY · 8 MIN READ"
+      },
+      {
+        "baselineAdvance": 52.199999999999996,
+        "id": "title",
+        "lineCount": 2,
+        "lines": ["The art of paying", "attention"],
+        "text": "The art of paying attention"
+      },
+      {
+        "baselineAdvance": 26.099999999999998,
+        "id": "deck",
+        "lineCount": 2,
+        "lines": [
+          "A walk without a destination can change the",
+          "shape of a day."
+        ],
+        "text": "A walk without a destination can change the shape of a day."
+      },
+      {
+        "baselineAdvance": 17.399999999999999,
+        "id": "author",
+        "lineCount": 1,
+        "lines": ["By Nora Ellis"],
+        "text": "By Nora Ellis"
+      },
+      {
+        "baselineAdvance": 17.399999999999999,
+        "id": "date",
+        "lineCount": 1,
+        "lines": ["October 10, 2026"],
+        "text": "October 10, 2026"
+      },
+      {
+        "baselineAdvance": 21.75,
+        "id": "section",
+        "lineCount": 1,
+        "lines": ["Opening note"],
+        "text": "Opening note"
+      },
+      {
+        "baselineAdvance": 24.649999999999999,
+        "id": "paragraph-1",
+        "lineCount": 4,
+        "lines": [
+          "We had walked this street a hundred times.",
+          "That morning, with no appointment ahead of",
+          "us, it seemed to contain an entirely different",
+          "city."
+        ],
+        "text": "We had walked this street a hundred times. That morning, with no appointment ahead of us, it seemed to contain an entirely different city."
+      },
+      {
+        "baselineAdvance": 24.649999999999999,
+        "id": "paragraph-2",
+        "lineCount": 5,
+        "lines": [
+          "There was a seam of light beneath the",
+          "bookshop door, a pear tree leaning over a wall,",
+          "the sound of someone practising a difficult",
+          "piece of music. Nothing had changed. We had",
+          "simply begun to notice."
+        ],
+        "text": "There was a seam of light beneath the bookshop door, a pear tree leaning over a wall, the sound of someone practising a difficult piece of music. Nothing had changed. We had simply begun to notice."
+      }
+    ]
+  },
+  {
+    "arm": "before",
+    "articleBottom": 655.85000000000002,
+    "articleFrames": [
+      {
+        "bottom": 126,
+        "height": 14,
+        "id": "eyebrow",
+        "width": 110,
+        "x": 28,
+        "y": 112
+      },
+      {
+        "bottom": 235.19999999999999,
+        "height": 95.199999999999989,
+        "id": "title",
+        "width": 286,
+        "x": 28,
+        "y": 140
+      },
+      {
+        "bottom": 300.29999999999995,
+        "height": 47.099999999999994,
+        "id": "deck",
+        "width": 352.5,
+        "x": 28,
+        "y": 253.19999999999999
+      },
+      {
+        "bottom": 339.29999999999995,
+        "height": 15,
+        "id": "author",
+        "width": 71,
+        "x": 28,
+        "y": 324.29999999999995
+      },
+      {
+        "bottom": 358.29999999999995,
+        "height": 15,
+        "id": "date",
+        "width": 99,
+        "x": 28,
+        "y": 343.29999999999995
+      },
+      {
+        "bottom": 405.29999999999995,
+        "height": 19,
+        "id": "section",
+        "width": 96.5,
+        "x": 28,
+        "y": 386.29999999999995
+      },
+      {
+        "bottom": 518.25,
+        "height": 94.949999999999989,
+        "id": "paragraph-1",
+        "width": 355,
+        "x": 28,
+        "y": 423.29999999999995
+      },
+      {
+        "bottom": 655.85000000000002,
+        "height": 119.59999999999999,
+        "id": "paragraph-2",
+        "width": 364,
+        "x": 28,
+        "y": 536.25
+      }
+    ],
+    "canvasPoints": [430, 850],
+    "case": "refine",
+    "copyPreservation": "Whitespace-normalized input equals concatenated wrapped lines; asserted for every rendered text block.",
+    "file": "native-refine-before.png",
+    "issues": [],
+    "pixels": [860, 1700],
+    "provenance": "Native SwiftUI macOS canvas; TextKit wraps strings, SwiftUI Text and ImageRenderer draw pixels. Not an iOS simulator.",
+    "roleMetrics": {
+      "body": {
+        "ascender": 16.1865234375,
+        "descender": -4.1005859375,
+        "differenceFromNativeLineHeight": 4.6499999999999986,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 24.649999999999999,
+        "resolvedFont": ".NewYork-Regular",
+        "trackingPoints": 0
+      },
+      "brand": {
+        "ascender": 18.369140625,
+        "descender": -4.0078125,
+        "differenceFromNativeLineHeight": 5.5500000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 22,
+        "pointSize": 19,
+        "requestedBaselineAdvance": 27.550000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "deck": {
+        "ascender": 17.40234375,
+        "descender": -3.796875,
+        "differenceFromNativeLineHeight": 5.0999999999999979,
+        "nativeLeading": 0,
+        "nativeLineHeight": 21,
+        "pointSize": 18,
+        "requestedBaselineAdvance": 26.099999999999998,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "eyebrow": {
+        "ascender": 10.634765625,
+        "descender": -2.3203125,
+        "differenceFromNativeLineHeight": 2.9499999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 13,
+        "pointSize": 11,
+        "requestedBaselineAdvance": 15.949999999999999,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      },
+      "item": {
+        "ascender": 15.46875,
+        "descender": -3.375,
+        "differenceFromNativeLineHeight": 5.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 16,
+        "requestedBaselineAdvance": 23.199999999999999,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      },
+      "meta": {
+        "ascender": 11.6015625,
+        "descender": -2.53125,
+        "differenceFromNativeLineHeight": 2.3999999999999986,
+        "nativeLeading": 0,
+        "nativeLineHeight": 15,
+        "pointSize": 12,
+        "requestedBaselineAdvance": 17.399999999999999,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "section": {
+        "ascender": 14.501953125,
+        "descender": -3.1640625,
+        "differenceFromNativeLineHeight": 3.75,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 15,
+        "requestedBaselineAdvance": 21.75,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "title": {
+        "ascender": 34.27734375,
+        "descender": -8.68359375,
+        "differenceFromNativeLineHeight": 9.1999999999999957,
+        "nativeLeading": 0,
+        "nativeLineHeight": 43,
+        "pointSize": 36,
+        "requestedBaselineAdvance": 52.199999999999996,
+        "resolvedFont": ".NewYork-Semibold",
+        "trackingPoints": 0
+      },
+      "value": {
+        "ascender": 19.3359375,
+        "descender": -4.21875,
+        "differenceFromNativeLineHeight": 6,
+        "nativeLeading": 0,
+        "nativeLineHeight": 23,
+        "pointSize": 20,
+        "requestedBaselineAdvance": 29,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      }
+    },
+    "scale": 2,
+    "wrappedCopy": [
+      {
+        "baselineAdvance": 15.949999999999999,
+        "id": "eyebrow",
+        "lineCount": 1,
+        "lines": ["ESSAY · 8 MIN READ"],
+        "text": "ESSAY · 8 MIN READ"
+      },
+      {
+        "baselineAdvance": 52.199999999999996,
+        "id": "title",
+        "lineCount": 2,
+        "lines": ["The art of paying", "attention"],
+        "text": "The art of paying attention"
+      },
+      {
+        "baselineAdvance": 26.099999999999998,
+        "id": "deck",
+        "lineCount": 2,
+        "lines": [
+          "A walk without a destination can change the",
+          "shape of a day."
+        ],
+        "text": "A walk without a destination can change the shape of a day."
+      },
+      {
+        "baselineAdvance": 17.399999999999999,
+        "id": "author",
+        "lineCount": 1,
+        "lines": ["By Nora Ellis"],
+        "text": "By Nora Ellis"
+      },
+      {
+        "baselineAdvance": 17.399999999999999,
+        "id": "date",
+        "lineCount": 1,
+        "lines": ["October 10, 2026"],
+        "text": "October 10, 2026"
+      },
+      {
+        "baselineAdvance": 21.75,
+        "id": "section",
+        "lineCount": 1,
+        "lines": ["Opening note"],
+        "text": "Opening note"
+      },
+      {
+        "baselineAdvance": 24.649999999999999,
+        "id": "paragraph-1",
+        "lineCount": 4,
+        "lines": [
+          "We had walked this street a hundred times.",
+          "That morning, with no appointment ahead of",
+          "us, it seemed to contain an entirely different",
+          "city."
+        ],
+        "text": "We had walked this street a hundred times. That morning, with no appointment ahead of us, it seemed to contain an entirely different city."
+      },
+      {
+        "baselineAdvance": 24.649999999999999,
+        "id": "paragraph-2",
+        "lineCount": 5,
+        "lines": [
+          "There was a seam of light beneath the",
+          "bookshop door, a pear tree leaning over a wall,",
+          "the sound of someone practising a difficult",
+          "piece of music. Nothing had changed. We had",
+          "simply begun to notice."
+        ],
+        "text": "There was a seam of light beneath the bookshop door, a pear tree leaning over a wall, the sound of someone practising a difficult piece of music. Nothing had changed. We had simply begun to notice."
+      }
+    ]
+  },
+  {
+    "arm": "baseline",
+    "articleBottom": 590.88,
+    "articleFrames": [
+      {
+        "bottom": 126,
+        "height": 14,
+        "id": "eyebrow",
+        "width": 126.5,
+        "x": 28,
+        "y": 112
+      },
+      {
+        "bottom": 216.08000000000001,
+        "height": 76.080000000000013,
+        "id": "title",
+        "width": 233,
+        "x": 28,
+        "y": 140
+      },
+      {
+        "bottom": 273.88,
+        "height": 43.799999999999997,
+        "id": "deck",
+        "width": 327,
+        "x": 28,
+        "y": 230.08000000000001
+      },
+      {
+        "bottom": 308.88,
+        "height": 15,
+        "id": "author",
+        "width": 71,
+        "x": 28,
+        "y": 293.88
+      },
+      {
+        "bottom": 327.88,
+        "height": 15,
+        "id": "date",
+        "width": 99,
+        "x": 28,
+        "y": 312.88
+      },
+      {
+        "bottom": 367.88,
+        "height": 16,
+        "id": "section",
+        "width": 85,
+        "x": 28,
+        "y": 351.88
+      },
+      {
+        "bottom": 452.88,
+        "height": 71,
+        "id": "paragraph-1",
+        "width": 363.5,
+        "x": 28,
+        "y": 381.88
+      },
+      {
+        "bottom": 590.88,
+        "height": 122,
+        "id": "paragraph-2",
+        "width": 369,
+        "x": 28,
+        "y": 468.88
+      }
+    ],
+    "canvasPoints": [430, 850],
+    "case": "new",
+    "copyPreservation": "Whitespace-normalized input equals concatenated wrapped lines; asserted for every rendered text block.",
+    "file": "native-new-baseline.png",
+    "issues": [],
+    "pixels": [860, 1700],
+    "provenance": "Native SwiftUI macOS canvas; TextKit wraps strings, SwiftUI Text and ImageRenderer draw pixels. Not an iOS simulator.",
+    "roleMetrics": {
+      "body": {
+        "ascender": 15.5888671875,
+        "descender": -3.72705078125,
+        "differenceFromNativeLineHeight": 5.5,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 25.5,
+        "resolvedFont": "Georgia",
+        "trackingPoints": 0
+      },
+      "brand": {
+        "ascender": 18.369140625,
+        "descender": -4.0078125,
+        "differenceFromNativeLineHeight": 0.80000000000000071,
+        "nativeLeading": 0,
+        "nativeLineHeight": 22,
+        "pointSize": 19,
+        "requestedBaselineAdvance": 22.800000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": -0.38
+      },
+      "deck": {
+        "ascender": 16.435546875,
+        "descender": -3.5859375,
+        "differenceFromNativeLineHeight": 3.7999999999999972,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 23.799999999999997,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": -0.17000000000000001
+      },
+      "eyebrow": {
+        "ascender": 10.634765625,
+        "descender": -2.3203125,
+        "differenceFromNativeLineHeight": 1.3000000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 13,
+        "pointSize": 11,
+        "requestedBaselineAdvance": 14.300000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0.82499999999999996
+      },
+      "item": {
+        "ascender": 15.46875,
+        "descender": -3.375,
+        "differenceFromNativeLineHeight": 2.8000000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 16,
+        "requestedBaselineAdvance": 20.800000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": -0.16
+      },
+      "meta": {
+        "ascender": 11.6015625,
+        "descender": -2.53125,
+        "differenceFromNativeLineHeight": 1.7999999999999972,
+        "nativeLeading": 0,
+        "nativeLineHeight": 15,
+        "pointSize": 12,
+        "requestedBaselineAdvance": 16.799999999999997,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "section": {
+        "ascender": 12.568359375,
+        "descender": -2.7421875,
+        "differenceFromNativeLineHeight": 0.90000000000000213,
+        "nativeLeading": 0,
+        "nativeLineHeight": 16,
+        "pointSize": 13,
+        "requestedBaselineAdvance": 16.900000000000002,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "title": {
+        "ascender": 31.177734375,
+        "descender": -7.4541015625,
+        "differenceFromNativeLineHeight": 0.0800000000000054,
+        "nativeLeading": 0,
+        "nativeLineHeight": 38,
+        "pointSize": 34,
+        "requestedBaselineAdvance": 38.080000000000005,
+        "resolvedFont": "Georgia",
+        "trackingPoints": -0.85000000000000009
+      },
+      "value": {
+        "ascender": 19.3359375,
+        "descender": -4.21875,
+        "differenceFromNativeLineHeight": 1,
+        "nativeLeading": 0,
+        "nativeLineHeight": 23,
+        "pointSize": 20,
+        "requestedBaselineAdvance": 24,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": -0.29999999999999999
+      }
+    },
+    "scale": 2,
+    "wrappedCopy": [
+      {
+        "baselineAdvance": 14.300000000000001,
+        "id": "eyebrow",
+        "lineCount": 1,
+        "lines": ["ESSAY · 8 MIN READ"],
+        "text": "ESSAY · 8 MIN READ"
+      },
+      {
+        "baselineAdvance": 38.080000000000005,
+        "id": "title",
+        "lineCount": 2,
+        "lines": ["The art of", "paying attention"],
+        "text": "The art of\npaying attention"
+      },
+      {
+        "baselineAdvance": 23.799999999999997,
+        "id": "deck",
+        "lineCount": 2,
+        "lines": [
+          "A walk without a destination can change the",
+          "shape of a day."
+        ],
+        "text": "A walk without a destination can change the shape of a day."
+      },
+      {
+        "baselineAdvance": 16.799999999999997,
+        "id": "author",
+        "lineCount": 1,
+        "lines": ["By Nora Ellis"],
+        "text": "By Nora Ellis"
+      },
+      {
+        "baselineAdvance": 16.799999999999997,
+        "id": "date",
+        "lineCount": 1,
+        "lines": ["October 10, 2026"],
+        "text": "October 10, 2026"
+      },
+      {
+        "baselineAdvance": 16.900000000000002,
+        "id": "section",
+        "lineCount": 1,
+        "lines": ["Opening note"],
+        "text": "Opening note"
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-1",
+        "lineCount": 3,
+        "lines": [
+          "We had walked this street a hundred times. That",
+          "morning, with no appointment ahead of us, it",
+          "seemed to contain an entirely different city."
+        ],
+        "text": "We had walked this street a hundred times. That morning, with no appointment ahead of us, it seemed to contain an entirely different city."
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-2",
+        "lineCount": 5,
+        "lines": [
+          "There was a seam of light beneath the bookshop",
+          "door, a pear tree leaning over a wall, the sound of",
+          "someone practising a difficult piece of music.",
+          "Nothing had changed. We had simply begun to",
+          "notice."
+        ],
+        "text": "There was a seam of light beneath the bookshop door, a pear tree leaning over a wall, the sound of someone practising a difficult piece of music. Nothing had changed. We had simply begun to notice."
+      }
+    ]
+  },
+  {
+    "arm": "baseline",
+    "articleBottom": 632.01999999999998,
+    "articleFrames": [
+      {
+        "bottom": 126,
+        "height": 14,
+        "id": "eyebrow",
+        "width": 122,
+        "x": 28,
+        "y": 112
+      },
+      {
+        "bottom": 223.31999999999999,
+        "height": 83.320000000000007,
+        "id": "title",
+        "width": 273.5,
+        "x": 28,
+        "y": 140
+      },
+      {
+        "bottom": 283.51999999999998,
+        "height": 46.200000000000003,
+        "id": "deck",
+        "width": 344.5,
+        "x": 28,
+        "y": 237.31999999999999
+      },
+      {
+        "bottom": 318.51999999999998,
+        "height": 15,
+        "id": "author",
+        "width": 71,
+        "x": 28,
+        "y": 303.51999999999998
+      },
+      {
+        "bottom": 337.51999999999998,
+        "height": 15,
+        "id": "date",
+        "width": 99,
+        "x": 28,
+        "y": 322.51999999999998
+      },
+      {
+        "bottom": 378.51999999999998,
+        "height": 17,
+        "id": "section",
+        "width": 91,
+        "x": 28,
+        "y": 361.51999999999998
+      },
+      {
+        "bottom": 492.01999999999998,
+        "height": 97.5,
+        "id": "paragraph-1",
+        "width": 355,
+        "x": 28,
+        "y": 394.51999999999998
+      },
+      {
+        "bottom": 632.01999999999998,
+        "height": 123,
+        "id": "paragraph-2",
+        "width": 364,
+        "x": 28,
+        "y": 509.01999999999998
+      }
+    ],
+    "canvasPoints": [430, 850],
+    "case": "refine",
+    "copyPreservation": "Whitespace-normalized input equals concatenated wrapped lines; asserted for every rendered text block.",
+    "file": "native-refine-baseline.png",
+    "issues": [],
+    "pixels": [860, 1700],
+    "provenance": "Native SwiftUI macOS canvas; TextKit wraps strings, SwiftUI Text and ImageRenderer draw pixels. Not an iOS simulator.",
+    "roleMetrics": {
+      "body": {
+        "ascender": 16.1865234375,
+        "descender": -4.1005859375,
+        "differenceFromNativeLineHeight": 5.5,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 25.5,
+        "resolvedFont": ".NewYork-Regular",
+        "trackingPoints": 0
+      },
+      "brand": {
+        "ascender": 18.369140625,
+        "descender": -4.0078125,
+        "differenceFromNativeLineHeight": 1.75,
+        "nativeLeading": 0,
+        "nativeLineHeight": 22,
+        "pointSize": 19,
+        "requestedBaselineAdvance": 23.75,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": -0.38
+      },
+      "deck": {
+        "ascender": 17.40234375,
+        "descender": -3.796875,
+        "differenceFromNativeLineHeight": 4.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 21,
+        "pointSize": 18,
+        "requestedBaselineAdvance": 25.199999999999999,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": -0.17999999999999999
+      },
+      "eyebrow": {
+        "ascender": 10.634765625,
+        "descender": -2.3203125,
+        "differenceFromNativeLineHeight": 1.8500000000000014,
+        "nativeLeading": 0,
+        "nativeLineHeight": 13,
+        "pointSize": 11,
+        "requestedBaselineAdvance": 14.850000000000001,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0.65999999999999992
+      },
+      "item": {
+        "ascender": 15.46875,
+        "descender": -3.375,
+        "differenceFromNativeLineHeight": 3.6000000000000014,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 16,
+        "requestedBaselineAdvance": 21.600000000000001,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": -0.16
+      },
+      "meta": {
+        "ascender": 11.6015625,
+        "descender": -2.53125,
+        "differenceFromNativeLineHeight": 1.7999999999999972,
+        "nativeLeading": 0,
+        "nativeLineHeight": 15,
+        "pointSize": 12,
+        "requestedBaselineAdvance": 16.799999999999997,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "section": {
+        "ascender": 13.53515625,
+        "descender": -2.953125,
+        "differenceFromNativeLineHeight": 1.9000000000000021,
+        "nativeLeading": 0,
+        "nativeLineHeight": 17,
+        "pointSize": 14,
+        "requestedBaselineAdvance": 18.900000000000002,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "title": {
+        "ascender": 34.27734375,
+        "descender": -8.68359375,
+        "differenceFromNativeLineHeight": -2.6799999999999926,
+        "nativeLeading": 0,
+        "nativeLineHeight": 43,
+        "pointSize": 36,
+        "requestedBaselineAdvance": 40.320000000000007,
+        "resolvedFont": ".NewYork-Semibold",
+        "trackingPoints": -0.71999999999999997
+      },
+      "value": {
+        "ascender": 19.3359375,
+        "descender": -4.21875,
+        "differenceFromNativeLineHeight": 2,
+        "nativeLeading": 0,
+        "nativeLineHeight": 23,
+        "pointSize": 20,
+        "requestedBaselineAdvance": 25,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": -0.29999999999999999
+      }
+    },
+    "scale": 2,
+    "wrappedCopy": [
+      {
+        "baselineAdvance": 14.850000000000001,
+        "id": "eyebrow",
+        "lineCount": 1,
+        "lines": ["ESSAY · 8 MIN READ"],
+        "text": "ESSAY · 8 MIN READ"
+      },
+      {
+        "baselineAdvance": 40.320000000000007,
+        "id": "title",
+        "lineCount": 2,
+        "lines": ["The art of paying", "attention"],
+        "text": "The art of paying attention"
+      },
+      {
+        "baselineAdvance": 25.199999999999999,
+        "id": "deck",
+        "lineCount": 2,
+        "lines": [
+          "A walk without a destination can change the",
+          "shape of a day."
+        ],
+        "text": "A walk without a destination can change the shape of a day."
+      },
+      {
+        "baselineAdvance": 16.799999999999997,
+        "id": "author",
+        "lineCount": 1,
+        "lines": ["By Nora Ellis"],
+        "text": "By Nora Ellis"
+      },
+      {
+        "baselineAdvance": 16.799999999999997,
+        "id": "date",
+        "lineCount": 1,
+        "lines": ["October 10, 2026"],
+        "text": "October 10, 2026"
+      },
+      {
+        "baselineAdvance": 18.900000000000002,
+        "id": "section",
+        "lineCount": 1,
+        "lines": ["Opening note"],
+        "text": "Opening note"
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-1",
+        "lineCount": 4,
+        "lines": [
+          "We had walked this street a hundred times.",
+          "That morning, with no appointment ahead of",
+          "us, it seemed to contain an entirely different",
+          "city."
+        ],
+        "text": "We had walked this street a hundred times. That morning, with no appointment ahead of us, it seemed to contain an entirely different city."
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-2",
+        "lineCount": 5,
+        "lines": [
+          "There was a seam of light beneath the",
+          "bookshop door, a pear tree leaning over a wall,",
+          "the sound of someone practising a difficult",
+          "piece of music. Nothing had changed. We had",
+          "simply begun to notice."
+        ],
+        "text": "There was a seam of light beneath the bookshop door, a pear tree leaning over a wall, the sound of someone practising a difficult piece of music. Nothing had changed. We had simply begun to notice."
+      }
+    ]
+  },
+  {
+    "arm": "impeccable",
+    "articleBottom": 649.69999999999993,
+    "articleFrames": [
+      {
+        "bottom": 126,
+        "height": 14,
+        "id": "eyebrow",
+        "width": 125.5,
+        "x": 28,
+        "y": 112
+      },
+      {
+        "bottom": 231.19999999999999,
+        "height": 91.200000000000003,
+        "id": "title",
+        "width": 281.5,
+        "x": 28,
+        "y": 140
+      },
+      {
+        "bottom": 293.39999999999998,
+        "height": 46.200000000000003,
+        "id": "deck",
+        "width": 344.5,
+        "x": 28,
+        "y": 247.19999999999999
+      },
+      {
+        "bottom": 330.39999999999998,
+        "height": 15,
+        "id": "author",
+        "width": 71,
+        "x": 28,
+        "y": 315.39999999999998
+      },
+      {
+        "bottom": 349.39999999999998,
+        "height": 15,
+        "id": "date",
+        "width": 99,
+        "x": 28,
+        "y": 334.39999999999998
+      },
+      {
+        "bottom": 392.39999999999998,
+        "height": 17,
+        "id": "section",
+        "width": 91,
+        "x": 28,
+        "y": 375.39999999999998
+      },
+      {
+        "bottom": 506.09999999999997,
+        "height": 99.699999999999989,
+        "id": "paragraph-1",
+        "width": 364.5,
+        "x": 28,
+        "y": 406.39999999999998
+      },
+      {
+        "bottom": 649.69999999999993,
+        "height": 125.59999999999999,
+        "id": "paragraph-2",
+        "width": 370,
+        "x": 28,
+        "y": 524.09999999999991
+      }
+    ],
+    "canvasPoints": [430, 850],
+    "case": "new",
+    "copyPreservation": "Whitespace-normalized input equals concatenated wrapped lines; asserted for every rendered text block.",
+    "file": "native-new-impeccable.png",
+    "issues": [],
+    "pixels": [860, 1700],
+    "provenance": "Native SwiftUI macOS canvas; TextKit wraps strings, SwiftUI Text and ImageRenderer draw pixels. Not an iOS simulator.",
+    "roleMetrics": {
+      "body": {
+        "ascender": 16.66259765625,
+        "descender": -4.22119140625,
+        "differenceFromNativeLineHeight": 4.8999999999999986,
+        "nativeLeading": 0,
+        "nativeLineHeight": 21,
+        "pointSize": 17.5,
+        "requestedBaselineAdvance": 25.899999999999999,
+        "resolvedFont": ".NewYork-Regular",
+        "trackingPoints": 0
+      },
+      "brand": {
+        "ascender": 18.369140625,
+        "descender": -4.0078125,
+        "differenceFromNativeLineHeight": 0.80000000000000071,
+        "nativeLeading": 0,
+        "nativeLineHeight": 22,
+        "pointSize": 19,
+        "requestedBaselineAdvance": 22.800000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": -0.38
+      },
+      "deck": {
+        "ascender": 17.40234375,
+        "descender": -3.796875,
+        "differenceFromNativeLineHeight": 4.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 21,
+        "pointSize": 18,
+        "requestedBaselineAdvance": 25.199999999999999,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": -0.17999999999999999
+      },
+      "eyebrow": {
+        "ascender": 10.634765625,
+        "descender": -2.3203125,
+        "differenceFromNativeLineHeight": 1.3000000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 13,
+        "pointSize": 11,
+        "requestedBaselineAdvance": 14.300000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0.77000000000000002
+      },
+      "item": {
+        "ascender": 15.46875,
+        "descender": -3.375,
+        "differenceFromNativeLineHeight": 2.8000000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 16,
+        "requestedBaselineAdvance": 20.800000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": -0.16
+      },
+      "meta": {
+        "ascender": 11.6015625,
+        "descender": -2.53125,
+        "differenceFromNativeLineHeight": 1.7999999999999972,
+        "nativeLeading": 0,
+        "nativeLineHeight": 15,
+        "pointSize": 12,
+        "requestedBaselineAdvance": 16.799999999999997,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "section": {
+        "ascender": 13.53515625,
+        "descender": -2.953125,
+        "differenceFromNativeLineHeight": 1.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 17,
+        "pointSize": 14,
+        "requestedBaselineAdvance": 18.199999999999999,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "title": {
+        "ascender": 38.0859375,
+        "descender": -9.6484375,
+        "differenceFromNativeLineHeight": -4.7999999999999972,
+        "nativeLeading": 0,
+        "nativeLineHeight": 48,
+        "pointSize": 40,
+        "requestedBaselineAdvance": 43.200000000000003,
+        "resolvedFont": ".NewYork-Medium",
+        "trackingPoints": -1
+      },
+      "value": {
+        "ascender": 19.3359375,
+        "descender": -4.21875,
+        "differenceFromNativeLineHeight": 1,
+        "nativeLeading": 0,
+        "nativeLineHeight": 23,
+        "pointSize": 20,
+        "requestedBaselineAdvance": 24,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": -0.29999999999999999
+      }
+    },
+    "scale": 2,
+    "wrappedCopy": [
+      {
+        "baselineAdvance": 14.300000000000001,
+        "id": "eyebrow",
+        "lineCount": 1,
+        "lines": ["ESSAY · 8 MIN READ"],
+        "text": "ESSAY · 8 MIN READ"
+      },
+      {
+        "baselineAdvance": 43.200000000000003,
+        "id": "title",
+        "lineCount": 2,
+        "lines": ["The art of", "paying attention"],
+        "text": "The art of\npaying attention"
+      },
+      {
+        "baselineAdvance": 25.199999999999999,
+        "id": "deck",
+        "lineCount": 2,
+        "lines": [
+          "A walk without a destination can change the",
+          "shape of a day."
+        ],
+        "text": "A walk without a destination can change the shape of a day."
+      },
+      {
+        "baselineAdvance": 16.799999999999997,
+        "id": "author",
+        "lineCount": 1,
+        "lines": ["By Nora Ellis"],
+        "text": "By Nora Ellis"
+      },
+      {
+        "baselineAdvance": 16.799999999999997,
+        "id": "date",
+        "lineCount": 1,
+        "lines": ["October 10, 2026"],
+        "text": "October 10, 2026"
+      },
+      {
+        "baselineAdvance": 18.199999999999999,
+        "id": "section",
+        "lineCount": 1,
+        "lines": ["Opening note"],
+        "text": "Opening note"
+      },
+      {
+        "baselineAdvance": 25.899999999999999,
+        "id": "paragraph-1",
+        "lineCount": 4,
+        "lines": [
+          "We had walked this street a hundred times.",
+          "That morning, with no appointment ahead of",
+          "us, it seemed to contain an entirely different",
+          "city."
+        ],
+        "text": "We had walked this street a hundred times. That morning, with no appointment ahead of us, it seemed to contain an entirely different city."
+      },
+      {
+        "baselineAdvance": 25.899999999999999,
+        "id": "paragraph-2",
+        "lineCount": 5,
+        "lines": [
+          "There was a seam of light beneath the",
+          "bookshop door, a pear tree leaning over a",
+          "wall, the sound of someone practising a",
+          "difficult piece of music. Nothing had changed.",
+          "We had simply begun to notice."
+        ],
+        "text": "There was a seam of light beneath the bookshop door, a pear tree leaning over a wall, the sound of someone practising a difficult piece of music. Nothing had changed. We had simply begun to notice."
+      }
+    ]
+  },
+  {
+    "arm": "impeccable",
+    "articleBottom": 639.01999999999998,
+    "articleFrames": [
+      {
+        "bottom": 126,
+        "height": 14,
+        "id": "eyebrow",
+        "width": 122,
+        "x": 28,
+        "y": 112
+      },
+      {
+        "bottom": 223.31999999999999,
+        "height": 83.320000000000007,
+        "id": "title",
+        "width": 264.5,
+        "x": 28,
+        "y": 140
+      },
+      {
+        "bottom": 285.51999999999998,
+        "height": 46.200000000000003,
+        "id": "deck",
+        "width": 344.5,
+        "x": 28,
+        "y": 239.31999999999999
+      },
+      {
+        "bottom": 322.51999999999998,
+        "height": 15,
+        "id": "author",
+        "width": 71,
+        "x": 28,
+        "y": 307.51999999999998
+      },
+      {
+        "bottom": 341.51999999999998,
+        "height": 15,
+        "id": "date",
+        "width": 99,
+        "x": 28,
+        "y": 326.51999999999998
+      },
+      {
+        "bottom": 384.51999999999998,
+        "height": 17,
+        "id": "section",
+        "width": 91,
+        "x": 28,
+        "y": 367.51999999999998
+      },
+      {
+        "bottom": 498.01999999999998,
+        "height": 97.5,
+        "id": "paragraph-1",
+        "width": 355,
+        "x": 28,
+        "y": 400.51999999999998
+      },
+      {
+        "bottom": 639.01999999999998,
+        "height": 123,
+        "id": "paragraph-2",
+        "width": 364,
+        "x": 28,
+        "y": 516.01999999999998
+      }
+    ],
+    "canvasPoints": [430, 850],
+    "case": "refine",
+    "copyPreservation": "Whitespace-normalized input equals concatenated wrapped lines; asserted for every rendered text block.",
+    "file": "native-refine-impeccable.png",
+    "issues": [],
+    "pixels": [860, 1700],
+    "provenance": "Native SwiftUI macOS canvas; TextKit wraps strings, SwiftUI Text and ImageRenderer draw pixels. Not an iOS simulator.",
+    "roleMetrics": {
+      "body": {
+        "ascender": 16.1865234375,
+        "descender": -4.1005859375,
+        "differenceFromNativeLineHeight": 5.5,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 25.5,
+        "resolvedFont": ".NewYork-Regular",
+        "trackingPoints": 0
+      },
+      "brand": {
+        "ascender": 18.369140625,
+        "descender": -4.0078125,
+        "differenceFromNativeLineHeight": 0.80000000000000071,
+        "nativeLeading": 0,
+        "nativeLineHeight": 22,
+        "pointSize": 19,
+        "requestedBaselineAdvance": 22.800000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": -0.38
+      },
+      "deck": {
+        "ascender": 17.40234375,
+        "descender": -3.796875,
+        "differenceFromNativeLineHeight": 4.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 21,
+        "pointSize": 18,
+        "requestedBaselineAdvance": 25.199999999999999,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": -0.17999999999999999
+      },
+      "eyebrow": {
+        "ascender": 10.634765625,
+        "descender": -2.3203125,
+        "differenceFromNativeLineHeight": 1.3000000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 13,
+        "pointSize": 11,
+        "requestedBaselineAdvance": 14.300000000000001,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0.65999999999999992
+      },
+      "item": {
+        "ascender": 15.46875,
+        "descender": -3.375,
+        "differenceFromNativeLineHeight": 2.8000000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 16,
+        "requestedBaselineAdvance": 20.800000000000001,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": -0.16
+      },
+      "meta": {
+        "ascender": 11.6015625,
+        "descender": -2.53125,
+        "differenceFromNativeLineHeight": 1.7999999999999972,
+        "nativeLeading": 0,
+        "nativeLineHeight": 15,
+        "pointSize": 12,
+        "requestedBaselineAdvance": 16.799999999999997,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "section": {
+        "ascender": 13.53515625,
+        "descender": -2.953125,
+        "differenceFromNativeLineHeight": 1.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 17,
+        "pointSize": 14,
+        "requestedBaselineAdvance": 18.199999999999999,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "title": {
+        "ascender": 34.27734375,
+        "descender": -8.68359375,
+        "differenceFromNativeLineHeight": -2.6799999999999926,
+        "nativeLeading": 0,
+        "nativeLineHeight": 43,
+        "pointSize": 36,
+        "requestedBaselineAdvance": 40.320000000000007,
+        "resolvedFont": ".NewYork-Semibold",
+        "trackingPoints": -0.71999999999999997
+      },
+      "value": {
+        "ascender": 19.3359375,
+        "descender": -4.21875,
+        "differenceFromNativeLineHeight": 1,
+        "nativeLeading": 0,
+        "nativeLineHeight": 23,
+        "pointSize": 20,
+        "requestedBaselineAdvance": 24,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": -0.29999999999999999
+      }
+    },
+    "scale": 2,
+    "wrappedCopy": [
+      {
+        "baselineAdvance": 14.300000000000001,
+        "id": "eyebrow",
+        "lineCount": 1,
+        "lines": ["ESSAY · 8 MIN READ"],
+        "text": "ESSAY · 8 MIN READ"
+      },
+      {
+        "baselineAdvance": 40.320000000000007,
+        "id": "title",
+        "lineCount": 2,
+        "lines": ["The art of", "paying attention"],
+        "text": "The art of\npaying attention"
+      },
+      {
+        "baselineAdvance": 25.199999999999999,
+        "id": "deck",
+        "lineCount": 2,
+        "lines": [
+          "A walk without a destination can change the",
+          "shape of a day."
+        ],
+        "text": "A walk without a destination can change the shape of a day."
+      },
+      {
+        "baselineAdvance": 16.799999999999997,
+        "id": "author",
+        "lineCount": 1,
+        "lines": ["By Nora Ellis"],
+        "text": "By Nora Ellis"
+      },
+      {
+        "baselineAdvance": 16.799999999999997,
+        "id": "date",
+        "lineCount": 1,
+        "lines": ["October 10, 2026"],
+        "text": "October 10, 2026"
+      },
+      {
+        "baselineAdvance": 18.199999999999999,
+        "id": "section",
+        "lineCount": 1,
+        "lines": ["Opening note"],
+        "text": "Opening note"
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-1",
+        "lineCount": 4,
+        "lines": [
+          "We had walked this street a hundred times.",
+          "That morning, with no appointment ahead of",
+          "us, it seemed to contain an entirely different",
+          "city."
+        ],
+        "text": "We had walked this street a hundred times. That morning, with no appointment ahead of us, it seemed to contain an entirely different city."
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-2",
+        "lineCount": 5,
+        "lines": [
+          "There was a seam of light beneath the",
+          "bookshop door, a pear tree leaning over a wall,",
+          "the sound of someone practising a difficult",
+          "piece of music. Nothing had changed. We had",
+          "simply begun to notice."
+        ],
+        "text": "There was a seam of light beneath the bookshop door, a pear tree leaning over a wall, the sound of someone practising a difficult piece of music. Nothing had changed. We had simply begun to notice."
+      }
+    ]
+  },
+  {
+    "arm": "original",
+    "articleBottom": 597.53999999999996,
+    "articleFrames": [
+      {
+        "bottom": 126,
+        "height": 14,
+        "id": "eyebrow",
+        "width": 123,
+        "x": 28,
+        "y": 112
+      },
+      {
+        "bottom": 216.08000000000001,
+        "height": 76.080000000000013,
+        "id": "title",
+        "width": 243.5,
+        "x": 28,
+        "y": 140
+      },
+      {
+        "bottom": 273.54000000000002,
+        "height": 43.459999999999994,
+        "id": "deck",
+        "width": 334,
+        "x": 28,
+        "y": 230.08000000000001
+      },
+      {
+        "bottom": 309.54000000000002,
+        "height": 16,
+        "id": "author",
+        "width": 76,
+        "x": 28,
+        "y": 293.54000000000002
+      },
+      {
+        "bottom": 329.54000000000002,
+        "height": 16,
+        "id": "date",
+        "width": 106,
+        "x": 28,
+        "y": 313.54000000000002
+      },
+      {
+        "bottom": 372.54000000000002,
+        "height": 17,
+        "id": "section",
+        "width": 91,
+        "x": 28,
+        "y": 355.54000000000002
+      },
+      {
+        "bottom": 457.54000000000002,
+        "height": 71,
+        "id": "paragraph-1",
+        "width": 363.5,
+        "x": 28,
+        "y": 386.54000000000002
+      },
+      {
+        "bottom": 597.53999999999996,
+        "height": 122,
+        "id": "paragraph-2",
+        "width": 369,
+        "x": 28,
+        "y": 475.54000000000002
+      }
+    ],
+    "canvasPoints": [430, 850],
+    "case": "new",
+    "copyPreservation": "Whitespace-normalized input equals concatenated wrapped lines; asserted for every rendered text block.",
+    "file": "native-new-original.png",
+    "issues": [],
+    "pixels": [860, 1700],
+    "provenance": "Native SwiftUI macOS canvas; TextKit wraps strings, SwiftUI Text and ImageRenderer draw pixels. Not an iOS simulator.",
+    "roleMetrics": {
+      "body": {
+        "ascender": 15.5888671875,
+        "descender": -3.72705078125,
+        "differenceFromNativeLineHeight": 5.5,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 25.5,
+        "resolvedFont": "Georgia",
+        "trackingPoints": 0
+      },
+      "brand": {
+        "ascender": 17.40234375,
+        "descender": -3.796875,
+        "differenceFromNativeLineHeight": 0.59999999999999787,
+        "nativeLeading": 0,
+        "nativeLineHeight": 21,
+        "pointSize": 18,
+        "requestedBaselineAdvance": 21.599999999999998,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": -0.17999999999999999
+      },
+      "deck": {
+        "ascender": 16.435546875,
+        "descender": -3.5859375,
+        "differenceFromNativeLineHeight": 3.4599999999999973,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 23.459999999999997,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "eyebrow": {
+        "ascender": 10.634765625,
+        "descender": -2.3203125,
+        "differenceFromNativeLineHeight": 1.3000000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 13,
+        "pointSize": 11,
+        "requestedBaselineAdvance": 14.300000000000001,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0.71500000000000008
+      },
+      "item": {
+        "ascender": 15.46875,
+        "descender": -3.375,
+        "differenceFromNativeLineHeight": 2,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 16,
+        "requestedBaselineAdvance": 20,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "meta": {
+        "ascender": 12.568359375,
+        "descender": -2.7421875,
+        "differenceFromNativeLineHeight": 1.5500000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 16,
+        "pointSize": 13,
+        "requestedBaselineAdvance": 17.550000000000001,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "section": {
+        "ascender": 13.53515625,
+        "descender": -2.953125,
+        "differenceFromNativeLineHeight": 1.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 17,
+        "pointSize": 14,
+        "requestedBaselineAdvance": 18.199999999999999,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "title": {
+        "ascender": 31.177734375,
+        "descender": -7.4541015625,
+        "differenceFromNativeLineHeight": 0.0800000000000054,
+        "nativeLeading": 0,
+        "nativeLineHeight": 38,
+        "pointSize": 34,
+        "requestedBaselineAdvance": 38.080000000000005,
+        "resolvedFont": "Georgia",
+        "trackingPoints": -0.68000000000000005
+      },
+      "value": {
+        "ascender": 19.3359375,
+        "descender": -4.21875,
+        "differenceFromNativeLineHeight": 2,
+        "nativeLeading": 0,
+        "nativeLineHeight": 23,
+        "pointSize": 20,
+        "requestedBaselineAdvance": 25,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      }
+    },
+    "scale": 2,
+    "wrappedCopy": [
+      {
+        "baselineAdvance": 14.300000000000001,
+        "id": "eyebrow",
+        "lineCount": 1,
+        "lines": ["ESSAY · 8 MIN READ"],
+        "text": "ESSAY · 8 MIN READ"
+      },
+      {
+        "baselineAdvance": 38.080000000000005,
+        "id": "title",
+        "lineCount": 2,
+        "lines": ["The art of paying", "attention"],
+        "text": "The art of paying attention"
+      },
+      {
+        "baselineAdvance": 23.459999999999997,
+        "id": "deck",
+        "lineCount": 2,
+        "lines": [
+          "A walk without a destination can change the",
+          "shape of a day."
+        ],
+        "text": "A walk without a destination can change the shape of a day."
+      },
+      {
+        "baselineAdvance": 17.550000000000001,
+        "id": "author",
+        "lineCount": 1,
+        "lines": ["By Nora Ellis"],
+        "text": "By Nora Ellis"
+      },
+      {
+        "baselineAdvance": 17.550000000000001,
+        "id": "date",
+        "lineCount": 1,
+        "lines": ["October 10, 2026"],
+        "text": "October 10, 2026"
+      },
+      {
+        "baselineAdvance": 18.199999999999999,
+        "id": "section",
+        "lineCount": 1,
+        "lines": ["Opening note"],
+        "text": "Opening note"
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-1",
+        "lineCount": 3,
+        "lines": [
+          "We had walked this street a hundred times. That",
+          "morning, with no appointment ahead of us, it",
+          "seemed to contain an entirely different city."
+        ],
+        "text": "We had walked this street a hundred times. That morning, with no appointment ahead of us, it seemed to contain an entirely different city."
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-2",
+        "lineCount": 5,
+        "lines": [
+          "There was a seam of light beneath the bookshop",
+          "door, a pear tree leaning over a wall, the sound of",
+          "someone practising a difficult piece of music.",
+          "Nothing had changed. We had simply begun to",
+          "notice."
+        ],
+        "text": "There was a seam of light beneath the bookshop door, a pear tree leaning over a wall, the sound of someone practising a difficult piece of music. Nothing had changed. We had simply begun to notice."
+      }
+    ]
+  },
+  {
+    "arm": "original",
+    "articleBottom": 644.65999999999997,
+    "articleFrames": [
+      {
+        "bottom": 126,
+        "height": 14,
+        "id": "eyebrow",
+        "width": 120,
+        "x": 28,
+        "y": 112
+      },
+      {
+        "bottom": 223.31999999999999,
+        "height": 83.320000000000007,
+        "id": "title",
+        "width": 276.5,
+        "x": 28,
+        "y": 140
+      },
+      {
+        "bottom": 283.15999999999997,
+        "height": 45.839999999999996,
+        "id": "deck",
+        "width": 352.5,
+        "x": 28,
+        "y": 237.31999999999999
+      },
+      {
+        "bottom": 321.15999999999997,
+        "height": 16,
+        "id": "author",
+        "width": 76,
+        "x": 28,
+        "y": 305.15999999999997
+      },
+      {
+        "bottom": 341.15999999999997,
+        "height": 16,
+        "id": "date",
+        "width": 106,
+        "x": 28,
+        "y": 325.15999999999997
+      },
+      {
+        "bottom": 388.15999999999997,
+        "height": 19,
+        "id": "section",
+        "width": 96.5,
+        "x": 28,
+        "y": 369.15999999999997
+      },
+      {
+        "bottom": 503.65999999999997,
+        "height": 97.5,
+        "id": "paragraph-1",
+        "width": 355,
+        "x": 28,
+        "y": 406.15999999999997
+      },
+      {
+        "bottom": 644.65999999999997,
+        "height": 123,
+        "id": "paragraph-2",
+        "width": 364,
+        "x": 28,
+        "y": 521.65999999999997
+      }
+    ],
+    "canvasPoints": [430, 850],
+    "case": "refine",
+    "copyPreservation": "Whitespace-normalized input equals concatenated wrapped lines; asserted for every rendered text block.",
+    "file": "native-refine-original.png",
+    "issues": [],
+    "pixels": [860, 1700],
+    "provenance": "Native SwiftUI macOS canvas; TextKit wraps strings, SwiftUI Text and ImageRenderer draw pixels. Not an iOS simulator.",
+    "roleMetrics": {
+      "body": {
+        "ascender": 16.1865234375,
+        "descender": -4.1005859375,
+        "differenceFromNativeLineHeight": 5.5,
+        "nativeLeading": 0,
+        "nativeLineHeight": 20,
+        "pointSize": 17,
+        "requestedBaselineAdvance": 25.5,
+        "resolvedFont": ".NewYork-Regular",
+        "trackingPoints": 0
+      },
+      "brand": {
+        "ascender": 18.369140625,
+        "descender": -4.0078125,
+        "differenceFromNativeLineHeight": 5.5500000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 22,
+        "pointSize": 19,
+        "requestedBaselineAdvance": 27.550000000000001,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "deck": {
+        "ascender": 17.40234375,
+        "descender": -3.796875,
+        "differenceFromNativeLineHeight": 3.8399999999999963,
+        "nativeLeading": 0,
+        "nativeLineHeight": 21,
+        "pointSize": 18,
+        "requestedBaselineAdvance": 24.839999999999996,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "eyebrow": {
+        "ascender": 10.634765625,
+        "descender": -2.3203125,
+        "differenceFromNativeLineHeight": 2.9499999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 13,
+        "pointSize": 11,
+        "requestedBaselineAdvance": 15.949999999999999,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0.55000000000000004
+      },
+      "item": {
+        "ascender": 15.46875,
+        "descender": -3.375,
+        "differenceFromNativeLineHeight": 5.1999999999999993,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 16,
+        "requestedBaselineAdvance": 23.199999999999999,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      },
+      "meta": {
+        "ascender": 12.568359375,
+        "descender": -2.7421875,
+        "differenceFromNativeLineHeight": 1.5500000000000007,
+        "nativeLeading": 0,
+        "nativeLineHeight": 16,
+        "pointSize": 13,
+        "requestedBaselineAdvance": 17.550000000000001,
+        "resolvedFont": ".AppleSystemUIFont",
+        "trackingPoints": 0
+      },
+      "section": {
+        "ascender": 14.501953125,
+        "descender": -3.1640625,
+        "differenceFromNativeLineHeight": 3.75,
+        "nativeLeading": 0,
+        "nativeLineHeight": 18,
+        "pointSize": 15,
+        "requestedBaselineAdvance": 21.75,
+        "resolvedFont": ".AppleSystemUIFontDemi",
+        "trackingPoints": 0
+      },
+      "title": {
+        "ascender": 34.27734375,
+        "descender": -8.68359375,
+        "differenceFromNativeLineHeight": -2.6799999999999926,
+        "nativeLeading": 0,
+        "nativeLineHeight": 43,
+        "pointSize": 36,
+        "requestedBaselineAdvance": 40.320000000000007,
+        "resolvedFont": ".NewYork-Semibold",
+        "trackingPoints": -0.54000000000000004
+      },
+      "value": {
+        "ascender": 19.3359375,
+        "descender": -4.21875,
+        "differenceFromNativeLineHeight": 6,
+        "nativeLeading": 0,
+        "nativeLineHeight": 23,
+        "pointSize": 20,
+        "requestedBaselineAdvance": 29,
+        "resolvedFont": ".AppleSystemUIFontMedium",
+        "trackingPoints": 0
+      }
+    },
+    "scale": 2,
+    "wrappedCopy": [
+      {
+        "baselineAdvance": 15.949999999999999,
+        "id": "eyebrow",
+        "lineCount": 1,
+        "lines": ["ESSAY · 8 MIN READ"],
+        "text": "ESSAY · 8 MIN READ"
+      },
+      {
+        "baselineAdvance": 40.320000000000007,
+        "id": "title",
+        "lineCount": 2,
+        "lines": ["The art of paying", "attention"],
+        "text": "The art of paying attention"
+      },
+      {
+        "baselineAdvance": 24.839999999999996,
+        "id": "deck",
+        "lineCount": 2,
+        "lines": [
+          "A walk without a destination can change the",
+          "shape of a day."
+        ],
+        "text": "A walk without a destination can change the shape of a day."
+      },
+      {
+        "baselineAdvance": 17.550000000000001,
+        "id": "author",
+        "lineCount": 1,
+        "lines": ["By Nora Ellis"],
+        "text": "By Nora Ellis"
+      },
+      {
+        "baselineAdvance": 17.550000000000001,
+        "id": "date",
+        "lineCount": 1,
+        "lines": ["October 10, 2026"],
+        "text": "October 10, 2026"
+      },
+      {
+        "baselineAdvance": 21.75,
+        "id": "section",
+        "lineCount": 1,
+        "lines": ["Opening note"],
+        "text": "Opening note"
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-1",
+        "lineCount": 4,
+        "lines": [
+          "We had walked this street a hundred times.",
+          "That morning, with no appointment ahead of",
+          "us, it seemed to contain an entirely different",
+          "city."
+        ],
+        "text": "We had walked this street a hundred times. That morning, with no appointment ahead of us, it seemed to contain an entirely different city."
+      },
+      {
+        "baselineAdvance": 25.5,
+        "id": "paragraph-2",
+        "lineCount": 5,
+        "lines": [
+          "There was a seam of light beneath the",
+          "bookshop door, a pear tree leaning over a wall,",
+          "the sound of someone practising a difficult",
+          "piece of music. Nothing had changed. We had",
+          "simply begun to notice."
+        ],
+        "text": "There was a seam of light beneath the bookshop door, a pear tree leaning over a wall, the sound of someone practising a difficult piece of music. Nothing had changed. We had simply begun to notice."
+      }
+    ]
+  }
+]

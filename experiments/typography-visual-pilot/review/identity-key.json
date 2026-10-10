@@ -1,0 +1,32 @@
+{
+  "product-new": {
+    "A": "baseline",
+    "B": "impeccable",
+    "C": "original"
+  },
+  "product-refine": {
+    "A": "baseline",
+    "B": "original",
+    "C": "impeccable"
+  },
+  "editorial-new": {
+    "A": "original",
+    "B": "baseline",
+    "C": "impeccable"
+  },
+  "editorial-refine": {
+    "A": "impeccable",
+    "B": "baseline",
+    "C": "original"
+  },
+  "native-new": {
+    "A": "original",
+    "B": "impeccable",
+    "C": "baseline"
+  },
+  "native-refine": {
+    "A": "impeccable",
+    "B": "original",
+    "C": "baseline"
+  }
+}

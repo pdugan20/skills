@@ -1,0 +1,82 @@
+{
+  "reviewer": "independent AI visual reviewer",
+  "human_preference_evidence": false,
+  "blinded": true,
+  "basis": "brief, six boards, and all 21 individual blind screenshots viewed at original resolution",
+  "ranking_semantics": "best-first groups; same group indicates tie",
+  "cases": {
+    "product-new": {
+      "ranking": [["A"], ["B"], ["C"]],
+      "confidence": "medium-low",
+      "pairs": ["A>B", "A>C", "B>C"],
+      "evidence": [
+        "product-new-A.png",
+        "product-new-B.png",
+        "product-new-C.png"
+      ],
+      "main_tradeoff": "A is calmer; C's serif deck adds warmth but competes with the workspace hierarchy."
+    },
+    "product-refine": {
+      "ranking": [["A", "C"], ["B"], ["BEFORE"]],
+      "confidence": "low",
+      "pairs": ["A=C", "A>B", "C>B", "A>BEFORE", "B>BEFORE", "C>BEFORE"],
+      "identity_preserved": true,
+      "evidence": [
+        "product-refine-A.png",
+        "product-refine-B.png",
+        "product-refine-C.png",
+        "product-refine-BEFORE.png"
+      ],
+      "main_tradeoff": "Modest improvements to title/deck rhythm; A and C have no reliably decisive aesthetic difference."
+    },
+    "editorial-new": {
+      "ranking": [["B"], ["C"], ["A"]],
+      "confidence": "medium",
+      "pairs": ["B>C", "B>A", "C>A"],
+      "evidence": [
+        "editorial-new-A.png",
+        "editorial-new-B.png",
+        "editorial-new-C.png"
+      ],
+      "main_tradeoff": "B balances display and reading best; A strands day. and city. on final lines."
+    },
+    "editorial-refine": {
+      "ranking": [["A"], ["B", "C"], ["BEFORE"]],
+      "confidence": "medium-low",
+      "pairs": ["A>B", "A>C", "B=C", "A>BEFORE", "B>BEFORE", "C>BEFORE"],
+      "identity_preserved": true,
+      "evidence": [
+        "editorial-refine-A.png",
+        "editorial-refine-B.png",
+        "editorial-refine-C.png",
+        "editorial-refine-BEFORE.png"
+      ],
+      "main_tradeoff": "A improves page silhouette with a phrase-preserving title break but is a larger intervention and weakens the aside's phrase break."
+    },
+    "native-new": {
+      "ranking": [["C"], ["A"], ["B"]],
+      "confidence": "medium",
+      "pairs": ["C>A", "C>B", "A>B"],
+      "evidence": ["native-new-A.png", "native-new-B.png", "native-new-C.png"],
+      "main_tradeoff": "C gives quiet title scale and phrasing; B is more dominant but avoids A/C's isolated notice. ending."
+    },
+    "native-refine": {
+      "ranking": [["A"], ["C"], ["B"], ["BEFORE"]],
+      "confidence": "medium",
+      "pairs": ["A>C", "A>B", "C>B", "A>BEFORE", "B>BEFORE", "C>BEFORE"],
+      "identity_preserved": true,
+      "evidence": [
+        "native-refine-A.png",
+        "native-refine-B.png",
+        "native-refine-C.png",
+        "native-refine-BEFORE.png"
+      ],
+      "main_tradeoff": "A improves headline phrasing and spacing; all retain the one-word city. paragraph ending."
+    }
+  },
+  "secondary_check": {
+    "visible_missing_text": false,
+    "visible_overlap_or_clipping": false,
+    "scope": "supplied screenshots only; no OCR, accessibility, interaction, or alternate-viewport testing"
+  }
+}

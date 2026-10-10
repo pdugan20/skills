@@ -1,0 +1,458 @@
+{
+  "product-new": {
+    "roles": {
+      "brand": {
+        "font": "IBM Plex Sans",
+        "size": 22,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": -0.025
+      },
+      "eyebrow": {
+        "font": "IBM Plex Sans",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.3,
+        "tracking": 0.065
+      },
+      "title": {
+        "font": "IBM Plex Sans",
+        "size": 44,
+        "weight": 500,
+        "leading": 1.08,
+        "tracking": -0.035
+      },
+      "deck": {
+        "font": "IBM Plex Sans",
+        "size": 18,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "IBM Plex Sans",
+        "size": 16,
+        "weight": 400,
+        "leading": 1.5,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "IBM Plex Sans",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "IBM Plex Sans",
+        "size": 13,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": 0.015
+      },
+      "item": {
+        "font": "IBM Plex Sans",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.4,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "IBM Plex Sans",
+        "size": 30,
+        "weight": 500,
+        "leading": 1.1,
+        "tracking": -0.025
+      }
+    },
+    "space": {
+      "titleAfter": 12,
+      "deckAfter": 30,
+      "sectionBefore": 32,
+      "rowGap": 17,
+      "paragraphAfter": 20
+    },
+    "titleBreak": "natural",
+    "rationale": "Proposed: one IBM Plex Sans family gives the workspace a practical editorial voice and a stable, repeatable role scale. Compact title and value leading, distinct numerical scale, and restrained row density support quick scanning; lighter supporting copy provides contrast without adding a second family. Body text retains a 16px floor while labels and metadata use smaller sizes for their dense utility roles."
+  },
+  "product-refine": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": -0.025
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": 0.045
+      },
+      "title": {
+        "font": "Inter",
+        "size": 38,
+        "weight": 600,
+        "leading": 1.12,
+        "tracking": -0.035
+      },
+      "deck": {
+        "font": "Inter",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "leading": 1.5,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 600,
+        "leading": 1.35,
+        "tracking": 0.015
+      },
+      "item": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.4,
+        "tracking": -0.015
+      },
+      "value": {
+        "font": "Inter",
+        "size": 25,
+        "weight": 500,
+        "leading": 1.15,
+        "tracking": -0.025
+      }
+    },
+    "space": {
+      "titleAfter": 12,
+      "deckAfter": 28,
+      "sectionBefore": 30,
+      "rowGap": 18,
+      "paragraphAfter": 20
+    },
+    "titleBreak": "natural",
+    "rationale": "Proposed: preserve the Inter identity and almost all existing role sizes, using tighter display leading and tracking to clarify the Issue 08 anchor. A slightly smaller semibold section role separates table labels from story titles, while the body rises to 16px for ordinary reading. More deliberate spacing groups title with deck and keeps the working rows calm and predictable."
+  },
+  "editorial-new": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.15,
+        "tracking": 0.08
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": 0.1
+      },
+      "title": {
+        "font": "Source Serif 4",
+        "size": 68,
+        "weight": 500,
+        "leading": 1.03,
+        "tracking": -0.035
+      },
+      "deck": {
+        "font": "Source Serif 4",
+        "size": 25,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "Source Serif 4",
+        "size": 20,
+        "weight": 400,
+        "leading": 1.55,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0.005
+      },
+      "section": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 600,
+        "leading": 1.35,
+        "tracking": 0.015
+      },
+      "item": {
+        "font": "Source Serif 4",
+        "size": 27,
+        "weight": 400,
+        "leading": 1.3,
+        "tracking": -0.015
+      },
+      "value": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.2,
+        "tracking": -0.02
+      }
+    },
+    "space": {
+      "titleAfter": 22,
+      "deckAfter": 28,
+      "sectionBefore": 34,
+      "rowGap": 18,
+      "paragraphAfter": 22
+    },
+    "titleBreak": "after-art",
+    "rationale": "Proposed: a compact, two-line Source Serif 4 title gives the essay opening authority while the lighter deck eases into reading. Inter is reserved for publication and navigation information, creating a functional contrast with the serif voice. Open body leading and paragraph spacing support sustained reading; the title break after The art of is an intentional rag proposal that still requires rendered inspection."
+  },
+  "editorial-refine": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": 0.055
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": 0.08
+      },
+      "title": {
+        "font": "Source Serif 4",
+        "size": 60,
+        "weight": 500,
+        "leading": 1.08,
+        "tracking": -0.025
+      },
+      "deck": {
+        "font": "Source Serif 4",
+        "size": 24,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": -0.005
+      },
+      "body": {
+        "font": "Source Serif 4",
+        "size": 20,
+        "weight": 400,
+        "leading": 1.55,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "Inter",
+        "size": 14,
+        "weight": 600,
+        "leading": 1.35,
+        "tracking": 0.005
+      },
+      "item": {
+        "font": "Source Serif 4",
+        "size": 26,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.2,
+        "tracking": -0.015
+      }
+    },
+    "space": {
+      "titleAfter": 20,
+      "deckAfter": 26,
+      "sectionBefore": 32,
+      "rowGap": 18,
+      "paragraphAfter": 22
+    },
+    "titleBreak": "after-art",
+    "rationale": "Proposed: retain the existing serif title, deck, body and aside with Inter utility text, preserving the established reading identity. Replace the universal leading with compact title lines, a conversational deck and more generous prose rhythm; reduce the section size slightly to keep the opening note subordinate. The explicit title break and restrained tracking aim to improve the silhouette without changing the 60px headline scale."
+  },
+  "native-new": {
+    "roles": {
+      "brand": {
+        "font": "system",
+        "size": 19,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": -0.02
+      },
+      "eyebrow": {
+        "font": "system",
+        "size": 11,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": 0.07
+      },
+      "title": {
+        "font": "serif",
+        "size": 40,
+        "weight": 500,
+        "leading": 1.08,
+        "tracking": -0.025
+      },
+      "deck": {
+        "font": "system",
+        "size": 18,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "serif",
+        "size": 17.5,
+        "weight": 400,
+        "leading": 1.48,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "system",
+        "size": 12,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "system",
+        "size": 14,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": 0
+      },
+      "item": {
+        "font": "system",
+        "size": 16,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "system",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.2,
+        "tracking": -0.015
+      }
+    },
+    "space": {
+      "titleAfter": 16,
+      "deckAfter": 22,
+      "sectionBefore": 26,
+      "rowGap": 14,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "after-art",
+    "rationale": "Proposed: system utility text and a medium-weight system serif title make the saved essay feel native while retaining an editorial voice. The title uses a deliberate two-line phrase structure, while a smaller, open serif body and moderate paragraph gaps balance reading comfort against the compact canvas. The sans deck bridges interface and essay without introducing another font family."
+  },
+  "native-refine": {
+    "roles": {
+      "brand": {
+        "font": "system",
+        "size": 19,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": -0.02
+      },
+      "eyebrow": {
+        "font": "system",
+        "size": 11,
+        "weight": 500,
+        "leading": 1.3,
+        "tracking": 0.06
+      },
+      "title": {
+        "font": "serif",
+        "size": 36,
+        "weight": 600,
+        "leading": 1.12,
+        "tracking": -0.02
+      },
+      "deck": {
+        "font": "system",
+        "size": 18,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "serif",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.5,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "system",
+        "size": 12,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "system",
+        "size": 14,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": 0
+      },
+      "item": {
+        "font": "system",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.3,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "system",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.2,
+        "tracking": -0.015
+      }
+    },
+    "space": {
+      "titleAfter": 16,
+      "deckAfter": 22,
+      "sectionBefore": 26,
+      "rowGap": 16,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "after-art",
+    "rationale": "Proposed: keep system sans utilities, the 36pt semibold serif title and the 17pt serif body to preserve the supplied identity. Tighten title leading, add restrained label tracking and soften the deck-to-body transition through role-specific leading and spacing. The proposed phrase break strengthens the headline shape, while slightly more body leading supports reading without increasing its type size."
+  }
+}

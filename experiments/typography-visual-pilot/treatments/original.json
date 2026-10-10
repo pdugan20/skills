@@ -1,0 +1,458 @@
+{
+  "product-new": {
+    "roles": {
+      "brand": {
+        "font": "IBM Plex Sans",
+        "size": 21,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": -0.02
+      },
+      "eyebrow": {
+        "font": "IBM Plex Sans",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.3,
+        "tracking": 0.02
+      },
+      "title": {
+        "font": "IBM Plex Sans",
+        "size": 46,
+        "weight": 500,
+        "leading": 1.08,
+        "tracking": -0.035
+      },
+      "deck": {
+        "font": "Source Serif 4",
+        "size": 20,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "body": {
+        "font": "IBM Plex Sans",
+        "size": 15,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "IBM Plex Sans",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "section": {
+        "font": "IBM Plex Sans",
+        "size": 13,
+        "weight": 500,
+        "leading": 1.3,
+        "tracking": 0
+      },
+      "item": {
+        "font": "IBM Plex Sans",
+        "size": 17,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "IBM Plex Sans",
+        "size": 29,
+        "weight": 400,
+        "leading": 1.15,
+        "tracking": -0.025
+      }
+    },
+    "space": {
+      "titleAfter": 10,
+      "deckAfter": 28,
+      "sectionBefore": 32,
+      "rowGap": 17,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "The proposed voice is observant, orderly and independent: Plex carries both the working labels and the issue heading, while a single serif supporting statement brings a literary inflection. The large but moderate-weight issue title leads, followed by story names; lighter numerals and smaller column labels keep the workspace from becoming a wall of competing emphasis. Short display intervals and a close title-to-deck gap group the introduction, with more space reserved for the working section; these relationships remain visually unverified."
+  },
+  "product-refine": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "title": {
+        "font": "Inter",
+        "size": 38,
+        "weight": 600,
+        "leading": 1.12,
+        "tracking": -0.025
+      },
+      "deck": {
+        "font": "Inter",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "body": {
+        "font": "Inter",
+        "size": 15,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "section": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "item": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "value": {
+        "font": "Inter",
+        "size": 25,
+        "weight": 500,
+        "leading": 1.2,
+        "tracking": -0.015
+      }
+    },
+    "space": {
+      "titleAfter": 12,
+      "deckAfter": 24,
+      "sectionBefore": 28,
+      "rowGap": 18,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "The proposed voice is calm, direct and capable, retaining the original all-Inter identity and nearly all reading sizes. A more compact issue heading and numeral line box strengthen their shapes, while quieter column labels let the unchanged story titles carry the table. The reduced title gap joins the heading to its supporting sentence; visual verification is pending, particularly for the numerals' apparent alignment."
+  },
+  "editorial-new": {
+    "roles": {
+      "brand": {
+        "font": "IBM Plex Sans",
+        "size": 19,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": 0.055
+      },
+      "eyebrow": {
+        "font": "IBM Plex Sans",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.3,
+        "tracking": 0.09
+      },
+      "title": {
+        "font": "Source Serif 4",
+        "size": 64,
+        "weight": 500,
+        "leading": 1.04,
+        "tracking": -0.025
+      },
+      "deck": {
+        "font": "Source Serif 4",
+        "size": 25,
+        "weight": 400,
+        "leading": 1.32,
+        "tracking": 0
+      },
+      "body": {
+        "font": "Source Serif 4",
+        "size": 21,
+        "weight": 400,
+        "leading": 1.52,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "IBM Plex Sans",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "IBM Plex Sans",
+        "size": 14,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "item": {
+        "font": "Source Serif 4",
+        "size": 28,
+        "weight": 400,
+        "leading": 1.3,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "IBM Plex Sans",
+        "size": 18,
+        "weight": 400,
+        "leading": 1.3,
+        "tracking": 0
+      }
+    },
+    "space": {
+      "titleAfter": 22,
+      "deckAfter": 26,
+      "sectionBefore": 34,
+      "rowGap": 16,
+      "paragraphAfter": 20
+    },
+    "titleBreak": "after-art",
+    "rationale": "The proposed voice is attentive, warm and assured, using Source Serif's substantial lowercase forms for the essay and Plex for a precise journal wrapper. Breaking after 'The art of' gives the subject 'paying attention' its own phrase, with close headline leading balanced by open prose and a quieter deck. The aside enlarges the reading voice without adding weight; the title rag, body texture and available height still require rendered inspection."
+  },
+  "editorial-refine": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0.065
+      },
+      "title": {
+        "font": "Source Serif 4",
+        "size": 60,
+        "weight": 500,
+        "leading": 1.08,
+        "tracking": -0.02
+      },
+      "deck": {
+        "font": "Source Serif 4",
+        "size": 24,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "body": {
+        "font": "Source Serif 4",
+        "size": 20,
+        "weight": 400,
+        "leading": 1.55,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "section": {
+        "font": "Inter",
+        "size": 15,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "item": {
+        "font": "Source Serif 4",
+        "size": 26,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "value": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      }
+    },
+    "space": {
+      "titleAfter": 20,
+      "deckAfter": 24,
+      "sectionBefore": 28,
+      "rowGap": 18,
+      "paragraphAfter": 20
+    },
+    "titleBreak": "natural",
+    "rationale": "The proposed voice is literate, composed and clear, preserving every original family, size and weight. The main intervention separates the headline's close display rhythm from the body's more generous baseline interval, while a slightly tighter deck and aside establish an intermediate pace. The title keeps its natural wrap to avoid imposing an untested shape; the small uppercase marker receives the only positive tracking, and all optical judgments await screenshots."
+  },
+  "native-new": {
+    "roles": {
+      "brand": {
+        "font": "system",
+        "size": 18,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": -0.01
+      },
+      "eyebrow": {
+        "font": "system",
+        "size": 11,
+        "weight": 500,
+        "leading": 1.3,
+        "tracking": 0.065
+      },
+      "title": {
+        "font": "Georgia",
+        "size": 34,
+        "weight": 400,
+        "leading": 1.12,
+        "tracking": -0.02
+      },
+      "deck": {
+        "font": "system",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.38,
+        "tracking": 0
+      },
+      "body": {
+        "font": "Georgia",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.5,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "system",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "section": {
+        "font": "system",
+        "size": 14,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": 0
+      },
+      "item": {
+        "font": "system",
+        "size": 16,
+        "weight": 600,
+        "leading": 1.25,
+        "tracking": 0
+      },
+      "value": {
+        "font": "system",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.25,
+        "tracking": 0
+      }
+    },
+    "space": {
+      "titleAfter": 14,
+      "deckAfter": 20,
+      "sectionBefore": 26,
+      "rowGap": 14,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "The proposed voice is companionable, thoughtful and familiar: Georgia gives the reading passage a sturdy, warm texture while system sans keeps navigation and action labels native. A regular-weight title provides the decisive size contrast without turning the small canvas into a poster; the sans deck offers a clear transition into serif prose. Natural title wrapping and compact internal gaps preserve flexibility, but line endings, Georgia's actual native metrics and the total reading height remain unverified."
+  },
+  "native-refine": {
+    "roles": {
+      "brand": {
+        "font": "system",
+        "size": 19,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "eyebrow": {
+        "font": "system",
+        "size": 11,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0.05
+      },
+      "title": {
+        "font": "serif",
+        "size": 36,
+        "weight": 600,
+        "leading": 1.12,
+        "tracking": -0.015
+      },
+      "deck": {
+        "font": "system",
+        "size": 18,
+        "weight": 400,
+        "leading": 1.38,
+        "tracking": 0
+      },
+      "body": {
+        "font": "serif",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.5,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "system",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "section": {
+        "font": "system",
+        "size": 15,
+        "weight": 600,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "item": {
+        "font": "system",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "value": {
+        "font": "system",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.45,
+        "tracking": 0
+      }
+    },
+    "space": {
+      "titleAfter": 14,
+      "deckAfter": 22,
+      "sectionBefore": 28,
+      "rowGap": 18,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "The proposed voice is quiet, readable and familiar, preserving system sans utility and system serif reading text, including the existing title emphasis. Compact title leading and a slightly closer deck establish one opening group; modestly larger metadata improves its apparent presence without borrowing display weight. Prose keeps default tracking and gains a little baseline space, while natural title wrapping remains subject to native screenshot and enlarged-text verification."
+  }
+}

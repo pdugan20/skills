@@ -1,0 +1,458 @@
+{
+  "product-new": {
+    "roles": {
+      "brand": {
+        "font": "IBM Plex Sans",
+        "size": 22,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": -0.025
+      },
+      "eyebrow": {
+        "font": "IBM Plex Sans",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": 0.035
+      },
+      "title": {
+        "font": "IBM Plex Sans",
+        "size": 42,
+        "weight": 500,
+        "leading": 1.1,
+        "tracking": -0.035
+      },
+      "deck": {
+        "font": "IBM Plex Sans",
+        "size": 18,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "IBM Plex Sans",
+        "size": 15,
+        "weight": 400,
+        "leading": 1.5,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "IBM Plex Sans",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "IBM Plex Sans",
+        "size": 12,
+        "weight": 600,
+        "leading": 1.35,
+        "tracking": 0.025
+      },
+      "item": {
+        "font": "IBM Plex Sans",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.4,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "IBM Plex Sans",
+        "size": 28,
+        "weight": 500,
+        "leading": 1.15,
+        "tracking": -0.025
+      }
+    },
+    "space": {
+      "titleAfter": 12,
+      "deckAfter": 28,
+      "sectionBefore": 32,
+      "rowGap": 17,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "I propose IBM Plex Sans throughout for a practical workspace with an individual editorial voice. Compact title and value leading would give the issue summary definition, while modest story weights and quieter column headings would keep attention on the writing. The spacing is intended to separate the summary from the working list without making the rows feel sparse; this has not been visually verified."
+  },
+  "product-refine": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.25,
+        "tracking": -0.02
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.4,
+        "tracking": 0.025
+      },
+      "title": {
+        "font": "Inter",
+        "size": 38,
+        "weight": 600,
+        "leading": 1.12,
+        "tracking": -0.035
+      },
+      "deck": {
+        "font": "Inter",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "Inter",
+        "size": 15,
+        "weight": 400,
+        "leading": 1.45,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 600,
+        "leading": 1.35,
+        "tracking": 0.005
+      },
+      "item": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.4,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "Inter",
+        "size": 25,
+        "weight": 500,
+        "leading": 1.2,
+        "tracking": -0.025
+      }
+    },
+    "space": {
+      "titleAfter": 12,
+      "deckAfter": 24,
+      "sectionBefore": 28,
+      "rowGap": 18,
+      "paragraphAfter": 18
+    },
+    "titleBreak": "natural",
+    "rationale": "This proposed refinement preserves Inter and the original scale for nearly every role. Tighter title and value leading, slightly closer display spacing, and smaller column headings would sharpen the hierarchy while retaining the existing workspace character. Body settings and most spacing remain unchanged; the optical balance still requires rendered review."
+  },
+  "editorial-new": {
+    "roles": {
+      "brand": {
+        "font": "IBM Plex Sans",
+        "size": 19,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": 0.065
+      },
+      "eyebrow": {
+        "font": "IBM Plex Sans",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": 0.1
+      },
+      "title": {
+        "font": "Source Serif 4",
+        "size": 64,
+        "weight": 500,
+        "leading": 1.06,
+        "tracking": -0.025
+      },
+      "deck": {
+        "font": "Source Serif 4",
+        "size": 25,
+        "weight": 400,
+        "leading": 1.36,
+        "tracking": -0.005
+      },
+      "body": {
+        "font": "Source Serif 4",
+        "size": 20,
+        "weight": 400,
+        "leading": 1.55,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "IBM Plex Sans",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "IBM Plex Sans",
+        "size": 13,
+        "weight": 600,
+        "leading": 1.35,
+        "tracking": 0.015
+      },
+      "item": {
+        "font": "Source Serif 4",
+        "size": 27,
+        "weight": 400,
+        "leading": 1.3,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "IBM Plex Sans",
+        "size": 18,
+        "weight": 500,
+        "leading": 1.25,
+        "tracking": -0.01
+      }
+    },
+    "space": {
+      "titleAfter": 22,
+      "deckAfter": 26,
+      "sectionBefore": 32,
+      "rowGap": 16,
+      "paragraphAfter": 20
+    },
+    "titleBreak": "after-art",
+    "rationale": "I propose a substantial Source Serif 4 title with a deliberate pause after The art of, followed by a more conversational deck. IBM Plex Sans would give the journal's utility text a crisp counterpoint, with restrained tracking reserved mainly for the uppercase identity and essay label. Generous body leading and a lighter aside aim to support attentive reading; title fit, rag, and total page height remain unverified."
+  },
+  "editorial-refine": {
+    "roles": {
+      "brand": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 600,
+        "leading": 1.25,
+        "tracking": 0.045
+      },
+      "eyebrow": {
+        "font": "Inter",
+        "size": 12,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": 0.08
+      },
+      "title": {
+        "font": "Source Serif 4",
+        "size": 60,
+        "weight": 500,
+        "leading": 1.1,
+        "tracking": -0.02
+      },
+      "deck": {
+        "font": "Source Serif 4",
+        "size": 24,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "body": {
+        "font": "Source Serif 4",
+        "size": 20,
+        "weight": 400,
+        "leading": 1.55,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "Inter",
+        "size": 13,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "Inter",
+        "size": 14,
+        "weight": 600,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "item": {
+        "font": "Source Serif 4",
+        "size": 26,
+        "weight": 400,
+        "leading": 1.35,
+        "tracking": -0.005
+      },
+      "value": {
+        "font": "Inter",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.25,
+        "tracking": -0.015
+      }
+    },
+    "space": {
+      "titleAfter": 20,
+      "deckAfter": 24,
+      "sectionBefore": 30,
+      "rowGap": 18,
+      "paragraphAfter": 20
+    },
+    "titleBreak": "natural",
+    "rationale": "The proposed refinement keeps the serif and sans pairing, title size, and natural wrapping from the supplied treatment. Reducing title leading should make its lines read as one statement, while increasing body leading would distinguish the reading rhythm from the introduction. A quieter section label and gently spaced uppercase utility text would clarify the hierarchy, subject to visual verification of the natural title break and overall fit."
+  },
+  "native-new": {
+    "roles": {
+      "brand": {
+        "font": "system",
+        "size": 19,
+        "weight": 600,
+        "leading": 1.2,
+        "tracking": -0.02
+      },
+      "eyebrow": {
+        "font": "system",
+        "size": 11,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": 0.075
+      },
+      "title": {
+        "font": "Georgia",
+        "size": 34,
+        "weight": 400,
+        "leading": 1.12,
+        "tracking": -0.025
+      },
+      "deck": {
+        "font": "system",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "Georgia",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.5,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "system",
+        "size": 12,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "system",
+        "size": 13,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": 0
+      },
+      "item": {
+        "font": "system",
+        "size": 16,
+        "weight": 600,
+        "leading": 1.3,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "system",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.2,
+        "tracking": -0.015
+      }
+    },
+    "space": {
+      "titleAfter": 14,
+      "deckAfter": 20,
+      "sectionBefore": 24,
+      "rowGap": 14,
+      "paragraphAfter": 16
+    },
+    "titleBreak": "after-art",
+    "rationale": "I propose Georgia for an approachable reading voice and system sans for familiar native utility text. A regular-weight title with a pause after The art of would create a calm opening, while the smaller sans deck would hand attention to the essay. Compact inter-section spacing and comfortable body leading are intended for the phone-sized canvas, but actual line breaks and footer clearance require rendering."
+  },
+  "native-refine": {
+    "roles": {
+      "brand": {
+        "font": "system",
+        "size": 19,
+        "weight": 600,
+        "leading": 1.25,
+        "tracking": -0.02
+      },
+      "eyebrow": {
+        "font": "system",
+        "size": 11,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": 0.06
+      },
+      "title": {
+        "font": "serif",
+        "size": 36,
+        "weight": 600,
+        "leading": 1.12,
+        "tracking": -0.02
+      },
+      "deck": {
+        "font": "system",
+        "size": 18,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": -0.01
+      },
+      "body": {
+        "font": "serif",
+        "size": 17,
+        "weight": 400,
+        "leading": 1.5,
+        "tracking": 0
+      },
+      "meta": {
+        "font": "system",
+        "size": 12,
+        "weight": 400,
+        "leading": 1.4,
+        "tracking": 0
+      },
+      "section": {
+        "font": "system",
+        "size": 14,
+        "weight": 600,
+        "leading": 1.35,
+        "tracking": 0
+      },
+      "item": {
+        "font": "system",
+        "size": 16,
+        "weight": 500,
+        "leading": 1.35,
+        "tracking": -0.01
+      },
+      "value": {
+        "font": "system",
+        "size": 20,
+        "weight": 500,
+        "leading": 1.25,
+        "tracking": -0.015
+      }
+    },
+    "space": {
+      "titleAfter": 14,
+      "deckAfter": 20,
+      "sectionBefore": 24,
+      "rowGap": 16,
+      "paragraphAfter": 17
+    },
+    "titleBreak": "natural",
+    "rationale": "This proposed refinement retains the system utility face, system serif title and body, and existing primary sizes. Tighter display leading and slightly reduced section spacing would make room for a more relaxed body rhythm, while a smaller Opening note label would keep the essay dominant. Natural title wrapping remains part of the original character and needs rendered inspection before the spacing can be considered settled."
+  }
+}

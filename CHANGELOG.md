@@ -6,6 +6,8 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Added
 
+- Added an experimental [typography visual pilot](experiments/typography-visual-pilot/README.md) comparing three methods across new designs and refinements, with rendered specimens and source provenance. No typography skill is installed or released.
+
 - Added an unreleased pilot of
   [`capture-feature`](skills/capture-feature/SKILL.md) for deterministic,
   repository-native feature recordings with Slack-ready review bundles,

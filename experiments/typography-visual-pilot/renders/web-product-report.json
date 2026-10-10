@@ -1,0 +1,128 @@
+[
+  {
+    "name": "product-before",
+    "contentBottom": 651.21875,
+    "fonts": "loaded",
+    "footerTop": 694.15625,
+    "size": [1100, 760],
+    "title": {
+      "bottom": 236.4921875,
+      "height": 55.09375,
+      "left": 48,
+      "right": 626,
+      "top": 181.3984375,
+      "width": 578,
+      "x": 48,
+      "y": 181.3984375
+    },
+    "viewport": [1100, 760]
+  },
+  {
+    "name": "product-new-baseline",
+    "contentBottom": 631.078125,
+    "fonts": "loaded",
+    "footerTop": 694.8046875,
+    "size": [1100, 760],
+    "title": {
+      "bottom": 223.7890625,
+      "height": 46.1953125,
+      "left": 48,
+      "right": 626,
+      "top": 177.59375,
+      "width": 578,
+      "x": 48,
+      "y": 177.59375
+    },
+    "viewport": [1100, 760]
+  },
+  {
+    "name": "product-new-impeccable",
+    "contentBottom": 640.5,
+    "fonts": "loaded",
+    "footerTop": 694.8046875,
+    "size": [1100, 760],
+    "title": {
+      "bottom": 224.5078125,
+      "height": 47.515625,
+      "left": 48,
+      "right": 626,
+      "top": 176.9921875,
+      "width": 578,
+      "x": 48,
+      "y": 176.9921875
+    },
+    "viewport": [1100, 760]
+  },
+  {
+    "name": "product-new-original",
+    "contentBottom": 635.1484375,
+    "fonts": "loaded",
+    "footerTop": 695.453125,
+    "size": [1100, 760],
+    "title": {
+      "bottom": 225.46875,
+      "height": 49.6796875,
+      "left": 48,
+      "right": 626,
+      "top": 175.7890625,
+      "width": 578,
+      "x": 48,
+      "y": 175.7890625
+    },
+    "viewport": [1100, 760]
+  },
+  {
+    "name": "product-refine-baseline",
+    "contentBottom": 622.140625,
+    "fonts": "loaded",
+    "footerTop": 694.8046875,
+    "size": [1100, 760],
+    "title": {
+      "bottom": 219.3515625,
+      "height": 42.5546875,
+      "left": 48,
+      "right": 626,
+      "top": 176.796875,
+      "width": 578,
+      "x": 48,
+      "y": 176.796875
+    },
+    "viewport": [1100, 760]
+  },
+  {
+    "name": "product-refine-impeccable",
+    "contentBottom": 634.9453125,
+    "fonts": "loaded",
+    "footerTop": 694.8046875,
+    "size": [1100, 760],
+    "title": {
+      "bottom": 217.75,
+      "height": 42.5546875,
+      "left": 48,
+      "right": 626,
+      "top": 175.1953125,
+      "width": 578,
+      "x": 48,
+      "y": 175.1953125
+    },
+    "viewport": [1100, 760]
+  },
+  {
+    "name": "product-refine-original",
+    "contentBottom": 629.9296875,
+    "fonts": "loaded",
+    "footerTop": 694.15625,
+    "size": [1100, 760],
+    "title": {
+      "bottom": 223.953125,
+      "height": 42.5546875,
+      "left": 48,
+      "right": 626,
+      "top": 181.3984375,
+      "width": 578,
+      "x": 48,
+      "y": 181.3984375
+    },
+    "viewport": [1100, 760]
+  }
+]

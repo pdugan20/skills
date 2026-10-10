@@ -1,0 +1,254 @@
+[
+  {
+    "name": "product-before",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "unloaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter"]
+  },
+  {
+    "name": "product-new-baseline",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "unloaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "unloaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "loaded"
+      }
+    ],
+    "used": ["IBM Plex Sans"]
+  },
+  {
+    "name": "product-new-impeccable",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "unloaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "unloaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "loaded"
+      }
+    ],
+    "used": ["IBM Plex Sans"]
+  },
+  {
+    "name": "product-new-original",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "unloaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "loaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "loaded"
+      }
+    ],
+    "used": ["IBM Plex Sans", "Source Serif 4"]
+  },
+  {
+    "name": "product-refine-baseline",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "unloaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter"]
+  },
+  {
+    "name": "product-refine-impeccable",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "unloaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter"]
+  },
+  {
+    "name": "product-refine-original",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "unloaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter"]
+  },
+  {
+    "name": "editorial-before",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "loaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter", "Source Serif 4"]
+  },
+  {
+    "name": "editorial-new-baseline",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "unloaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "loaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "loaded"
+      }
+    ],
+    "used": ["IBM Plex Sans", "Source Serif 4"]
+  },
+  {
+    "name": "editorial-new-impeccable",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "loaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter", "Source Serif 4"]
+  },
+  {
+    "name": "editorial-new-original",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "unloaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "loaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "loaded"
+      }
+    ],
+    "used": ["IBM Plex Sans", "Source Serif 4"]
+  },
+  {
+    "name": "editorial-refine-baseline",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "loaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter", "Source Serif 4"]
+  },
+  {
+    "name": "editorial-refine-impeccable",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "loaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter", "Source Serif 4"]
+  },
+  {
+    "name": "editorial-refine-original",
+    "fonts": [
+      {
+        "family": "Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Source Serif 4",
+        "status": "loaded"
+      },
+      {
+        "family": "IBM Plex Sans",
+        "status": "unloaded"
+      }
+    ],
+    "used": ["Inter", "Source Serif 4"]
+  }
+]
