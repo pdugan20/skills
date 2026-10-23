@@ -1,5 +1,10 @@
 # Read-only repair checks
 
+The [synthetic guard regressions](../scripts/test_repair_guard.py) run during
+repository verification with the pinned Pillow test dependency. They verify
+source and protected-pixel checks on temporary fixtures; they do not establish
+image quality or agent compliance with the real editing workflow.
+
 The bundled `scripts/repair_guard.py` validates local lossless PNG files using
 Pillow. It does not generate, crop, composite, replace, or upload artwork. Use an
 existing Python environment with Pillow, or an authorized dependency environment.
