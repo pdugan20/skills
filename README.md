@@ -78,6 +78,9 @@ Releases version the collection as a whole. Install a release tag when reproduci
 
 ```bash
 npm ci
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements-test.txt
 npm run verify
 ```
 

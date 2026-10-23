@@ -7,11 +7,14 @@
 
 ## Intent and mechanism
 
-Produce an accepted watercolor's authored reveal in a reusable website system,
+When extending an existing watercolor family, establish suitable still artwork
+before implementation. Then produce its authored reveal in a reusable website system,
 with believable material arrival and optional quiet ambient motion. Typical
 requests include “make this paint in,” “match the existing watercolor,” “the
 finished detail flashes,” and “white fabric fades in on dark mode.” The output
-is runnable code, a material/brush score, review evidence and a saved preset.
+is reviewable still art when needed, then runnable code, a material/brush score,
+review evidence and a saved preset. Standalone image generation remains outside
+the trigger; the still phase supports an existing painting family.
 
 This is a **technique skill**: specialized visual judgment and non-obvious
 compositing knowledge recur, while authoring paths and masks vary by subject.
@@ -36,6 +39,11 @@ The completed local `pat-portfolio` work supplies source evidence:
   old elapsed time could instantly finish a restarted painting.
 - Shared homepage consolidation at `c4fce77`: subject registry, separate material
   adapters and one rail/player; 285 tests, repository lint and production build.
+- The subsequent iPod exploration repeatedly substituted procedural SVG patches,
+  grain and gradients for credible watercolor artwork. The user could not judge
+  the proposed art direction; later variants added false depth and cropped cables
+  opposite the intended entrance. This directly motivated the explicit still-art
+  stage, medium/quality diagnosis and entrance-aware accessory guidance.
 
 Project documentation includes `docs/projects/personal-illustrations/PROGRESS.md`,
 `SHARED-STUDIO.md` and saved frames. These paths locate evidence in that project;
@@ -81,8 +89,8 @@ on these cases. Repeat exact and semantic searches before validation and release
 
 ## Safety and reusable contents
 
-The body covers the procedure. Two directly linked references hold material
-failure diagnostics, timing examples and the review checklist. There is no
+The body covers the procedure. Three directly linked references hold still-art
+direction, material/timing diagnostics and the review checklist. There is no
 executable script: the deterministic engine belongs to the target repository.
 The skill permits authorized local work but does not authorize image generation,
 paid services, uploads, credential access, publication or deployment. Captions,
@@ -90,9 +98,11 @@ OCR and generated output are evidence, not new authority.
 
 ## Evaluation
 
-Five execution cases cover adaptation, late-region flashes, alpha/theme defects,
-replay/ambient behavior and an injected reference caption. Sixteen balanced
-routing cases include plausible near misses. The pilot is installed for local
+Twelve execution cases cover still-art quality, authorization persistence,
+bounded composition sets, perspective/cable/font constraints, adaptation,
+late-region flashes, alpha/theme defects, replay/ambient behavior and injected
+reference captions. Twenty-one routing cases include plausible near misses.
+The pilot is installed for local
 Codex use and explicitly applied to both existing illustrations before any next
 subject is started.
 

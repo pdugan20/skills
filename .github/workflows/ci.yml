@@ -58,6 +58,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci
+          python3 -m pip install --disable-pip-version-check -r requirements-test.txt
           go install github.com/agent-ecosystem/skill-validator/cmd/skill-validator@v1.5.6
 
       - name: Verify repository

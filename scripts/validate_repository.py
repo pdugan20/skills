@@ -22,6 +22,7 @@ EXPECTED_SKILLS = {
     "feature-spike": True,
     "generate-mintlify-reference": True,
     "integrate-app-intents": True,
+    "repair-photographic-assets": True,
     "review-deployment-constraints": True,
     "review-mintlify-docs": True,
     "run-remote-dev-server": True,

@@ -1,5 +1,58 @@
 # Animate watercolor pilot validation — 2026-10-01
 
+## Reference-score audit revision — 2026-10-02
+
+The consuming portfolio's `docs/projects/personal-illustrations/ipod/audit/`
+records the source snapshot, score metrics and comparison frames for Ichiro,
+Rainier and iPod. The audit found no concurrent paint contacts in Ichiro, specific
+extended-glass exceptions in Rainier, and overlapping contacts during 93.22% of
+iPod's active painting time. It also identified disconnected ink subpaths joined
+by the sampler, named dry returns without an effective dry flag, expanded support
+coverage reused for the LCD, and a residual override dominated by the shared curve.
+
+The skill now requires reference-specific choreography and executable-score
+inspection. It preserves reference exceptions and distinguishes ink/color overlap
+from simultaneous paint contacts; no subject's stroke count or duration becomes a
+universal rule. Material diagnostics separate support alpha, pigment and live
+screen arrival. Review guidance separates cold preparation, warm drawing and
+additional overlay work when investigating stutter.
+
+- Added four execution cases and four routing cases: totals are 17 and 26.
+  Cases cover timing, connected paths, actual flags, ineffective overrides and
+  support/LCD masks. The audit case includes an embedded instruction attempt
+  that must not authorize rewriting accepted references or uploading sources.
+- Skill Creator quick validation, repository validation, all 52 repository tests,
+  focused Markdown lint, JSON formatting and Git whitespace checks passed.
+  The installed skill symlink
+  resolves to the edited canonical source; no reinstall is needed.
+- The external `skill-validator` executable is unavailable on PATH. No new
+  provider-backed execution/routing trials or with/without-skill benchmark ran.
+  These additions are regression specifications, not measured improvements in
+  model behavior or art quality. The scope and pilot status are unchanged.
+- No portfolio runtime, accepted reference score or artwork changed in this
+  revision. No release, publication, push or commit was performed.
+
+## iPod failure-mode revision
+
+- Added an explicit still-art phase for new subjects in an existing painting
+  family, with a directly routed reference for actual-art quality, medium
+  selection, perspective, accessory anatomy, entrance-aware cropping and later
+  typography/runtime work.
+- Preserved the explicit image-generation boundary and clarified that direct
+  approval of a proposed generation step persists; code-variant permission alone
+  does not authorize it. Generic image generation remains outside the trigger.
+- Updated discovery metadata, checklist, candidate evidence and changelog.
+  Execution cases now total 12; routing cases total 21, including new adversarial
+  reference-caption coverage. These are regression specifications, not completed
+  model trials.
+- Skill Creator quick validation passed using an ephemeral `uv` environment with
+  PyYAML because the default Python lacks that dependency. Repository validation,
+  focused Markdown lint, JSON/YAML formatting and Git whitespace checks passed.
+- The pinned external validator is unavailable on the current PATH, so it was
+  not rerun for this revision. No provider-backed benchmark, release, push or
+  publication occurred. The existing local symlink resolves to the edited
+  canonical source; no installation copy or dependency manifest changed.
+
 ## Package checks
 
 - `npm run verify`: passed, including 52 repository tests, isolated installation

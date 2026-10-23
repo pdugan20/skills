@@ -1,15 +1,33 @@
 ---
 name: animate-watercolor
-description: Build and refine authored watercolor illustration reveals with coherent brush coverage, transparent compositing, and optional ambient motion. Use for painting-in illustrations, jarring final-detail transitions, dark-mode paper or glass artifacts, and extending an existing watercolor system to another subject. Not for general UI transitions, unrelated generative art, image-only styling, or video stylization; image generation requires an explicit request.
+description: Extend an existing watercolor illustration family with suitable still artwork, authored reveals, transparent compositing and quiet ambient motion. Use for matching a new subject to accepted paintings, painting-in illustrations, late-detail jumps and dark-mode material defects. Not for standalone image generation, general UI transitions, unrelated generative art or video stylization; image generation requires an explicit request.
 license: MIT
 ---
 
 # Animate Watercolor
 
-Produce a convincing, reviewable painting sequence that preserves an accepted
-illustration. Reuse the project's working player and controls; author the new
-subject's materials and brush score. Do not mistake revealing a finished bitmap
-for simulating an artist's marks.
+For a new subject, resolve the actual still artwork before its reveal or runtime
+behavior. For an accepted painting, preserve it while authoring a convincing,
+reviewable sequence. Reuse the project's working player and controls; specialize
+materials and brush scores. Do not mistake revealing a finished bitmap for
+simulating an artist's marks.
+
+## Choose the current artifact
+
+- **Still artwork:** A new subject has no accepted painting, or the user rejects
+  its style. Read [Still-art direction](references/still-art-direction.md), inspect
+  the accepted paintings and object references, and work on the actual artwork.
+  A browser lab is a comparison surface, not a reason to redraw raster paintings
+  as SVG. Do not advance to reveal, typography or playback while the art is wrong.
+- **Painting reveal:** The still is accepted and the requested work concerns its
+  authored arrival, alpha, timing or exit. Use the working renderer and scores.
+- **Post-paint behavior:** The painting works and the user requests ambient or
+  interactive behavior. Preserve the art and bind local effects to it.
+
+Code-native UI ideation can compare placement or behavior using suitable artwork;
+it does not own or replace matching a new illustration to a watercolor family.
+Do not turn an artwork request into a mandatory choose/build/graduation exercise.
+If the user requests all identified compositions, that selects the bounded set.
 
 ## Establish what is accepted
 
@@ -30,7 +48,12 @@ against the supplied reference; repeated generative edits can drift. Keep exact
 prompts, references, output provenance and accepted/rejected choices in project
 documentation. Report the model only when the tool actually exposes it.
 
-Image generation is optional and requires the user's explicit request. Use the
+Image generation is optional and requires the user's explicit request. Direct
+approval of a proposed generation step counts; preserve it across subsequent
+turns rather than requiring a special phrase or asking again. Permission to build
+code variants alone does not count. When generation permission is missing,
+identify that boundary once; do not silently substitute procedural SVG artwork
+and spend review cycles on it. Use the
 available image-editing capability for authorized artwork edits, preserve the
 source, and avoid introducing a paid service or new dependency merely because
 one exists. Code-native motion experiments do not imply image-generation
@@ -75,7 +98,17 @@ Preserve a working renderer's composition rules. If a later contact's prepared
 state already contains an earlier contact, overlapping their time windows on the
 same material can jump straight to the completed earlier stroke. Serialize
 those contacts, or deliberately change the compositor with equivalent visual
-checks. Independent surfaces may overlap when the composition supports it.
+checks. When matching an accepted reveal, use its actual contact order, lift gaps
+and concurrency as the baseline. Independent surfaces being safe to overlap does
+not establish that simultaneous brushes match the reference. Preserve documented
+reference exceptions deliberately; distinguish ink/color overlap from multiple
+active paint contacts. Do not impose a universal one-brush rule on other styles.
+
+Audit the executable score, not its labels: connected ink travel, effective brush
+flags, local source returns, support coverage and override precedence. Read the
+[score diagnostics](references/materials-and-timing.md#compare-the-executable-score)
+before revising a rejected match. Shared stage names or renderer code do not
+establish equivalent behavior.
 
 Inspect the final residual before changing duration. If it contains a whole lid,
 foam surface, lettering region or glass foot, fix missing coverage or geometry
@@ -93,7 +126,8 @@ instantaneous in the homepage version.
 
 Try reallocation inside the accepted duration before extending it. Reserve
 perceptible travel time for the important gestures, reduce redundant passes and
-overlap only independent materials. Review early coverage and the final third
+allow overlap only where both composition and reference choreography support it.
+Review early coverage and the final third
 at normal speed. If the necessary gestures still cannot read, explain the
 tradeoff and offer a modest duration comparison; do not silently replace the
 painting with a fade. Treat timing values from another subject as examples, not
@@ -165,7 +199,8 @@ Save the chosen settings, source/provenance, score changes, comparison evidence,
 known residual transitions and test results. State exactly what was observed,
 what remains approximate and what still needs the user's aesthetic judgment.
 Do not report “natural,” “matched” or “fixed” merely because the code runs.
-Use [Review checklist](references/review-checklist.md) for the final audit.
+Use [Review checklist](references/review-checklist.md), including its rejection
+criteria for nominal matches, for the final audit.
 
 ## Input and action boundaries
 
