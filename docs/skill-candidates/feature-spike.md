@@ -202,6 +202,31 @@ Three fresh retries then:
 The pilot therefore adds observable decision quality without making the default
 responses substantially heavier.
 
+### Codex eval, 2026-10-31
+
+The first `npm run evals:codex` run used Codex CLI 0.153.4 with `gpt-6-astra`
+as both agent and judge. It ran one pass per case against `SKILL.md`
+`c26715b1a7b4`, in isolated read-only workspaces with the installed copy
+disabled in both arms. It made 44 Codex calls (32 agent runs and 12
+judges) and used 3.85M input tokens, 2.93M of them cached, and 17.9k output
+tokens, about 1% of a ChatGPT Pro weekly allowance.
+
+- Routing: the skill fired on all 10 positive requests and stayed quiet on
+  all 10 near misses.
+- Execution: 15 of 26 assertions passed with the skill and 9 of 26 without
+  it. The gain came from the integration spike (3 of 5 against 0 of 5), the
+  product-value slice (3 of 5 against 1 of 5) and the invalid-paywall
+  verdict (4 of 4 against 3 of 4). The package benchmark, platform probe and
+  embedded-instruction cases tied.
+- In the paywall case the baseline proposed a broader test matrix and let
+  production work start without an explicit decision; with the skill, the
+  response named the smallest conclusive rerun and kept production
+  conditional.
+
+These are single runs graded by the same model family, so treat them as an
+early signal. Before tightening the skill on them, repeat with `--runs 3`,
+read the traces for the tied cases, and add held-out routing cases.
+
 ### Release evidence
 
 - Patrick Skills

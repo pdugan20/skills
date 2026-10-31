@@ -215,6 +215,20 @@ Routing and execution are separate claims. A skill can perform well after explic
 
 Run provider-backed behavioral benchmarks intentionally, never as an unreviewed CI side effect. Every run and every judge call is billable model usage, and results vary between runs.
 
+For Codex evidence, the primary runtime for this collection, use `scripts/run_codex_evals.py`. It follows OpenAI's [guide to testing Agent Skills with evals](https://developers.openai.com/blog/eval-skills). Each case runs through `codex exec --json` in a fresh git workspace outside any repository. A routing case passes when the recorded trace shows Codex reading the skill's `SKILL.md` exactly when `should_trigger` says it should. Each execution assertion is graded by a separate `codex exec` constrained by `--output-schema`, which receives the response as untrusted data.
+
+- The with-skill arm gets the checkout's skill copied to `.agents/skills/` without its `evals/` folder. Installed copies of the same skill under `~/.agents/skills`, `~/.codex/skills`, or `/etc/codex/skills` are disabled in both arms through a per-run `skills.config` override, and a `codex debug prompt-input` preflight confirms what each arm can see before any model call.
+- Runs pass `--ignore-user-config`, so user configuration, including any `openai_base_url` proxy, is skipped and Codex uses the signed-in login directly. With a ChatGPT login, runs count against the plan's Codex usage limits, and only models offered to ChatGPT accounts are accepted.
+- `--max-runs` is a required cap on every `codex exec` call, judges included. The runner refuses a plan above it and stops on a model, authentication, or usage-limit error.
+- Runs use a read-only sandbox, so execution cases grade the response and plan rather than file edits. Other installed skills stay loaded, as in normal use. An explicit `$skill` mention loads a skill without a visible command, so trigger detection covers the implicit requests routing evals use.
+
+```bash
+npm run evals:codex -- --skill <skill> --max-runs 50 --dry-run   # plan and preflight, no model calls
+npm run evals:codex -- --skill <skill> --max-runs 50 --jobs 3
+```
+
+Traces, final messages, and `results.json` go to `agent-skills-workspace/codex-runs/<skill>-<time>/`. Record the model, `SKILL.md` checksum, scores, and token totals in the skill's candidate brief.
+
 For Claude evidence, use Claude Code's first-party `claude plugin eval` runner from the pinned CLI. It runs each case several times with the plugin and again without it, reports the difference, and its `tool_used: Skill` grader shows whether a skill actually fired, so it can measure routing as well as execution. It reads its own layout of one directory per case and does not read `evals/evals.json` or `evals/routing.json`. Those files remain the reviewed source of truth; `scripts/build_plugin_evals.py` translates them into the runner's layout under the ignored `agent-skills-workspace/plugin-evals/` directory:
 
 ```bash
@@ -286,6 +300,7 @@ Configure the provider and credentials in the environment without committing the
 | Live skills.sh audit verdicts across Agent Trust Hub, Socket, and Snyk | `scripts/check_skills_sh_security.py` plus `skills-sh-audits.json` | Daily; pass by default, with exact owned exceptions that expire |
 | Trigger precision, near-miss behavior, and observable skill outcomes | Versioned routing and execution evals | Evidence-based review |
 | Eval file shape, adversarial coverage for trust-boundary skills, and routing queries claimed by two skills | JSON Schemas in `schemas/` and `scripts/validate_repository.py` | Automatic |
+| Codex eval harness parsing, isolation, grading, and run caps | `scripts/run_codex_evals.py` and its tests in `npm run verify` | Parsing and planning automatic; model runs on demand |
 | Translation of those evals into `claude plugin eval` cases | `scripts/build_plugin_evals.py` and its tests in `npm run verify`; `npm run evals:check` loads the generated suite in the pinned CLI | Translation automatic; load check on demand, because Anthropic can disable the command server-side |
 | Taste, proportionality, novelty, overlap, and whether the process should become a skill | Author review using this rubric | Human judgment |
 
@@ -305,6 +320,7 @@ This assessment was last reviewed on 2026-10-31.
 - [OpenAI skill-creator](https://github.com/openai/skills/tree/main/skills/.system/skill-creator) supplies initialization and basic validation, but its `quick_validate.py` checks only frontmatter and naming.
 - [skill-validator](https://github.com/agent-ecosystem/skill-validator) is the selected third-party structural and content gate. Version `v1.8.0` is pinned because this is supply-chain executable code; `.github/actions/setup-repository` installs its release binary after checking the published SHA-256, so CI no longer builds it with Go. Dependabot does not track this pin; move the version and checksum together after the new release passes `check --strict` locally.
 - [claude-code-lint](https://github.com/pdugan20/claudelint) version `0.7.0` is not an authoritative portable-skill gate. The scope audit below found duplicate, ineffective, and non-portable checks, so this collection now uses the pinned official Claude validator instead. `claudelint` can continue evolving as a separate product without defining this repository's acceptance criteria.
+- `scripts/run_codex_evals.py` is the preferred runner for Codex evidence. It is a thin harness over `codex exec --json` and `--output-schema` that follows OpenAI's published eval recipe, reads the versioned eval files directly, and keeps per-run traces for transcript review. Its unit tests run in `npm run verify`; model runs stay on demand.
 - Claude Code's [`claude plugin eval`](https://code.claude.com/docs/en/plugin-evals) is generally available from v2.1.269, and the pinned `2.1.282` CLI includes it. It supports skills-directory plugins, no-plugin ablation, repeated runs, LLM and `tool_used` graders, cost ceilings, thresholds, and versioned JSON results. It is the preferred runner for Claude-specific evidence. Keep it out of required pull-request checks because runs are billable, nondeterministic, and need credentials; run it on demand with pinned models, a cost ceiling, and `--no-publish`, since signed-in subscription accounts otherwise publish the report to claude.ai. Anthropic can disable the command server-side, so no release process may depend on it being available.
 - [agent-skills-eval](https://github.com/darkrishabh/agent-skills-eval) version `0.1.1` can run the adopted `assertions` format against OpenAI-compatible providers with with-skill/baseline comparison. It has published no release since May 2026 and no GitHub releases, and the deployment-constraints pilot needed a workaround because it omitted attachments from the baseline arm. Keep it only for non-Claude comparisons with earlier pilots; do not build new tooling on it.
 - [uv](https://docs.astral.sh/uv/) manages the repository's Python interpreter and script test dependencies. `pyproject.toml` declares a never-built tooling project, `uv.lock` pins its dependencies, and every npm script and workflow runs Python through `uv run --locked`, so local checks, CI, and releases use the same environment.
@@ -328,7 +344,7 @@ This assessment was last reviewed on 2026-10-31.
   than a pinned CI authority. Keep the existing release workflow because it
   publishes curated changelog sections instead of auto-generated notes.
 
-The repository therefore extends its own tooling only for collection-specific policy and eval coverage. Reimplementing the external validator's structural checks would add maintenance without improving portability. A custom model runner is not justified; use Anthropic skill-creator for guided iteration inside a conversation, Claude's first-party runner for repeatable Claude evidence, and the portable runner only for comparisons that need an OpenAI-compatible provider. Converting the versioned eval files into a runner's case layout is format translation, not a model runner, and may live in this repository.
+The repository therefore extends its own tooling only for collection-specific policy and eval coverage. Reimplementing the external validator's structural checks would add maintenance without improving portability. A general model runner is not justified. Use Anthropic skill-creator for guided iteration inside a conversation, the thin `codex exec` harness for repeatable Codex evidence, Claude's first-party runner for repeatable Claude evidence, and the portable runner only for comparisons with earlier pilots. Converting the versioned eval files into a runner's case layout is format translation, not a model runner, and may live in this repository.
 
 ### `claude-code-lint` scope audit
 
@@ -367,6 +383,6 @@ Before merging a skill change:
 - Run `gh skill publish --dry-run` when the installed GitHub CLI exposes the
   preview command; resolve skill warnings and report repository-settings
   recommendations separately.
-- For material behavior changes, run representative with-skill and baseline cases and review the outputs. For Claude, regenerate the cases with `npm run evals:build` and run the affected skill's execution and routing cases with `claude plugin eval`.
+- For material behavior changes, run representative with-skill and baseline cases and review the outputs. For Codex, run `npm run evals:codex -- --skill <skill>` with a `--max-runs` cap and read the traces behind any surprising score. For Claude, regenerate the cases with `npm run evals:build` and run them with `claude plugin eval`.
 - Test the intended Claude, Codex, or Cursor integrations before release when their behavior is part of the claim.
 - Update the changelog and version according to user-visible impact.

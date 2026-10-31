@@ -6,6 +6,12 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Added
 
+- Added `npm run evals:codex`, a Codex eval harness that runs a skill's `evals.json`
+  and `routing.json` through `codex exec --json` following OpenAI's published eval
+  recipe: isolated workspaces with and without the skill, installed copies
+  disabled, trigger detection from the recorded trace, schema-constrained
+  assertion grading, and a required cap on Codex calls.
+
 - Added `npm run evals:build`, which translates every skill's `evals.json` and
   `routing.json` into `claude plugin eval` cases under the ignored workspace:
   verbatim prompts with attached files recreated by a scaffold, one judge-scored
