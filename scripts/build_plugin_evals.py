@@ -102,6 +102,9 @@ def fixture_path(skill_dir: Path, item: str) -> tuple[Path, PurePosixPath]:
     source = skill_dir / Path(*relative.parts)
     if not source.is_file():
         raise ConversionError(f"{skill_dir.name}: missing eval file {item!r}")
+    # A symlinked fixture must not pull content from outside the skill.
+    if not source.resolve().is_relative_to(skill_dir.resolve()):
+        raise ConversionError(f"{skill_dir.name}: eval file {item!r} resolves outside the skill")
     if relative.is_relative_to(FIXTURE_PREFIX):
         relative = relative.relative_to(FIXTURE_PREFIX)
     return source, relative

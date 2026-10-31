@@ -164,6 +164,18 @@ class SyntheticSkillTests(unittest.TestCase):
         with self.assertRaises(converter.ConversionError):
             self.build()
 
+    def test_rejects_fixture_symlink_that_leaves_the_skill(self) -> None:
+        outside = self.root / "outside.txt"
+        outside.write_text("not part of the skill")
+        link = self.root / "skills" / "demo-skill" / "evals" / "fixtures" / "linked.txt"
+        link.symlink_to(outside)
+        evals = self.root / "skills" / "demo-skill" / "evals" / "evals.json"
+        manifest = json.loads(evals.read_text())
+        manifest["evals"][0]["files"] = ["evals/fixtures/linked.txt"]
+        evals.write_text(json.dumps(manifest))
+        with self.assertRaises(converter.ConversionError):
+            self.build()
+
 
 class InvocationPatternTests(unittest.TestCase):
     def test_matches_bare_and_namespaced_skill_input_only(self) -> None:
