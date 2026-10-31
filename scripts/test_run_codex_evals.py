@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 
+import io
 import json
 import tempfile
+import threading
 import unittest
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
 import run_codex_evals as runner
@@ -174,6 +177,33 @@ class CommandAndPlanTests(unittest.TestCase):
         self.assertEqual(summary["routing"]["negatives_quiet"], "0/1")
         self.assertEqual(summary["routing"]["misses"], ["routing-02"])
         self.assertEqual(summary["tokens"]["input"], 8)
+
+
+class BatchTests(unittest.TestCase):
+    def test_fatal_error_cancels_queued_runs_but_reports_every_executed_run(self) -> None:
+        planned = [runner.PlannedRun(case=f"routing-{index:02d}", arm="with-skill", attempt=1, prompt="q", files=[])
+                   for index in range(1, 9)]
+        executed: list[str] = []
+        lock = threading.Lock()
+        fatal_done = threading.Event()
+
+        def worker(run: runner.PlannedRun) -> dict[str, object]:
+            with lock:
+                executed.append(run.case)
+            if run.case == "routing-01":
+                fatal_done.set()
+                message: str | None = "usage limit"
+            else:
+                fatal_done.wait(timeout=5)
+                message = None
+            return {"case": run.case, "arm": run.arm, "attempt": 1, "exit_code": 0,
+                    "skill_fired": False, "routing_pass": True, "fatal": message}
+
+        with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+            results = runner.run_all(planned, worker, 2)
+        self.assertEqual(sorted(result["case"] for result in results), sorted(executed))
+        self.assertIn("routing-01", executed)
+        self.assertLess(len(executed), len(planned))
 
 
 if __name__ == "__main__":

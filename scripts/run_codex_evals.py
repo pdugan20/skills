@@ -21,6 +21,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -426,6 +427,29 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
     return summary
 
 
+def run_all(
+    planned: list[PlannedRun], worker: Callable[[PlannedRun], dict[str, Any]], jobs: int
+) -> list[dict[str, Any]]:
+    """Run evals concurrently. After a fatal error, cancel queued runs but keep every run that executed."""
+    results: list[dict[str, Any]] = []
+    stopped = False
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, jobs)) as pool:
+        futures = [pool.submit(worker, run) for run in planned]
+        for future in concurrent.futures.as_completed(futures):
+            if future.cancelled():
+                continue
+            result = future.result()
+            results.append(result)
+            status = result.get("routing_pass", None if "assertions" in result else result["exit_code"] == 0)
+            print(f"{result['case']} {result['arm']}#{result['attempt']}: fired={result['skill_fired']} pass={status}")
+            if result["fatal"] and not stopped:
+                stopped = True
+                for pending in futures:
+                    pending.cancel()
+                print(f"ERROR: stopping after fatal Codex error: {result['fatal']}", file=sys.stderr)
+    return results
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__.splitlines()[0] if __doc__ else None,
@@ -477,22 +501,11 @@ def main(argv: list[str] | None = None) -> int:
     output = (args.output or DEFAULT_OUTPUT_ROOT / f"{args.skill}-{stamp}").resolve()
     output.mkdir(parents=True, exist_ok=True)
     version = subprocess.run(["codex", "--version"], capture_output=True, text=True, check=False).stdout.strip()
-    results: list[dict[str, Any]] = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
-        futures = {
-            pool.submit(execute, run, skill_dir, output, args.model, args.judge_model, disabled): run
-            for run in planned
-        }
-        for future in concurrent.futures.as_completed(futures):
-            result = future.result()
-            results.append(result)
-            status = result.get("routing_pass", None if "assertions" in result else result["exit_code"] == 0)
-            print(f"{result['case']} {result['arm']}#{result['attempt']}: fired={result['skill_fired']} pass={status}")
-            if result["fatal"]:
-                for pending in futures:
-                    pending.cancel()
-                print(f"ERROR: stopping after fatal Codex error: {result['fatal']}", file=sys.stderr)
-                break
+    results = run_all(
+        planned,
+        lambda run: execute(run, skill_dir, output, args.model, args.judge_model, disabled),
+        args.jobs,
+    )
     results.sort(key=lambda item: (item["case"], item["arm"], item["attempt"]))
     report = {
         "skill": args.skill,
