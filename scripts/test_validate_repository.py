@@ -417,5 +417,47 @@ class EvalSchemaTests(unittest.TestCase):
         self.assertTrue(all("first, second" in error for error in errors), errors)
 
 
+class ReadmeGroupTests(unittest.TestCase):
+    CONFIG = {
+        "groupings": [
+            {"title": "Design", "description": "Design skills.", "skills": ["one", "two"]},
+            {"title": "Docs", "description": "Docs skills.", "skills": ["three"]},
+        ]
+    }
+
+    def readme(self, design: str) -> str:
+        return (
+            "# skills\n\n## Available skills\n\n### Design\n\n"
+            + design
+            + "\n### Docs\n\nDocs skills.\n\n- [`three`](skills/three/SKILL.md) — Three.\n\n## Versioning\n"
+        )
+
+    def test_accepts_grouped_sections_in_order(self) -> None:
+        design = "Design skills.\n\n- [`one`](skills/one/SKILL.md) — One.\n- [`two`](skills/two/SKILL.md) — Two.\n"
+        self.assertEqual(validate_repository.validate_readme_skill_groups(self.readme(design), self.CONFIG), [])
+
+    def test_rejects_bullet_above_description_and_missing_skill(self) -> None:
+        design = "- [`two`](skills/two/SKILL.md) — Two.\n\nDesign skills.\n"
+        errors = validate_repository.validate_readme_skill_groups(self.readme(design), self.CONFIG)
+        self.assertTrue(any("must open with" in error for error in errors), errors)
+        self.assertTrue(any("['one', 'two']" in error and "['two']" in error for error in errors), errors)
+
+    def test_rejects_repeated_section_titles(self) -> None:
+        design = (
+            "Broken.\n\n### Design\n\nDesign skills.\n\n"
+            "- [`one`](skills/one/SKILL.md) — One.\n- [`two`](skills/two/SKILL.md) — Two.\n"
+        )
+        errors = validate_repository.validate_readme_skill_groups(self.readme(design), self.CONFIG)
+        self.assertTrue(any("appears more than once" in error for error in errors), errors)
+
+    def test_rejects_skill_listed_under_the_wrong_group(self) -> None:
+        design = (
+            "Design skills.\n\n- [`one`](skills/one/SKILL.md) — One.\n"
+            "- [`three`](skills/three/SKILL.md) — Three.\n"
+        )
+        errors = validate_repository.validate_readme_skill_groups(self.readme(design), self.CONFIG)
+        self.assertEqual(len(errors), 1, errors)
+
+
 if __name__ == "__main__":
     unittest.main()

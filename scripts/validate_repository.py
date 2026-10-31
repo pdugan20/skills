@@ -455,6 +455,51 @@ def validate_skills_sh_audit_policy(
     return errors
 
 
+README_SKILL_RE = re.compile(r"^- \[`(?P<name>[a-z0-9-]+)`\]\(skills/(?P<path>[a-z0-9-]+)/SKILL\.md\)")
+
+
+def validate_readme_skill_groups(readme: str, config: Mapping[str, object]) -> list[str]:
+    """Keep README skill sections aligned with skills.sh groupings, descriptions, and order."""
+    errors: list[str] = []
+    groupings = config.get("groupings")
+    if not isinstance(groupings, list):
+        return errors  # Reported by validate_skills_sh_config.
+    available = readme.split("\n## Available skills\n", 1)
+    if len(available) != 2:
+        return ["README.md: missing ## Available skills section"]
+    body = available[1].split("\n## ", 1)[0]
+    sections: dict[str, list[str]] = {}
+    for chunk in body.split("\n### ")[1:]:
+        title, _, rest = chunk.partition("\n")
+        title = title.strip()
+        if title in sections:
+            errors.append(f"README.md: ### {title} appears more than once")
+        sections[title] = rest.strip("\n").splitlines()
+    for grouping in groupings:
+        if not isinstance(grouping, dict) or not isinstance(grouping.get("title"), str):
+            continue
+        title = grouping["title"]
+        lines = sections.get(title)
+        if lines is None:
+            errors.append(f"README.md: missing ### {title} section from skills.sh.json")
+            continue
+        first = next((line for line in lines if line.strip()), "")
+        if first != grouping.get("description"):
+            errors.append(f"README.md: ### {title} must open with its skills.sh.json description")
+        listed: list[str] = []
+        for line in lines:
+            match = README_SKILL_RE.match(line)
+            if match:
+                if match["name"] != match["path"]:
+                    errors.append(f"README.md: {match['name']} links to skills/{match['path']}")
+                listed.append(match["name"])
+        if listed != grouping.get("skills"):
+            errors.append(
+                f"README.md: ### {title} must list {grouping.get('skills')} in skills.sh.json order, found {listed}"
+            )
+    return errors
+
+
 def validate(release_tag: str | None = None) -> list[str]:
     errors: list[str] = []
     errors.extend(validate_renovate_bootstrap())
@@ -504,6 +549,7 @@ def validate(release_tag: str | None = None) -> list[str]:
     skills_config = load_json(ROOT / "skills.sh.json")
     assert isinstance(skills_config, dict)
     errors.extend(validate_skills_sh_config(skills_config))
+    errors.extend(validate_readme_skill_groups((ROOT / "README.md").read_text(encoding="utf-8"), skills_config))
 
     audit_policy = load_json(ROOT / "skills-sh-audits.json")
     assert isinstance(audit_policy, dict)

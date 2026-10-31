@@ -37,8 +37,6 @@ npx skills@latest add pdugan20/skills
 
 ### Interface Design
 
-- [`animate-watercolor`](skills/animate-watercolor/SKILL.md) — Author material-aware watercolor reveals with shared playback and quiet ambient motion. Unreleased local pilot.
-
 Explore interface directions, capture review evidence, understand existing systems, and diagnose UI behavior.
 
 - [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) — Brainstorm and compare runnable UI directions in the product before choosing one.
@@ -46,6 +44,8 @@ Explore interface directions, capture review evidence, understand existing syste
 - [`audit-design-system-health`](skills/audit-design-system-health/SKILL.md) — Audit repository-wide design drift, missing system capabilities, consolidation candidates, and enforceable rules.
 - [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) — Dissect UI recordings against a target repository before diagnosing or reconstructing behavior.
 - [`capture-feature`](skills/capture-feature/SKILL.md) — Record reproducible feature-review bundles for Slack with optional Figma publication. Unreleased pilot.
+- [`animate-watercolor`](skills/animate-watercolor/SKILL.md) — Extend an existing watercolor illustration family with matching still art, authored reveals, and quiet ambient motion. Unreleased local pilot.
+- [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) — Repair localized defects in photographic product assets while preserving approved detail, geometry, materials, typography, and alpha. Unreleased local pilot.
 
 ### Product Development
 
