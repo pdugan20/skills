@@ -14,6 +14,7 @@
     "check:skills-sh-security": "uv run --locked python scripts/check_skills_sh_security.py",
     "evals:build": "uv run --locked python scripts/build_plugin_evals.py",
     "evals:check": "uv run --locked python scripts/build_plugin_evals.py --check",
+    "evals:codex": "uv run --locked python scripts/run_codex_evals.py",
     "refresh:skills-sh": "node scripts/refresh_skills_sh.mjs",
     "test": "uv run --locked python -B -m unittest discover -s scripts -p 'test_*.py' -v",
     "test:repair": "uv run --locked python -B -m unittest discover -s skills/repair-photographic-assets/scripts -p 'test_*.py' -v",
