@@ -1,0 +1,6 @@
+interface:
+  display_name: "Animate Watercolor"
+  short_description: "Match watercolor artwork, then author reveals and motion"
+  default_prompt: "Use $animate-watercolor to inspect the accepted paintings and identify whether this task needs suitable still artwork, an authored reveal or post-paint behavior. Resolve the artwork first and preserve image-generation authorization boundaries."
+policy:
+  allow_implicit_invocation: true

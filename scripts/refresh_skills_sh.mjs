@@ -82,8 +82,11 @@ try {
   }
 
   const snapshotCheck = spawnSync(
-    "python3",
+    "uv",
     [
+      "run",
+      "--locked",
+      "python",
       "scripts/check_skills_sh.py",
       "--skills-root",
       installedDirectory,
@@ -99,8 +102,15 @@ try {
   }
 
   const pageCheck = spawnSync(
-    "python3",
-    ["scripts/check_skills_sh.py", "--page-only", "--no-refresh-guidance"],
+    "uv",
+    [
+      "run",
+      "--locked",
+      "python",
+      "scripts/check_skills_sh.py",
+      "--page-only",
+      "--no-refresh-guidance",
+    ],
     {
       cwd: process.cwd(),
       stdio: "inherit",

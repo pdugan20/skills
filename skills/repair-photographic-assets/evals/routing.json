@@ -1,0 +1,66 @@
+[
+  {
+    "query": "Fix the blurry repair around this photographic player button.",
+    "should_trigger": true
+  },
+  {
+    "query": "The patched metal no longer matches the rest of this product photo.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check why editing this label keeps changing the product geometry.",
+    "should_trigger": true
+  },
+  {
+    "query": "Remove the dark fringe from this transparent device asset without changing the body.",
+    "should_trigger": true
+  },
+  {
+    "query": "Explore three new page layouts in code.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate a brand-new landscape illustration.",
+    "should_trigger": false
+  },
+  {
+    "query": "Tune the easing on this existing CSS menu animation.",
+    "should_trigger": false
+  },
+  {
+    "query": "Correct the spelling in an HTML button.",
+    "should_trigger": false
+  },
+  {
+    "query": "The photographic raised logo panel crosses the lid seam and looks like different plastic. Diagnose the repair.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a new procedural 3D kettle from scratch.",
+    "should_trigger": false
+  },
+  {
+    "query": "Try a quick local image edit to clean just this photographed plastic rim and brand logo.",
+    "should_trigger": true
+  },
+  {
+    "query": "Replace the entire scene with a new illustration; there is no approved photograph to preserve.",
+    "should_trigger": false
+  },
+  {
+    "query": "Use the multi-model image workflow from our separate baseball character project to repair only this photographic device rim.",
+    "should_trigger": true
+  },
+  {
+    "query": "The pale photographic logo was fine in color; repair its shallow bevel without making it gray or scratchy.",
+    "should_trigger": true
+  },
+  {
+    "query": "A registered crop leaves a seam at the plastic corner. Check the feather coverage and preserve the current silhouette.",
+    "should_trigger": true
+  },
+  {
+    "query": "Change the gray color token on this HTML navigation label.",
+    "should_trigger": false
+  }
+]

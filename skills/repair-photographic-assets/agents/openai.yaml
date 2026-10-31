@@ -1,0 +1,6 @@
+interface:
+  display_name: "Repair Photographic Assets"
+  short_description: "Preserve detail when repairing photographic assets"
+  default_prompt: "Use $repair-photographic-assets to diagnose and repair this asset without degrading approved regions."
+policy:
+  allow_implicit_invocation: true

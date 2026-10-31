@@ -9,15 +9,16 @@
     "format:check": "prettier --check \"**/*.{json,yaml,yml}\"",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
     "skills:list": "DISABLE_TELEMETRY=1 npx --yes skills@1.5.21 add . --list",
-    "check:skills-sh": "python3 scripts/check_skills_sh.py && python3 scripts/check_skills_sh_security.py",
-    "check:skills-sh-security": "python3 scripts/check_skills_sh_security.py",
+    "check:skills-sh": "uv run --locked python scripts/check_skills_sh.py && uv run --locked python scripts/check_skills_sh_security.py",
+    "check:skills-sh-security": "uv run --locked python scripts/check_skills_sh_security.py",
     "refresh:skills-sh": "node scripts/refresh_skills_sh.mjs",
-    "test": "python3 -B -m unittest discover -s scripts -p 'test_*.py' -v",
+    "test": "uv run --locked python -B -m unittest discover -s scripts -p 'test_*.py' -v",
+    "test:repair": "uv run --locked python -B -m unittest discover -s skills/repair-photographic-assets/scripts -p 'test_*.py' -v",
     "test:installation": "node scripts/test_installation.mjs",
-    "validate": "python3 scripts/validate_repository.py",
+    "validate": "uv run --locked python scripts/validate_repository.py",
     "validate:claude-plugin": "claude plugin validate . --strict",
     "validate:external": "skill-validator check --strict --allow-dirs=agents,evals skills/",
-    "verify": "npm run test && npm run test:installation && npm run validate && npm run validate:claude-plugin && npm run lint:markdown && npm run format:check && npm run skills:list"
+    "verify": "npm run test && npm run test:repair && npm run test:installation && npm run validate && npm run validate:claude-plugin && npm run lint:markdown && npm run format:check && npm run skills:list"
   },
   "devDependencies": {
     "@anthropic-ai/claude-code": "2.1.282",

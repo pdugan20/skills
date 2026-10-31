@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = {
     "align-ui-to-design-system": True,
     "analyze-ui-video": True,
+    "animate-watercolor": True,
     "audit-design-system-health": True,
     "bootstrap-repository": True,
     "capture-feature": True,
@@ -21,6 +22,7 @@ EXPECTED_SKILLS = {
     "feature-spike": True,
     "generate-mintlify-reference": True,
     "integrate-app-intents": True,
+    "repair-photographic-assets": True,
     "review-deployment-constraints": True,
     "review-mintlify-docs": True,
     "run-remote-dev-server": True,

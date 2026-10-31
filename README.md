@@ -37,6 +37,8 @@ npx skills@latest add pdugan20/skills
 
 ### Interface Design
 
+- [`animate-watercolor`](skills/animate-watercolor/SKILL.md) — Author material-aware watercolor reveals with shared playback and quiet ambient motion. Unreleased local pilot.
+
 Explore interface directions, capture review evidence, understand existing systems, and diagnose UI behavior.
 
 - [`code-native-ui-ideation`](skills/code-native-ui-ideation/SKILL.md) — Brainstorm and compare runnable UI directions in the product before choosing one.
@@ -78,5 +80,7 @@ Releases version the collection as a whole. Install a release tag when reproduci
 npm ci
 npm run verify
 ```
+
+Verification also needs [uv](https://docs.astral.sh/uv/) 0.11 or later. The npm scripts run Python through `uv run --locked`, which installs the interpreter pinned in `.python-version` and the dependencies locked in `uv.lock` into `.venv` on first use, so local checks, CI and releases share one environment.
 
 See the [skill authoring standard](docs/skill-authoring.md), [skill candidate inventory](docs/skill-candidates.md), and [release guide](RELEASING.md) when maintaining the collection.

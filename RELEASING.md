@@ -30,8 +30,8 @@ installation, and live skills.sh catalog agree.
    npm run verify
    npm run validate:external
    gh skill publish --dry-run
-   python3 scripts/validate_repository.py --release-tag "v$VERSION"
-   python3 scripts/release_notes.py "$VERSION"
+   uv run --locked python scripts/validate_repository.py --release-tag "v$VERSION"
+   uv run --locked python scripts/release_notes.py "$VERSION"
    ```
 
 5. Open a pull request and merge only after the required checks pass.
