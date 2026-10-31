@@ -6,8 +6,10 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from collections.abc import Mapping
 from datetime import date
 from pathlib import Path
+from typing import TypeGuard
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = {
@@ -114,11 +116,11 @@ def frontmatter(text: str) -> str:
         raise ValueError("missing closing YAML frontmatter delimiter") from error
 
 
-def is_nonempty_string(value: object) -> bool:
+def is_nonempty_string(value: object) -> TypeGuard[str]:
     return isinstance(value, str) and bool(value.strip())
 
 
-def validate_agent_plugin_manifest(manifest: dict[str, object]) -> list[str]:
+def validate_agent_plugin_manifest(manifest: Mapping[str, object]) -> list[str]:
     """Validate the portable Agent Plugins identity and closed metadata schema."""
     errors: list[str] = []
     label = "plugin.json"
@@ -303,7 +305,7 @@ def validate_skill(skill_name: str, implicit: bool) -> list[str]:
     return errors
 
 
-def validate_codex_interface(manifest: dict[str, object]) -> list[str]:
+def validate_codex_interface(manifest: Mapping[str, object]) -> list[str]:
     """Validate Codex presentation limits that otherwise fail silently."""
     errors: list[str] = []
     interface = manifest.get("interface")
@@ -322,7 +324,7 @@ def validate_codex_interface(manifest: dict[str, object]) -> list[str]:
     return errors
 
 
-def validate_skills_sh_config(config: dict[str, object]) -> list[str]:
+def validate_skills_sh_config(config: Mapping[str, object]) -> list[str]:
     """Validate the current skills.sh repository-page configuration contract."""
     errors: list[str] = []
     if config.get("$schema") != SKILLS_SH_SCHEMA:

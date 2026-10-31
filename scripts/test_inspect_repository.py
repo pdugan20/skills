@@ -7,19 +7,19 @@ import importlib.util
 import json
 import subprocess
 import tempfile
+import types
 import unittest
 from pathlib import Path
-
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "skills" / "bootstrap-repository" / "scripts" / "inspect_repository.py"
 
 
-def load_script(test: unittest.TestCase):
+def load_script(test: unittest.TestCase) -> types.ModuleType:
     test.assertTrue(SCRIPT.is_file(), f"missing portable helper: {SCRIPT}")
     spec = importlib.util.spec_from_file_location("bootstrap_repository_inspector", SCRIPT)
-    test.assertIsNotNone(spec)
-    test.assertIsNotNone(spec.loader)
+    if spec is None or spec.loader is None:
+        test.fail(f"cannot load {SCRIPT}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -189,7 +189,7 @@ strict = true
             calls.append(command)
             endpoint = command[-1]
             if endpoint.endswith("/rulesets/7"):
-                payload = {
+                payload: object = {
                     "id": 7,
                     "name": "Protect main",
                     "target": "branch",

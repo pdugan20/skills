@@ -83,4 +83,6 @@ npm run verify
 
 Verification also needs [uv](https://docs.astral.sh/uv/) 0.11 or later. The npm scripts run Python through `uv run --locked`, which installs the interpreter pinned in `.python-version` and the dependencies locked in `uv.lock` into `.venv` on first use, so local checks, CI and releases share one environment.
 
+CI also runs `npm run validate:external`, which needs [skill-validator](https://github.com/agent-ecosystem/skill-validator) v1.8.0 on your `PATH`. Install its release binary, or run it without installing: `go run github.com/agent-ecosystem/skill-validator/cmd/skill-validator@v1.8.0 check --strict --allow-dirs=agents,evals skills/`.
+
 See the [skill authoring standard](docs/skill-authoring.md), [skill candidate inventory](docs/skill-candidates.md), and [release guide](RELEASING.md) when maintaining the collection.

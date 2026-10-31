@@ -31,6 +31,17 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Changed
 
+- Added Python lint and type checks to `npm run verify`: `ruff` across the
+  repository, strict `mypy` for repository scripts, and standard `mypy` for the
+  scripts distributed in skills. Typed the `analyze-ui-video` frame helper's
+  ffprobe result and made `scaffold-mintlify-site`'s contrast checker return
+  exactly three channels; neither changes behavior.
+
+- Moved CI and release setup into one composite action, upgraded
+  `skill-validator` to v1.8.0 installed from its checksummed release binary
+  instead of Go, and turned off the npm cache that `setup-node` had been
+  enabling automatically in tag-triggered release builds.
+
 - Replaced `requirements-test.txt` with a uv-managed Python environment
   (`pyproject.toml` and `uv.lock`). Every npm script and workflow now runs
   Python through `uv run --locked` on the pinned 3.13 interpreter, which fixes

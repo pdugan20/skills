@@ -4,19 +4,19 @@
 from __future__ import annotations
 
 import importlib.util
+import types
 import unittest
 from pathlib import Path
-
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "skills" / "analyze-ui-video" / "scripts" / "video_frames.py"
 
 
-def load_script(test: unittest.TestCase):
+def load_script(test: unittest.TestCase) -> types.ModuleType:
     test.assertTrue(SCRIPT.is_file(), f"missing portable helper: {SCRIPT}")
     spec = importlib.util.spec_from_file_location("analyze_ui_video_frames", SCRIPT)
-    test.assertIsNotNone(spec)
-    test.assertIsNotNone(spec.loader)
+    if spec is None or spec.loader is None:
+        test.fail(f"cannot load {SCRIPT}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module

@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import re
 
-
 HEX_COLOR = re.compile(r"^#?(?P<value>[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$")
 
 
@@ -17,7 +16,8 @@ def parse_color(value: str) -> tuple[int, int, int]:
     digits = match.group("value")
     if len(digits) == 3:
         digits = "".join(character * 2 for character in digits)
-    return tuple(int(digits[index : index + 2], 16) for index in (0, 2, 4))
+    red, green, blue = (int(digits[index : index + 2], 16) for index in (0, 2, 4))
+    return red, green, blue
 
 
 def relative_luminance(color: tuple[int, int, int]) -> float:

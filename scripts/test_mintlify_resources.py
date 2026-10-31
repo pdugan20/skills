@@ -10,7 +10,6 @@ import types
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SCAFFOLD = ROOT / "skills" / "scaffold-mintlify-site"
 REFERENCE = ROOT / "skills" / "generate-mintlify-reference"
@@ -51,7 +50,7 @@ class MintlifyResourceTests(unittest.TestCase):
         package = types.ModuleType("your_package")
         package.__path__ = []
         server = types.ModuleType("your_package.server")
-        server.mcp = object()
+        server.__dict__["mcp"] = object()
         previous_package = sys.modules.get("your_package")
         previous_server = sys.modules.get("your_package.server")
         sys.modules["your_package"] = package

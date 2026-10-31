@@ -1,8 +1,8 @@
 import copy
 import json
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
 
 from PIL import Image
 from repair_guard import InvalidRepair, check_composite, check_invocation, file_hash, preflight

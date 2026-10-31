@@ -10,15 +10,16 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Any
 
 import build_plugin_evals as converter
 
 
-def frontmatter(path: Path) -> dict[str, object]:
+def frontmatter(path: Path) -> dict[str, Any]:
     """Parse generated frontmatter, whose values are JSON-compatible YAML."""
     text = path.read_text(encoding="utf-8")
     block = text.split("---\n", 2)[1]
-    fields: dict[str, object] = {}
+    fields: dict[str, Any] = {}
     for line in block.splitlines():
         key, value = line.split(": ", 1)
         fields[key] = json.loads(value)

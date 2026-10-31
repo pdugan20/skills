@@ -1,0 +1,46 @@
+name: Set up repository tooling
+description: >-
+  Install the pinned Node.js, uv, locked Python environment, npm packages, and
+  external Agent Skills validator used by repository verification.
+
+inputs:
+  cache:
+    description: Restore and save npm and uv caches. Release builds pass "false".
+    required: false
+    default: "true"
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version-file: .nvmrc
+        package-manager-cache: ${{ inputs.cache }}
+
+    - name: Set up uv
+      uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      with:
+        version: "0.13.6"
+        enable-cache: ${{ inputs.cache == 'true' && 'auto' || 'false' }}
+
+    - name: Install npm and Python dependencies
+      shell: bash
+      run: |
+        npm ci
+        uv sync --locked
+
+    - name: Install skill-validator
+      shell: bash
+      env:
+        SKILL_VALIDATOR_VERSION: 1.8.0
+        SKILL_VALIDATOR_SHA256: a9b4cb3436682ff8d55dd0d164376c8479d35cb58c0adc3e93170fbde8baa04f
+      run: |
+        archive="$RUNNER_TEMP/skill-validator.tar.gz"
+        curl --fail --silent --show-error --location \
+          "https://github.com/agent-ecosystem/skill-validator/releases/download/v$SKILL_VALIDATOR_VERSION/skill-validator_${SKILL_VALIDATOR_VERSION}_linux_amd64.tar.gz" \
+          --output "$archive"
+        echo "$SKILL_VALIDATOR_SHA256  $archive" | sha256sum --check
+        mkdir -p "$RUNNER_TEMP/bin"
+        tar -xzf "$archive" -C "$RUNNER_TEMP/bin" skill-validator
+        echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"

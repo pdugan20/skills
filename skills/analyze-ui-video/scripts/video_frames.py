@@ -11,7 +11,7 @@ import subprocess
 import sys
 from fractions import Fraction
 from pathlib import Path
-
+from typing import TypedDict
 
 TILE_BACKGROUND = "0x222222"
 DEFAULT_COLUMNS = 6
@@ -28,6 +28,15 @@ def require_video_tools() -> None:
     missing = [tool for tool in ("ffmpeg", "ffprobe") if shutil.which(tool) is None]
     if missing:
         die(f"missing {', '.join(missing)}; install ffmpeg and try again")
+
+
+class SourceInfo(TypedDict):
+    width: int
+    height: int
+    duration: float
+    observed_fps: float
+    nominal_fps: float | None
+    frame_count: int | None
 
 
 def fraction_value(value: object) -> float | None:
@@ -58,7 +67,7 @@ def observed_fps(stream: dict[str, object], duration: float) -> float:
     raise ValueError("video stream does not expose a usable frame rate")
 
 
-def probe_stream(recording: Path) -> dict[str, object]:
+def probe_stream(recording: Path) -> SourceInfo:
     result = subprocess.run(
         [
             "ffprobe",
@@ -157,7 +166,7 @@ def run_probe(
     recording: Path,
     output: Path,
     start: float,
-    source: dict[str, object],
+    source: SourceInfo,
 ) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(
@@ -198,7 +207,7 @@ def run_sheet(
     fps: float,
     cols: int,
     max_width: int,
-    source: dict[str, object],
+    source: SourceInfo,
     mode: str,
 ) -> None:
     source_width = int(source["width"])
@@ -276,7 +285,7 @@ def run_sheet(
     )
 
 
-def print_source(source: dict[str, object]) -> None:
+def print_source(source: SourceInfo) -> None:
     nominal = source.get("nominal_fps")
     nominal_text = f", nominal {float(nominal):.3f}fps" if nominal is not None else ""
     print(

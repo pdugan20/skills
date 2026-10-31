@@ -7,8 +7,15 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Any
 
 import validate_repository
+
+
+def load_object(path: Path) -> dict[str, Any]:
+    value = validate_repository.load_json(path)
+    assert isinstance(value, dict)
+    return value
 
 
 class ValidateRepositoryTests(unittest.TestCase):
@@ -16,14 +23,14 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertEqual(validate_repository.validate(), [])
 
     def test_package_and_plugin_identity_is_explicit(self) -> None:
-        package = validate_repository.load_json(validate_repository.ROOT / "package.json")
-        portable = validate_repository.load_json(
+        package = load_object(validate_repository.ROOT / "package.json")
+        portable = load_object(
             validate_repository.ROOT / "plugin.json"
         )
-        claude = validate_repository.load_json(
+        claude = load_object(
             validate_repository.ROOT / ".claude-plugin" / "plugin.json"
         )
-        codex = validate_repository.load_json(
+        codex = load_object(
             validate_repository.ROOT / ".codex-plugin" / "plugin.json"
         )
 
@@ -99,12 +106,12 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertIn("plugin.json: each extension value must be an object", errors)
 
     def test_release_tag_matches_version(self) -> None:
-        package = validate_repository.load_json(validate_repository.ROOT / "package.json")
+        package = load_object(validate_repository.ROOT / "package.json")
         self.assertIsInstance(package, dict)
         self.assertEqual(validate_repository.validate(f"v{package['version']}"), [])
 
     def test_release_tag_mismatch_is_rejected(self) -> None:
-        package = validate_repository.load_json(validate_repository.ROOT / "package.json")
+        package = load_object(validate_repository.ROOT / "package.json")
         self.assertIsInstance(package, dict)
         errors = validate_repository.validate("v9.9.9")
         self.assertTrue(any(f"must equal v{package['version']}" in error for error in errors))
@@ -129,7 +136,7 @@ class ValidateRepositoryTests(unittest.TestCase):
         )
 
     def test_skills_sh_config_uses_current_schema(self) -> None:
-        config = validate_repository.load_json(validate_repository.ROOT / "skills.sh.json")
+        config = load_object(validate_repository.ROOT / "skills.sh.json")
         self.assertIsInstance(config, dict)
         self.assertEqual(validate_repository.validate_skills_sh_config(config), [])
         self.assertNotIn("groups", config)

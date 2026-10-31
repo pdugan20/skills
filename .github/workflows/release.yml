@@ -26,29 +26,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Set up Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: Set up repository tooling
+        uses: ./.github/actions/setup-repository
         with:
-          node-version-file: .nvmrc
-
-      - name: Set up uv
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
-        with:
-          version: "0.13.6"
-          # Release builds start from a clean environment.
-          enable-cache: false
-
-      - name: Set up Go
-        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
-        with:
-          go-version: "1.25.5"
-          cache: false
-
-      - name: Install dependencies
-        run: |
-          npm ci
-          uv sync --locked
-          go install github.com/agent-ecosystem/skill-validator/cmd/skill-validator@v1.5.6
+          # Release builds start from a clean environment, without npm or uv caches.
+          cache: "false"
 
       - name: Validate release and repository
         run: |
