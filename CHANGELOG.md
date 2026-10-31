@@ -37,6 +37,11 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Changed
 
+- Listed [`animate-watercolor`](skills/animate-watercolor/SKILL.md) and
+  [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) under
+  Interface Design in the README, and made repository validation keep each README
+  skill section's description, skills, and order aligned with `skills.sh.json`.
+
 - Added JSON Schemas for execution and routing evals and validate every eval
   file against them, so unknown or misspelled fields fail. Skills with a trust
   boundary must now keep an execution eval tagged `adversarial`; 13 existing
