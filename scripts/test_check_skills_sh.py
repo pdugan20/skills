@@ -8,12 +8,20 @@ import sys
 import tempfile
 import unittest
 from contextlib import redirect_stdout
+from email.message import Message
 from pathlib import Path
 from unittest.mock import Mock, patch
 from urllib.error import HTTPError
 from urllib.request import Request
 
 import check_skills_sh
+
+
+def headers(**values: str) -> Message:
+    message = Message()
+    for key, value in values.items():
+        message[key.replace("_", "-")] = value
+    return message
 
 
 def collection_html(
@@ -70,14 +78,14 @@ class CheckSkillsShTests(unittest.TestCase):
             "https://skills.sh/example",
             429,
             "Too Many Requests",
-            {"Retry-After": "0"},
+            headers(Retry_After="0"),
             None,
         )
         self.addCleanup(error.close)
 
         with (
             patch.object(check_skills_sh, "urlopen", side_effect=[error, response]) as opener,
-            patch.object(check_skills_sh.time, "sleep") as sleep,
+            patch("check_skills_sh.time.sleep") as sleep,
         ):
             body = check_skills_sh.read_request(Request("https://skills.sh/example"))
 
@@ -90,14 +98,14 @@ class CheckSkillsShTests(unittest.TestCase):
             "https://skills.sh/missing",
             404,
             "Not Found",
-            {},
+            headers(),
             None,
         )
         self.addCleanup(error.close)
 
         with (
             patch.object(check_skills_sh, "urlopen", side_effect=error) as opener,
-            patch.object(check_skills_sh.time, "sleep") as sleep,
+            patch("check_skills_sh.time.sleep") as sleep,
             self.assertRaises(HTTPError),
         ):
             check_skills_sh.read_request(Request("https://skills.sh/missing"))
@@ -110,7 +118,7 @@ class CheckSkillsShTests(unittest.TestCase):
             "https://skills.sh/example",
             429,
             "Too Many Requests",
-            {"Retry-After": "600"},
+            headers(Retry_After="600"),
             None,
         )
         self.addCleanup(error.close)
@@ -124,7 +132,7 @@ class CheckSkillsShTests(unittest.TestCase):
                 "https://skills.sh/example",
                 429,
                 "Too Many Requests",
-                {"Retry-After": "60"},
+                headers(Retry_After="60"),
                 None,
             )
             self.addCleanup(error.close)
@@ -182,7 +190,7 @@ class CheckSkillsShTests(unittest.TestCase):
                     "fetch_snapshot",
                     side_effect=lambda name: {"SKILL.md": f"# {name}\n"},
                 ),
-                patch.object(check_skills_sh.time, "sleep") as sleep,
+                patch("check_skills_sh.time.sleep") as sleep,
                 redirect_stdout(output),
             ):
                 result = check_skills_sh.main()

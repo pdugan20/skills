@@ -7,8 +7,8 @@ It never generates, composites, or replaces an image.
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from PIL import Image
 

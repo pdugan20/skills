@@ -146,7 +146,8 @@ def read_request(request: Request, retries: int = REQUEST_RETRIES) -> bytes:
     for attempt in range(retries + 1):
         try:
             with urlopen(request, timeout=20) as response:
-                return response.read()
+                body: bytes = response.read()
+                return body
         except HTTPError as error:
             if error.code not in RETRYABLE_HTTP_STATUS_CODES or attempt == retries:
                 raise

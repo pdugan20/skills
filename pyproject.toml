@@ -10,8 +10,27 @@ requires-python = ">=3.13,<3.14"
 dependencies = []
 
 [dependency-groups]
-dev = ["Pillow==12.3.0"]
+dev = ["Pillow==12.3.0", "mypy==2.4.1", "ruff==0.17.3"]
 
 [tool.uv]
 package = false
 required-version = ">=0.11"
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+extend-exclude = ["agent-skills-workspace"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.13"
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+# The Mintlify reference generators are templates that users copy into their
+# own projects, so their imports name placeholder packages.
+[[tool.mypy.overrides]]
+module = ["click", "your_package", "your_package.*"]
+ignore_missing_imports = true

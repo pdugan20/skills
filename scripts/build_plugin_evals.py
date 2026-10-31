@@ -457,8 +457,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.check:
         errors = check_loading(output, execution + routing)
         if errors:
-            for error in errors:
-                print(f"ERROR: {error}", file=sys.stderr)
+            for message in errors:
+                print(f"ERROR: {message}", file=sys.stderr)
             return 1
         print("claude plugin eval loaded every generated case without running any.")
     return 0
