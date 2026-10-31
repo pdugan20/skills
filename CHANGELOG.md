@@ -6,6 +6,19 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Added
 
+- Added `npm run evals:build`, which translates every skill's `evals.json` and
+  `routing.json` into `claude plugin eval` cases under the ignored workspace:
+  verbatim prompts with attached files recreated by a scaffold, one judge-scored
+  grader per assertion, and skill-fired checks for routing. `npm run evals:check`
+  loads the generated suite in the pinned Claude CLI without any model calls.
+  No behavioral results are recorded yet.
+
+- Added the local pilot [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) for source-preserving photographic repairs, material continuity, and source-versus-render diagnosis. Includes execution, routing, and embedded-instruction cases; behavioral evaluation remains pending.
+
+- Added the local pilot [`animate-watercolor`](skills/animate-watercolor/SKILL.md)
+  for material-aware brush reveals, transparent compositing, shared playback
+  controls and restrained ambient motion, grounded in the Ichiro/Rainier work.
+
 - Added an unreleased pilot of
   [`capture-feature`](skills/capture-feature/SKILL.md) for deterministic,
   repository-native feature recordings with Slack-ready review bundles,
@@ -18,6 +31,52 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Changed
 
+- Replaced `requirements-test.txt` with a uv-managed Python environment
+  (`pyproject.toml` and `uv.lock`). Every npm script and workflow now runs
+  Python through `uv run --locked` on the pinned 3.13 interpreter, which fixes
+  a release workflow that skipped the Pillow dependency that verification needs
+  and local runs that used whichever `python3` was on the path. Dependabot now
+  tracks the locked Python dependencies.
+
+- Updated the [skill authoring standard](docs/skill-authoring.md) tooling
+  assessment: Claude Code's generally available `claude plugin eval` is now the
+  preferred runner for Claude evidence, `agent-skills-eval` is limited to
+  comparisons with earlier pilots, and the newer `skill-validator` releases
+  are recorded for review.
+
+- Included the photographic repair guard's executable regressions in ordinary
+  repository verification and CI, with a pinned Pillow test dependency. These
+  synthetic checks do not establish image quality or runtime tool enforcement.
+
+- Recorded observed Discman repair failures in `repair-photographic-assets`: keep
+  color, contour, depth, texture and sheen separate; inspect candidate coverage
+  and both patch joins; retain provisional status after partial acceptance. Added
+  execution/routing specifications, including generated-metadata pressure.
+
+
+- Made [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md)
+  resolve the user's actual prior runner/provider workflow before tool selection
+  or new guard implementation. Added read-only PNG preflight and protected-pixel
+  checks with 14 executable regressions; runtime enforcement remains unverified.
+
+- Added a pre-generation boundary gate to
+  [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md):
+  require an inspected immutable master, explicit repair mask and registered
+  local edit target before any candidate generation. Added shortcut and
+  embedded-instruction regression specifications; active runtime enforcement
+  and improved behavioral compliance are not yet established.
+
+- Tightened [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) around whole-feature containment, baked versus runtime lighting, material matching, and pose-specific close-up review. Added execution, routing, and adversarial regression cases; behavioral evaluation remains pending.
+
+- Tightened [`animate-watercolor`](skills/animate-watercolor/SKILL.md) reference
+  matching around measured contact concurrency, connected ink travel, effective
+  brush settings, residual override precedence and separate support/LCD coverage.
+  Added audit-boundary and executable-score regression cases; these specifications
+  do not establish improved visual quality without a new observed application.
+- Updated [`animate-watercolor`](skills/animate-watercolor/SKILL.md) with an
+  artwork-first stage, credible still-review requirements, reference-led material
+  and perspective diagnostics, entrance-aware accessory crops, and regression
+  evals for procedural SVG substitution and repeated unusable art studies.
 - Recorded `run-remote-dev-server` as released after its v3.4.0 archive, downstream
   Agent Tooling pin, and canonical machine installation passed verification.
 

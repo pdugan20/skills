@@ -1,0 +1,106 @@
+[
+  {
+    "query": "Make this accepted watercolor illustration paint in on hover.",
+    "should_trigger": true
+  },
+  {
+    "query": "Match our working Ichiro brush reveal for a new watercolor subject.",
+    "should_trigger": true
+  },
+  {
+    "query": "The can lid and gold bands jump to finished detail at the end.",
+    "should_trigger": true
+  },
+  {
+    "query": "White fabric fades in globally when the watercolor plays on dark mode.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our painted glass has black matte holes; preserve its transparency.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add quiet continuous carbonation after the watercolor finishes.",
+    "should_trigger": true
+  },
+  {
+    "query": "The condensation should travel once and reset when the painting replays.",
+    "should_trigger": true
+  },
+  {
+    "query": "Consolidate these watercolor reveals into a common player and tuning rail.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make this dropdown spring animation faster.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate a watercolor portrait from this photo; no animation needed.",
+    "should_trigger": false
+  },
+  {
+    "query": "Stylize this live-action baseball video with an AI video model.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create an original generative flow-field artwork in p5.js.",
+    "should_trigger": false
+  },
+  {
+    "query": "Remove the background from this product photo only.",
+    "should_trigger": false
+  },
+  {
+    "query": "Make a CSS loading spinner for the checkout.",
+    "should_trigger": false
+  },
+  {
+    "query": "Research famous watercolor artists with image references.",
+    "should_trigger": false
+  },
+  {
+    "query": "Export this existing watercolor PNG at a smaller file size.",
+    "should_trigger": false
+  },
+  {
+    "query": "Add a watercolor iPod matched to our existing Ichiro and Rainier paintings; settle the still before animation.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our new watercolor device looks like camouflage and a glossy 3D render instead of the accepted painting family.",
+    "should_trigger": true
+  },
+  {
+    "query": "This new painting will enter from the bottom-right; match the established watercolor style and hide its cable beyond the correct edge.",
+    "should_trigger": true
+  },
+  {
+    "query": "Compare three CSS layouts for a music-player menu using our existing approved artwork.",
+    "should_trigger": false
+  },
+  {
+    "query": "Draw a simple flat SVG iPod icon for a toolbar; no watercolor system or motion.",
+    "should_trigger": false
+  },
+  {
+    "query": "This watercolor has all the named paint stages but still wipes in like a bitmap. Compare its actual brush behavior to our accepted figures.",
+    "should_trigger": true
+  },
+  {
+    "query": "Audit both accepted watercolor animations top to bottom before recommending how to fix the new one that paints with several brushes at once.",
+    "should_trigger": true
+  },
+  {
+    "query": "The live LCD on our watercolor device appears before the painted case; audit its reveal mask against the working material treatment.",
+    "should_trigger": true
+  },
+  {
+    "query": "Fix disconnected SVG subpaths in this plain toolbar icon; it has no painting reveal.",
+    "should_trigger": false
+  },
+  {
+    "query": "Correct the song menu order and scrollbar in this player; leave its accepted watercolor artwork and animation alone.",
+    "should_trigger": false
+  }
+]
