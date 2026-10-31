@@ -210,9 +210,12 @@ def judge_prompt(task: str, expected: str, assertions: list[str], response: str)
 def parse_grade(raw: str, count: int) -> Grade:
     try:
         data = json.loads(raw)
+        indexes = [int(entry["index"]) for entry in data["assertions"]]
         entries = {int(entry["index"]): entry for entry in data["assertions"]}
     except (json.JSONDecodeError, KeyError, TypeError, ValueError) as error:
         return Grade([], [], f"unreadable grade: {error}")
+    if len(indexes) != len(entries):
+        return Grade([], [], f"grade repeated an assertion index: {sorted(indexes)}")
     if sorted(entries) != list(range(1, count + 1)):
         return Grade([], [], f"grade covered assertions {sorted(entries)}, expected 1..{count}")
     ordered = [entries[index] for index in range(1, count + 1)]

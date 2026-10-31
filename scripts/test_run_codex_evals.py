@@ -70,10 +70,21 @@ class GradeTests(unittest.TestCase):
         partial = json.dumps({"assertions": [{"index": 1, "passed": True, "reason": "ok"}]})
         self.assertIsNotNone(runner.parse_grade(partial, 2).error)
         self.assertIsNotNone(runner.parse_grade("", 1).error)
-        duplicate = json.dumps(
+        gap = json.dumps(
             {"assertions": [{"index": 1, "passed": True, "reason": "a"}, {"index": 3, "passed": True, "reason": "b"}]}
         )
-        self.assertIsNotNone(runner.parse_grade(duplicate, 2).error)
+        self.assertIsNotNone(runner.parse_grade(gap, 2).error)
+        repeated = json.dumps(
+            {
+                "assertions": [
+                    {"index": 1, "passed": False, "reason": "first verdict"},
+                    {"index": 1, "passed": True, "reason": "conflicting verdict"},
+                ]
+            }
+        )
+        grade = runner.parse_grade(repeated, 1)
+        self.assertIsNotNone(grade.error)
+        self.assertEqual(grade.passed, [])
 
 
 class WorkspaceTests(unittest.TestCase):
