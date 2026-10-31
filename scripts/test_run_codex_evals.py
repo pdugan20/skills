@@ -44,6 +44,13 @@ class TraceTests(unittest.TestCase):
         self.assertFalse(trace.skill_fired)
         self.assertEqual(runner.fatal(trace), "model_not_found")
 
+    def test_judge_errors_also_stop_the_batch(self) -> None:
+        agent = runner.Trace()
+        judge = runner.parse_trace([event(type="error", message="You've hit your usage limit")], "demo")
+        self.assertIsNone(runner.fatal(agent))
+        self.assertEqual(runner.fatal(agent, judge), "You've hit your usage limit")
+        self.assertIsNone(runner.fatal(agent, None))
+
 
 class GradeTests(unittest.TestCase):
     def test_accepts_complete_grade_in_assertion_order(self) -> None:

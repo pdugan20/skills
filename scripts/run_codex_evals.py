@@ -233,10 +233,14 @@ def run_codex(command: list[str], events_path: Path, timeout: int) -> tuple[int,
     return result.returncode, result.stdout.splitlines()
 
 
-def fatal(trace: Trace) -> str | None:
-    for message in trace.errors:
-        if any(marker in message for marker in FATAL_ERROR_MARKERS):
-            return message
+def fatal(*traces: Trace | None) -> str | None:
+    """Return the first account or model error from the agent or judge, which stops the batch."""
+    for trace in traces:
+        if trace is None:
+            continue
+        for message in trace.errors:
+            if any(marker in message for marker in FATAL_ERROR_MARKERS):
+                return message
     return None
 
 
@@ -343,6 +347,7 @@ def execute(
     if run.should_trigger is not None:
         result["should_trigger"] = run.should_trigger
         result["routing_pass"] = trace.skill_fired == run.should_trigger and exit_code == 0
+    judge_trace: Trace | None = None
     if run.assertions:
         if exit_code != 0 or not trace.final_message:
             grade = Grade([], [], f"agent run failed with exit {exit_code}")
@@ -378,7 +383,7 @@ def execute(
             for index, text in enumerate(run.assertions)
         ]
         result["grade_error"] = grade.error
-    result["fatal"] = fatal(trace)
+    result["fatal"] = fatal(trace, judge_trace)
     return result
 
 
@@ -419,7 +424,11 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0] if __doc__ else None)
+    parser = argparse.ArgumentParser(
+        description=__doc__.splitlines()[0] if __doc__ else None,
+        epilog="Exit codes: 0 when every planned run completed (scores are in results.json), "
+        "1 when the plan was refused before any model call, 2 when a run stopped the batch.",
+    )
     parser.add_argument("--skill", required=True, help="skill directory name under skills/")
     parser.add_argument("--kind", choices=("all", "execution", "routing"), default="all")
     parser.add_argument("--runs", type=int, default=1, help="runs per case and arm (default 1)")
