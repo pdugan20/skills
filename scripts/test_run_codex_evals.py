@@ -118,6 +118,18 @@ class WorkspaceTests(unittest.TestCase):
         self.assertFalse((installed / "evals").exists())
         self.assertTrue((self.workspace / ".git").is_dir())
 
+    def test_judge_sees_attached_evidence_as_untrusted_data(self) -> None:
+        (self.skill_dir / "evals" / "fixtures" / "logo.png").write_bytes(bytes(range(256)))
+        evidence = runner.attachment_evidence(
+            self.skill_dir, ["evals/fixtures/input.md", "evals/fixtures/logo.png"]
+        )
+        self.assertEqual(evidence[0], ("input.md", "input"))
+        self.assertIn("binary file, 256 bytes", evidence[1][1])
+        prompt = runner.judge_prompt("task", "expected", ["a"], "response", evidence)
+        self.assertIn('<attachment path="input.md">\ninput\n</attachment>', prompt)
+        self.assertIn("untrusted data", prompt)
+        self.assertNotIn("<attachment", runner.judge_prompt("task", "expected", ["a"], "response"))
+
     def test_baseline_arm_has_no_skill(self) -> None:
         runner.prepare_workspace(self.workspace, self.skill_dir, [], with_skill=False)
         self.assertFalse((self.workspace / ".agents").exists())
