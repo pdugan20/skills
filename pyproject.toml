@@ -1,0 +1,17 @@
+# Development environment for repository verification and skill script tests.
+# This project is never built or published (`package = false`). The collection
+# version lives in package.json and the plugin manifests; 0.0.0 is a placeholder
+# that release bumps should not touch.
+
+[project]
+name = "patrick-skills-tooling"
+version = "0.0.0"
+requires-python = ">=3.13,<3.14"
+dependencies = []
+
+[dependency-groups]
+dev = ["Pillow==12.3.0"]
+
+[tool.uv]
+package = false
+required-version = ">=0.11"

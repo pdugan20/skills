@@ -27,17 +27,19 @@ jobs:
           persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v6.1.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
 
-      - name: Set up Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v6.1.0
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
-          python-version-file: .python-version
+          version: "0.13.6"
+          # Release builds start from a clean environment.
+          enable-cache: false
 
       - name: Set up Go
-        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
         with:
           go-version: "1.25.5"
           cache: false
@@ -45,11 +47,12 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci
+          uv sync --locked
           go install github.com/agent-ecosystem/skill-validator/cmd/skill-validator@v1.5.6
 
       - name: Validate release and repository
         run: |
-          python3 scripts/validate_repository.py --release-tag "$GITHUB_REF_NAME"
+          uv run --locked python scripts/validate_repository.py --release-tag "$GITHUB_REF_NAME"
           npm run verify
           npm run validate:external
 
@@ -61,7 +64,7 @@ jobs:
       - name: Extract curated release notes
         run: |
           version="${GITHUB_REF_NAME#v}"
-          python3 scripts/release_notes.py "$version" --output "$RUNNER_TEMP/release-notes.md"
+          uv run --locked python scripts/release_notes.py "$version" --output "$RUNNER_TEMP/release-notes.md"
 
       - name: Create GitHub release
         env:

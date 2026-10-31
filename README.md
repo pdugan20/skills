@@ -78,10 +78,9 @@ Releases version the collection as a whole. Install a release tag when reproduci
 
 ```bash
 npm ci
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements-test.txt
 npm run verify
 ```
+
+Verification also needs [uv](https://docs.astral.sh/uv/) 0.11 or later. The npm scripts run Python through `uv run --locked`, which installs the interpreter pinned in `.python-version` and the dependencies locked in `uv.lock` into `.venv` on first use, so local checks, CI and releases share one environment.
 
 See the [skill authoring standard](docs/skill-authoring.md), [skill candidate inventory](docs/skill-candidates.md), and [release guide](RELEASING.md) when maintaining the collection.

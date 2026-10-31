@@ -24,6 +24,19 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Changed
 
+- Replaced `requirements-test.txt` with a uv-managed Python environment
+  (`pyproject.toml` and `uv.lock`). Every npm script and workflow now runs
+  Python through `uv run --locked` on the pinned 3.13 interpreter, which fixes
+  a release workflow that skipped the Pillow dependency that verification needs
+  and local runs that used whichever `python3` was on the path. Dependabot now
+  tracks the locked Python dependencies.
+
+- Updated the [skill authoring standard](docs/skill-authoring.md) tooling
+  assessment: Claude Code's generally available `claude plugin eval` is now the
+  preferred runner for Claude evidence, `agent-skills-eval` is limited to
+  comparisons with earlier pilots, and the newer `skill-validator` releases
+  are recorded for review.
+
 - Included the photographic repair guard's executable regressions in ordinary
   repository verification and CI, with a pinned Pillow test dependency. These
   synthetic checks do not establish image quality or runtime tool enforcement.
