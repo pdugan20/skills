@@ -11,6 +11,8 @@
     "skills:list": "DISABLE_TELEMETRY=1 npx --yes skills@1.5.21 add . --list",
     "check:skills-sh": "uv run --locked python scripts/check_skills_sh.py && uv run --locked python scripts/check_skills_sh_security.py",
     "check:skills-sh-security": "uv run --locked python scripts/check_skills_sh_security.py",
+    "evals:build": "uv run --locked python scripts/build_plugin_evals.py",
+    "evals:check": "uv run --locked python scripts/build_plugin_evals.py --check",
     "refresh:skills-sh": "node scripts/refresh_skills_sh.mjs",
     "test": "uv run --locked python -B -m unittest discover -s scripts -p 'test_*.py' -v",
     "test:repair": "uv run --locked python -B -m unittest discover -s skills/repair-photographic-assets/scripts -p 'test_*.py' -v",

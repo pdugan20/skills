@@ -211,17 +211,44 @@ Routing and execution are separate claims. A skill can perform well after explic
 
 Run provider-backed behavioral benchmarks intentionally, never as an unreviewed CI side effect. Every run and every judge call is billable model usage, and results vary between runs.
 
-For Claude evidence, use Claude Code's first-party `claude plugin eval` runner from the pinned CLI. It runs each case several times with the plugin and again without it, reports the difference, and its `tool_used: Skill` grader shows whether a skill actually fired, so it can measure routing as well as execution. It reads its own layout of one directory per case with `prompt.md` or `case.yaml` and a `graders/` directory. It does not read `evals/evals.json` or `evals/routing.json`, so those files remain the reviewed source of truth and any runner layout generated from them belongs in the ignored `agent-skills-workspace/` directory. Keep reports local and pin both models so scores stay comparable:
+For Claude evidence, use Claude Code's first-party `claude plugin eval` runner from the pinned CLI. It runs each case several times with the plugin and again without it, reports the difference, and its `tool_used: Skill` grader shows whether a skill actually fired, so it can measure routing as well as execution. It reads its own layout of one directory per case and does not read `evals/evals.json` or `evals/routing.json`. Those files remain the reviewed source of truth; `scripts/build_plugin_evals.py` translates them into the runner's layout under the ignored `agent-skills-workspace/plugin-evals/` directory:
 
 ```bash
-npx claude plugin eval <plugin-dir> \
-  --eval-dir <generated-case-dir> \
+npm run evals:build   # regenerate every case from the versioned eval files
+npm run evals:check   # load every case in the pinned CLI with a $0 ceiling; no model calls
+```
+
+The translation keeps each reviewed claim intact:
+
+- An execution eval becomes `<skill>-execution-<id>`. The prompt is sent verbatim. Its `files` are recreated in the run workspace by a generated `scaffold.sh`, which drops the `evals/fixtures/` prefix, and are listed after the prompt as attached files. Each assertion becomes its own judge-scored grader, and a `tool_used: Skill` indicator records whether the skill fired.
+- A routing eval becomes `<skill>-routing-<nn>`, graded only on whether the skill fired. A negative case requires zero invocations in both arms.
+- Cases are tagged with the skill, `execution` or `routing`, `positive` or `negative`, and `needs-scaffold` when they carry attached files. `manifest.json` records the checksums of each `SKILL.md` and eval file that produced the suite.
+- Runs get only `Read`, `Glob`, `Grep`, and `Skill`, so execution cases grade the response and plan rather than file edits.
+
+Select cases with `--case` globs; repeated `--tag` flags match any tag, not all of them. Keep reports local, pin both models so scores stay comparable, and set a ceiling. A whole two-arm suite at the default three runs is about 2,700 agent runs plus three judge calls per assertion grader per run, so scope runs to the skills under review:
+
+```bash
+# Routing for one skill: one arm, because the baseline cannot invoke the skill.
+npx claude plugin eval . \
+  --eval-dir agent-skills-workspace/plugin-evals \
+  --case '<skill>-routing-*' \
+  --ablation none \
   --model <target-model> \
-  --judge-model <judge-model> \
-  --ablation with-without \
   --max-cost-usd <ceiling> \
   --no-publish \
-  --json agent-skills-workspace/<run>/result.json
+  --json agent-skills-workspace/<run>/routing.json
+
+# Execution with the no-plugin baseline. --scaffold runs only the generated
+# scripts that write each case's attached files.
+npx claude plugin eval . \
+  --eval-dir agent-skills-workspace/plugin-evals \
+  --case '<skill>-execution-*' \
+  --scaffold \
+  --model <target-model> \
+  --judge-model <judge-model> \
+  --max-cost-usd <ceiling> \
+  --no-publish \
+  --json agent-skills-workspace/<run>/execution.json
 ```
 
 Use a judge at least as capable as the target. The deployment-constraints pilot showed a small judge passing transcripts that contained an invented source identifier and an unchosen design reported as observed, so read the transcripts as well as the score before accepting a favorable result.
@@ -253,6 +280,7 @@ Configure the provider and credentials in the environment without committing the
 | Markdown, formatting, spelling, action syntax, and workflow security | Existing repository tooling | Automatic |
 | Live skills.sh audit verdicts across Agent Trust Hub, Socket, and Snyk | `scripts/check_skills_sh_security.py` plus `skills-sh-audits.json` | Daily; pass by default, with exact owned exceptions that expire |
 | Trigger precision, near-miss behavior, and observable skill outcomes | Versioned routing and execution evals | Evidence-based review |
+| Translation of those evals into `claude plugin eval` cases | `scripts/build_plugin_evals.py` and its tests in `npm run verify`; `npm run evals:check` loads the generated suite in the pinned CLI | Translation automatic; load check on demand, because Anthropic can disable the command server-side |
 | Taste, proportionality, novelty, overlap, and whether the process should become a skill | Author review using this rubric | Human judgment |
 
 Do not turn subjective heuristics into brittle regex gates. Automated checks should reject objective defects and require evidence for semantic claims, not claim to understand design quality.
@@ -333,6 +361,6 @@ Before merging a skill change:
 - Run `gh skill publish --dry-run` when the installed GitHub CLI exposes the
   preview command; resolve skill warnings and report repository-settings
   recommendations separately.
-- For material behavior changes, run representative with-skill and baseline cases and review the outputs.
+- For material behavior changes, run representative with-skill and baseline cases and review the outputs. For Claude, regenerate the cases with `npm run evals:build` and run the affected skill's execution and routing cases with `claude plugin eval`.
 - Test the intended Claude, Codex, or Cursor integrations before release when their behavior is part of the claim.
 - Update the changelog and version according to user-visible impact.
