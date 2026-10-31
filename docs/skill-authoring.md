@@ -209,7 +209,24 @@ The merge gate requires at least four positive and four negative cases. Negative
 
 Routing and execution are separate claims. A skill can perform well after explicit invocation while routing poorly, or trigger correctly while adding no value.
 
-Run provider-backed behavioral benchmarks intentionally, never as an unreviewed CI side effect:
+Run provider-backed behavioral benchmarks intentionally, never as an unreviewed CI side effect. Every run and every judge call is billable model usage, and results vary between runs.
+
+For Claude evidence, use Claude Code's first-party `claude plugin eval` runner from the pinned CLI. It runs each case several times with the plugin and again without it, reports the difference, and its `tool_used: Skill` grader shows whether a skill actually fired, so it can measure routing as well as execution. It reads its own layout of one directory per case with `prompt.md` or `case.yaml` and a `graders/` directory. It does not read `evals/evals.json` or `evals/routing.json`, so those files remain the reviewed source of truth and any runner layout generated from them belongs in the ignored `agent-skills-workspace/` directory. Keep reports local and pin both models so scores stay comparable:
+
+```bash
+npx claude plugin eval <plugin-dir> \
+  --eval-dir <generated-case-dir> \
+  --model <target-model> \
+  --judge-model <judge-model> \
+  --ablation with-without \
+  --max-cost-usd <ceiling> \
+  --no-publish \
+  --json agent-skills-workspace/<run>/result.json
+```
+
+Use a judge at least as capable as the target. The deployment-constraints pilot showed a small judge passing transcripts that contained an invented source identifier and an unchosen design reported as observed, so read the transcripts as well as the score before accepting a favorable result.
+
+For OpenAI-compatible providers, the earlier portable runner remains available for comparison with prior pilots:
 
 ```bash
 npx --yes agent-skills-eval@0.1.1 ./skills \
@@ -220,7 +237,7 @@ npx --yes agent-skills-eval@0.1.1 ./skills \
   --report
 ```
 
-Configure the provider and API-key environment variable without committing credentials. Benchmark artifacts go under the ignored `agent-skills-workspace/` directory. Keep useful conclusions in the skill, evals, or changelog rather than committing bulky model transcripts by default.
+Configure the provider and credentials in the environment without committing them. Benchmark artifacts go under the ignored `agent-skills-workspace/` directory. Keep useful conclusions, including models, the `SKILL.md` checksum, scores and cost, in the skill's candidate brief, evals, or changelog rather than committing bulky model transcripts by default.
 
 ## Enforcement model
 
@@ -230,6 +247,7 @@ Configure the provider and API-key environment variable without committing crede
 | Agent Plugins manifest identity, schema target, metadata shape, and version synchronization | `scripts/validate_repository.py` | Automatic |
 | Claude plugin manifest and component schema | Official `claude plugin validate --strict` from the exactly pinned Claude Code CLI | Automatic |
 | Secrets and executable script security | GitHub secret scanning and push protection, plus language-appropriate script tests and linters | Secret protection is enabled; documentation-skill scripts have focused tests and ShellCheck coverage where available |
+| Python interpreter and script test dependencies | `pyproject.toml`, `uv.lock`, and `.python-version`, run through `uv run --locked` locally, in CI, and in the release workflow | Automatic; a stale lock fails verification |
 | Package versions, inventory, runtime policy, Skills CLI grouping, and eval coverage | `scripts/validate_repository.py` | Automatic |
 | Claude Code, Codex, and Cursor installation layout and packaged resources | Isolated Skills CLI copy installation with source-tree comparison | Automatic |
 | Markdown, formatting, spelling, action syntax, and workflow security | Existing repository tooling | Automatic |
@@ -241,7 +259,7 @@ Do not turn subjective heuristics into brittle regex gates. Automated checks sho
 
 ## External tooling decision
 
-This assessment was last reviewed on 2026-08-06.
+This assessment was last reviewed on 2026-10-31.
 
 - [Agent Plugins 1.0.0](https://agent-plugins.org/specification) is the portable
   package baseline. The root `plugin.json` supplies shared identity, `skills/`
@@ -251,10 +269,11 @@ This assessment was last reviewed on 2026-08-06.
 - The official [`skills-ref`](https://github.com/agentskills/agentskills/tree/main/skills-ref) implementation validates the core schema, but its maintainers explicitly label it demonstration-only and unsuitable for production use.
 - [Anthropic skill-creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator) automates baseline comparison, qualitative review, benchmarking, and trigger optimization.
 - [OpenAI skill-creator](https://github.com/openai/skills/tree/main/skills/.system/skill-creator) supplies initialization and basic validation, but its `quick_validate.py` checks only frontmatter and naming.
-- [skill-validator](https://github.com/agent-ecosystem/skill-validator) is the selected third-party structural and content gate. Version `v1.5.6` is pinned because this is supply-chain executable code.
+- [skill-validator](https://github.com/agent-ecosystem/skill-validator) is the selected third-party structural and content gate. Version `v1.5.6` is pinned because this is supply-chain executable code. Releases through `v1.8.0` (2026-10-18) are available; review their new checks against this collection before moving the pin.
 - [claude-code-lint](https://github.com/pdugan20/claudelint) version `0.7.0` is not an authoritative portable-skill gate. The scope audit below found duplicate, ineffective, and non-portable checks, so this collection now uses the pinned official Claude validator instead. `claudelint` can continue evolving as a separate product without defining this repository's acceptance criteria.
-- Claude Code `2.1.220` exposes a first-party `claude plugin eval` runner with no-plugin ablation, cost ceilings, thresholds, and HTML or JSON reports. Its command currently reports that the feature is early access, and the public plugin reference does not yet document it. Reassess it when the feature is documented and stable; do not make an early-access runner a required gate.
-- [agent-skills-eval](https://github.com/darkrishabh/agent-skills-eval) version `0.1.1` can run the adopted `assertions` format against OpenAI-compatible providers with with-skill/baseline comparison. Use it for opt-in benchmarks, not as a required CI gate, because model runs are nondeterministic, credentialed, and billable and the project is still young.
+- Claude Code's [`claude plugin eval`](https://code.claude.com/docs/en/plugin-evals) is generally available from v2.1.269, and the pinned `2.1.282` CLI includes it. It supports skills-directory plugins, no-plugin ablation, repeated runs, LLM and `tool_used` graders, cost ceilings, thresholds, and versioned JSON results. It is the preferred runner for Claude-specific evidence. Keep it out of required pull-request checks because runs are billable, nondeterministic, and need credentials; run it on demand with pinned models, a cost ceiling, and `--no-publish`, since signed-in subscription accounts otherwise publish the report to claude.ai. Anthropic can disable the command server-side, so no release process may depend on it being available.
+- [agent-skills-eval](https://github.com/darkrishabh/agent-skills-eval) version `0.1.1` can run the adopted `assertions` format against OpenAI-compatible providers with with-skill/baseline comparison. It has published no release since May 2026 and no GitHub releases, and the deployment-constraints pilot needed a workaround because it omitted attachments from the baseline arm. Keep it only for non-Claude comparisons with earlier pilots; do not build new tooling on it.
+- [uv](https://docs.astral.sh/uv/) manages the repository's Python interpreter and script test dependencies. `pyproject.toml` declares a never-built tooling project, `uv.lock` pins its dependencies, and every npm script and workflow runs Python through `uv run --locked`, so local checks, CI, and releases use the same environment.
 - [Skills CLI](https://github.com/vercel-labs/skills) validates discovery and distribution. It does not judge authoring quality.
 - [Snyk Agent Scan](https://github.com/snyk/agent-scan) supplies one of the
   skills.sh security opinions. Its `W011` finding represents exposure to content
@@ -275,7 +294,7 @@ This assessment was last reviewed on 2026-08-06.
   than a pinned CI authority. Keep the existing release workflow because it
   publishes curated changelog sections instead of auto-generated notes.
 
-The repository therefore extends its own tooling only for collection-specific policy and eval coverage. Reimplementing the external validator's structural checks would add maintenance without improving portability. A custom model runner is not justified; use Anthropic skill-creator for guided iteration or the portable runner for repeatable provider-backed benchmarks, and prefer Claude's first-party runner for Claude-specific evidence once it leaves early access.
+The repository therefore extends its own tooling only for collection-specific policy and eval coverage. Reimplementing the external validator's structural checks would add maintenance without improving portability. A custom model runner is not justified; use Anthropic skill-creator for guided iteration inside a conversation, Claude's first-party runner for repeatable Claude evidence, and the portable runner only for comparisons that need an OpenAI-compatible provider. Converting the versioned eval files into a runner's case layout is format translation, not a model runner, and may live in this repository.
 
 ### `claude-code-lint` scope audit
 
