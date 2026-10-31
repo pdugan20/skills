@@ -88,7 +88,7 @@ illustrations after the shared studio consolidation at `c4fce77`.
 
 | Check | Evidence and finding |
 | --- | --- |
-| Accepted source and geometry | Source watercolor PNGs and painting engine unchanged. Ichiro canonical score modules moved with only import/format changes; prior accepted settings remain 1.8s / white follows brush and Rainier 2.4s / connected surfaces / 8vw, 4svh, 107%. |
+| Accepted source and geometry | Source watercolor PNG files and painting engine unchanged. Ichiro canonical score modules moved with only import/format changes; prior accepted settings remain 1.8s / white follows brush and Rainier 2.4s / connected surfaces / 8vw, 4svh, 107%. |
 | Actual reveal technique | Authored ink paths, sequential pigment contacts and local source glazes remain. The shared engine still includes regional residual interpolation; it is not a recording of real brushwork, nor is every pixel individually authored. |
 | White and transparent materials | Ichiro's local cloth arrival remains distinct from its broader interior guard. Rainier's connected support applies to can/lid/napkin, not all clear glass. Saved light/dark frames show the accepted final compositing. |
 | Visible gesture budget | Rainier's important initial foam and foot passes remain 2.4 score-seconds, approximately 241ms inside the 2.4s hover mapping. The shared clock preserves bloom lead separately. |
