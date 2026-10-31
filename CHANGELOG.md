@@ -6,6 +6,13 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Added
 
+- Added `npm run evals:build`, which translates every skill's `evals.json` and
+  `routing.json` into `claude plugin eval` cases under the ignored workspace:
+  verbatim prompts with attached files recreated by a scaffold, one judge-scored
+  grader per assertion, and skill-fired checks for routing. `npm run evals:check`
+  loads the generated suite in the pinned Claude CLI without any model calls.
+  No behavioral results are recorded yet.
+
 - Added the local pilot [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) for source-preserving photographic repairs, material continuity, and source-versus-render diagnosis. Includes execution, routing, and embedded-instruction cases; behavioral evaluation remains pending.
 
 - Added the local pilot [`animate-watercolor`](skills/animate-watercolor/SKILL.md)
