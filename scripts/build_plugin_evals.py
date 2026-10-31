@@ -174,6 +174,10 @@ def generate_execution_cases(
         name = f"{skill}-execution-{case_id:02d}"
         files = [fixture_path(skill_dir, item) for item in case.get("files", [])]
         tags = [skill, "execution"]
+        extra_tags = case.get("tags", [])
+        if not isinstance(extra_tags, list) or not all(isinstance(tag, str) for tag in extra_tags):
+            raise ConversionError(f"{skill}: execution eval {case_id} tags must be strings")
+        tags.extend(tag for tag in extra_tags if tag not in tags)
         body = prompt
         if files:
             tags.append("needs-scaffold")
@@ -248,7 +252,7 @@ def generate_routing_cases(
         fields: dict[str, FieldValue] = {
             "name": f"{skill}-routing-{index:02d}",
             "description": f"Routing eval: {skill} {expectation} trigger.",
-            "tags": [skill, "routing", polarity],
+            "tags": [skill, "routing", polarity, *(["held-out"] if case.get("held_out") is True else [])],
             "plugins": plugin_reference(case_dir, plugin_root),
             "allowed_tools": READ_ONLY_TOOLS,
             **ROUTING_LIMITS,

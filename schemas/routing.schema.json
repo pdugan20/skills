@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdugan20/skills/blob/main/schemas/routing.schema.json",
+  "title": "Skill routing evals",
+  "description": "skills/<skill>/evals/routing.json: realistic requests and whether this skill should trigger.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["query", "should_trigger"],
+    "additionalProperties": false,
+    "properties": {
+      "query": {
+        "type": "string",
+        "pattern": "\\S"
+      },
+      "should_trigger": {
+        "type": "boolean"
+      },
+      "held_out": {
+        "description": "Keep this case out of description optimization so it can measure generalization.",
+        "type": "boolean"
+      }
+    }
+  }
+}

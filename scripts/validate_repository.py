@@ -4,12 +4,15 @@
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import re
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from datetime import date
 from pathlib import Path
 from typing import TypeGuard
+
+from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = {
@@ -60,6 +63,9 @@ SHARED_PLUGIN_METADATA_FIELDS = (
 )
 MIN_EXECUTION_EVALS = 3
 MIN_ROUTING_EVALS_PER_CLASS = 4
+SCHEMA_DIR = ROOT / "schemas"
+ADVERSARIAL_TAG = "adversarial"
+TRUST_BOUNDARY_HEADING = "\n## Trust boundary\n"
 SKILLS_SH_SCHEMA = "https://skills.sh/schemas/skills.sh.schema.json"
 RENOVATE_SCHEMA = "https://docs.renovatebot.com/renovate-schema.json"
 RENOVATE_FIELDS = {"$schema", "enabled", "enabledManagers"}
@@ -172,104 +178,111 @@ def validate_agent_plugin_manifest(manifest: Mapping[str, object]) -> list[str]:
     return errors
 
 
-def validate_evals(skill_name: str, skill_dir: Path) -> list[str]:
-    """Validate Agent Skills behavioral and routing evals."""
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
+@functools.cache
+def eval_schema_validator(schema_name: str) -> Draft202012Validator:
+    schema = load_json(SCHEMA_DIR / schema_name)
+    assert isinstance(schema, dict)
+    Draft202012Validator.check_schema(schema)
+    return Draft202012Validator(schema)
+
+
+def load_eval_document(path: Path, schema_name: str, kind: str, errors: list[str]) -> object | None:
+    """Load one eval file, returning it only when it satisfies its JSON Schema."""
+    label = display_path(path)
+    if not path.is_file():
+        errors.append(f"{label}: missing {kind}")
+        return None
+    try:
+        document = load_json(path)
+    except (json.JSONDecodeError, OSError) as error:
+        errors.append(f"{label}: invalid JSON ({error})")
+        return None
+    violations = sorted(eval_schema_validator(schema_name).iter_errors(document), key=lambda error: error.json_path)
+    if violations:
+        errors.extend(f"{label}: {violation.json_path}: {violation.message}" for violation in violations)
+        return None
+    return document
+
+
+def validate_evals(skill_name: str, skill_dir: Path, *, requires_adversarial: bool = False) -> list[str]:
+    """Validate a skill's execution and routing evals against their schemas and coverage rules."""
     errors: list[str] = []
     evals_path = skill_dir / "evals" / "evals.json"
     routing_path = skill_dir / "evals" / "routing.json"
 
-    if not evals_path.is_file():
-        errors.append(f"{evals_path.relative_to(ROOT)}: missing execution evals")
-    else:
-        try:
-            manifest = load_json(evals_path)
-        except (json.JSONDecodeError, OSError) as error:
-            errors.append(f"{evals_path.relative_to(ROOT)}: invalid JSON ({error})")
-        else:
-            if not isinstance(manifest, dict):
-                errors.append(f"{evals_path.relative_to(ROOT)}: root must be an object")
-                manifest = {}
-            if manifest.get("skill_name") != skill_name:
-                errors.append(f"{evals_path.relative_to(ROOT)}: skill_name must match its directory")
-            cases = manifest.get("evals")
-            if not isinstance(cases, list):
-                errors.append(f"{evals_path.relative_to(ROOT)}: evals must be an array")
-            else:
-                if len(cases) < MIN_EXECUTION_EVALS:
-                    errors.append(
-                        f"{evals_path.relative_to(ROOT)}: requires at least "
-                        f"{MIN_EXECUTION_EVALS} execution evals"
-                    )
-                seen_ids: set[int] = set()
-                for index, case in enumerate(cases):
-                    label = f"{evals_path.relative_to(ROOT)}: evals[{index}]"
-                    if not isinstance(case, dict):
-                        errors.append(f"{label} must be an object")
-                        continue
-                    case_id = case.get("id")
-                    if not isinstance(case_id, int) or isinstance(case_id, bool):
-                        errors.append(f"{label}.id must be an integer")
-                    elif case_id in seen_ids:
-                        errors.append(f"{label}.id must be unique")
-                    else:
-                        seen_ids.add(case_id)
-                    for field in ("prompt", "expected_output"):
-                        if not is_nonempty_string(case.get(field)):
-                            errors.append(f"{label}.{field} must be a non-empty string")
-                    assertions = case.get("assertions")
-                    if not isinstance(assertions, list) or not assertions:
-                        errors.append(f"{label}.assertions must be a non-empty array")
-                    elif any(not is_nonempty_string(item) for item in assertions):
-                        errors.append(f"{label}.assertions must contain only non-empty strings")
-                    files = case.get("files", [])
-                    if not isinstance(files, list) or any(not is_nonempty_string(item) for item in files):
-                        errors.append(f"{label}.files must contain only non-empty strings")
-                    elif isinstance(files, list):
-                        for item in files:
-                            file_path = Path(item)
-                            if file_path.is_absolute() or ".." in file_path.parts:
-                                errors.append(f"{label}.files contains an unsafe path: {item}")
-                            elif not (skill_dir / file_path).is_file():
-                                errors.append(f"{label}.files references a missing file: {item}")
+    manifest = load_eval_document(evals_path, "evals.schema.json", "execution evals", errors)
+    if isinstance(manifest, dict):
+        label = display_path(evals_path)
+        if manifest["skill_name"] != skill_name:
+            errors.append(f"{label}: skill_name must match its directory")
+        cases = manifest["evals"]
+        if len(cases) < MIN_EXECUTION_EVALS:
+            errors.append(f"{label}: requires at least {MIN_EXECUTION_EVALS} execution evals")
+        if requires_adversarial and not any(ADVERSARIAL_TAG in case.get("tags", []) for case in cases):
+            errors.append(
+                f"{label}: a skill with a Trust boundary section needs at least one execution eval "
+                f'tagged "{ADVERSARIAL_TAG}"'
+            )
+        seen_ids: set[int] = set()
+        for index, case in enumerate(cases):
+            case_label = f"{label}: evals[{index}]"
+            if case["id"] in seen_ids:
+                errors.append(f"{case_label}.id must be unique")
+            seen_ids.add(case["id"])
+            for item in case.get("files", []):
+                file_path = Path(item)
+                if file_path.is_absolute() or ".." in file_path.parts:
+                    errors.append(f"{case_label}.files contains an unsafe path: {item}")
+                elif not (skill_dir / file_path).is_file():
+                    errors.append(f"{case_label}.files references a missing file: {item}")
 
-    if not routing_path.is_file():
-        errors.append(f"{routing_path.relative_to(ROOT)}: missing routing evals")
-    else:
-        try:
-            routing = load_json(routing_path)
-        except (json.JSONDecodeError, OSError) as error:
-            errors.append(f"{routing_path.relative_to(ROOT)}: invalid JSON ({error})")
-        else:
-            if not isinstance(routing, list):
-                errors.append(f"{routing_path.relative_to(ROOT)}: root must be an array")
-            else:
-                counts = {True: 0, False: 0}
-                seen_queries: set[str] = set()
-                for index, case in enumerate(routing):
-                    label = f"{routing_path.relative_to(ROOT)}: [{index}]"
-                    if not isinstance(case, dict):
-                        errors.append(f"{label} must be an object")
-                        continue
-                    query = case.get("query")
-                    should_trigger = case.get("should_trigger")
-                    if not is_nonempty_string(query):
-                        errors.append(f"{label}.query must be a non-empty string")
-                    elif query in seen_queries:
-                        errors.append(f"{label}.query must be unique")
-                    else:
-                        seen_queries.add(query)
-                    if not isinstance(should_trigger, bool):
-                        errors.append(f"{label}.should_trigger must be a boolean")
-                    else:
-                        counts[should_trigger] += 1
-                for should_trigger, name in ((True, "positive"), (False, "negative")):
-                    if counts[should_trigger] < MIN_ROUTING_EVALS_PER_CLASS:
-                        errors.append(
-                            f"{routing_path.relative_to(ROOT)}: requires at least "
-                            f"{MIN_ROUTING_EVALS_PER_CLASS} {name} routing evals"
-                        )
+    routing = load_eval_document(routing_path, "routing.schema.json", "routing evals", errors)
+    if isinstance(routing, list):
+        label = display_path(routing_path)
+        counts = {True: 0, False: 0}
+        seen_queries: set[str] = set()
+        for index, case in enumerate(routing):
+            if case["query"] in seen_queries:
+                errors.append(f"{label}: [{index}].query must be unique")
+            seen_queries.add(case["query"])
+            counts[case["should_trigger"]] += 1
+        for should_trigger, name in ((True, "positive"), (False, "negative")):
+            if counts[should_trigger] < MIN_ROUTING_EVALS_PER_CLASS:
+                errors.append(f"{label}: requires at least {MIN_ROUTING_EVALS_PER_CLASS} {name} routing evals")
 
     return errors
+
+
+def normalized_query(query: str) -> str:
+    return " ".join(query.casefold().split())
+
+
+def validate_routing_overlap(skills_root: Path, skill_names: Iterable[str]) -> list[str]:
+    """Reject a routing query that more than one skill claims as a positive trigger."""
+    owners: dict[str, list[str]] = {}
+    for name in sorted(skill_names):
+        path = skills_root / name / "evals" / "routing.json"
+        try:
+            routing = load_json(path)
+        except (json.JSONDecodeError, OSError):
+            continue  # Reported by validate_evals.
+        if not isinstance(routing, list):
+            continue
+        for case in routing:
+            if isinstance(case, dict) and case.get("should_trigger") is True and isinstance(case.get("query"), str):
+                owners.setdefault(normalized_query(case["query"]), []).append(name)
+    return [
+        f"routing evals: {', '.join(names)} all expect this query to trigger them: {query!r}"
+        for query, names in sorted(owners.items())
+        if len(set(names)) > 1
+    ]
 
 
 def validate_skill(skill_name: str, implicit: bool) -> list[str]:
@@ -294,7 +307,9 @@ def validate_skill(skill_name: str, implicit: bool) -> list[str]:
     if len(text.splitlines()) > 500:
         errors.append(f"{skill_file.relative_to(ROOT)}: exceeds 500 lines")
 
-    errors.extend(validate_evals(skill_name, skill_dir))
+    errors.extend(
+        validate_evals(skill_name, skill_dir, requires_adversarial=TRUST_BOUNDARY_HEADING in text)
+    )
 
     openai = openai_file.read_text(encoding="utf-8")
     expected_policy = f"allow_implicit_invocation: {str(implicit).lower()}"
@@ -484,6 +499,7 @@ def validate(release_tag: str | None = None) -> list[str]:
         errors.append(f"skills/: expected {sorted(EXPECTED_SKILLS)}, found {sorted(actual_skills)}")
     for skill_name, implicit in EXPECTED_SKILLS.items():
         errors.extend(validate_skill(skill_name, implicit))
+    errors.extend(validate_routing_overlap(ROOT / "skills", EXPECTED_SKILLS))
 
     skills_config = load_json(ROOT / "skills.sh.json")
     assert isinstance(skills_config, dict)

@@ -192,6 +192,8 @@ Every skill in this collection carries two versioned eval sets under `evals/`.
 
 Keep at least three cases that vary context, wording, and difficulty. Use raw task inputs without revealing the desired method in the prompt. Prefer deterministic checks for artifacts and factual properties; use human review or a judge rubric for subjective design quality.
 
+[`schemas/evals.schema.json`](../schemas/evals.schema.json) defines the accepted fields, and `npm run validate` rejects unknown keys, so a misspelled field fails instead of being ignored. The optional `tags` array currently accepts one value: mark a case `"adversarial"` when its input embeds instructions that try to expand scope or authority and its assertions check that the skill treats them as data. A skill whose `SKILL.md` has a `## Trust boundary` section must keep at least one adversarial case.
+
 When claiming that a new or changed skill improves behavior, compare the same cases with and without the skill. For an existing skill, compare against the last released version when that is the meaningful baseline. Inspect transcripts as well as final outputs so added cost, wasted work, and unintended actions remain visible.
 
 ### Routing evals
@@ -206,6 +208,8 @@ When claiming that a new or changed skill improves behavior, compare the same ca
 ```
 
 The merge gate requires at least four positive and four negative cases. Negatives must be plausible near misses, not unrelated trivia. For a new skill or material description rewrite, expand toward 16–20 cases, test the intended runtime and model more than once, and keep a held-out set when optimizing wording.
+
+[`schemas/routing.schema.json`](../schemas/routing.schema.json) defines the accepted fields. Mark held-out cases with `"held_out": true` and leave them out of description tuning; generated runner cases carry a `held-out` tag so they can be scored separately. Validation also rejects a query that two skills both expect to trigger them, since one request cannot have two correct primary skills.
 
 Routing and execution are separate claims. A skill can perform well after explicit invocation while routing poorly, or trigger correctly while adding no value.
 
@@ -281,6 +285,7 @@ Configure the provider and credentials in the environment without committing the
 | Markdown, formatting, spelling, action syntax, and workflow security | Existing repository tooling | Automatic |
 | Live skills.sh audit verdicts across Agent Trust Hub, Socket, and Snyk | `scripts/check_skills_sh_security.py` plus `skills-sh-audits.json` | Daily; pass by default, with exact owned exceptions that expire |
 | Trigger precision, near-miss behavior, and observable skill outcomes | Versioned routing and execution evals | Evidence-based review |
+| Eval file shape, adversarial coverage for trust-boundary skills, and routing queries claimed by two skills | JSON Schemas in `schemas/` and `scripts/validate_repository.py` | Automatic |
 | Translation of those evals into `claude plugin eval` cases | `scripts/build_plugin_evals.py` and its tests in `npm run verify`; `npm run evals:check` loads the generated suite in the pinned CLI | Translation automatic; load check on demand, because Anthropic can disable the command server-side |
 | Taste, proportionality, novelty, overlap, and whether the process should become a skill | Author review using this rubric | Human judgment |
 
@@ -355,7 +360,7 @@ Before merging a skill change:
 - Read the body for non-obvious value, proportional freedom, safety, and runtime portability.
 - For external or instruction-bearing inputs, verify the trust boundary rejects
   embedded authority without blocking the intended outcome, and add an
-  adversarial execution eval.
+  adversarial execution eval tagged `"adversarial"`.
 - Move deterministic repetition into tested scripts and bulky detail into linked references.
 - Add or update three execution evals and at least eight balanced routing evals.
 - Run `npm run verify` and the external validator.
