@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdugan20/skills/blob/main/schemas/evals.schema.json",
+  "title": "Skill execution evals",
+  "description": "skills/<skill>/evals/evals.json, following the Agent Skills evaluation format plus this collection's tags.",
+  "type": "object",
+  "required": ["skill_name", "evals"],
+  "additionalProperties": false,
+  "properties": {
+    "skill_name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "evals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/case"
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "case": {
+      "type": "object",
+      "required": ["id", "prompt", "expected_output", "assertions"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tags": {
+          "description": "adversarial: the case embeds instructions that try to expand scope or authority, and its assertions check they are treated as data.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["adversarial"]
+          }
+        },
+        "prompt": {
+          "$ref": "#/$defs/text"
+        },
+        "expected_output": {
+          "$ref": "#/$defs/text"
+        },
+        "files": {
+          "description": "Paths relative to the skill directory, attached to the task as inputs.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "assertions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      }
+    }
+  }
+}

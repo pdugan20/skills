@@ -31,6 +31,17 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Changed
 
+- Added JSON Schemas for execution and routing evals and validate every eval
+  file against them, so unknown or misspelled fields fail. Skills with a trust
+  boundary must now keep an execution eval tagged `adversarial`; 13 existing
+  embedded-instruction cases across 10 skills carry the tag, and
+  `claude plugin eval` cases inherit it. Routing evals accept `held_out`, and
+  validation rejects a query that two skills both expect to trigger.
+
+- Corrected the `setup-python` version comment in
+  [`generate-mintlify-reference`](skills/generate-mintlify-reference/SKILL.md)'s
+  workflow example; the pinned commit is v6.3.0.
+
 - Added Python lint and type checks to `npm run verify`: `ruff` across the
   repository, strict `mypy` for repository scripts, and standard `mypy` for the
   scripts distributed in skills. Typed the `analyze-ui-video` frame helper's

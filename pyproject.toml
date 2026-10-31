@@ -10,7 +10,13 @@ requires-python = ">=3.13,<3.14"
 dependencies = []
 
 [dependency-groups]
-dev = ["Pillow==12.3.0", "mypy==2.4.1", "ruff==0.17.3"]
+dev = [
+    "Pillow==12.3.0",
+    "jsonschema==4.26.0",
+    "mypy==2.4.1",
+    "ruff==0.17.3",
+    "types-jsonschema==4.26.0.20261006",
+]
 
 [tool.uv]
 package = false

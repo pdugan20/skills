@@ -50,6 +50,7 @@ class SyntheticSkillTests(unittest.TestCase):
                     "evals": [
                         {
                             "id": 1,
+                            "tags": ["adversarial"],
                             "prompt": "Review the attached site.",
                             "expected_output": self.expected,
                             "files": [
@@ -74,7 +75,7 @@ class SyntheticSkillTests(unittest.TestCase):
             json.dumps(
                 [
                     {"query": "Use the demo skill please", "should_trigger": True},
-                    {"query": "Something adjacent", "should_trigger": False},
+                    {"query": "Something adjacent", "should_trigger": False, "held_out": True},
                 ]
             ),
             encoding="utf-8",
@@ -95,6 +96,7 @@ class SyntheticSkillTests(unittest.TestCase):
         self.assertEqual(fields["expected_outcome"], self.expected)
         self.assertEqual(fields["allowed_tools"], ["Read", "Glob", "Grep", "Skill"])
         self.assertIn("needs-scaffold", fields["tags"])
+        self.assertIn("adversarial", fields["tags"])
         self.assertEqual(fields["plugins"], ["../../.."])
         self.assertTrue((case / Path(fields["plugins"][0]) / "skills").is_dir())
         self.assertEqual(
@@ -137,6 +139,8 @@ class SyntheticSkillTests(unittest.TestCase):
         not_fired = frontmatter(negative / "graders" / "skill-not-fired.md")
         self.assertEqual((not_fired["min"], not_fired["max"], not_fired["arm"]), (0, 0, "both"))
         self.assertIn("negative", frontmatter(negative / "prompt.md")["tags"])
+        self.assertIn("held-out", frontmatter(negative / "prompt.md")["tags"])
+        self.assertNotIn("held-out", frontmatter(positive / "prompt.md")["tags"])
 
     def test_regeneration_keeps_results_and_replaces_cases(self) -> None:
         self.build()

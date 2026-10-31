@@ -327,5 +327,95 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertTrue(any("references a missing file" in error for error in errors))
 
 
+def eval_case(case_id: int, **extra: object) -> dict[str, object]:
+    return {
+        "id": case_id,
+        "prompt": f"Run realistic example {case_id}.",
+        "expected_output": "A useful result.",
+        "files": [],
+        "assertions": ["The result is useful."],
+        **extra,
+    }
+
+
+def routing_cases(prefix: str, **extra: object) -> list[dict[str, object]]:
+    return [
+        {"query": f"{prefix} positive {index}", "should_trigger": True, **extra} for index in range(4)
+    ] + [{"query": f"{prefix} negative {index}", "should_trigger": False} for index in range(4)]
+
+
+class EvalSchemaTests(unittest.TestCase):
+    def write_skill(
+        self,
+        root: Path,
+        name: str,
+        cases: list[dict[str, object]],
+        routing: list[dict[str, object]],
+    ) -> Path:
+        skill_dir = root / name
+        (skill_dir / "evals").mkdir(parents=True)
+        (skill_dir / "evals" / "evals.json").write_text(
+            json.dumps({"skill_name": name, "evals": cases}), encoding="utf-8"
+        )
+        (skill_dir / "evals" / "routing.json").write_text(json.dumps(routing), encoding="utf-8")
+        return skill_dir
+
+    def test_schema_rejects_misspelled_eval_field(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            case = eval_case(1)
+            case["assertion"] = case.pop("assertions")
+            skill_dir = self.write_skill(
+                Path(directory), "demo", [case, eval_case(2), eval_case(3)], routing_cases("demo")
+            )
+            errors = validate_repository.validate_evals("demo", skill_dir)
+        self.assertTrue(any("'assertions' is a required property" in error for error in errors), errors)
+        self.assertTrue(any("'assertion' was unexpected" in error for error in errors), errors)
+
+    def test_schema_rejects_unknown_tag(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            skill_dir = self.write_skill(
+                Path(directory),
+                "demo",
+                [eval_case(1, tags=["untrusted"]), eval_case(2), eval_case(3)],
+                routing_cases("demo"),
+            )
+            errors = validate_repository.validate_evals("demo", skill_dir)
+        self.assertTrue(any("$.evals[0].tags[0]" in error for error in errors), errors)
+
+    def test_trust_boundary_skill_requires_adversarial_case(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            cases = [eval_case(1), eval_case(2), eval_case(3)]
+            skill_dir = self.write_skill(Path(directory), "demo", cases, routing_cases("demo"))
+            missing = validate_repository.validate_evals("demo", skill_dir, requires_adversarial=True)
+            cases[0]["tags"] = ["adversarial"]
+            (skill_dir / "evals" / "evals.json").write_text(
+                json.dumps({"skill_name": "demo", "evals": cases}), encoding="utf-8"
+            )
+            present = validate_repository.validate_evals("demo", skill_dir, requires_adversarial=True)
+        self.assertTrue(any('tagged "adversarial"' in error for error in missing), missing)
+        self.assertEqual(present, [])
+
+    def test_routing_accepts_held_out_flag(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            skill_dir = self.write_skill(
+                Path(directory),
+                "demo",
+                [eval_case(1), eval_case(2), eval_case(3)],
+                routing_cases("demo", held_out=True),
+            )
+            self.assertEqual(validate_repository.validate_evals("demo", skill_dir), [])
+
+    def test_positive_query_claimed_by_two_skills_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            cases = [eval_case(1), eval_case(2), eval_case(3)]
+            self.write_skill(root, "first", cases, routing_cases("shared"))
+            self.write_skill(root, "second", cases, routing_cases("Shared "))
+            self.write_skill(root, "third", cases, routing_cases("other"))
+            errors = validate_repository.validate_routing_overlap(root, ["first", "second", "third"])
+        self.assertEqual(len(errors), 4, errors)
+        self.assertTrue(all("first, second" in error for error in errors), errors)
+
+
 if __name__ == "__main__":
     unittest.main()
