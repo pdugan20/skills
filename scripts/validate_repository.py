@@ -471,7 +471,10 @@ def validate_readme_skill_groups(readme: str, config: Mapping[str, object]) -> l
     sections: dict[str, list[str]] = {}
     for chunk in body.split("\n### ")[1:]:
         title, _, rest = chunk.partition("\n")
-        sections[title.strip()] = rest.strip("\n").splitlines()
+        title = title.strip()
+        if title in sections:
+            errors.append(f"README.md: ### {title} appears more than once")
+        sections[title] = rest.strip("\n").splitlines()
     for grouping in groupings:
         if not isinstance(grouping, dict) or not isinstance(grouping.get("title"), str):
             continue

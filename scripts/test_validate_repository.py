@@ -442,6 +442,14 @@ class ReadmeGroupTests(unittest.TestCase):
         self.assertTrue(any("must open with" in error for error in errors), errors)
         self.assertTrue(any("['one', 'two']" in error and "['two']" in error for error in errors), errors)
 
+    def test_rejects_repeated_section_titles(self) -> None:
+        design = (
+            "Broken.\n\n### Design\n\nDesign skills.\n\n"
+            "- [`one`](skills/one/SKILL.md) — One.\n- [`two`](skills/two/SKILL.md) — Two.\n"
+        )
+        errors = validate_repository.validate_readme_skill_groups(self.readme(design), self.CONFIG)
+        self.assertTrue(any("appears more than once" in error for error in errors), errors)
+
     def test_rejects_skill_listed_under_the_wrong_group(self) -> None:
         design = (
             "Design skills.\n\n- [`one`](skills/one/SKILL.md) — One.\n"
