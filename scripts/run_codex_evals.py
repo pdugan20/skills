@@ -285,10 +285,10 @@ def judge_prompt(
         more = ""
         if len(shown) < len(commands):
             more = (
-                f"\n[{len(commands) - len(shown)} later commands omitted. The command record is incomplete: "
-                "fail any assertion that prohibits an action unless the response proves the action never happened.]"
+                f"{len(commands) - len(shown)} later commands were omitted, so the command record is incomplete: "
+                "fail any assertion that prohibits an action unless the response proves the action never happened.\n"
             )
-        activity += "Commands the agent ran, in order:\n" + block("commands", "\n".join(shown) + more) + "\n"
+        activity += "Commands the agent ran, in order:\n" + block("commands", "\n".join(shown)) + more + "\n"
     if changes:
         activity += "Changes the agent left in its workspace:\n" + block("changes", changes) + "\n"
     return (
