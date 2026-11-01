@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import io
 import json
+import sys
 import tempfile
 import threading
 import unittest
@@ -153,13 +154,20 @@ class WorkspaceTests(unittest.TestCase):
 
 class CommandAndPlanTests(unittest.TestCase):
     def test_runs_ignore_user_config_in_read_only_sandbox(self) -> None:
-        command = runner.codex_command(Path("/tmp/w"), "gpt-6-astra", "do it", ["/a/demo/SKILL.md"])
+        command = runner.codex_command(Path("/tmp/w"), "gpt-6-astra", ["/a/demo/SKILL.md"])
         self.assertIn("--ignore-user-config", command)
         self.assertEqual(command[command.index("-s") + 1], "read-only")
         self.assertEqual(command[command.index("-m") + 1], "gpt-6-astra")
         override = command[command.index("-c") + 1]
         self.assertEqual(override, 'skills.config=[{path = "/a/demo/SKILL.md", enabled = false}]')
-        self.assertEqual(command[-1], "do it")
+        self.assertEqual(command[-1], "-")
+
+    def test_prompts_travel_on_stdin_whatever_their_size(self) -> None:
+        prompt = "x" * 300_000
+        echo = [sys.executable, "-c", "import sys; print(len(sys.stdin.read()))"]
+        with tempfile.TemporaryDirectory() as directory:
+            exit_code, lines = runner.run_codex(echo, prompt, Path(directory) / "events.jsonl", 30)
+        self.assertEqual((exit_code, lines), (0, ["300000"]))
 
     def test_plan_counts_judge_calls_and_summary_scores_arms(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -333,7 +341,7 @@ class JudgeContextTests(unittest.TestCase):
         tagged = runner.PlannedRun("execution-06", "with-skill", 1, "p", [], tags=["adversarial"])
         self.assertEqual(runner.sandbox_for(writable), "workspace-write")
         self.assertEqual(runner.sandbox_for(tagged), "read-only")
-        command = runner.codex_command(Path("/tmp/w"), "m", "p", [], sandbox=runner.sandbox_for(writable))
+        command = runner.codex_command(Path("/tmp/w"), "m", [], sandbox=runner.sandbox_for(writable))
         self.assertEqual(command[command.index("-s") + 1], "workspace-write")
 
 

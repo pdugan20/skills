@@ -153,11 +153,11 @@ def skills_config_override(disabled: list[str]) -> list[str]:
 def codex_command(
     workspace: Path,
     model: str,
-    prompt: str,
     disabled: list[str],
     extra: list[str] | None = None,
     sandbox: str = "read-only",
 ) -> list[str]:
+    """Build a codex exec command that reads its prompt from stdin, so prompt size is not bound by argv limits."""
     return [
         "codex",
         "exec",
@@ -173,7 +173,7 @@ def codex_command(
         str(workspace),
         *skills_config_override(disabled),
         *(extra or []),
-        prompt,
+        "-",
     ]
 
 
@@ -324,11 +324,11 @@ def parse_grade(raw: str, count: int) -> Grade:
     return Grade([bool(entry["passed"]) for entry in ordered], [str(entry["reason"]) for entry in ordered])
 
 
-def run_codex(command: list[str], events_path: Path, timeout: int) -> tuple[int, list[str]]:
+def run_codex(command: list[str], prompt: str, events_path: Path, timeout: int) -> tuple[int, list[str]]:
     events_path.parent.mkdir(parents=True, exist_ok=True)
     try:
         result = subprocess.run(
-            command, capture_output=True, text=True, timeout=timeout, stdin=subprocess.DEVNULL, check=False
+            command, input=prompt, capture_output=True, text=True, timeout=timeout, check=False
         )
     except subprocess.TimeoutExpired as error:
         stdout = error.stdout.decode() if isinstance(error.stdout, bytes) else (error.stdout or "")
@@ -456,7 +456,8 @@ def execute(
         prompt = task_prompt(run.prompt, attached)
         sandbox = sandbox_for(run)
         exit_code, lines = run_codex(
-            codex_command(workspace, model, prompt, disabled, sandbox=sandbox),
+            codex_command(workspace, model, disabled, sandbox=sandbox),
+            prompt,
             run_dir / "events.jsonl",
             AGENT_TIMEOUT_SECONDS,
         )
@@ -492,21 +493,20 @@ def execute(
                 schema_path.write_text(json.dumps(GRADE_SCHEMA), encoding="utf-8")
                 grade_path = judge_dir / "grade.json"
                 command = codex_command(
-                    judge_dir,
-                    judge_model,
-                    judge_prompt(
-                        prompt,
-                        run.expected,
-                        run.assertions,
-                        trace.final_message,
-                        attachment_evidence(skill_dir, run.files),
-                        trace.commands,
-                        changes,
-                    ),
-                    [],
-                    ["--output-schema", str(schema_path), "-o", str(grade_path)],
+                    judge_dir, judge_model, [], ["--output-schema", str(schema_path), "-o", str(grade_path)]
                 )
-                judge_exit, judge_lines = run_codex(command, run_dir / "judge-events.jsonl", JUDGE_TIMEOUT_SECONDS)
+                grading = judge_prompt(
+                    prompt,
+                    run.expected,
+                    run.assertions,
+                    trace.final_message,
+                    attachment_evidence(skill_dir, run.files),
+                    trace.commands,
+                    changes,
+                )
+                judge_exit, judge_lines = run_codex(
+                    command, grading, run_dir / "judge-events.jsonl", JUDGE_TIMEOUT_SECONDS
+                )
                 judge_trace = parse_trace(judge_lines, skill)
                 result["judge_tokens"] = {
                     "input": judge_trace.input_tokens,
