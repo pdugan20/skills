@@ -6,7 +6,8 @@ if (!componentSet) {
   figma.closePlugin("Button/Primary is not in this file.");
 } else {
   const instance = componentSet.defaultVariant.createInstance();
-  instance.setProperties({ Label: "Start trial", Size: "Large" });
+  const check = figma.root.findOne((node) => node.type === "COMPONENT" && node.name === "Icon/Check");
+  instance.setProperties({ Label: "Start trial", Size: "Large", ...(check ? { Icon: check.id } : {}) });
 
   const collections = await figma.teamLibrary.getAvailableLibraryVariableCollectionsAsync();
   const theme = collections.find((collection) => collection.name === "Theme");

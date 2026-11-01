@@ -7,6 +7,7 @@ import json
 import sys
 from pathlib import Path
 
+from ingest.adapter import load_adapter
 from ingest.pipeline import summarize_document
 
 
@@ -21,7 +22,11 @@ def main(argv: list[str] | None = None) -> int:
     if not args.dry_run:
         print("live mode needs staging credentials from the secret store; use --dry-run locally", file=sys.stderr)
         return 2
-    result = summarize_document(args.document.read_text(encoding="utf-8"))
+    # Dry runs load the staging adapter so summaries use partner glossary terms (#212).
+    adapter = load_adapter()
+    if adapter is not None:
+        print(f"dry run using {adapter.name} adapter ({adapter.key})", file=sys.stderr)
+    result = summarize_document(args.document.read_text(encoding="utf-8"), adapter=adapter)
     print(json.dumps(result, indent=2))
     return 0
 
