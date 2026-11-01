@@ -74,6 +74,8 @@ class RunnerError(Exception):
 
 ISOLATED_PROFILE = "eval-isolated"
 ISOLATED_SCRATCH_ROOT = Path.home() / ".cache" / "codex-evals"
+PROTECTED_WORKSPACE_PATHS = (".git", ".agents", ".codex")
+SAFE_GIT = ["git", "-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", "--no-pager"]
 LOGIN_REPLACED = (
     "Codex replaced the isolated run's link to the real login, so a token refresh may not have reached "
     "auth.json; check `codex login status` and sign in again if needed"
@@ -108,7 +110,13 @@ def find_isolation(codex_home: Path | None = None) -> Isolation:
 
 
 def isolated_config(release: Path, writable: bool) -> str:
+    """Build the isolated permission profile.
+
+    Writable runs still keep .git, .agents and .codex read-only, as Codex's built-in workspace profile does, so
+    eval content cannot plant Git config or alter the installed skill.
+    """
     access = "write" if writable else "read"
+    protected = "".join(f'"{name}" = "read"\n' for name in PROTECTED_WORKSPACE_PATHS) if writable else ""
     return (
         f'default_permissions = "{ISOLATED_PROFILE}"\n\n'
         f"[permissions.{ISOLATED_PROFILE}.filesystem]\n"
@@ -117,6 +125,7 @@ def isolated_config(release: Path, writable: bool) -> str:
         f"{json.dumps(str(release))} = \"read\"\n\n"
         f'[permissions.{ISOLATED_PROFILE}.filesystem.":workspace_roots"]\n'
         f'"." = "{access}"\n'
+        f"{protected}"
     )
 
 
@@ -317,13 +326,14 @@ def prepare_workspace(
 
 
 def git_output(workspace: Path, *args: str) -> str:
-    return subprocess.run(["git", *args], cwd=workspace, capture_output=True, text=True, check=False).stdout
+    """Run git in an eval workspace without any command hooks that workspace content could configure."""
+    return subprocess.run([*SAFE_GIT, *args], cwd=workspace, capture_output=True, text=True, check=False).stdout
 
 
 def workspace_changes(workspace: Path) -> str:
     """Summarize what the agent changed since the initial commit, including new files."""
     git_output(workspace, "add", "--all", "--intent-to-add")
-    diff = git_output(workspace, "diff", "--stat", "--patch", "HEAD")
+    diff = git_output(workspace, "diff", "--no-ext-diff", "--no-textconv", "--stat", "--patch", "HEAD")
     if len(diff) > MAX_CHANGE_CHARS:
         diff = diff[:MAX_CHANGE_CHARS] + f"\n[truncated after {MAX_CHANGE_CHARS} characters]"
     return diff

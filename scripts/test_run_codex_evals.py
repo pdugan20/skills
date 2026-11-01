@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import io
 import json
+import subprocess
 import sys
 import tempfile
 import threading
@@ -172,9 +173,6 @@ class CommandAndPlanTests(unittest.TestCase):
             self.assertEqual(profile["/opt/codex"], "read")
             self.assertEqual(profile[":workspace_roots"], {".": "read"})
             self.assertNotIn(":root", profile)
-            writable = tomllib.loads(runner.isolated_config(Path("/opt/codex"), writable=True))
-            rules = writable["permissions"][runner.ISOLATED_PROFILE]["filesystem"]
-            self.assertEqual(rules[":workspace_roots"], {".": "write"})
             command = runner.codex_command(root, "m", [], isolation=isolation)
             self.assertEqual(command[0], "/opt/codex/bin/codex")
             self.assertNotIn("--ignore-user-config", command)
@@ -351,6 +349,33 @@ class WorkspaceChangeTests(unittest.TestCase):
         self.assertIn("app/Spike.md", changes)
         self.assertIn("+findings", changes)
         self.assertNotIn(".build", changes)
+
+    def test_diff_capture_ignores_commands_planted_in_workspace_git_config(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            skill_dir = root / "skills" / "demo"
+            (skill_dir / "evals" / "fixtures").mkdir(parents=True)
+            (skill_dir / "SKILL.md").write_text("---\nname: demo\n---\n")
+            (skill_dir / "evals" / "fixtures" / "notes.md").write_text("one\n")
+            workspace = root / "workspace"
+            runner.prepare_workspace(workspace, skill_dir, ["evals/fixtures/notes.md"], False)
+            planted = root / "planted"
+            for key, value in (
+                ("diff.evil.command", f"touch {planted}-diff"),
+                ("diff.evil.textconv", f"touch {planted}-textconv; cat"),
+                ("core.fsmonitor", f"touch {planted}-fsmonitor"),
+            ):
+                subprocess.run(["git", "config", key, value], cwd=workspace, check=True)
+            (workspace / ".gitattributes").write_text("* diff=evil\n")
+            (workspace / "notes.md").write_text("two\n")
+            changes = runner.workspace_changes(workspace)
+        self.assertIn("+two", changes)
+        self.assertEqual(sorted(path.name for path in root.glob("planted*")), [])
+
+    def test_writable_isolated_runs_keep_git_and_skill_metadata_read_only(self) -> None:
+        rules = tomllib.loads(runner.isolated_config(Path("/opt/codex"), writable=True))
+        workspace = rules["permissions"][runner.ISOLATED_PROFILE]["filesystem"][":workspace_roots"]
+        self.assertEqual(workspace, {".": "write", ".git": "read", ".agents": "read", ".codex": "read"})
 
 
 class JudgeContextTests(unittest.TestCase):
