@@ -54,8 +54,8 @@
         "The response tests one coherent value hypothesis rather than comparing visual directions or planning the production feature.",
         "Inputs are synthetic, anonymized, or otherwise safe, and limitations of fixture-backed outputs are explicit.",
         "Usefulness criteria are derived from a baseline or user decision rather than invented after implementation.",
-        "Any proposed budget, audience, sample size, or observation window is justified and remains provisional until the decision owner accepts it.",
-        "The handoff distinguishes value evidence from feasibility, cost, privacy, and production readiness."
+        "Every proposed budget, audience, sample size, observation window, or pass threshold is either derived from stated evidence or explicitly marked as a provisional proposal for the decision owner; none is presented as settled.",
+        "It keeps the value question separate from feasibility questions, saying what this slice will establish and naming at least one question it leaves for later work, such as model quality or cost, privacy review, or production readiness."
       ]
     },
     {

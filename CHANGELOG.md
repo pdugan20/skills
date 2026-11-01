@@ -45,6 +45,13 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Changed
 
+- Measured [`feature-spike`](skills/feature-spike/SKILL.md) in an isolated
+  environment: 61/72 measured assertions with the skill against 30/72 without,
+  20/20 routing, and 8/8 on eight new held-out routing cases. Execution case 3's
+  scope and handoff assertions now score what a plan-only response can say,
+  and case 6 carries a new `floor` tag that the Codex runner reports apart
+  from the totals measuring the skill.
+
 - Gave [`feature-spike`](skills/feature-spike/SKILL.md) execution cases 2, 4
   and 6 realistic fixtures: a buildable SwiftPM budgeting app for the package
   benchmark, a Figma probe with a passing local mock and a failing desktop run,
