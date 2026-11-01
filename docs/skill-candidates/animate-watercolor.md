@@ -115,6 +115,6 @@ with/without-skill benchmark remains a release-level evidence gap; keep this
 candidate a local pilot until that claim is measured.
 
 Structural checks, installation results and the initial application findings are
-recorded in `animate-watercolor-validation.md` beside this brief. Package versions
-remain synchronized at 3.4.0 under the existing Unreleased pilot convention; no
-tag, publication or release was requested.
+recorded in `animate-watercolor-validation.md` beside this brief. The pilot shipped in
+v3.5.0 as a labeled pilot; the with/without-skill benchmark gap above still
+applies.

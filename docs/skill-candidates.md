@@ -74,7 +74,7 @@ source mismatch, route collisions, malicious instructions and scoped teardown,
 and exact-tag downstream installation through Agent Tooling.
 See the [candidate brief](skill-candidates/run-remote-dev-server.md).
 
-`SC-022` adds an unreleased pilot for lightweight, deterministic feature
+`SC-022` adds a pilot for lightweight, deterministic feature
 captures. Rune Playground supplies the first working implementation and failure
 evidence. Structural and behavioral evaluation remain before the skill can be
 called validated or released. skills.sh's Snyk audit reports `W011` (third-party
@@ -82,7 +82,7 @@ content exposure, medium) for captured webpages; `skills-sh-audits.json` holds a
 exact exception owned by pdugan20 until 2027-01-31.
 See the [candidate brief](skill-candidates/capture-feature.md).
 
-`SC-021` adds an unreleased pilot for source-backed deployment-constraint review.
+`SC-021` adds a pilot for source-backed deployment-constraint review.
 Its customer policy reconciliation and owner confirmation remain incomplete;
 structural checks must not be presented as validated policy or behavioral lift.
 Paired synthetic benchmarks and transcript review found residual invented facts,
@@ -99,7 +99,7 @@ These Patrick-owned skills are represented in the audit above so the inventory c
 | --- | --- | --- |
 | `run-remote-dev-server` | Composite | Existing SSH-reachable development hosts and private Tailscale previews, not host provisioning, source synchronization, public tunnels, or production services. |
 | `capture-feature` | Technique | Reproducible short feature-review bundles and authorized destination adapters, not existing-video analysis or narrated marketing production. |
-| `review-deployment-constraints` | Composite | Unreleased pilot; scoped proposal review against attributable environment requirements, not certification, general hardening, or a bundled customer policy catalog. |
+| `review-deployment-constraints` | Composite | Pilot; scoped proposal review against attributable environment requirements, not certification, general hardening, or a bundled customer policy catalog. |
 | `code-native-ui-ideation` | Technique | Lightweight runnable design exploration, not production delivery. |
 | `align-ui-to-design-system` | Discipline | Bounded post-build UI conformance and approved corrections, not repository-wide auditing. |
 | `audit-design-system-health` | Composite | Read-only repository-wide drift, consolidation, system-gap, and enforcement analysis, not automatic remediation. |
