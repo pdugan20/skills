@@ -43,9 +43,9 @@ Explore interface directions, capture review evidence, understand existing syste
 - [`align-ui-to-design-system`](skills/align-ui-to-design-system/SKILL.md) — Review one completed UI surface against its repository's design system and apply only approved corrections.
 - [`audit-design-system-health`](skills/audit-design-system-health/SKILL.md) — Audit repository-wide design drift, missing system capabilities, consolidation candidates, and enforceable rules.
 - [`analyze-ui-video`](skills/analyze-ui-video/SKILL.md) — Dissect UI recordings against a target repository before diagnosing or reconstructing behavior.
-- [`capture-feature`](skills/capture-feature/SKILL.md) — Record reproducible feature-review bundles for Slack with optional Figma publication. Unreleased pilot.
-- [`animate-watercolor`](skills/animate-watercolor/SKILL.md) — Extend an existing watercolor illustration family with matching still art, authored reveals, and quiet ambient motion. Unreleased local pilot.
-- [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) — Repair localized defects in photographic product assets while preserving approved detail, geometry, materials, typography, and alpha. Unreleased local pilot.
+- [`capture-feature`](skills/capture-feature/SKILL.md) — Record reproducible feature-review bundles for Slack with optional Figma publication. Pilot.
+- [`animate-watercolor`](skills/animate-watercolor/SKILL.md) — Extend an existing watercolor illustration family with matching still art, authored reveals, and quiet ambient motion. Local pilot.
+- [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) — Repair localized defects in photographic product assets while preserving approved detail, geometry, materials, typography, and alpha. Local pilot.
 
 ### Product Development
 
@@ -56,7 +56,7 @@ Start repositories, run private remote previews, validate ideas, tune mobile int
 - [`feature-spike`](skills/feature-spike/SKILL.md) — Test a feature's value or technical feasibility with a small runnable slice before production investment.
 - [`tune-mobile-client-performance`](skills/tune-mobile-client-performance/SKILL.md) — Trace jittery or late mobile interactions to their causal boundary and verify the smallest supported adjustment.
 - [`integrate-app-intents`](skills/integrate-app-intents/SKILL.md) — Add Apple system experiences without bypassing app-owned data, routing, privacy, or availability boundaries.
-- [`review-deployment-constraints`](skills/review-deployment-constraints/SKILL.md) — Review proposals against sourced environment requirements, distinguishing confirmed conflicts from unresolved applicability. Unreleased pilot; customer policy stays in its internal source.
+- [`review-deployment-constraints`](skills/review-deployment-constraints/SKILL.md) — Review proposals against sourced environment requirements, distinguishing confirmed conflicts from unresolved applicability. Pilot; customer policy stays in its internal source.
 - [`feature-delivery`](skills/feature-delivery/SKILL.md) — Take substantial features from idea through specification, coordinated implementation, integration, and staged rollout.
 
 ### Documentation
