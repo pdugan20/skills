@@ -199,6 +199,17 @@ class CommandAndPlanTests(unittest.TestCase):
             self.assertEqual(runner.login_link_problem(env), runner.LOGIN_REPLACED)
             self.assertEqual(auth.read_text(), "written through")
 
+    def test_isolated_scratch_stays_out_of_shared_temp(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "home-cache"
+            isolation = runner.Isolation(Path("/c"), Path("/"), Path(directory) / "auth.json", Path("/x"))
+            with runner.scratch_dir("run-", isolation, root) as scratch:
+                self.assertEqual(Path(scratch).parent, root)
+                self.assertEqual(root.stat().st_mode & 0o777, 0o700)
+            with runner.scratch_dir("run-", None, root) as scratch:
+                self.assertEqual(Path(scratch).parent, Path(tempfile.gettempdir()))
+        self.assertEqual(runner.ISOLATED_SCRATCH_ROOT.parent.parent, Path.home())
+
     def test_runs_ignore_user_config_in_read_only_sandbox(self) -> None:
         command = runner.codex_command(Path("/tmp/w"), "gpt-6-astra", ["/a/demo/SKILL.md"])
         self.assertIn("--ignore-user-config", command)

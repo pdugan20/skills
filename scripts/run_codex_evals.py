@@ -73,6 +73,7 @@ class RunnerError(Exception):
 
 
 ISOLATED_PROFILE = "eval-isolated"
+ISOLATED_SCRATCH_ROOT = Path.home() / ".cache" / "codex-evals"
 LOGIN_REPLACED = (
     "Codex replaced the isolated run's link to the real login, so a token refresh may not have reached "
     "auth.json; check `codex login status` and sign in again if needed"
@@ -142,6 +143,20 @@ def login_link_problem(env: dict[str, str] | None) -> str | None:
         return None
     linked = Path(env["CODEX_HOME"]) / "auth.json"
     return None if linked.is_symlink() else LOGIN_REPLACED
+
+
+def scratch_dir(
+    prefix: str, isolation: Isolation | None, root: Path = ISOLATED_SCRATCH_ROOT
+) -> tempfile.TemporaryDirectory[str]:
+    """Create a run's scratch directory.
+
+    Isolated runs keep it under the user's home, which their profile cannot read, because the platform's minimal
+    read paths can include a shared /tmp where concurrent runs would otherwise see each other's workspaces.
+    """
+    if isolation is None:
+        return tempfile.TemporaryDirectory(prefix=prefix)
+    root.mkdir(mode=0o700, parents=True, exist_ok=True)
+    return tempfile.TemporaryDirectory(prefix=prefix, dir=root)
 
 
 @dataclass
@@ -557,7 +572,7 @@ def execute(
 ) -> dict[str, Any]:
     skill = skill_dir.name
     run_dir = output / "runs" / run.case / f"{run.arm}-{run.attempt}"
-    with tempfile.TemporaryDirectory(prefix=f"codex-eval-{skill}-") as scratch:
+    with scratch_dir(f"codex-eval-{skill}-", isolation) as scratch:
         workspace = Path(scratch) / "workspace"
         attached = prepare_workspace(workspace, skill_dir, run.files, run.arm == "with-skill")
         prompt = task_prompt(run.prompt, attached)
@@ -598,7 +613,7 @@ def execute(
         if exit_code != 0 or not trace.final_message:
             grade = Grade([], [], f"agent run failed with exit {exit_code}")
         else:
-            with tempfile.TemporaryDirectory(prefix="codex-eval-judge-") as scratch:
+            with scratch_dir("codex-eval-judge-", isolation) as scratch:
                 judge_dir = Path(scratch)
                 schema_path = judge_dir / "grade.schema.json"
                 schema_path.write_text(json.dumps(GRADE_SCHEMA), encoding="utf-8")
@@ -762,7 +777,7 @@ def main(argv: list[str] | None = None) -> int:
         isolation = find_isolation() if args.isolated else None
         disabled = [] if isolation else installed_skill_files(args.skill)
         for arm in sorted({run.arm for run in planned}):
-            with tempfile.TemporaryDirectory(prefix="codex-eval-preflight-") as scratch:
+            with scratch_dir("codex-eval-preflight-", isolation) as scratch:
                 workspace = Path(scratch) / "workspace"
                 prepare_workspace(workspace, skill_dir, [], arm == "with-skill")
                 preflight(workspace, args.skill, disabled, arm == "with-skill", isolation)
