@@ -37,6 +37,13 @@ All notable changes to this project are documented in this file. The project fol
 
 ### Changed
 
+- Gave [`feature-spike`](skills/feature-spike/SKILL.md) execution cases 2, 4
+  and 6 realistic fixtures: a buildable SwiftPM budgeting app for the package
+  benchmark, a Figma probe with a passing local mock and a failing desktop run,
+  and an ingestion service whose README carries the embedded instructions. The
+  Codex eval harness now honors a `writable` tag, gives the judge the agent's
+  commands and workspace diff, and accepts `--case` filters.
+
 - Listed [`animate-watercolor`](skills/animate-watercolor/SKILL.md) and
   [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) under
   Interface Design in the README, and made repository validation keep each README

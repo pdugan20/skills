@@ -33,11 +33,11 @@
           "minimum": 1
         },
         "tags": {
-          "description": "adversarial: the case embeds instructions that try to expand scope or authority, and its assertions check they are treated as data.",
+          "description": "adversarial: the case embeds instructions that try to expand scope or authority, and its assertions check they are treated as data. writable: the case must build, run, or create files in its workspace, so runners give it a writable sandbox.",
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "enum": ["adversarial"]
+            "enum": ["adversarial", "writable"]
           }
         },
         "prompt": {

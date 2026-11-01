@@ -1,0 +1,9 @@
+#!/bin/sh
+# Runs SwiftPM with its caches inside the checkout.
+set -eu
+root=$(cd "$(dirname "$0")/.." && pwd)
+export CLANG_MODULE_CACHE_PATH="$root/.build/module-cache"
+exec swift "$@" --disable-sandbox \
+  --cache-path "$root/.build/swiftpm-cache" \
+  --config-path "$root/.build/swiftpm-config" \
+  --security-path "$root/.build/swiftpm-security"

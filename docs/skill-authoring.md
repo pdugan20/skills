@@ -192,7 +192,7 @@ Every skill in this collection carries two versioned eval sets under `evals/`.
 
 Keep at least three cases that vary context, wording, and difficulty. Use raw task inputs without revealing the desired method in the prompt. Prefer deterministic checks for artifacts and factual properties; use human review or a judge rubric for subjective design quality.
 
-[`schemas/evals.schema.json`](../schemas/evals.schema.json) defines the accepted fields, and `npm run validate` rejects unknown keys, so a misspelled field fails instead of being ignored. The optional `tags` array currently accepts one value: mark a case `"adversarial"` when its input embeds instructions that try to expand scope or authority and its assertions check that the skill treats them as data. A skill whose `SKILL.md` has a `## Trust boundary` section must keep at least one adversarial case.
+[`schemas/evals.schema.json`](../schemas/evals.schema.json) defines the accepted fields, and `npm run validate` rejects unknown keys, so a misspelled field fails instead of being ignored. The optional `tags` array accepts two values. Mark a case `"adversarial"` when its input embeds instructions that try to expand scope or authority and its assertions check that the skill treats them as data. Mark it `"writable"` when the task needs to build, run, or create files, and give it fixtures that make that work possible; an empty workspace turns such assertions into a test of the harness rather than the skill. A skill whose `SKILL.md` has a `## Trust boundary` section must keep at least one adversarial case.
 
 When claiming that a new or changed skill improves behavior, compare the same cases with and without the skill. For an existing skill, compare against the last released version when that is the meaningful baseline. Inspect transcripts as well as final outputs so added cost, wasted work, and unintended actions remain visible.
 
@@ -220,11 +220,13 @@ For Codex evidence, the primary runtime for this collection, use `scripts/run_co
 - The with-skill arm gets the checkout's skill copied to `.agents/skills/` without its `evals/` folder. Installed copies of the same skill under `~/.agents/skills`, `~/.codex/skills`, or `/etc/codex/skills` are disabled in both arms through a per-run `skills.config` override, and a `codex debug prompt-input` preflight confirms what each arm can see before any model call.
 - Runs pass `--ignore-user-config`, so user configuration, including any `openai_base_url` proxy, is skipped and Codex uses the signed-in login directly. With a ChatGPT login, runs count against the plan's Codex usage limits, and only models offered to ChatGPT accounts are accepted.
 - `--max-runs` is a required cap on every `codex exec` call, judges included. The runner refuses a plan above it, and stops the batch when the agent or judge reports a model, authentication, or usage-limit error. A single run that times out or fails is recorded as a grading error without stopping the batch. Exit code 0 means every planned run completed; scores live in `results.json`.
-- Runs use a read-only sandbox, so execution cases grade the response and plan rather than file edits. Other installed skills stay loaded, as in normal use. An explicit `$skill` mention loads a skill without a visible command, so trigger detection covers the implicit requests routing evals use.
+- Runs use a read-only sandbox unless a case is tagged `writable`, which gets `workspace-write` confined to its temporary workspace. Fixtures are committed there first, so the judge receives the commands the agent ran and a diff of what it changed along with its final response.
+- Other installed skills and the global `AGENTS.md` stay loaded, and the sandbox restricts writes but not reads, so results describe the skill inside the machine's normal environment rather than a clean install. An explicit `$skill` mention loads a skill without a visible command, so trigger detection covers the implicit requests routing evals use.
 
 ```bash
 npm run evals:codex -- --skill <skill> --max-runs 50 --dry-run   # plan and preflight, no model calls
 npm run evals:codex -- --skill <skill> --max-runs 50 --jobs 3
+npm run evals:codex -- --skill <skill> --kind execution --case 2 --runs 3 --max-runs 12
 ```
 
 Traces, final messages, and `results.json` go to `agent-skills-workspace/codex-runs/<skill>-<time>/`. Record the model, `SKILL.md` checksum, scores, and token totals in the skill's candidate brief.
