@@ -237,6 +237,10 @@ class ValidateRepositoryTests(unittest.TestCase):
             self.assertTrue(any("exactly one" in e for e in errors_for()))
             both = errors_for(alertFiles=["evals/fixtures/records.md"], issueCodes=["W011"])
             self.assertTrue(any("exactly one" in e for e in both))
+            (skills_root / "outside.md").write_text("not a fixture\n", encoding="utf-8")
+            (fixtures / "escape.md").symlink_to(skills_root / "outside.md")
+            escaped = errors_for(alertFiles=["evals/fixtures/escape.md"])
+            self.assertTrue(any("regular file inside evals/fixtures" in e for e in escaped))
 
     def test_eval_manifest_requires_execution_coverage(self) -> None:
         with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:

@@ -26,7 +26,9 @@ VALID_STATUSES = frozenset({"pass", "warn", "fail"})
 ISSUE_CODE_RE = re.compile(r"\b[A-Z]\d{3}\b")
 RISK_LEVEL_RE = re.compile(r"Risk Level:\s*(LOW|MEDIUM|HIGH|CRITICAL)\b", re.IGNORECASE)
 SEVERITIES = ("LOW", "MEDIUM", "HIGH", "CRITICAL")
-SOCKET_ALERT_RE = re.compile(r"\b(LOW|MEDIUM|HIGH|CRITICAL) Security (?:LOW|MEDIUM|HIGH|CRITICAL) (\S+)")
+SOCKET_SECTION_RE = re.compile(r"\b(\d+) alerts? found:(.*?)\bAudit Metadata\b")
+SOCKET_ALERT_END_RE = re.compile(r"Confidence: \d+ ?% Severity: \d+ ?%")
+SOCKET_ALERT_HEADER_RE = re.compile(r"(\S+) (\S+) ([A-Z]+) \1 \3 \2(?: |$)")
 
 
 class AuditCardParser(HTMLParser):
@@ -112,13 +114,30 @@ def audit_detail(html: str) -> tuple[set[str], str]:
 
 
 def socket_alerts(html: str) -> tuple[set[str], str]:
-    """Return the files a Socket audit flags and the highest alert severity."""
+    """Return the files a Socket audit flags and the highest alert severity.
+
+    Only the alert list is read, each alert must have a recognized severity, and the parsed alerts must match
+    the count the page reports, so unfamiliar layouts and stray text fail closed instead of matching.
+    """
     parser = VisibleTextParser()
     parser.feed(html)
     text = " ".join(" ".join(parser.parts).split())
-    alerts = SOCKET_ALERT_RE.findall(text)
-    if not alerts:
-        raise ValueError("Socket audit detail lists no alerts")
+    section = SOCKET_SECTION_RE.search(text)
+    if section is None:
+        raise ValueError("Socket audit detail has no alert list")
+    expected = int(section.group(1))
+    chunks = SOCKET_ALERT_END_RE.split(section.group(2))
+    alerts: list[tuple[str, str]] = []
+    for chunk in chunks[:-1]:
+        header = SOCKET_ALERT_HEADER_RE.search(chunk.strip())
+        if header is None:
+            raise ValueError("Socket audit alert has no recognizable file and severity")
+        severity = header.group(3)
+        if severity not in SEVERITIES:
+            raise ValueError(f"Socket audit alert has unknown severity {severity}")
+        alerts.append((severity, header.group(2)))
+    if not alerts or len(alerts) != expected or chunks[-1].strip():
+        raise ValueError(f"Socket audit reports {expected} alerts but {len(alerts)} were parsed")
     highest = max((severity for severity, _ in alerts), key=SEVERITIES.index)
     return {path for _, path in alerts}, highest.lower()
 

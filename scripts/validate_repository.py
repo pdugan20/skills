@@ -390,8 +390,13 @@ def validate_alert_files(label: str, skill: object, alert_files: object, skills_
         relative = PurePosixPath(path)
         if relative.is_absolute() or ".." in relative.parts or relative.parts[:2] != ("evals", "fixtures"):
             errors.append(f"{label}.alertFiles may only cover files under evals/fixtures/: {path}")
-        elif isinstance(skill, str) and not (skills_root / skill / relative).is_file():
-            errors.append(f"{label}.alertFiles names a missing file: {path}")
+        elif isinstance(skill, str):
+            candidate = skills_root / skill / relative
+            fixtures = (skills_root / skill / "evals" / "fixtures").resolve()
+            if not candidate.is_file():
+                errors.append(f"{label}.alertFiles names a missing file: {path}")
+            elif candidate.is_symlink() or fixtures not in candidate.resolve().parents:
+                errors.append(f"{label}.alertFiles must name a regular file inside evals/fixtures/: {path}")
     return errors
 
 
