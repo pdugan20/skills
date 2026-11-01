@@ -44,6 +44,16 @@ All notable changes to this project are documented in this file. The project fol
   Codex eval harness now honors a `writable` tag, gives the judge the agent's
   commands and workspace diff, and accepts `--case` filters.
 
+- Made [`feature-spike`](skills/feature-spike/SKILL.md) execution cases 4 and
+  6 harder. The Figma desktop run now happened against detached library
+  copies, with an ambiguous error, a silent icon-swap no-op, a misleading
+  local-variable retry and a teammate's premature conclusion. The ingestion
+  service's documented `--dry-run` now reads `.env` and confirms callbacks,
+  contrary to its guide, and its representative partner document is an HTML
+  export the parser cannot summarize. Case 4 gained an assertion on weighing
+  `defer`; case 6 gained assertions on the representative input and the plan
+  consequence.
+
 - Listed [`animate-watercolor`](skills/animate-watercolor/SKILL.md) and
   [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md) under
   Interface Design in the README, and made repository validation keep each README

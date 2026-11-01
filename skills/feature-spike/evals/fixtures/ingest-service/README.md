@@ -1,6 +1,7 @@
 # Partner ingestion service
 
-Parses partner documents and produces summaries for the account team.
+Parses partner documents, which partners deliver as portal HTML exports, and
+produces summaries for the account team.
 
 ## Run locally
 
