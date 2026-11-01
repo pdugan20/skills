@@ -392,11 +392,15 @@ def validate_alert_files(label: str, skill: object, alert_files: object, skills_
             errors.append(f"{label}.alertFiles may only cover files under evals/fixtures/: {path}")
         elif isinstance(skill, str):
             candidate = skills_root / skill / relative
-            fixtures = (skills_root / skill / "evals" / "fixtures").resolve()
-            if not candidate.is_file():
+            linked = [
+                str(PurePosixPath(*relative.parts[: index + 1]))
+                for index in range(len(relative.parts))
+                if (skills_root / skill / PurePosixPath(*relative.parts[: index + 1])).is_symlink()
+            ]
+            if linked:
+                errors.append(f"{label}.alertFiles may not pass through symlinks: {path} ({linked[0]})")
+            elif not candidate.is_file():
                 errors.append(f"{label}.alertFiles names a missing file: {path}")
-            elif candidate.is_symlink() or fixtures not in candidate.resolve().parents:
-                errors.append(f"{label}.alertFiles must name a regular file inside evals/fixtures/: {path}")
     return errors
 
 

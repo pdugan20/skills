@@ -240,7 +240,20 @@ class ValidateRepositoryTests(unittest.TestCase):
             (skills_root / "outside.md").write_text("not a fixture\n", encoding="utf-8")
             (fixtures / "escape.md").symlink_to(skills_root / "outside.md")
             escaped = errors_for(alertFiles=["evals/fixtures/escape.md"])
-            self.assertTrue(any("regular file inside evals/fixtures" in e for e in escaped))
+            self.assertTrue(any("may not pass through symlinks" in e for e in escaped))
+
+        with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
+            skills_root = Path(directory)
+            skill_dir = skills_root / "feature-spike"
+            (skill_dir / "evals").mkdir(parents=True)
+            (skill_dir / "SKILL.md").write_text("# Feature spike\n", encoding="utf-8")
+            (skill_dir / "evals" / "fixtures").symlink_to(skill_dir)
+            policy = {
+                "requiredProviders": ["socket"],
+                "exceptions": [{**base, "alertFiles": ["evals/fixtures/SKILL.md"]}],
+            }
+            errors = validate_repository.validate_skills_sh_audit_policy(policy, skills_root)
+            self.assertTrue(any("may not pass through symlinks" in e and "evals/fixtures" in e for e in errors))
 
     def test_eval_manifest_requires_execution_coverage(self) -> None:
         with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
