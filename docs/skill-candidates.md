@@ -72,6 +72,9 @@ evidence includes the completed host/client setup, structural and multi-client
 installation checks, fresh baseline/with-skill transcript review covering
 source mismatch, route collisions, malicious instructions and scoped teardown,
 and exact-tag downstream installation through Agent Tooling.
+skills.sh's Snyk audit reports `W011` for remote repository content;
+`skills-sh-audits.json` holds an exact exception owned by pdugan20 until
+2027-01-31.
 See the [candidate brief](skill-candidates/run-remote-dev-server.md).
 
 `SC-022` adds a pilot for lightweight, deterministic feature

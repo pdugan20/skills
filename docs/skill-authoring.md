@@ -344,7 +344,10 @@ This assessment was last reviewed on 2026-10-31.
   never shipped instructions or code.
   A new provider, warning, failure, changed issue, expired exception, or stale
   exception fails the monitor. `W011` exceptions additionally require a runtime
-  trust-boundary section in the distributed skill.
+  trust-boundary section, titled "Trust boundary" or "Trust and action
+  boundaries", in the distributed skill. The freshness check tolerates retired
+  skills that skills.sh keeps listing, named in `RETIRED_SKILLS`, and reports them
+  as a note; a retired name that returns to `skills/` fails the check.
 - GitHub CLI `gh skill publish --dry-run` provides an additional first-party
   specification and repository-settings check, including skill-local license
   metadata and immutable tag protection. The command is currently preview and

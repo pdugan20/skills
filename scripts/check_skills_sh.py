@@ -188,15 +188,34 @@ def fetch_snapshot(skill_name: str, repository: str = REPOSITORY) -> dict[str, s
     }
 
 
-def compare(expected: set[str], actual: set[str]) -> list[str]:
+RETIRED_SKILLS = {
+    "production-hardening": "removed in v3.0.0; skills.sh still serves its old listing",
+}
+
+
+def compare(expected: set[str], actual: set[str], retired: dict[str, str] | None = None) -> list[str]:
+    """Compare listed skills with this checkout.
+
+    Retired skills that skills.sh keeps listing are tolerated, because this repository cannot remove them from
+    the index, but a retired name that reappears in the checkout is an error.
+    """
+    retired = RETIRED_SKILLS if retired is None else retired
     messages: list[str] = []
     missing = sorted(expected - actual)
-    unexpected = sorted(actual - expected)
+    unexpected = sorted(actual - expected - set(retired))
+    revived = sorted(expected & set(retired))
     if missing:
         messages.append(f"missing from skills.sh: {', '.join(missing)}")
     if unexpected:
         messages.append(f"not present in this repository: {', '.join(unexpected)}")
+    if revived:
+        messages.append(f"retired skills are back in this repository: {', '.join(revived)}")
     return messages
+
+
+def retired_notices(actual: set[str], retired: dict[str, str] | None = None) -> list[str]:
+    retired = RETIRED_SKILLS if retired is None else retired
+    return [f"{name} ({retired[name]})" for name in sorted(actual & set(retired))]
 
 
 def compare_groupings(
@@ -255,6 +274,7 @@ def main() -> int:
     expected = set(expected_files)
     expected_groups = configured_groupings()
     last_messages: list[str] = []
+    notices: list[str] = []
     for attempt in range(1, args.attempts + 1):
         last_messages = []
         made_network_request = False
@@ -275,6 +295,7 @@ def main() -> int:
                     html = fetch_catalog(args.url)
                 actual = catalog_skills(html)
                 last_messages.extend(compare(expected, actual))
+                notices = retired_notices(actual)
                 last_messages.extend(compare_groupings(expected_groups, catalog_groupings(html)))
             except HTTPError as error:
                 if error.code == 429:
@@ -305,6 +326,8 @@ def main() -> int:
                     last_messages.append(f"could not read the {skill_name} snapshot: {error}")
 
         if not last_messages:
+            if notices:
+                print(f"Note: skills.sh still lists retired skills: {'; '.join(notices)}")
             if args.snapshots_only:
                 print(f"skills.sh stores current snapshots for all {len(expected)} skills.")
             elif args.page_only:

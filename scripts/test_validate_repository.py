@@ -186,6 +186,24 @@ class ValidateRepositoryTests(unittest.TestCase):
 
         self.assertTrue(any("require a ## Trust boundary" in error for error in errors))
 
+    def test_both_trust_boundary_headings_count(self) -> None:
+        self.assertTrue(validate_repository.has_trust_boundary("# Skill\n\n## Trust boundary\n\nText.\n"))
+        self.assertTrue(validate_repository.has_trust_boundary("# Skill\n\n## Trust and action boundaries\n\nText.\n"))
+        self.assertFalse(validate_repository.has_trust_boundary("# Skill\n\nA trust boundary is mentioned.\n"))
+        self.assertTrue(validate_repository.has_trust_boundary("# Skill\r\n\r\n## Trust boundary  \r\n\r\nText.\r\n"))
+        fenced = "# Skill\n\n```md\n## Trust boundary\n```\n\nText.\n"
+        self.assertFalse(validate_repository.has_trust_boundary(fenced))
+        after_fence = fenced + "\n## Trust boundary\n"
+        self.assertTrue(validate_repository.has_trust_boundary(after_fence))
+        four = "````md\n```\n## Trust boundary\n````\n"
+        self.assertFalse(validate_repository.has_trust_boundary(four))
+        tilde = "~~~\n```\n## Trust boundary\n~~~\n"
+        self.assertFalse(validate_repository.has_trust_boundary(tilde))
+        not_closed = "```\n``` text\n## Trust boundary\n"
+        self.assertFalse(validate_repository.has_trust_boundary(not_closed))
+        indented = "    ```\n## Trust boundary\n"
+        self.assertTrue(validate_repository.has_trust_boundary(indented))
+
     def test_audit_policy_never_accepts_fail_verdicts(self) -> None:
         policy = {
             "requiredProviders": ["snyk"],
