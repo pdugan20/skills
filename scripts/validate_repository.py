@@ -65,7 +65,12 @@ MIN_EXECUTION_EVALS = 3
 MIN_ROUTING_EVALS_PER_CLASS = 4
 SCHEMA_DIR = ROOT / "schemas"
 ADVERSARIAL_TAG = "adversarial"
-TRUST_BOUNDARY_HEADING = "\n## Trust boundary\n"
+TRUST_BOUNDARY_RE = re.compile(r"^## Trust (?:and action )?boundar(?:y|ies)$", re.MULTILINE)
+
+
+def has_trust_boundary(text: str) -> bool:
+    """Skills name this section either "Trust boundary" or "Trust and action boundaries"."""
+    return TRUST_BOUNDARY_RE.search(text) is not None
 SKILLS_SH_SCHEMA = "https://skills.sh/schemas/skills.sh.schema.json"
 RENOVATE_SCHEMA = "https://docs.renovatebot.com/renovate-schema.json"
 RENOVATE_FIELDS = {"$schema", "enabled", "enabledManagers"}
@@ -308,7 +313,7 @@ def validate_skill(skill_name: str, implicit: bool) -> list[str]:
         errors.append(f"{skill_file.relative_to(ROOT)}: exceeds 500 lines")
 
     errors.extend(
-        validate_evals(skill_name, skill_dir, requires_adversarial=TRUST_BOUNDARY_HEADING in text)
+        validate_evals(skill_name, skill_dir, requires_adversarial=has_trust_boundary(text))
     )
 
     openai = openai_file.read_text(encoding="utf-8")
@@ -482,9 +487,7 @@ def validate_skills_sh_audit_policy(
 
         if skill in EXPECTED_SKILLS and "W011" in issue_codes:
             skill_file = skills_root / str(skill) / "SKILL.md"
-            if not skill_file.is_file() or "\n## Trust boundary\n" not in skill_file.read_text(
-                encoding="utf-8"
-            ):
+            if not skill_file.is_file() or not has_trust_boundary(skill_file.read_text(encoding="utf-8")):
                 errors.append(
                     f"{skill_file}: W011 exceptions require a ## Trust boundary section"
                 )

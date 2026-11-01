@@ -4,6 +4,15 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Security
+
+- Followed up the v3.5.0 skills.sh refresh: removed the `feature-spike` Snyk
+  exception now that its audit passes, added an exact Snyk `W011` exception
+  for `run-remote-dev-server`, and let validation recognize the "Trust and
+  action boundaries" heading. The freshness check now reports
+  `production-hardening`, which skills.sh still lists after its v3.0.0 removal,
+  as a note instead of a failure.
+
 ## [3.5.0] - 2026-11-01
 
 ### Added

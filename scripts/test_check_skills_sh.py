@@ -221,6 +221,21 @@ class CheckSkillsShTests(unittest.TestCase):
             ],
         )
 
+    def test_tolerates_retired_listings_but_not_revived_skills(self) -> None:
+        retired = {"old-skill": "removed in v1.0.0"}
+        self.assertEqual(
+            check_skills_sh.compare({"feature-spike"}, {"feature-spike", "old-skill"}, retired), []
+        )
+        self.assertEqual(
+            check_skills_sh.retired_notices({"feature-spike", "old-skill"}, retired),
+            ["old-skill (removed in v1.0.0)"],
+        )
+        self.assertEqual(
+            check_skills_sh.compare({"feature-spike", "old-skill"}, {"feature-spike", "old-skill"}, retired),
+            ["retired skills are back in this repository: old-skill"],
+        )
+        self.assertNotIn("production-hardening", check_skills_sh.local_skill_files(check_skills_sh.ROOT / "skills"))
+
     def test_extracts_visible_group_titles_and_descriptions(self) -> None:
         expected = [
             ("Interface Design", "Explore interface directions."),

@@ -2,17 +2,6 @@
   "requiredProviders": ["agent-trust-hub", "socket", "snyk"],
   "exceptions": [
     {
-      "skill": "feature-spike",
-      "provider": "snyk",
-      "status": "warn",
-      "riskLevel": "medium",
-      "issueCodes": ["W011"],
-      "owner": "pdugan20",
-      "reviewBy": "2027-01-31",
-      "rationale": "A feature description is an essential skill input. The skill now prevents user or inspected content from expanding the decision contract, secret access, external calls, or execution authority.",
-      "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392"
-    },
-    {
       "skill": "capture-feature",
       "provider": "snyk",
       "status": "warn",
@@ -33,6 +22,17 @@
       "reviewBy": "2027-01-31",
       "rationale": "The alert flags a synthetic eval fixture that describes the boundary violation the skill must find. No executable code ships; the scenario is test data, not repository behavior.",
       "upstreamIssue": "https://www.skills.sh/pdugan20/skills/review-deployment-constraints/security/socket"
+    },
+    {
+      "skill": "run-remote-dev-server",
+      "provider": "snyk",
+      "status": "warn",
+      "riskLevel": "medium",
+      "issueCodes": ["W011"],
+      "owner": "pdugan20",
+      "reviewBy": "2027-01-31",
+      "rationale": "Repository files, logs and process output on the remote host are essential inputs. The skill's trust and action boundaries keep them as evidence that cannot authorize secret disclosure, public tunnels, installs, deploys or scope changes.",
+      "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392"
     }
   ]
 }

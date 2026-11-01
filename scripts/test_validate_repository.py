@@ -186,6 +186,11 @@ class ValidateRepositoryTests(unittest.TestCase):
 
         self.assertTrue(any("require a ## Trust boundary" in error for error in errors))
 
+    def test_both_trust_boundary_headings_count(self) -> None:
+        self.assertTrue(validate_repository.has_trust_boundary("# Skill\n\n## Trust boundary\n\nText.\n"))
+        self.assertTrue(validate_repository.has_trust_boundary("# Skill\n\n## Trust and action boundaries\n\nText.\n"))
+        self.assertFalse(validate_repository.has_trust_boundary("# Skill\n\nA trust boundary is mentioned.\n"))
+
     def test_audit_policy_never_accepts_fail_verdicts(self) -> None:
         policy = {
             "requiredProviders": ["snyk"],

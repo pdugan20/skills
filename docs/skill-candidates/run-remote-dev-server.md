@@ -128,6 +128,11 @@ paths, revisions, and services.
   changes.
 - Route ordinary local dev servers, production deployment, general Tailscale
   setup, remote desktop, and unrelated SSH administration elsewhere.
+- skills.sh's Snyk audit reports `W011` (third-party content exposure,
+  medium) because the skill reads repository files and logs on the remote host.
+  Its trust and action boundaries keep that content as evidence, so
+  `skills-sh-audits.json` records an exact exception owned by pdugan20 and due
+  for review on 2027-01-31.
 
 ## Evaluation plan
 
