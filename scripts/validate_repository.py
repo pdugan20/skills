@@ -65,12 +65,24 @@ MIN_EXECUTION_EVALS = 3
 MIN_ROUTING_EVALS_PER_CLASS = 4
 SCHEMA_DIR = ROOT / "schemas"
 ADVERSARIAL_TAG = "adversarial"
-TRUST_BOUNDARY_RE = re.compile(r"^## Trust (?:and action )?boundar(?:y|ies)$", re.MULTILINE)
+TRUST_BOUNDARY_RE = re.compile(r"^## Trust (?:and action )?boundar(?:y|ies)\s*$")
+FENCE_RE = re.compile(r"^\s*(```|~~~)")
 
 
 def has_trust_boundary(text: str) -> bool:
-    """Skills name this section either "Trust boundary" or "Trust and action boundaries"."""
-    return TRUST_BOUNDARY_RE.search(text) is not None
+    """Skills name this section either "Trust boundary" or "Trust and action boundaries".
+
+    Only real headings count: lines inside fenced code examples are skipped.
+    """
+    fence: str | None = None
+    for line in text.splitlines():
+        marker = FENCE_RE.match(line)
+        if marker:
+            fence = None if fence == marker.group(1) else (fence or marker.group(1))
+            continue
+        if fence is None and TRUST_BOUNDARY_RE.match(line):
+            return True
+    return False
 SKILLS_SH_SCHEMA = "https://skills.sh/schemas/skills.sh.schema.json"
 RENOVATE_SCHEMA = "https://docs.renovatebot.com/renovate-schema.json"
 RENOVATE_FIELDS = {"$schema", "enabled", "enabledManagers"}
