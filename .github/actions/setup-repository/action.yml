@@ -35,7 +35,8 @@ runs:
       env:
         SKILL_VALIDATOR_VERSION: 1.8.0
         SKILL_VALIDATOR_SHA256: a9b4cb3436682ff8d55dd0d164376c8479d35cb58c0adc3e93170fbde8baa04f
-      run: |
+      # The PATH entry uses only the runner-controlled temp directory and a fixed suffix.
+      run: | # zizmor: ignore[github-env]
         archive="$RUNNER_TEMP/skill-validator.tar.gz"
         curl --fail --silent --show-error --location \
           "https://github.com/agent-ecosystem/skill-validator/releases/download/v$SKILL_VALIDATOR_VERSION/skill-validator_${SKILL_VALIDATOR_VERSION}_linux_amd64.tar.gz" \
