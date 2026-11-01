@@ -8,6 +8,7 @@ import json
 import sys
 import tempfile
 import threading
+import tomllib
 import unittest
 import unittest.mock
 from contextlib import redirect_stderr, redirect_stdout
@@ -153,6 +154,49 @@ class WorkspaceTests(unittest.TestCase):
 
 
 class CommandAndPlanTests(unittest.TestCase):
+    def test_isolated_runs_use_their_own_home_and_profile(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "real").mkdir()
+            auth = root / "real" / "auth.json"
+            auth.write_text("{}")
+            isolation = runner.Isolation(Path("/opt/codex/bin/codex"), Path("/opt/codex"), auth, root / "AGENTS.md")
+            env = runner.isolated_env(isolation, root / "run", writable=False)
+            codex_home = Path(env["CODEX_HOME"])
+            self.assertEqual((codex_home / "auth.json").resolve(), auth.resolve())
+            self.assertEqual(Path(env["HOME"]), root / "run" / "home")
+            self.assertEqual(Path(env["TMPDIR"]), root / "run" / "tmp")
+            config = tomllib.loads((codex_home / "config.toml").read_text())
+            profile = config["permissions"][config["default_permissions"]]["filesystem"]
+            self.assertEqual(profile[":minimal"], "read")
+            self.assertEqual(profile["/opt/codex"], "read")
+            self.assertEqual(profile[":workspace_roots"], {".": "read"})
+            self.assertNotIn(":root", profile)
+            writable = tomllib.loads(runner.isolated_config(Path("/opt/codex"), writable=True))
+            rules = writable["permissions"][runner.ISOLATED_PROFILE]["filesystem"]
+            self.assertEqual(rules[":workspace_roots"], {".": "write"})
+            command = runner.codex_command(root, "m", [], isolation=isolation)
+            self.assertEqual(command[0], "/opt/codex/bin/codex")
+            self.assertNotIn("--ignore-user-config", command)
+            self.assertNotIn("-s", command)
+            self.assertEqual(command[-1], "-")
+
+    def test_a_refreshed_login_is_written_back_to_the_real_file(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            auth = root / "auth.json"
+            auth.write_text("old")
+            isolation = runner.Isolation(Path("/c"), Path("/"), auth, root / "AGENTS.md")
+            env = runner.isolated_env(isolation, root / "run", writable=False)
+            runner.restore_auth(isolation, env)
+            self.assertEqual(auth.read_text(), "old")
+            linked = Path(env["CODEX_HOME"]) / "auth.json"
+            linked.unlink()
+            linked.write_text("refreshed")
+            runner.restore_auth(isolation, env)
+            self.assertEqual(auth.read_text(), "refreshed")
+            self.assertEqual(auth.stat().st_mode & 0o777, 0o600)
+
     def test_runs_ignore_user_config_in_read_only_sandbox(self) -> None:
         command = runner.codex_command(Path("/tmp/w"), "gpt-6-astra", ["/a/demo/SKILL.md"])
         self.assertIn("--ignore-user-config", command)
