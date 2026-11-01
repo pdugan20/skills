@@ -119,6 +119,10 @@ environment files, or production data.
 - Route existing-video diagnosis to `analyze-ui-video`; route narrated launch
   production to a dedicated product-demo workflow; leave ordinary regression
   tests with the repository's testing capability.
+- skills.sh's Snyk audit reports `W011` (third-party content exposure, medium)
+  because the skill reads captured webpages. That input is essential, and the
+  trust boundary keeps it as data, so `skills-sh-audits.json` records an
+  exact exception owned by pdugan20 and due for review on 2027-01-31.
 
 ## Evaluation plan
 

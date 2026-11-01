@@ -208,6 +208,36 @@ class ValidateRepositoryTests(unittest.TestCase):
 
         self.assertTrue(any("fail verdicts cannot be accepted" in error for error in errors))
 
+    def test_socket_audit_exceptions_only_cover_existing_eval_fixtures(self) -> None:
+        base = {
+            "skill": "feature-spike",
+            "provider": "socket",
+            "status": "warn",
+            "riskLevel": "medium",
+            "owner": "pdugan20",
+            "reviewBy": "2027-01-31",
+            "rationale": "The flagged file is a synthetic eval scenario.",
+            "upstreamIssue": "https://github.com/pdugan20/skills/issues/1",
+        }
+        with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
+            skills_root = Path(directory)
+            fixtures = skills_root / "feature-spike" / "evals" / "fixtures"
+            fixtures.mkdir(parents=True)
+            (fixtures / "records.md").write_text("scenario\n", encoding="utf-8")
+            (skills_root / "feature-spike" / "SKILL.md").write_text("# Feature spike\n", encoding="utf-8")
+
+            def errors_for(**fields: object) -> list[str]:
+                policy = {"requiredProviders": ["socket"], "exceptions": [{**base, **fields}]}
+                return validate_repository.validate_skills_sh_audit_policy(policy, skills_root)
+
+            self.assertEqual(errors_for(alertFiles=["evals/fixtures/records.md"]), [])
+            outside = errors_for(alertFiles=["SKILL.md"])
+            self.assertTrue(any("only cover files under evals/fixtures" in e for e in outside))
+            self.assertTrue(any("missing file" in e for e in errors_for(alertFiles=["evals/fixtures/gone.md"])))
+            self.assertTrue(any("exactly one" in e for e in errors_for()))
+            both = errors_for(alertFiles=["evals/fixtures/records.md"], issueCodes=["W011"])
+            self.assertTrue(any("exactly one" in e for e in both))
+
     def test_eval_manifest_requires_execution_coverage(self) -> None:
         with tempfile.TemporaryDirectory(dir=validate_repository.ROOT) as directory:
             skill_dir = Path(directory)

@@ -25,6 +25,8 @@ POLICY_PATH = ROOT / "skills-sh-audits.json"
 VALID_STATUSES = frozenset({"pass", "warn", "fail"})
 ISSUE_CODE_RE = re.compile(r"\b[A-Z]\d{3}\b")
 RISK_LEVEL_RE = re.compile(r"Risk Level:\s*(LOW|MEDIUM|HIGH|CRITICAL)\b", re.IGNORECASE)
+SEVERITIES = ("LOW", "MEDIUM", "HIGH", "CRITICAL")
+SOCKET_ALERT_RE = re.compile(r"\b(LOW|MEDIUM|HIGH|CRITICAL) Security (?:LOW|MEDIUM|HIGH|CRITICAL) (\S+)")
 
 
 class AuditCardParser(HTMLParser):
@@ -109,6 +111,18 @@ def audit_detail(html: str) -> tuple[set[str], str]:
     return codes, risk_match.group(1).lower()
 
 
+def socket_alerts(html: str) -> tuple[set[str], str]:
+    """Return the files a Socket audit flags and the highest alert severity."""
+    parser = VisibleTextParser()
+    parser.feed(html)
+    text = " ".join(" ".join(parser.parts).split())
+    alerts = SOCKET_ALERT_RE.findall(text)
+    if not alerts:
+        raise ValueError("Socket audit detail lists no alerts")
+    highest = max((severity for severity, _ in alerts), key=SEVERITIES.index)
+    return {path for _, path in alerts}, highest.lower()
+
+
 def exception_index(policy: dict[str, object]) -> dict[tuple[str, str], dict[str, object]]:
     exceptions = policy.get("exceptions")
     if not isinstance(exceptions, list):
@@ -185,14 +199,24 @@ def compare_detail(
     html: str,
     exception: dict[str, object],
 ) -> list[str]:
-    actual_codes, actual_risk = audit_detail(html)
-    configured_codes = exception.get("issueCodes")
-    expected_codes = set(configured_codes) if isinstance(configured_codes, list) else set()
+    """Compare one audit detail page with its reviewed exception.
+
+    Exceptions list either the provider's issue codes or, for Socket, the exact files its alerts flag.
+    """
+    if "alertFiles" in exception:
+        actual_codes, actual_risk = socket_alerts(html)
+        configured = exception.get("alertFiles")
+        label = "alert files"
+    else:
+        actual_codes, actual_risk = audit_detail(html)
+        configured = exception.get("issueCodes")
+        label = "issue codes"
+    expected_codes = set(configured) if isinstance(configured, list) else set()
     expected_risk = exception.get("riskLevel")
     messages: list[str] = []
     if actual_codes != expected_codes:
         messages.append(
-            f"{skill_name}/{provider}: expected issue codes {sorted(expected_codes)}, "
+            f"{skill_name}/{provider}: expected {label} {sorted(expected_codes)}, "
             f"found {sorted(actual_codes)}"
         )
     if actual_risk != expected_risk:

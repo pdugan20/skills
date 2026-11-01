@@ -80,6 +80,11 @@ environment-scoped review with bounded action permissions and synthetic evals.
 - Nineteen routing cases (ten positive, nine negative), including government UI work that should not
   trigger a policy audit.
 - No scripts, scanners, live customer fixtures, or copied standard text.
+- skills.sh's Socket audit raises one medium alert on
+  `evals/fixtures/records.md`, mistaking the synthetic overlay scenario the skill
+  must catch for repository behavior. `skills-sh-audits.json` records an exact
+  exception for that file only, owned by pdugan20 and due for review on
+  2027-01-31.
 
 ## Evaluation and completion evidence
 

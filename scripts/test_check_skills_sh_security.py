@@ -92,6 +92,26 @@ class CheckSkillsShSecurityTests(unittest.TestCase):
 
         self.assertTrue(any("expected issue codes ['W011']" in message for message in messages))
 
+    def test_socket_exceptions_match_the_exact_flagged_files(self) -> None:
+        reviewed = {**exception(), "provider": "socket", "alertFiles": ["evals/fixtures/records.md"]}
+        del reviewed["issueCodes"]
+        detail_html = (
+            "<p>1 alert found: Security</p><p>Security evals/fixtures/records.md</p>"
+            "<p><span>MEDIUM</span> Security <span>MEDIUM</span> evals/fixtures/records.md</p>"
+            "<p>The proposed overlay would send feedback to an unapproved destination.</p>"
+        )
+        self.assertEqual(
+            check_skills_sh_security.compare_detail("feature-spike", "socket", detail_html, reviewed), []
+        )
+        moved = detail_html.replace("evals/fixtures/records.md", "SKILL.md")
+        messages = check_skills_sh_security.compare_detail("feature-spike", "socket", moved, reviewed)
+        self.assertTrue(any("expected alert files" in message for message in messages))
+        escalated = detail_html.replace("<span>MEDIUM</span>", "<span>HIGH</span>")
+        messages = check_skills_sh_security.compare_detail("feature-spike", "socket", escalated, reviewed)
+        self.assertTrue(any("expected medium risk, found high" in message for message in messages))
+        with self.assertRaises(ValueError):
+            check_skills_sh_security.compare_detail("feature-spike", "socket", "<p>No alerts</p>", reviewed)
+
     def test_expired_exception_fails(self) -> None:
         reviewed = exception("2026-07-30")
         messages, detail_providers = check_skills_sh_security.compare_overview(

@@ -108,6 +108,11 @@ details remain outside this repository and its evals.
 
 ## Safety and boundaries
 
+skills.sh's Snyk audit still reports the same `W011` finding at medium risk
+that the reviewed exception covers. On 2026-11-01 the exception was renewed
+until 2027-01-31, after case 6 showed both with-skill and baseline runs treating
+embedded instructions as data, with and without isolation.
+
 - Use local, development, synthetic, anonymized, or otherwise safe data by
   default.
 - Never commit credentials, personal data, private responses, or production
