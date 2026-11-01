@@ -25,6 +25,10 @@ POLICY_PATH = ROOT / "skills-sh-audits.json"
 VALID_STATUSES = frozenset({"pass", "warn", "fail"})
 ISSUE_CODE_RE = re.compile(r"\b[A-Z]\d{3}\b")
 RISK_LEVEL_RE = re.compile(r"Risk Level:\s*(LOW|MEDIUM|HIGH|CRITICAL)\b", re.IGNORECASE)
+SEVERITIES = ("LOW", "MEDIUM", "HIGH", "CRITICAL")
+SOCKET_SECTION_RE = re.compile(r"\b(\d+) alerts? found:(.*?)\bAudit Metadata\b")
+SOCKET_ALERT_END_RE = re.compile(r"Confidence: \d+ ?% Severity: \d+ ?%")
+SOCKET_ALERT_HEADER_RE = re.compile(r"(\S+) (\S+) ([A-Z]+) \1 \3 \2(?: |$)")
 
 
 class AuditCardParser(HTMLParser):
@@ -109,6 +113,35 @@ def audit_detail(html: str) -> tuple[set[str], str]:
     return codes, risk_match.group(1).lower()
 
 
+def socket_alerts(html: str) -> tuple[set[str], str]:
+    """Return the files a Socket audit flags and the highest alert severity.
+
+    Only the alert list is read, each alert must have a recognized severity, and the parsed alerts must match
+    the count the page reports, so unfamiliar layouts and stray text fail closed instead of matching.
+    """
+    parser = VisibleTextParser()
+    parser.feed(html)
+    text = " ".join(" ".join(parser.parts).split())
+    section = SOCKET_SECTION_RE.search(text)
+    if section is None:
+        raise ValueError("Socket audit detail has no alert list")
+    expected = int(section.group(1))
+    chunks = SOCKET_ALERT_END_RE.split(section.group(2))
+    alerts: list[tuple[str, str]] = []
+    for chunk in chunks[:-1]:
+        header = SOCKET_ALERT_HEADER_RE.search(chunk.strip())
+        if header is None:
+            raise ValueError("Socket audit alert has no recognizable file and severity")
+        severity = header.group(3)
+        if severity not in SEVERITIES:
+            raise ValueError(f"Socket audit alert has unknown severity {severity}")
+        alerts.append((severity, header.group(2)))
+    if not alerts or len(alerts) != expected or chunks[-1].strip():
+        raise ValueError(f"Socket audit reports {expected} alerts but {len(alerts)} were parsed")
+    highest = max((severity for severity, _ in alerts), key=SEVERITIES.index)
+    return {path for _, path in alerts}, highest.lower()
+
+
 def exception_index(policy: dict[str, object]) -> dict[tuple[str, str], dict[str, object]]:
     exceptions = policy.get("exceptions")
     if not isinstance(exceptions, list):
@@ -185,14 +218,24 @@ def compare_detail(
     html: str,
     exception: dict[str, object],
 ) -> list[str]:
-    actual_codes, actual_risk = audit_detail(html)
-    configured_codes = exception.get("issueCodes")
-    expected_codes = set(configured_codes) if isinstance(configured_codes, list) else set()
+    """Compare one audit detail page with its reviewed exception.
+
+    Exceptions list either the provider's issue codes or, for Socket, the exact files its alerts flag.
+    """
+    if "alertFiles" in exception:
+        actual_codes, actual_risk = socket_alerts(html)
+        configured = exception.get("alertFiles")
+        label = "alert files"
+    else:
+        actual_codes, actual_risk = audit_detail(html)
+        configured = exception.get("issueCodes")
+        label = "issue codes"
+    expected_codes = set(configured) if isinstance(configured, list) else set()
     expected_risk = exception.get("riskLevel")
     messages: list[str] = []
     if actual_codes != expected_codes:
         messages.append(
-            f"{skill_name}/{provider}: expected issue codes {sorted(expected_codes)}, "
+            f"{skill_name}/{provider}: expected {label} {sorted(expected_codes)}, "
             f"found {sorted(actual_codes)}"
         )
     if actual_risk != expected_risk:

@@ -338,6 +338,10 @@ This assessment was last reviewed on 2026-10-31.
 - The daily skills.sh check requires every advertised provider to pass unless
   `skills-sh-audits.json` names the exact skill, provider, warning status, risk,
   and issue codes with a rationale, owner, upstream issue, and review deadline.
+  Socket alerts carry no issue codes, so a Socket exception lists the exact
+  flagged files instead, and validation accepts only files under the skill's
+  `evals/fixtures/`: a scanner may misread synthetic eval scenarios, but
+  never shipped instructions or code.
   A new provider, warning, failure, changed issue, expired exception, or stale
   exception fails the monitor. `W011` exceptions additionally require a runtime
   trust-boundary section in the distributed skill.

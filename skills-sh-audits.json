@@ -8,9 +8,31 @@
       "riskLevel": "medium",
       "issueCodes": ["W011"],
       "owner": "pdugan20",
-      "reviewBy": "2026-10-31",
+      "reviewBy": "2027-01-31",
       "rationale": "A feature description is an essential skill input. The skill now prevents user or inspected content from expanding the decision contract, secret access, external calls, or execution authority.",
       "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392"
+    },
+    {
+      "skill": "capture-feature",
+      "provider": "snyk",
+      "status": "warn",
+      "riskLevel": "medium",
+      "issueCodes": ["W011"],
+      "owner": "pdugan20",
+      "reviewBy": "2027-01-31",
+      "rationale": "Captured webpages and product text are essential capture inputs. The skill treats them as untrusted data that cannot authorize commands, credentials, uploads, external messages, or publication.",
+      "upstreamIssue": "https://github.com/snyk/agent-scan/issues/392"
+    },
+    {
+      "skill": "review-deployment-constraints",
+      "provider": "socket",
+      "status": "warn",
+      "riskLevel": "medium",
+      "alertFiles": ["evals/fixtures/records.md"],
+      "owner": "pdugan20",
+      "reviewBy": "2027-01-31",
+      "rationale": "The alert flags a synthetic eval fixture that describes the boundary violation the skill must find. No executable code ships; the scenario is test data, not repository behavior.",
+      "upstreamIssue": "https://www.skills.sh/pdugan20/skills/review-deployment-constraints/security/socket"
     }
   ]
 }

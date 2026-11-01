@@ -77,14 +77,20 @@ See the [candidate brief](skill-candidates/run-remote-dev-server.md).
 `SC-022` adds an unreleased pilot for lightweight, deterministic feature
 captures. Rune Playground supplies the first working implementation and failure
 evidence. Structural and behavioral evaluation remain before the skill can be
-called validated or released. See the [candidate brief](skill-candidates/capture-feature.md).
+called validated or released. skills.sh's Snyk audit reports `W011` (third-party
+content exposure, medium) for captured webpages; `skills-sh-audits.json` holds an
+exact exception owned by pdugan20 until 2027-01-31.
+See the [candidate brief](skill-candidates/capture-feature.md).
 
 `SC-021` adds an unreleased pilot for source-backed deployment-constraint review.
 Its customer policy reconciliation and owner confirmation remain incomplete;
 structural checks must not be presented as validated policy or behavioral lift.
 Paired synthetic benchmarks and transcript review found residual invented facts,
 unnecessary gates and incomplete outputs despite favorable scores on some cases.
-The skill remains advisory rather than an automatic release gate.
+The skill remains advisory rather than an automatic release gate. skills.sh's
+Socket audit raises one medium alert on the synthetic fixture
+`evals/fixtures/records.md`; `skills-sh-audits.json` holds an exception for that
+file only, owned by pdugan20 until 2027-01-31.
 See the [candidate brief](skill-candidates/review-deployment-constraints.md).
 
 These Patrick-owned skills are represented in the audit above so the inventory covers the complete recurring process instead of only net-new ideas:

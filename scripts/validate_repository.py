@@ -9,7 +9,7 @@ import json
 import re
 from collections.abc import Iterable, Mapping
 from datetime import date
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import TypeGuard
 
 from jsonschema import Draft202012Validator
@@ -375,6 +375,35 @@ def validate_skills_sh_config(config: Mapping[str, object]) -> list[str]:
     return errors
 
 
+def validate_alert_files(label: str, skill: object, alert_files: object, skills_root: Path) -> list[str]:
+    """Socket exceptions may only cover synthetic eval fixtures that exist in the skill."""
+    if (
+        not isinstance(alert_files, list)
+        or not alert_files
+        or any(not is_nonempty_string(path) for path in alert_files)
+    ):
+        return [f"{label}.alertFiles must list the flagged files"]
+    errors: list[str] = []
+    if len(alert_files) != len(set(alert_files)):
+        errors.append(f"{label}.alertFiles must be unique")
+    for path in alert_files:
+        relative = PurePosixPath(path)
+        if relative.is_absolute() or ".." in relative.parts or relative.parts[:2] != ("evals", "fixtures"):
+            errors.append(f"{label}.alertFiles may only cover files under evals/fixtures/: {path}")
+        elif isinstance(skill, str):
+            candidate = skills_root / skill / relative
+            linked = [
+                str(PurePosixPath(*relative.parts[: index + 1]))
+                for index in range(len(relative.parts))
+                if (skills_root / skill / PurePosixPath(*relative.parts[: index + 1])).is_symlink()
+            ]
+            if linked:
+                errors.append(f"{label}.alertFiles may not pass through symlinks: {path} ({linked[0]})")
+            elif not candidate.is_file():
+                errors.append(f"{label}.alertFiles names a missing file: {path}")
+    return errors
+
+
 def validate_skills_sh_audit_policy(
     config: dict[str, object], skills_root: Path | None = None
 ) -> list[str]:
@@ -417,7 +446,14 @@ def validate_skills_sh_audit_policy(
         if exception.get("riskLevel") not in AUDIT_RISK_LEVELS:
             errors.append(f"{label}.riskLevel is invalid")
         issue_codes = exception.get("issueCodes")
-        if (
+        alert_files = exception.get("alertFiles")
+        if ("issueCodes" in exception) == ("alertFiles" in exception):
+            errors.append(f"{label} must list exactly one of issueCodes or alertFiles")
+            issue_codes = []
+        elif "alertFiles" in exception:
+            issue_codes = []
+            errors.extend(validate_alert_files(label, skill, alert_files, skills_root))
+        elif (
             not isinstance(issue_codes, list)
             or not issue_codes
             or any(
