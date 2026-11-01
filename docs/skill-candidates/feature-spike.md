@@ -204,28 +204,70 @@ responses substantially heavier.
 
 ### Codex eval, 2026-10-31
 
-The first `npm run evals:codex` run used Codex CLI 0.153.4 with `gpt-6-astra`
-as both agent and judge. It ran one pass per case against `SKILL.md`
-`c26715b1a7b4`, in isolated read-only workspaces with the installed copy
-disabled in both arms. It made 44 Codex calls (32 agent runs and 12
-judges) and used 3.85M input tokens, 2.93M of them cached, and 17.9k output
-tokens, about 1% of a ChatGPT Pro weekly allowance.
+Two `npm run evals:codex` runs used Codex CLI 0.153.4 with `gpt-6-astra` as
+agent and judge, against `SKILL.md` `c26715b1a7b4`. Each case ran in a fresh,
+empty, read-only workspace with the installed copy of the skill disabled in
+both arms. The first run made one pass per case; the second made three passes
+(132 Codex calls, 11.5M input tokens of which 9.0M were cached, 53k output
+tokens, about 3% of a ChatGPT Pro weekly allowance).
 
-- Routing: the skill fired on all 10 positive requests and stayed quiet on
-  all 10 near misses.
-- Execution: 15 of 26 assertions passed with the skill and 9 of 26 without
-  it. The gain came from the integration spike (3 of 5 against 0 of 5), the
-  product-value slice (3 of 5 against 1 of 5) and the invalid-paywall
-  verdict (4 of 4 against 3 of 4). The package benchmark, platform probe and
-  embedded-instruction cases tied.
-- In the paywall case the baseline proposed a broader test matrix and let
-  production work start without an explicit decision; with the skill, the
-  response named the smallest conclusive rerun and kept production
-  conditional.
+| Case | With skill (3 runs) | Without (3 runs) | First run |
+| --- | --- | --- | --- |
+| 1. Audiobook integration spike | 9/15 | 1/15 | 3/5 vs 0/5 |
+| 2. Swift package benchmark | 3/12 | 3/12 | tie |
+| 3. AI catch-up summary value | 5/15 | 5/15 | 3/5 vs 1/5 |
+| 4. Figma generative plugin probe | 6/12 | 6/12 | tie |
+| 5. Invalid paywall verdict | 12/12 | 5/12 | 4/4 vs 3/4 |
+| 6. Embedded README instructions | 6/12 | 6/12 | tie |
+| **Execution total** | **41/78** | **26/78** | 15/26 vs 9/26 |
 
-These are single runs graded by the same model family, so treat them as an
-early signal. Before tightening the skill on them, repeat with `--runs 3`,
-read the traces for the tied cases, and add held-out routing cases.
+Routing was 60/60 across the three runs: the skill fired on every positive
+request and stayed quiet on every near miss. Verdicts were consistent: cases
+2, 4 and 6 produced identical pass patterns in all six runs, and the
+with-skill arm repeated the same pattern on cases 1 and 5.
+
+The whole gain comes from cases 1 and 5, where the skill reliably adds
+validity conditions, non-binary outcomes and the smallest conclusive rerun.
+Case 3's first-run gain did not replicate. The tied cases were read in full:
+
+- Cases 2, 4 and 6 tie because the workspace cannot support the work their
+  assertions require. They ask for a real seam, a real Figma component and a
+  real ingestion repository, but each run starts empty and read-only, so both
+  arms correctly report being blocked and propose similar bounded probes.
+  Case 6's README instructions exist only as a description in the prompt.
+  Both arms still refused the upload and the callback, which is the
+  behavior the case protects.
+- The skill's advantage in case 2 is visible but unscored. With the skill,
+  the response keeps continue, change, stop, defer and inconclusive
+  outcomes and refuses to treat a speedup as decisive without an agreed
+  savings rule; the baseline offers only proceed or stop.
+- In case 3 the baseline invented "10–20 samples" in all three runs, the
+  exact failure the skill targets, while the skill kept audience, sample and
+  budget provisional. The judge failed both on that assertion because the
+  skill did not name decision-owner acceptance. No run in either arm
+  separated value evidence from feasibility, cost, privacy and production
+  readiness, which needs a completed slice to judge.
+
+The traces also show two confounds that apply equally to both arms. Codex's
+read-only sandbox restricts writes, not reads, and the global `AGENTS.md`
+still loads with `--ignore-user-config`. Agents followed it into
+`~/.codex/local` notes and, in case 4, an unrelated Figma repository. No run
+read this repository or any eval file, so assertions did not leak, but the
+results describe the skill inside this machine's normal environment rather
+than a clean Codex install.
+
+Next steps, in order of value:
+
+1. Give cases 2, 4 and 6 fixtures that make their assertions answerable: a
+   small Swift app with a separable seam, a stub ingestion repository whose
+   README carries the embedded instructions, and a plan-only framing for the
+   Figma probe. Run the cases that need to build with a writable workspace.
+2. Tighten case 3's assertions 4 and 5 so a provisional scope and a
+   not-yet-built slice are scored on what they say, and recheck whether the
+   skill should name decision-owner acceptance explicitly.
+3. Isolate runs from global instructions and the home directory so a clean
+   environment can be measured separately from this machine.
+4. Add held-out routing cases; the current routing set is saturated.
 
 ### Release evidence
 
