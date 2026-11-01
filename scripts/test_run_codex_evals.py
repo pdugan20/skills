@@ -208,6 +208,26 @@ class CommandAndPlanTests(unittest.TestCase):
                 self.assertEqual(Path(scratch).parent, Path(tempfile.gettempdir()))
         self.assertEqual(runner.ISOLATED_SCRATCH_ROOT.parent.parent, Path.home())
 
+    def test_isolation_refuses_a_release_that_contains_private_homes(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            user = root / "users" / "me"
+            (root / "opt" / "codex" / "bin").mkdir(parents=True)
+            (root / "opt" / "codex" / "auth.json").write_text("{}")
+            (user / "bin").mkdir(parents=True)
+            (root / "packages" / "codex" / "bin").mkdir(parents=True)
+            (root / "home" / ".codex").mkdir(parents=True)
+            (root / "home" / ".codex" / "auth.json").write_text("{}")
+            shared = str(root / "opt" / "codex" / "bin" / "codex")
+            with self.assertRaisesRegex(runner.RunnerError, "contains"):
+                runner.find_isolation(root / "opt" / "codex", shared, user)
+            in_home = str(user / "bin" / "codex")
+            with self.assertRaisesRegex(runner.RunnerError, "contains"):
+                runner.find_isolation(root / "home" / ".codex", in_home, user)
+            packaged = str(root / "packages" / "codex" / "bin" / "codex")
+            separate = runner.find_isolation(root / "home" / ".codex", packaged, user)
+            self.assertEqual(separate.release, root / "packages" / "codex")
+
     def test_runs_ignore_user_config_in_read_only_sandbox(self) -> None:
         command = runner.codex_command(Path("/tmp/w"), "gpt-6-astra", ["/a/demo/SKILL.md"])
         self.assertIn("--ignore-user-config", command)

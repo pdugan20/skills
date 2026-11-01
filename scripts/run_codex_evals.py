@@ -92,17 +92,26 @@ class Isolation:
     global_instructions: Path
 
 
-def find_isolation(codex_home: Path | None = None) -> Isolation:
+def find_isolation(
+    codex_home: Path | None = None, binary_path: str | None = None, user_home: Path | None = None
+) -> Isolation:
     """Resolve the real codex binary and login.
 
-    Codex re-executes its own binary inside the sandbox, so the release directory must stay readable.
+    Codex re-executes its own binary inside the sandbox, so the release directory must stay readable. A release
+    directory that contains the real Codex home or the user's home would expose them, so that layout is refused.
     """
-    found = shutil.which("codex")
+    found = binary_path or shutil.which("codex")
     if not found:
         raise RunnerError("--isolated needs codex on PATH")
     binary = Path(found).resolve()
     release = binary.parent.parent if binary.parent.name == "bin" else binary.parent
-    home = codex_home or Path(os.environ.get("CODEX_HOME") or Path.home() / ".codex")
+    home = (codex_home or Path(os.environ.get("CODEX_HOME") or Path.home() / ".codex")).resolve()
+    for private in (home, (user_home or Path.home()).resolve()):
+        if private == release or release in private.parents:
+            raise RunnerError(
+                f"--isolated cannot run codex from {release}: the sandbox must read that directory, and it "
+                f"contains {private}. Install codex outside it first."
+            )
     auth = home / "auth.json"
     if not auth.is_file():
         raise RunnerError(f"--isolated needs a file-based ChatGPT login at {auth}; run codex login first")
