@@ -1,0 +1,28 @@
+{
+  "name": "Button/Primary",
+  "library": "Design System v4",
+  "properties": {
+    "Label": {
+      "type": "TEXT",
+      "default": "Continue"
+    },
+    "Icon": {
+      "type": "INSTANCE_SWAP",
+      "default": "Icon/ArrowRight"
+    },
+    "Size": {
+      "type": "VARIANT",
+      "values": ["Small", "Medium", "Large"]
+    }
+  },
+  "boundVariables": {
+    "fills": "Theme/Surface/Accent",
+    "strokes": "Theme/Border/Accent",
+    "text": "Theme/Text/OnAccent"
+  },
+  "variableCollection": {
+    "name": "Theme",
+    "source": "library",
+    "modes": ["Light", "Dark", "High contrast"]
+  }
+}

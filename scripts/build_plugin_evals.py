@@ -125,6 +125,8 @@ def scaffold_script(files: list[tuple[Path, PurePosixPath]]) -> str:
         lines.append(f"base64 --decode > {shlex.quote(str(target))} <<'{delimiter}'")
         lines.append(encoded)
         lines.append(delimiter)
+        if source.stat().st_mode & 0o111:
+            lines.append(f"chmod +x {shlex.quote(str(target))}")
     return "\n".join(lines) + "\n"
 
 
