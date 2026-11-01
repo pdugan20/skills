@@ -44,6 +44,7 @@ MAX_JUDGED_COMMANDS = 80
 MAX_JUDGED_COMMAND_CHARS = 60_000
 MAX_CHANGE_CHARS = 40_000
 WRITABLE_TAG = "writable"
+FLOOR_TAG = "floor"
 WORKSPACE_EXCLUDES = ".build/\n.swiftpm/\n__pycache__/\n*.pyc\n"
 JUDGE_TIMEOUT_SECONDS = 300
 GRADE_SCHEMA: dict[str, Any] = {
@@ -612,6 +613,7 @@ def execute(
         "case": run.case,
         "arm": run.arm,
         "attempt": run.attempt,
+        "tags": run.tags,
         "exit_code": exit_code,
         "sandbox": sandbox,
         "isolated": isolation is not None,
@@ -682,24 +684,31 @@ def execute(
     return result
 
 
-def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
-    summary: dict[str, Any] = {"execution": {}, "routing": {}}
+def score_arms(results: list[dict[str, Any]]) -> dict[str, Any]:
+    scores: dict[str, Any] = {}
     for arm in ("with-skill", "without-skill"):
-        graded = [
-            item["passed"]
-            for result in results
-            if result["arm"] == arm and "assertions" in result and not result.get("grade_error")
-            for item in result["assertions"]
-        ]
         runs = [result for result in results if result["arm"] == arm and "assertions" in result]
+        graded = [item["passed"] for result in runs if not result.get("grade_error") for item in result["assertions"]]
         if runs:
-            summary["execution"][arm] = {
+            scores[arm] = {
                 "runs": len(runs),
                 "graded_runs": sum(1 for result in runs if not result.get("grade_error")),
                 "assertions_passed": sum(graded),
                 "assertions_graded": len(graded),
                 "skill_fired_runs": sum(1 for result in runs if result["skill_fired"]),
             }
+    return scores
+
+
+def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
+    """Score execution arms, keeping cases tagged floor apart from the scores that measure the skill."""
+    floors = [result for result in results if FLOOR_TAG in result.get("tags", [])]
+    summary: dict[str, Any] = {
+        "execution": score_arms([result for result in results if FLOOR_TAG not in result.get("tags", [])]),
+        "routing": {},
+    }
+    if floors:
+        summary["floors"] = score_arms(floors)
     routing = [result for result in results if "should_trigger" in result]
     if routing:
         positives = [result for result in routing if result["should_trigger"]]

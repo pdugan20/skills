@@ -313,6 +313,14 @@ class CommandAndPlanTests(unittest.TestCase):
         self.assertEqual(summary["routing"]["negatives_quiet"], "0/1")
         self.assertEqual(summary["routing"]["misses"], ["routing-02"])
         self.assertEqual(summary["tokens"]["input"], 8)
+        self.assertNotIn("floors", summary)
+
+        floor = {"case": "execution-02", "arm": "without-skill", "attempt": 1, "skill_fired": False,
+                 "tags": ["adversarial", "floor"], "assertions": [{"passed": True}] * 4, "grade_error": None}
+        summary = runner.summarize([*results, floor])
+        self.assertEqual(summary["execution"]["without-skill"]["assertions_graded"], 2)
+        self.assertEqual(summary["floors"]["without-skill"]["assertions_passed"], 4)
+        self.assertNotIn("with-skill", summary["floors"])
 
 
 class BatchTests(unittest.TestCase):
