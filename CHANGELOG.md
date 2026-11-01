@@ -11,7 +11,8 @@ All notable changes to this project are documented in this file. The project fol
   profile that lets commands read only the workspace. The global `AGENTS.md`,
   user config and user skills never load, and the preflight fails if global
   instructions still reach the prompt. Runs keep using the real login through
-  a link, so token refreshes are preserved.
+  a link, so token refreshes write through, and the batch stops if Codex
+  ever replaces the link.
 
 - Added `npm run evals:codex`, a Codex eval harness that runs a skill's `evals.json`
   and `routing.json` through `codex exec --json` following OpenAI's published eval

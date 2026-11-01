@@ -181,44 +181,23 @@ class CommandAndPlanTests(unittest.TestCase):
             self.assertNotIn("-s", command)
             self.assertEqual(command[-1], "-")
 
-    def test_a_refreshed_login_is_written_back_to_the_real_file(self) -> None:
+    def test_a_replaced_login_link_stops_the_batch_without_touching_the_real_login(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             auth = root / "auth.json"
-            auth.write_text("old")
+            auth.write_text("real")
             isolation = runner.Isolation(Path("/c"), Path("/"), auth, root / "AGENTS.md")
             env = runner.isolated_env(isolation, root / "run", writable=False)
-            runner.restore_auth(isolation, env)
-            self.assertEqual(auth.read_text(), "old")
+            self.assertIsNone(runner.login_link_problem(env))
+            self.assertIsNone(runner.login_link_problem(None))
             linked = Path(env["CODEX_HOME"]) / "auth.json"
+            linked.write_text("written through")
+            self.assertEqual(auth.read_text(), "written through")
+            self.assertIsNone(runner.login_link_problem(env))
             linked.unlink()
-            linked.write_text("refreshed")
-            runner.restore_auth(isolation, env)
-            self.assertEqual(auth.read_text(), "refreshed")
-            self.assertEqual(auth.stat().st_mode & 0o777, 0o600)
-
-    def test_a_stale_refresh_never_replaces_a_newer_login(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            auth = root / "auth.json"
-            auth.write_text("original")
-            isolation = runner.Isolation(Path("/c"), Path("/"), auth, root / "AGENTS.md")
-            first = runner.isolated_env(isolation, root / "first", writable=False)
-            second = runner.isolated_env(isolation, root / "second", writable=False)
-            for env, token in ((first, "first refresh"), (second, "second refresh")):
-                linked = Path(env["CODEX_HOME"]) / "auth.json"
-                linked.unlink()
-                linked.write_text(token)
-            runner.restore_auth(isolation, first)
-            runner.restore_auth(isolation, second)
-            self.assertEqual(auth.read_text(), "first refresh")
-            later = runner.isolated_env(isolation, root / "later", writable=False)
-            auth.write_text("refreshed by the desktop app")
-            linked = Path(later["CODEX_HOME"]) / "auth.json"
-            linked.unlink()
-            linked.write_text("stale")
-            runner.restore_auth(isolation, later)
-            self.assertEqual(auth.read_text(), "refreshed by the desktop app")
+            linked.write_text("replaced")
+            self.assertEqual(runner.login_link_problem(env), runner.LOGIN_REPLACED)
+            self.assertEqual(auth.read_text(), "written through")
 
     def test_runs_ignore_user_config_in_read_only_sandbox(self) -> None:
         command = runner.codex_command(Path("/tmp/w"), "gpt-6-astra", ["/a/demo/SKILL.md"])

@@ -27,7 +27,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import threading
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -74,8 +73,10 @@ class RunnerError(Exception):
 
 
 ISOLATED_PROFILE = "eval-isolated"
-AUTH_ORIGIN = ".auth-origin.sha256"
-AUTH_LOCK = threading.Lock()
+LOGIN_REPLACED = (
+    "Codex replaced the isolated run's link to the real login, so a token refresh may not have reached "
+    "auth.json; check `codex login status` and sign in again if needed"
+)
 
 
 @dataclass(frozen=True)
@@ -121,37 +122,26 @@ def isolated_config(release: Path, writable: bool) -> str:
 def isolated_env(isolation: Isolation, scratch: Path, writable: bool) -> dict[str, str]:
     """Create a Codex home holding only this profile and a link to the real login, plus an empty home and temp dir.
 
-    The login is linked rather than copied so a token refresh during the run updates the real file.
+    The login is linked rather than copied so a token refresh during the run writes through to the real file.
     """
     codex_home, home, temp = scratch / "codex-home", scratch / "home", scratch / "tmp"
     for directory in (codex_home, home, temp):
         directory.mkdir(parents=True, exist_ok=True)
     (codex_home / "auth.json").symlink_to(isolation.auth)
-    (codex_home / AUTH_ORIGIN).write_text(hashlib.sha256(isolation.auth.read_bytes()).hexdigest(), encoding="utf-8")
     (codex_home / "config.toml").write_text(isolated_config(isolation.release, writable), encoding="utf-8")
     return {**os.environ, "CODEX_HOME": str(codex_home), "HOME": str(home), "TMPDIR": str(temp)}
 
 
-def restore_auth(isolation: Isolation, env: dict[str, str]) -> None:
-    """If Codex replaced the linked login with a refreshed copy, write the refresh back to the real login.
+def login_link_problem(env: dict[str, str] | None) -> str | None:
+    """Report when Codex replaced the login link instead of writing through it.
 
-    The write happens only while the real login is unchanged since this run started, so a stale copy from a
-    concurrent run, or from before the desktop app refreshed, never replaces a newer login.
+    The runner never writes to the real login itself: it cannot coordinate with the desktop app or another
+    runner, so any copy-back could overwrite a newer token. Stopping the batch lets the user check the login.
     """
-    codex_home = Path(env["CODEX_HOME"])
-    linked = codex_home / "auth.json"
-    if linked.is_symlink() or not linked.is_file():
-        return
-    origin = (codex_home / AUTH_ORIGIN).read_text(encoding="utf-8")
-    refreshed = linked.read_bytes()
-    with AUTH_LOCK:
-        current = isolation.auth.read_bytes()
-        if hashlib.sha256(current).hexdigest() != origin or refreshed == current:
-            return
-        staged = isolation.auth.with_name(f".auth.json.{secrets.token_hex(4)}")
-        staged.write_bytes(refreshed)
-        staged.chmod(0o600)
-        staged.replace(isolation.auth)
+    if env is None:
+        return None
+    linked = Path(env["CODEX_HOME"]) / "auth.json"
+    return None if linked.is_symlink() else LOGIN_REPLACED
 
 
 @dataclass
@@ -573,17 +563,14 @@ def execute(
         prompt = task_prompt(run.prompt, attached)
         sandbox = sandbox_for(run)
         env = isolated_env(isolation, Path(scratch) / "isolation", WRITABLE_TAG in run.tags) if isolation else None
-        try:
-            exit_code, lines = run_codex(
-                codex_command(workspace, model, disabled, sandbox=sandbox, isolation=isolation),
-                prompt,
-                run_dir / "events.jsonl",
-                AGENT_TIMEOUT_SECONDS,
-                env,
-            )
-        finally:
-            if isolation and env:
-                restore_auth(isolation, env)
+        exit_code, lines = run_codex(
+            codex_command(workspace, model, disabled, sandbox=sandbox, isolation=isolation),
+            prompt,
+            run_dir / "events.jsonl",
+            AGENT_TIMEOUT_SECONDS,
+            env,
+        )
+        login_problem = login_link_problem(env)
         changes = workspace_changes(workspace)
     (run_dir / "changes.diff").write_text(changes, encoding="utf-8")
     trace = parse_trace(lines, skill)
@@ -635,13 +622,10 @@ def execute(
                     trace.commands,
                     changes,
                 )
-                try:
-                    judge_exit, judge_lines = run_codex(
-                        command, grading, run_dir / "judge-events.jsonl", JUDGE_TIMEOUT_SECONDS, judge_env
-                    )
-                finally:
-                    if isolation and judge_env:
-                        restore_auth(isolation, judge_env)
+                judge_exit, judge_lines = run_codex(
+                    command, grading, run_dir / "judge-events.jsonl", JUDGE_TIMEOUT_SECONDS, judge_env
+                )
+                login_problem = login_problem or login_link_problem(judge_env)
                 judge_trace = parse_trace(judge_lines, skill)
                 result["judge_tokens"] = {
                     "input": judge_trace.input_tokens,
@@ -660,7 +644,7 @@ def execute(
             for index, text in enumerate(run.assertions)
         ]
         result["grade_error"] = grade.error
-    result["fatal"] = fatal(trace, judge_trace)
+    result["fatal"] = login_problem or fatal(trace, judge_trace)
     return result
 
 
