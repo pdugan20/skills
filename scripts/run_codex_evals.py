@@ -6,6 +6,11 @@ fresh workspace through codex exec --json, routing cases are scored from the
 recorded trace, and execution assertions are graded by a separate Codex run
 constrained by --output-schema. Every run uses the caller's ChatGPT login with
 user configuration ignored, so no proxy or account pool is involved.
+
+With --isolated, each agent and judge run also gets a throwaway Codex home,
+user home and temp directory, and a permission profile whose commands can read
+only the workspace and the platform's minimal runtime paths. The global
+AGENTS.md, user skills and the rest of the home directory are then out of reach.
 """
 
 from __future__ import annotations
@@ -39,6 +44,7 @@ MAX_JUDGED_COMMANDS = 80
 MAX_JUDGED_COMMAND_CHARS = 60_000
 MAX_CHANGE_CHARS = 40_000
 WRITABLE_TAG = "writable"
+FLOOR_TAG = "floor"
 WORKSPACE_EXCLUDES = ".build/\n.swiftpm/\n__pycache__/\n*.pyc\n"
 JUDGE_TIMEOUT_SECONDS = 300
 GRADE_SCHEMA: dict[str, Any] = {
@@ -65,6 +71,111 @@ GRADE_SCHEMA: dict[str, Any] = {
 
 class RunnerError(Exception):
     """Raised when a run cannot start safely or Codex reports a fatal error."""
+
+
+ISOLATED_PROFILE = "eval-isolated"
+ISOLATED_SCRATCH_ROOT = Path.home() / ".cache" / "codex-evals"
+PROTECTED_WORKSPACE_PATHS = (".git", ".agents", ".codex")
+SAFE_GIT = ["git", "-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", "--no-pager"]
+LOGIN_REPLACED = (
+    "Codex replaced the isolated run's link to the real login, so a token refresh may not have reached "
+    "auth.json; check `codex login status` and sign in again if needed"
+)
+
+
+@dataclass(frozen=True)
+class Isolation:
+    """Where the real Codex binary and login live, for building isolated run environments."""
+
+    binary: Path
+    release: Path
+    auth: Path
+    global_instructions: Path
+
+
+def find_isolation(
+    codex_home: Path | None = None, binary_path: str | None = None, user_home: Path | None = None
+) -> Isolation:
+    """Resolve the real codex binary and login.
+
+    Codex re-executes its own binary inside the sandbox, so the release directory must stay readable. A release
+    directory that contains the real Codex home or the user's home would expose them, so that layout is refused.
+    """
+    found = binary_path or shutil.which("codex")
+    if not found:
+        raise RunnerError("--isolated needs codex on PATH")
+    binary = Path(found).resolve()
+    release = binary.parent.parent if binary.parent.name == "bin" else binary.parent
+    home = (codex_home or Path(os.environ.get("CODEX_HOME") or Path.home() / ".codex")).resolve()
+    for private in (home, (user_home or Path.home()).resolve()):
+        if private == release or release in private.parents:
+            raise RunnerError(
+                f"--isolated cannot run codex from {release}: the sandbox must read that directory, and it "
+                f"contains {private}. Install codex outside it first."
+            )
+    auth = home / "auth.json"
+    if not auth.is_file():
+        raise RunnerError(f"--isolated needs a file-based ChatGPT login at {auth}; run codex login first")
+    return Isolation(binary, release, auth, home / "AGENTS.md")
+
+
+def isolated_config(release: Path, writable: bool) -> str:
+    """Build the isolated permission profile.
+
+    Writable runs still keep .git, .agents and .codex read-only, as Codex's built-in workspace profile does, so
+    eval content cannot plant Git config or alter the installed skill.
+    """
+    access = "write" if writable else "read"
+    protected = "".join(f'"{name}" = "read"\n' for name in PROTECTED_WORKSPACE_PATHS) if writable else ""
+    return (
+        f'default_permissions = "{ISOLATED_PROFILE}"\n\n'
+        f"[permissions.{ISOLATED_PROFILE}.filesystem]\n"
+        '":minimal" = "read"\n'
+        '":tmpdir" = "write"\n'
+        f"{json.dumps(str(release))} = \"read\"\n\n"
+        f'[permissions.{ISOLATED_PROFILE}.filesystem.":workspace_roots"]\n'
+        f'"." = "{access}"\n'
+        f"{protected}"
+    )
+
+
+def isolated_env(isolation: Isolation, scratch: Path, writable: bool) -> dict[str, str]:
+    """Create a Codex home holding only this profile and a link to the real login, plus an empty home and temp dir.
+
+    The login is linked rather than copied so a token refresh during the run writes through to the real file.
+    """
+    codex_home, home, temp = scratch / "codex-home", scratch / "home", scratch / "tmp"
+    for directory in (codex_home, home, temp):
+        directory.mkdir(parents=True, exist_ok=True)
+    (codex_home / "auth.json").symlink_to(isolation.auth)
+    (codex_home / "config.toml").write_text(isolated_config(isolation.release, writable), encoding="utf-8")
+    return {**os.environ, "CODEX_HOME": str(codex_home), "HOME": str(home), "TMPDIR": str(temp)}
+
+
+def login_link_problem(env: dict[str, str] | None) -> str | None:
+    """Report when Codex replaced the login link instead of writing through it.
+
+    The runner never writes to the real login itself: it cannot coordinate with the desktop app or another
+    runner, so any copy-back could overwrite a newer token. Stopping the batch lets the user check the login.
+    """
+    if env is None:
+        return None
+    linked = Path(env["CODEX_HOME"]) / "auth.json"
+    return None if linked.is_symlink() else LOGIN_REPLACED
+
+
+def scratch_dir(
+    prefix: str, isolation: Isolation | None, root: Path = ISOLATED_SCRATCH_ROOT
+) -> tempfile.TemporaryDirectory[str]:
+    """Create a run's scratch directory.
+
+    Isolated runs keep it under the user's home, which their profile cannot read, because the platform's minimal
+    read paths can include a shared /tmp where concurrent runs would otherwise see each other's workspaces.
+    """
+    if isolation is None:
+        return tempfile.TemporaryDirectory(prefix=prefix)
+    root.mkdir(mode=0o700, parents=True, exist_ok=True)
+    return tempfile.TemporaryDirectory(prefix=prefix, dir=root)
 
 
 @dataclass
@@ -156,8 +267,24 @@ def codex_command(
     disabled: list[str],
     extra: list[str] | None = None,
     sandbox: str = "read-only",
+    isolation: Isolation | None = None,
 ) -> list[str]:
     """Build a codex exec command that reads its prompt from stdin, so prompt size is not bound by argv limits."""
+    if isolation is not None:
+        # The isolated Codex home supplies the permission profile, which cannot be combined with --sandbox.
+        return [
+            str(isolation.binary),
+            "exec",
+            "--ephemeral",
+            "--skip-git-repo-check",
+            "-m",
+            model,
+            "--json",
+            "-C",
+            str(workspace),
+            *(extra or []),
+            "-",
+        ]
     return [
         "codex",
         "exec",
@@ -209,13 +336,14 @@ def prepare_workspace(
 
 
 def git_output(workspace: Path, *args: str) -> str:
-    return subprocess.run(["git", *args], cwd=workspace, capture_output=True, text=True, check=False).stdout
+    """Run git in an eval workspace without any command hooks that workspace content could configure."""
+    return subprocess.run([*SAFE_GIT, *args], cwd=workspace, capture_output=True, text=True, check=False).stdout
 
 
 def workspace_changes(workspace: Path) -> str:
     """Summarize what the agent changed since the initial commit, including new files."""
     git_output(workspace, "add", "--all", "--intent-to-add")
-    diff = git_output(workspace, "diff", "--stat", "--patch", "HEAD")
+    diff = git_output(workspace, "diff", "--no-ext-diff", "--no-textconv", "--stat", "--patch", "HEAD")
     if len(diff) > MAX_CHANGE_CHARS:
         diff = diff[:MAX_CHANGE_CHARS] + f"\n[truncated after {MAX_CHANGE_CHARS} characters]"
     return diff
@@ -324,11 +452,13 @@ def parse_grade(raw: str, count: int) -> Grade:
     return Grade([bool(entry["passed"]) for entry in ordered], [str(entry["reason"]) for entry in ordered])
 
 
-def run_codex(command: list[str], prompt: str, events_path: Path, timeout: int) -> tuple[int, list[str]]:
+def run_codex(
+    command: list[str], prompt: str, events_path: Path, timeout: int, env: dict[str, str] | None = None
+) -> tuple[int, list[str]]:
     events_path.parent.mkdir(parents=True, exist_ok=True)
     try:
         result = subprocess.run(
-            command, input=prompt, capture_output=True, text=True, timeout=timeout, check=False
+            command, input=prompt, capture_output=True, text=True, timeout=timeout, check=False, env=env
         )
     except subprocess.TimeoutExpired as error:
         stdout = error.stdout.decode() if isinstance(error.stdout, bytes) else (error.stdout or "")
@@ -353,21 +483,27 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def preflight(workspace: Path, skill: str, disabled: list[str], expect_visible: bool) -> None:
-    """Check skill visibility in the model-visible prompt without calling a model."""
-    result = subprocess.run(
-        ["codex", "debug", "prompt-input", *skills_config_override(disabled), "hi"],
-        cwd=workspace,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
+def preflight(
+    workspace: Path, skill: str, disabled: list[str], expect_visible: bool, isolation: Isolation | None = None
+) -> None:
+    """Check skill visibility, and with isolation the absence of global instructions, without calling a model."""
+    env = None
+    command = ["codex", "debug", "prompt-input", *skills_config_override(disabled), "hi"]
+    if isolation is not None:
+        env = isolated_env(isolation, workspace.parent / "isolation", writable=False)
+        command = [str(isolation.binary), "debug", "prompt-input", "hi"]
+    result = subprocess.run(command, cwd=workspace, capture_output=True, text=True, check=False, env=env)
     visible = re.findall(re.escape(skill) + r"/SKILL\.md", result.stdout)
     if result.returncode != 0 or (len(visible) == 1) != expect_visible or len(visible) > 1:
         raise RunnerError(
             f"preflight: expected {skill} {'once' if expect_visible else 'not at all'} in the prompt, "
             f"found {len(visible)} (exit {result.returncode})"
         )
+    if isolation is not None and isolation.global_instructions.is_file():
+        lines = isolation.global_instructions.read_text(encoding="utf-8").splitlines()
+        marker = next((line.strip() for line in lines if line.strip()), "")
+        if marker and json.dumps(marker)[1:-1] in result.stdout:
+            raise RunnerError("preflight: the global AGENTS.md still reaches the isolated prompt")
 
 
 @dataclass
@@ -446,21 +582,30 @@ def codex_calls(planned: list[PlannedRun]) -> int:
 
 
 def execute(
-    run: PlannedRun, skill_dir: Path, output: Path, model: str, judge_model: str, disabled: list[str]
+    run: PlannedRun,
+    skill_dir: Path,
+    output: Path,
+    model: str,
+    judge_model: str,
+    disabled: list[str],
+    isolation: Isolation | None = None,
 ) -> dict[str, Any]:
     skill = skill_dir.name
     run_dir = output / "runs" / run.case / f"{run.arm}-{run.attempt}"
-    with tempfile.TemporaryDirectory(prefix=f"codex-eval-{skill}-") as scratch:
+    with scratch_dir(f"codex-eval-{skill}-", isolation) as scratch:
         workspace = Path(scratch) / "workspace"
         attached = prepare_workspace(workspace, skill_dir, run.files, run.arm == "with-skill")
         prompt = task_prompt(run.prompt, attached)
         sandbox = sandbox_for(run)
+        env = isolated_env(isolation, Path(scratch) / "isolation", WRITABLE_TAG in run.tags) if isolation else None
         exit_code, lines = run_codex(
-            codex_command(workspace, model, disabled, sandbox=sandbox),
+            codex_command(workspace, model, disabled, sandbox=sandbox, isolation=isolation),
             prompt,
             run_dir / "events.jsonl",
             AGENT_TIMEOUT_SECONDS,
+            env,
         )
+        login_problem = login_link_problem(env)
         changes = workspace_changes(workspace)
     (run_dir / "changes.diff").write_text(changes, encoding="utf-8")
     trace = parse_trace(lines, skill)
@@ -468,8 +613,10 @@ def execute(
         "case": run.case,
         "arm": run.arm,
         "attempt": run.attempt,
+        "tags": run.tags,
         "exit_code": exit_code,
         "sandbox": sandbox,
+        "isolated": isolation is not None,
         "skill_fired": trace.skill_fired,
         "tokens": {
             "input": trace.input_tokens,
@@ -487,14 +634,21 @@ def execute(
         if exit_code != 0 or not trace.final_message:
             grade = Grade([], [], f"agent run failed with exit {exit_code}")
         else:
-            with tempfile.TemporaryDirectory(prefix="codex-eval-judge-") as scratch:
+            with scratch_dir("codex-eval-judge-", isolation) as scratch:
                 judge_dir = Path(scratch)
                 schema_path = judge_dir / "grade.schema.json"
                 schema_path.write_text(json.dumps(GRADE_SCHEMA), encoding="utf-8")
                 grade_path = judge_dir / "grade.json"
+                judge_workspace = judge_dir / "workspace"
+                judge_workspace.mkdir()
                 command = codex_command(
-                    judge_dir, judge_model, [], ["--output-schema", str(schema_path), "-o", str(grade_path)]
+                    judge_workspace,
+                    judge_model,
+                    [],
+                    ["--output-schema", str(schema_path), "-o", str(grade_path)],
+                    isolation=isolation,
                 )
+                judge_env = isolated_env(isolation, judge_dir / "isolation", writable=False) if isolation else None
                 grading = judge_prompt(
                     prompt,
                     run.expected,
@@ -505,8 +659,9 @@ def execute(
                     changes,
                 )
                 judge_exit, judge_lines = run_codex(
-                    command, grading, run_dir / "judge-events.jsonl", JUDGE_TIMEOUT_SECONDS
+                    command, grading, run_dir / "judge-events.jsonl", JUDGE_TIMEOUT_SECONDS, judge_env
                 )
+                login_problem = login_problem or login_link_problem(judge_env)
                 judge_trace = parse_trace(judge_lines, skill)
                 result["judge_tokens"] = {
                     "input": judge_trace.input_tokens,
@@ -525,28 +680,35 @@ def execute(
             for index, text in enumerate(run.assertions)
         ]
         result["grade_error"] = grade.error
-    result["fatal"] = fatal(trace, judge_trace)
+    result["fatal"] = login_problem or fatal(trace, judge_trace)
     return result
 
 
-def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
-    summary: dict[str, Any] = {"execution": {}, "routing": {}}
+def score_arms(results: list[dict[str, Any]]) -> dict[str, Any]:
+    scores: dict[str, Any] = {}
     for arm in ("with-skill", "without-skill"):
-        graded = [
-            item["passed"]
-            for result in results
-            if result["arm"] == arm and "assertions" in result and not result.get("grade_error")
-            for item in result["assertions"]
-        ]
         runs = [result for result in results if result["arm"] == arm and "assertions" in result]
+        graded = [item["passed"] for result in runs if not result.get("grade_error") for item in result["assertions"]]
         if runs:
-            summary["execution"][arm] = {
+            scores[arm] = {
                 "runs": len(runs),
                 "graded_runs": sum(1 for result in runs if not result.get("grade_error")),
                 "assertions_passed": sum(graded),
                 "assertions_graded": len(graded),
                 "skill_fired_runs": sum(1 for result in runs if result["skill_fired"]),
             }
+    return scores
+
+
+def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
+    """Score execution arms, keeping cases tagged floor apart from the scores that measure the skill."""
+    floors = [result for result in results if FLOOR_TAG in result.get("tags", [])]
+    summary: dict[str, Any] = {
+        "execution": score_arms([result for result in results if FLOOR_TAG not in result.get("tags", [])]),
+        "routing": {},
+    }
+    if floors:
+        summary["floors"] = score_arms(floors)
     routing = [result for result in results if "should_trigger" in result]
     if routing:
         positives = [result for result in routing if result["should_trigger"]]
@@ -614,6 +776,11 @@ def main(argv: list[str] | None = None) -> int:
         help="results directory (default: agent-skills-workspace/codex-runs/<skill>-<time>)",
     )
     parser.add_argument("--dry-run", action="store_true", help="plan and preflight without calling a model")
+    parser.add_argument(
+        "--isolated",
+        action="store_true",
+        help="give every run a throwaway Codex home and user home, and let commands read only the workspace",
+    )
     args = parser.parse_args(argv)
 
     skill_dir = ROOT / "skills" / args.skill
@@ -634,17 +801,21 @@ def main(argv: list[str] | None = None) -> int:
     if calls > args.max_runs:
         print(f"ERROR: plan needs {calls} codex exec calls, above --max-runs {args.max_runs}", file=sys.stderr)
         return 1
-    disabled = installed_skill_files(args.skill)
     try:
+        isolation = find_isolation() if args.isolated else None
+        disabled = [] if isolation else installed_skill_files(args.skill)
         for arm in sorted({run.arm for run in planned}):
-            with tempfile.TemporaryDirectory(prefix="codex-eval-preflight-") as scratch:
+            with scratch_dir("codex-eval-preflight-", isolation) as scratch:
                 workspace = Path(scratch) / "workspace"
                 prepare_workspace(workspace, skill_dir, [], arm == "with-skill")
-                preflight(workspace, args.skill, disabled, arm == "with-skill")
+                preflight(workspace, args.skill, disabled, arm == "with-skill", isolation)
     except (RunnerError, ConversionError) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 1
-    print(f"Plan: {len(planned)} agent runs, {calls} codex exec calls; disabled installed copies: {disabled or 'none'}")
+    scope = "isolated from user config, instructions and home" if isolation else (
+        f"disabled installed copies: {disabled or 'none'}"
+    )
+    print(f"Plan: {len(planned)} agent runs, {calls} codex exec calls; {scope}")
     if args.dry_run:
         return 0
 
@@ -654,7 +825,7 @@ def main(argv: list[str] | None = None) -> int:
     version = subprocess.run(["codex", "--version"], capture_output=True, text=True, check=False).stdout.strip()
     results = run_all(
         planned,
-        lambda run: execute(run, skill_dir, output, args.model, args.judge_model, disabled),
+        lambda run: execute(run, skill_dir, output, args.model, args.judge_model, disabled, isolation),
         args.jobs,
     )
     results.sort(key=lambda item: (item["case"], item["arm"], item["attempt"]))
@@ -667,6 +838,7 @@ def main(argv: list[str] | None = None) -> int:
         "codex_version": version,
         "model": args.model,
         "judge_model": args.judge_model,
+        "isolated": isolation is not None,
         "runs_per_case": args.runs,
         "planned_calls": calls,
         "completed_runs": len(results),

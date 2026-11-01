@@ -4,7 +4,17 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+## [3.5.0] - 2026-11-01
+
 ### Added
+
+- Added `--isolated` to `npm run evals:codex`. Each agent and judge run gets
+  a throwaway Codex home, user home and temp directory, and a permission
+  profile that lets commands read only the workspace. The global `AGENTS.md`,
+  user config and user skills never load, and the preflight fails if global
+  instructions still reach the prompt. Runs keep using the real login through
+  a link, so token refreshes write through, and the batch stops if Codex
+  ever replaces the link.
 
 - Added `npm run evals:codex`, a Codex eval harness that runs a skill's `evals.json`
   and `routing.json` through `codex exec --json` following OpenAI's published eval
@@ -25,17 +35,24 @@ All notable changes to this project are documented in this file. The project fol
   for material-aware brush reveals, transparent compositing, shared playback
   controls and restrained ambient motion, grounded in the Ichiro/Rainier work.
 
-- Added an unreleased pilot of
+- Added a pilot of
   [`capture-feature`](skills/capture-feature/SKILL.md) for deterministic,
   repository-native feature recordings with Slack-ready review bundles,
   provenance and optional authorized Figma publication.
-- Added an unreleased pilot of
+- Added a pilot of
   [`review-deployment-constraints`](skills/review-deployment-constraints/SKILL.md)
   for source-backed proposal review and requirements inventories, with scoped
   findings, explicit uncertainty, synthetic execution cases and routing coverage.
   Customer requirements and authorization packages remain in their internal homes.
 
 ### Changed
+
+- Measured [`feature-spike`](skills/feature-spike/SKILL.md) in an isolated
+  environment: 61/72 measured assertions with the skill against 30/72 without,
+  20/20 routing, and 8/8 on eight new held-out routing cases. Execution case 3's
+  scope and handoff assertions now score what a plan-only response can say,
+  and case 6 carries a new `floor` tag that the Codex runner reports apart
+  from the totals measuring the skill.
 
 - Gave [`feature-spike`](skills/feature-spike/SKILL.md) execution cases 2, 4
   and 6 realistic fixtures: a buildable SwiftPM budgeting app for the package
@@ -103,7 +120,6 @@ All notable changes to this project are documented in this file. The project fol
   and both patch joins; retain provisional status after partial acceptance. Added
   execution/routing specifications, including generated-metadata pressure.
 
-
 - Made [`repair-photographic-assets`](skills/repair-photographic-assets/SKILL.md)
   resolve the user's actual prior runner/provider workflow before tool selection
   or new guard implementation. Added read-only PNG preflight and protected-pixel
@@ -129,6 +145,19 @@ All notable changes to this project are documented in this file. The project fol
   evals for procedural SVG substitution and repeated unusable art studies.
 - Recorded `run-remote-dev-server` as released after its v3.4.0 archive, downstream
   Agent Tooling pin, and canonical machine installation passed verification.
+
+### Security
+
+- Reviewed the skills.sh security audits. The unchanged `feature-spike` Snyk
+  `W011` exception is renewed until 2027-01-31, `capture-feature` gains an
+  exact Snyk `W011` exception for captured webpages, and
+  `review-deployment-constraints` gains a Socket exception limited to the
+  synthetic fixture `evals/fixtures/records.md`. The security check now parses
+  Socket alerts and fails closed on unfamiliar layouts, and Socket exceptions
+  may only name existing files under a skill's `evals/fixtures/`.
+- The Codex eval runner's own Git calls disable external diff, textconv,
+  hook and fsmonitor commands, so workspace content cannot run code through
+  the post-run diff.
 
 ## [3.4.0] - 2026-09-21
 
@@ -431,7 +460,9 @@ All notable changes to this project are documented in this file. The project fol
 - Claude Code and Codex plugin manifests backed by one canonical skill tree.
 - Skills CLI metadata, repository validation, spelling checks, workflow-security analysis, scheduled link validation, and automated release checks.
 
-[unreleased]: https://github.com/pdugan20/skills/compare/v3.3.0...HEAD
+[unreleased]: https://github.com/pdugan20/skills/compare/v3.5.0...HEAD
+[3.5.0]: https://github.com/pdugan20/skills/compare/v3.4.0...v3.5.0
+[3.4.0]: https://github.com/pdugan20/skills/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/pdugan20/skills/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/pdugan20/skills/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/pdugan20/skills/compare/v3.0.0...v3.1.0

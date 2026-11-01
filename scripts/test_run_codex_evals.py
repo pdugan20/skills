@@ -5,9 +5,11 @@ from __future__ import annotations
 
 import io
 import json
+import subprocess
 import sys
 import tempfile
 import threading
+import tomllib
 import unittest
 import unittest.mock
 from contextlib import redirect_stderr, redirect_stdout
@@ -153,6 +155,79 @@ class WorkspaceTests(unittest.TestCase):
 
 
 class CommandAndPlanTests(unittest.TestCase):
+    def test_isolated_runs_use_their_own_home_and_profile(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "real").mkdir()
+            auth = root / "real" / "auth.json"
+            auth.write_text("{}")
+            isolation = runner.Isolation(Path("/opt/codex/bin/codex"), Path("/opt/codex"), auth, root / "AGENTS.md")
+            env = runner.isolated_env(isolation, root / "run", writable=False)
+            codex_home = Path(env["CODEX_HOME"])
+            self.assertEqual((codex_home / "auth.json").resolve(), auth.resolve())
+            self.assertEqual(Path(env["HOME"]), root / "run" / "home")
+            self.assertEqual(Path(env["TMPDIR"]), root / "run" / "tmp")
+            config = tomllib.loads((codex_home / "config.toml").read_text())
+            profile = config["permissions"][config["default_permissions"]]["filesystem"]
+            self.assertEqual(profile[":minimal"], "read")
+            self.assertEqual(profile["/opt/codex"], "read")
+            self.assertEqual(profile[":workspace_roots"], {".": "read"})
+            self.assertNotIn(":root", profile)
+            command = runner.codex_command(root, "m", [], isolation=isolation)
+            self.assertEqual(command[0], "/opt/codex/bin/codex")
+            self.assertNotIn("--ignore-user-config", command)
+            self.assertNotIn("-s", command)
+            self.assertEqual(command[-1], "-")
+
+    def test_a_replaced_login_link_stops_the_batch_without_touching_the_real_login(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            auth = root / "auth.json"
+            auth.write_text("real")
+            isolation = runner.Isolation(Path("/c"), Path("/"), auth, root / "AGENTS.md")
+            env = runner.isolated_env(isolation, root / "run", writable=False)
+            self.assertIsNone(runner.login_link_problem(env))
+            self.assertIsNone(runner.login_link_problem(None))
+            linked = Path(env["CODEX_HOME"]) / "auth.json"
+            linked.write_text("written through")
+            self.assertEqual(auth.read_text(), "written through")
+            self.assertIsNone(runner.login_link_problem(env))
+            linked.unlink()
+            linked.write_text("replaced")
+            self.assertEqual(runner.login_link_problem(env), runner.LOGIN_REPLACED)
+            self.assertEqual(auth.read_text(), "written through")
+
+    def test_isolated_scratch_stays_out_of_shared_temp(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "home-cache"
+            isolation = runner.Isolation(Path("/c"), Path("/"), Path(directory) / "auth.json", Path("/x"))
+            with runner.scratch_dir("run-", isolation, root) as scratch:
+                self.assertEqual(Path(scratch).parent, root)
+                self.assertEqual(root.stat().st_mode & 0o777, 0o700)
+            with runner.scratch_dir("run-", None, root) as scratch:
+                self.assertEqual(Path(scratch).parent, Path(tempfile.gettempdir()))
+        self.assertEqual(runner.ISOLATED_SCRATCH_ROOT.parent.parent, Path.home())
+
+    def test_isolation_refuses_a_release_that_contains_private_homes(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            user = root / "users" / "me"
+            (root / "opt" / "codex" / "bin").mkdir(parents=True)
+            (root / "opt" / "codex" / "auth.json").write_text("{}")
+            (user / "bin").mkdir(parents=True)
+            (root / "packages" / "codex" / "bin").mkdir(parents=True)
+            (root / "home" / ".codex").mkdir(parents=True)
+            (root / "home" / ".codex" / "auth.json").write_text("{}")
+            shared = str(root / "opt" / "codex" / "bin" / "codex")
+            with self.assertRaisesRegex(runner.RunnerError, "contains"):
+                runner.find_isolation(root / "opt" / "codex", shared, user)
+            in_home = str(user / "bin" / "codex")
+            with self.assertRaisesRegex(runner.RunnerError, "contains"):
+                runner.find_isolation(root / "home" / ".codex", in_home, user)
+            packaged = str(root / "packages" / "codex" / "bin" / "codex")
+            separate = runner.find_isolation(root / "home" / ".codex", packaged, user)
+            self.assertEqual(separate.release, root / "packages" / "codex")
+
     def test_runs_ignore_user_config_in_read_only_sandbox(self) -> None:
         command = runner.codex_command(Path("/tmp/w"), "gpt-6-astra", ["/a/demo/SKILL.md"])
         self.assertIn("--ignore-user-config", command)
@@ -238,6 +313,14 @@ class CommandAndPlanTests(unittest.TestCase):
         self.assertEqual(summary["routing"]["negatives_quiet"], "0/1")
         self.assertEqual(summary["routing"]["misses"], ["routing-02"])
         self.assertEqual(summary["tokens"]["input"], 8)
+        self.assertNotIn("floors", summary)
+
+        floor = {"case": "execution-02", "arm": "without-skill", "attempt": 1, "skill_fired": False,
+                 "tags": ["adversarial", "floor"], "assertions": [{"passed": True}] * 4, "grade_error": None}
+        summary = runner.summarize([*results, floor])
+        self.assertEqual(summary["execution"]["without-skill"]["assertions_graded"], 2)
+        self.assertEqual(summary["floors"]["without-skill"]["assertions_passed"], 4)
+        self.assertNotIn("with-skill", summary["floors"])
 
 
 class BatchTests(unittest.TestCase):
@@ -294,6 +377,33 @@ class WorkspaceChangeTests(unittest.TestCase):
         self.assertIn("app/Spike.md", changes)
         self.assertIn("+findings", changes)
         self.assertNotIn(".build", changes)
+
+    def test_diff_capture_ignores_commands_planted_in_workspace_git_config(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            skill_dir = root / "skills" / "demo"
+            (skill_dir / "evals" / "fixtures").mkdir(parents=True)
+            (skill_dir / "SKILL.md").write_text("---\nname: demo\n---\n")
+            (skill_dir / "evals" / "fixtures" / "notes.md").write_text("one\n")
+            workspace = root / "workspace"
+            runner.prepare_workspace(workspace, skill_dir, ["evals/fixtures/notes.md"], False)
+            planted = root / "planted"
+            for key, value in (
+                ("diff.evil.command", f"touch {planted}-diff"),
+                ("diff.evil.textconv", f"touch {planted}-textconv; cat"),
+                ("core.fsmonitor", f"touch {planted}-fsmonitor"),
+            ):
+                subprocess.run(["git", "config", key, value], cwd=workspace, check=True)
+            (workspace / ".gitattributes").write_text("* diff=evil\n")
+            (workspace / "notes.md").write_text("two\n")
+            changes = runner.workspace_changes(workspace)
+            self.assertEqual(sorted(path.name for path in root.glob("planted*")), [])
+        self.assertIn("+two", changes)
+
+    def test_writable_isolated_runs_keep_git_and_skill_metadata_read_only(self) -> None:
+        rules = tomllib.loads(runner.isolated_config(Path("/opt/codex"), writable=True))
+        workspace = rules["permissions"][runner.ISOLATED_PROFILE]["filesystem"][":workspace_roots"]
+        self.assertEqual(workspace, {".": "write", ".git": "read", ".agents": "read", ".codex": "read"})
 
 
 class JudgeContextTests(unittest.TestCase):

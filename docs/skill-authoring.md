@@ -192,7 +192,7 @@ Every skill in this collection carries two versioned eval sets under `evals/`.
 
 Keep at least three cases that vary context, wording, and difficulty. Use raw task inputs without revealing the desired method in the prompt. Prefer deterministic checks for artifacts and factual properties; use human review or a judge rubric for subjective design quality.
 
-[`schemas/evals.schema.json`](../schemas/evals.schema.json) defines the accepted fields, and `npm run validate` rejects unknown keys, so a misspelled field fails instead of being ignored. The optional `tags` array accepts two values. Mark a case `"adversarial"` when its input embeds instructions that try to expand scope or authority and its assertions check that the skill treats them as data. Mark it `"writable"` when the task needs to build, run, or create files, and give it fixtures that make that work possible; an empty workspace turns such assertions into a test of the harness rather than the skill. A skill whose `SKILL.md` has a `## Trust boundary` section must keep at least one adversarial case.
+[`schemas/evals.schema.json`](../schemas/evals.schema.json) defines the accepted fields, and `npm run validate` rejects unknown keys, so a misspelled field fails instead of being ignored. The optional `tags` array accepts three values. Mark a case `"adversarial"` when its input embeds instructions that try to expand scope or authority and its assertions check that the skill treats them as data. Mark it `"writable"` when the task needs to build, run, or create files, and give it fixtures that make that work possible; an empty workspace turns such assertions into a test of the harness rather than the skill. Mark it `"floor"` when repeated runs show a capable baseline passes it too, so it guards against regressions without measuring the skill; the Codex runner reports floor cases under `floors` instead of in the execution totals. A skill whose `SKILL.md` has a `## Trust boundary` section must keep at least one adversarial case.
 
 When claiming that a new or changed skill improves behavior, compare the same cases with and without the skill. For an existing skill, compare against the last released version when that is the meaningful baseline. Inspect transcripts as well as final outputs so added cost, wasted work, and unintended actions remain visible.
 
@@ -221,12 +221,14 @@ For Codex evidence, the primary runtime for this collection, use `scripts/run_co
 - Runs pass `--ignore-user-config`, so user configuration, including any `openai_base_url` proxy, is skipped and Codex uses the signed-in login directly. With a ChatGPT login, runs count against the plan's Codex usage limits, and only models offered to ChatGPT accounts are accepted.
 - `--max-runs` is a required cap on every `codex exec` call, judges included. The runner refuses a plan above it, and stops the batch when the agent or judge reports a model, authentication, or usage-limit error. A single run that times out or fails is recorded as a grading error without stopping the batch. Exit code 0 means every planned run completed; scores live in `results.json`.
 - Runs use a read-only sandbox unless a case is tagged `writable`, which gets `workspace-write` confined to its temporary workspace. Fixtures are committed there first, so the judge receives the commands the agent ran and a diff of what it changed along with its final response.
-- Other installed skills and the global `AGENTS.md` stay loaded, and the sandbox restricts writes but not reads, so results describe the skill inside the machine's normal environment rather than a clean install. An explicit `$skill` mention loads a skill without a visible command, so trigger detection covers the implicit requests routing evals use.
+- By default, other installed skills and the global `AGENTS.md` stay loaded, and the sandbox restricts writes but not reads, so results describe the skill inside the machine's normal environment rather than a clean install. An explicit `$skill` mention loads a skill without a visible command, so trigger detection covers the implicit requests routing evals use.
+- `--isolated` measures a clean environment instead. Each agent and judge run gets a throwaway `CODEX_HOME`, `HOME`, and `TMPDIR`, so the global `AGENTS.md`, user config, and user skills never load, and the preflight fails if the global instructions still reach the prompt. A permission profile lets commands read only the workspace, the platform's minimal runtime paths, and the Codex release; reads of the home directory and other repositories are denied, and network stays off. Writable cases can change the workspace except `.git`, `.agents`, and `.codex`, which stay read-only, and the runner's own Git calls disable external diff, textconv, hook, and fsmonitor commands so workspace content cannot run code outside the sandbox. The login is a symlink to the real `auth.json`, so a token refresh writes through to it. The runner never writes to the real login itself; if Codex replaces the link instead of writing through it, the batch stops and asks you to check `codex login status`. Isolated runs keep their workspaces under `~/.cache/codex-evals`, which other runs cannot read. The platform's minimal paths keep `/tmp` readable, so keep eval logs and PR drafts out of `/tmp` before an isolated run. Toolchains that need per-user caches outside the workspace may not finish under isolation: in the first isolated `feature-spike` run, Xcode's Swift builds could not write their cache under `/var/folders` and timed out in both arms, so measure such cases without `--isolated`.
 
 ```bash
 npm run evals:codex -- --skill <skill> --max-runs 50 --dry-run   # plan and preflight, no model calls
 npm run evals:codex -- --skill <skill> --max-runs 50 --jobs 3
 npm run evals:codex -- --skill <skill> --kind execution --case 2 --runs 3 --max-runs 12
+npm run evals:codex -- --skill <skill> --kind execution --case 6 --runs 3 --max-runs 12 --isolated
 ```
 
 Traces, final messages, and `results.json` go to `agent-skills-workspace/codex-runs/<skill>-<time>/`. Record the model, `SKILL.md` checksum, scores, and token totals in the skill's candidate brief.
@@ -336,6 +338,10 @@ This assessment was last reviewed on 2026-10-31.
 - The daily skills.sh check requires every advertised provider to pass unless
   `skills-sh-audits.json` names the exact skill, provider, warning status, risk,
   and issue codes with a rationale, owner, upstream issue, and review deadline.
+  Socket alerts carry no issue codes, so a Socket exception lists the exact
+  flagged files instead, and validation accepts only files under the skill's
+  `evals/fixtures/`: a scanner may misread synthetic eval scenarios, but
+  never shipped instructions or code.
   A new provider, warning, failure, changed issue, expired exception, or stale
   exception fails the monitor. `W011` exceptions additionally require a runtime
   trust-boundary section in the distributed skill.

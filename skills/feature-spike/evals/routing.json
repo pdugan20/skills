@@ -78,5 +78,45 @@
   {
     "query": "Turn the approved product requirements into a detailed implementation plan.",
     "should_trigger": false
+  },
+  {
+    "query": "Before I ask the team for two sprints, I want to know if WebGPU can render our largest dataset at 60fps on a mid-range laptop. Can you put together something quick that answers that?",
+    "should_trigger": true,
+    "held_out": true
+  },
+  {
+    "query": "Our PM wants offline sync, but nobody knows whether CRDTs will merge our document format without conflicts. Build just enough to find out.",
+    "should_trigger": true,
+    "held_out": true
+  },
+  {
+    "query": "Could you check whether Stripe's embedded checkout actually works inside our React Native webview before we promise it to the customer? Use the real flow with test keys.",
+    "should_trigger": true,
+    "held_out": true
+  },
+  {
+    "query": "I'm not convinced people will use voice notes in the journaling app. What's the cheapest thing we could put in front of a few internal testers to learn that?",
+    "should_trigger": true,
+    "held_out": true
+  },
+  {
+    "query": "We tested three onboarding mockups last week and picked B. Build it properly with analytics and a feature flag.",
+    "should_trigger": false,
+    "held_out": true
+  },
+  {
+    "query": "Write up a comparison of Postgres and DynamoDB for our access patterns based on their documentation.",
+    "should_trigger": false,
+    "held_out": true
+  },
+  {
+    "query": "Our A/B testing framework is already set up; add a variant that changes the call-to-action copy and launch it.",
+    "should_trigger": false,
+    "held_out": true
+  },
+  {
+    "query": "Sketch three alternative layouts for the settings screen and let me toggle between them in the running app.",
+    "should_trigger": false,
+    "held_out": true
   }
 ]
