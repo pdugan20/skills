@@ -8,6 +8,7 @@ import json
 import tempfile
 import threading
 import unittest
+import unittest.mock
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
@@ -133,6 +134,13 @@ class WorkspaceTests(unittest.TestCase):
     def test_baseline_arm_has_no_skill(self) -> None:
         runner.prepare_workspace(self.workspace, self.skill_dir, [], with_skill=False)
         self.assertFalse((self.workspace / ".agents").exists())
+
+    def test_workspace_commit_ignores_commit_signing(self) -> None:
+        config = Path(self.temp.name) / "gitconfig"
+        config.write_text("[commit]\n\tgpgsign = true\n[gpg]\n\tprogram = false\n")
+        with unittest.mock.patch.dict("os.environ", {"GIT_CONFIG_GLOBAL": str(config)}):
+            runner.prepare_workspace(self.workspace, self.skill_dir, [], with_skill=False)
+        self.assertEqual(runner.git_output(self.workspace, "rev-list", "--count", "HEAD").strip(), "1")
 
     def test_installed_copies_are_found_by_link_and_real_path(self) -> None:
         root = Path(self.temp.name) / "user-skills"

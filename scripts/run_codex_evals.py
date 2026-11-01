@@ -201,7 +201,7 @@ def prepare_workspace(
     git = ["git", "-c", "user.name=dev", "-c", "user.email=dev@localhost"]
     subprocess.run([*git, "add", "-A"], cwd=workspace, check=True)
     subprocess.run(
-        [*git, "commit", "--quiet", "--allow-empty", "--no-verify", "-m", "Initial commit"],
+        [*git, "commit", "--quiet", "--allow-empty", "--no-verify", "--no-gpg-sign", "-m", "Initial commit"],
         cwd=workspace,
         check=True,
     )
