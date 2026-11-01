@@ -195,6 +195,14 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertFalse(validate_repository.has_trust_boundary(fenced))
         after_fence = fenced + "\n## Trust boundary\n"
         self.assertTrue(validate_repository.has_trust_boundary(after_fence))
+        four = "````md\n```\n## Trust boundary\n````\n"
+        self.assertFalse(validate_repository.has_trust_boundary(four))
+        tilde = "~~~\n```\n## Trust boundary\n~~~\n"
+        self.assertFalse(validate_repository.has_trust_boundary(tilde))
+        not_closed = "```\n``` text\n## Trust boundary\n"
+        self.assertFalse(validate_repository.has_trust_boundary(not_closed))
+        indented = "    ```\n## Trust boundary\n"
+        self.assertTrue(validate_repository.has_trust_boundary(indented))
 
     def test_audit_policy_never_accepts_fail_verdicts(self) -> None:
         policy = {

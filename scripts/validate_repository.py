@@ -66,7 +66,7 @@ MIN_ROUTING_EVALS_PER_CLASS = 4
 SCHEMA_DIR = ROOT / "schemas"
 ADVERSARIAL_TAG = "adversarial"
 TRUST_BOUNDARY_RE = re.compile(r"^## Trust (?:and action )?boundar(?:y|ies)\s*$")
-FENCE_RE = re.compile(r"^\s*(```|~~~)")
+FENCE_RE = re.compile(r"^ {0,3}(`{3,}|~{3,})(.*)$")
 
 
 def has_trust_boundary(text: str) -> bool:
@@ -77,11 +77,18 @@ def has_trust_boundary(text: str) -> bool:
     fence: str | None = None
     for line in text.splitlines():
         marker = FENCE_RE.match(line)
-        if marker:
-            fence = None if fence == marker.group(1) else (fence or marker.group(1))
-            continue
-        if fence is None and TRUST_BOUNDARY_RE.match(line):
-            return True
+        if fence is None:
+            if marker and not (marker.group(1)[0] == "`" and "`" in marker.group(2)):
+                fence = marker.group(1)
+            elif TRUST_BOUNDARY_RE.match(line):
+                return True
+        elif (
+            marker
+            and marker.group(1)[0] == fence[0]
+            and len(marker.group(1)) >= len(fence)
+            and not marker.group(2).strip()
+        ):
+            fence = None
     return False
 SKILLS_SH_SCHEMA = "https://skills.sh/schemas/skills.sh.schema.json"
 RENOVATE_SCHEMA = "https://docs.renovatebot.com/renovate-schema.json"
