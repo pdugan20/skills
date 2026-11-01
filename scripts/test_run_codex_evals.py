@@ -389,8 +389,8 @@ class WorkspaceChangeTests(unittest.TestCase):
             (workspace / ".gitattributes").write_text("* diff=evil\n")
             (workspace / "notes.md").write_text("two\n")
             changes = runner.workspace_changes(workspace)
+            self.assertEqual(sorted(path.name for path in root.glob("planted*")), [])
         self.assertIn("+two", changes)
-        self.assertEqual(sorted(path.name for path in root.glob("planted*")), [])
 
     def test_writable_isolated_runs_keep_git_and_skill_metadata_read_only(self) -> None:
         rules = tomllib.loads(runner.isolated_config(Path("/opt/codex"), writable=True))
