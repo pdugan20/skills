@@ -197,6 +197,29 @@ class CommandAndPlanTests(unittest.TestCase):
             self.assertEqual(auth.read_text(), "refreshed")
             self.assertEqual(auth.stat().st_mode & 0o777, 0o600)
 
+    def test_a_stale_refresh_never_replaces_a_newer_login(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            auth = root / "auth.json"
+            auth.write_text("original")
+            isolation = runner.Isolation(Path("/c"), Path("/"), auth, root / "AGENTS.md")
+            first = runner.isolated_env(isolation, root / "first", writable=False)
+            second = runner.isolated_env(isolation, root / "second", writable=False)
+            for env, token in ((first, "first refresh"), (second, "second refresh")):
+                linked = Path(env["CODEX_HOME"]) / "auth.json"
+                linked.unlink()
+                linked.write_text(token)
+            runner.restore_auth(isolation, first)
+            runner.restore_auth(isolation, second)
+            self.assertEqual(auth.read_text(), "first refresh")
+            later = runner.isolated_env(isolation, root / "later", writable=False)
+            auth.write_text("refreshed by the desktop app")
+            linked = Path(later["CODEX_HOME"]) / "auth.json"
+            linked.unlink()
+            linked.write_text("stale")
+            runner.restore_auth(isolation, later)
+            self.assertEqual(auth.read_text(), "refreshed by the desktop app")
+
     def test_runs_ignore_user_config_in_read_only_sandbox(self) -> None:
         command = runner.codex_command(Path("/tmp/w"), "gpt-6-astra", ["/a/demo/SKILL.md"])
         self.assertIn("--ignore-user-config", command)

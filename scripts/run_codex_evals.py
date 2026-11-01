@@ -27,6 +27,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -73,6 +74,8 @@ class RunnerError(Exception):
 
 
 ISOLATED_PROFILE = "eval-isolated"
+AUTH_ORIGIN = ".auth-origin.sha256"
+AUTH_LOCK = threading.Lock()
 
 
 @dataclass(frozen=True)
@@ -124,17 +127,27 @@ def isolated_env(isolation: Isolation, scratch: Path, writable: bool) -> dict[st
     for directory in (codex_home, home, temp):
         directory.mkdir(parents=True, exist_ok=True)
     (codex_home / "auth.json").symlink_to(isolation.auth)
+    (codex_home / AUTH_ORIGIN).write_text(hashlib.sha256(isolation.auth.read_bytes()).hexdigest(), encoding="utf-8")
     (codex_home / "config.toml").write_text(isolated_config(isolation.release, writable), encoding="utf-8")
     return {**os.environ, "CODEX_HOME": str(codex_home), "HOME": str(home), "TMPDIR": str(temp)}
 
 
 def restore_auth(isolation: Isolation, env: dict[str, str]) -> None:
-    """If Codex replaced the linked login with a refreshed copy, write the refresh back to the real login."""
-    linked = Path(env["CODEX_HOME"]) / "auth.json"
+    """If Codex replaced the linked login with a refreshed copy, write the refresh back to the real login.
+
+    The write happens only while the real login is unchanged since this run started, so a stale copy from a
+    concurrent run, or from before the desktop app refreshed, never replaces a newer login.
+    """
+    codex_home = Path(env["CODEX_HOME"])
+    linked = codex_home / "auth.json"
     if linked.is_symlink() or not linked.is_file():
         return
+    origin = (codex_home / AUTH_ORIGIN).read_text(encoding="utf-8")
     refreshed = linked.read_bytes()
-    if refreshed != isolation.auth.read_bytes():
+    with AUTH_LOCK:
+        current = isolation.auth.read_bytes()
+        if hashlib.sha256(current).hexdigest() != origin or refreshed == current:
+            return
         staged = isolation.auth.with_name(f".auth.json.{secrets.token_hex(4)}")
         staged.write_bytes(refreshed)
         staged.chmod(0o600)
