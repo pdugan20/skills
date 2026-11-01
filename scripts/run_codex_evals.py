@@ -35,8 +35,8 @@ DEFAULT_MODEL = "gpt-6-astra"
 USER_SKILL_ROOTS = (Path.home() / ".agents" / "skills", Path.home() / ".codex" / "skills", Path("/etc/codex/skills"))
 FATAL_ERROR_MARKERS = ("model_not_found", "not supported when using Codex", "401", "Unauthorized", "usage limit")
 AGENT_TIMEOUT_SECONDS = 900
-MAX_COMMAND_CHARS = 300
 MAX_JUDGED_COMMANDS = 80
+MAX_JUDGED_COMMAND_CHARS = 60_000
 MAX_CHANGE_CHARS = 40_000
 WRITABLE_TAG = "writable"
 WORKSPACE_EXCLUDES = ".build/\n.swiftpm/\n__pycache__/\n*.pyc\n"
@@ -116,7 +116,7 @@ def parse_trace(lines: list[str], skill: str) -> Trace:
         if item.get("type") == "command_execution" and pattern.search(str(item.get("command", ""))):
             trace.skill_fired = True
         if kind == "item.completed" and item.get("type") == "command_execution":
-            command = str(item.get("command", ""))[:MAX_COMMAND_CHARS]
+            command = str(item.get("command", ""))
             trace.commands.append(f"$ {command}  (exit {item.get('exit_code')})")
         if kind == "item.completed" and item.get("type") == "agent_message":
             trace.final_message = str(item.get("text", ""))
@@ -275,8 +275,19 @@ def judge_prompt(
     )
     activity = ""
     if commands:
-        shown = commands[:MAX_JUDGED_COMMANDS]
-        more = f"\n[{len(commands) - len(shown)} more commands omitted]" if len(commands) > len(shown) else ""
+        shown: list[str] = []
+        used = 0
+        for command in commands[:MAX_JUDGED_COMMANDS]:
+            if used + len(command) > MAX_JUDGED_COMMAND_CHARS:
+                break
+            shown.append(command)
+            used += len(command)
+        more = ""
+        if len(shown) < len(commands):
+            more = (
+                f"\n[{len(commands) - len(shown)} later commands omitted. The command record is incomplete: "
+                "fail any assertion that prohibits an action unless the response proves the action never happened.]"
+            )
         activity += "Commands the agent ran, in order:\n" + block("commands", "\n".join(shown) + more) + "\n"
     if changes:
         activity += "Changes the agent left in its workspace:\n" + block("changes", changes) + "\n"
