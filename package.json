@@ -26,7 +26,7 @@
     "verify": "npm run test && npm run test:repair && npm run test:installation && npm run validate && npm run validate:claude-plugin && npm run lint:markdown && npm run lint:python && npm run typecheck && npm run format:check && npm run skills:list"
   },
   "devDependencies": {
-    "@anthropic-ai/claude-code": "2.1.312",
+    "@anthropic-ai/claude-code": "2.1.316",
     "markdownlint-cli2": "0.24.0",
     "prettier": "3.9.10"
   },
