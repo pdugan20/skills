@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file. The project fol
 
 ## [Unreleased]
 
+### Changed
+
+- `code-native-ui-ideation` now requires variants to look and read like the
+  shipped product: no "preview", "local", "mock", "draft" or "unsaved" labels
+  in the interface, fixtures or accessible names, and no disabled "coming
+  later" controls. The toggle between variants is the only exception. Added an
+  execution eval for it.
+
 ### Security
 
 - Followed up the v3.5.0 skills.sh refresh: removed the `feature-spike` Snyk

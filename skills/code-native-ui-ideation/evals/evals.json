@@ -82,6 +82,19 @@
         "All directions preserve comparable content, behavior, state, and accessibility constraints rather than differing only by color or decoration.",
         "The agent stops for selection before implementation because the prompt asks to choose first."
       ]
+    },
+    {
+      "id": 8,
+      "prompt": "Build two treatments for adding a team member in our existing web app's members page. Edits only need to live in browser state for now, since nothing is wired to the API yet. Put both on the real page behind a toggle so I can compare them.",
+      "expected_output": "Two in-project treatments on the real page, switched by one separate toggle, whose interface, fixtures and copy read like the shipped product with no preview or local-state labeling.",
+      "files": ["evals/fixtures/web/PROJECT_CONTEXT.md"],
+      "assertions": [
+        "Both treatments are built in the existing members page and share the same data, state and scenario.",
+        "Screens, fixtures, badges, notices, button labels and accessible names do not describe the work as a preview, local, mock, draft or unsaved.",
+        "The interface has no disabled placeholder or coming-later controls.",
+        "The only experiment-specific control is the toggle between treatments, kept visually separate from the product interface.",
+        "The report says edits stay in browser state without adding that caveat to the interface itself."
+      ]
     }
   ]
 }
