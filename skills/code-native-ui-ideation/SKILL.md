@@ -48,6 +48,7 @@ Use this section only after the user has selected directions or explicitly asked
    - Use the same representative content, data snapshot, state, device or viewport, and interaction scenario across variants.
    - When design-system distance is an axis, record the posture, protected foundations, and intentional departures for each variant.
    - Include fixtures that expose meaningful differences and edge cases.
+   - Make every variant look and read like the shipped product. Do not label screens, fixtures, data, badges, status text, notices, or accessible names as preview, local, mock, draft, or unsaved, and do not add disabled "coming later" controls. The variant switcher is the only exception; keep it visually separate from the product interface.
    - Provide one obvious way to switch among or inspect the variants.
 3. Load the one relevant platform guide:
    - For SwiftUI or other Apple-native work, read [references/swiftui.md](references/swiftui.md).
@@ -77,6 +78,7 @@ When asked to graduate a simple experiment, preserve the selection, remove aband
 - Comparing different data or states and attributing the result to the design.
 - Adding a new preview framework without checking what the repository already uses.
 - Building many superficial variants instead of a few meaningful directions.
+- Marking the interface under review as a preview or local-only with badges, banners, or copy, which makes it look less real than the design being judged.
 - Calling a color or token swap a faithful, stretching, or divergent direction without changing the underlying system relationship.
 - Treating a request for a concrete plan as permission to build ideas the user asked to narrow first.
 - Calling temporary exploration variants production-ready.
